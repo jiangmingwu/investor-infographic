@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px; height: 2020px; background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E; overflow: hidden; position: relative;
+}
+body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35; pointer-events: none;
+}
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E8F0FF 0%, #D0E0F5 100%); border: 2px solid #3A7BD4; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #7B6650; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #3A7BD4; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #7B6650; }
+
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(232,240,255,0.7); border-left: 4px solid #3A7BD4; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #3A7BD4; margin-top: 4px; font-weight: 500; }
+
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+
+svg .sl { stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>腾 讯 的 经 营 之 道</h1>
+  <div class="en">Tencent · The AI-Accelerated Operating Playbook</div>
+  <div class="sub">社交底盘 × 游戏引擎 × AI 增量</div>
+</div>
+
+<!-- 人物/公司 -->
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="#3A7BD4" stroke="#2A5A99" stroke-width="2"/>
+      <!-- 企鹅简笔 -->
+      <ellipse cx="0" cy="8" rx="32" ry="40" fill="#2A4A6A"/>
+      <ellipse cx="0" cy="20" rx="22" ry="24" fill="white"/>
+      <circle cx="-10" cy="-10" r="4" fill="white"/>
+      <circle cx="10" cy="-10" r="4" fill="white"/>
+      <circle cx="-10" cy="-9" r="2" fill="#2A1810"/>
+      <circle cx="10" cy="-9" r="2" fill="#2A1810"/>
+      <path d="M-4,0 L0,6 L4,0 Z" fill="#FFA040"/>
+      <ellipse cx="-18" cy="30" rx="6" ry="10" fill="#FFA040" transform="rotate(-20 -18 30)"/>
+      <ellipse cx="18" cy="30" rx="6" ry="10" fill="#FFA040" transform="rotate(20 18 30)"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">腾　讯</div>
+    <div class="tag">AI 驱动的数字生态超级平台</div>
+    <div class="stats">
+      <span>🇨🇳 1998 创立</span><span>📍 深圳</span><br>
+      <span>👥 约 11 万人</span><span>💰 ¥7,518 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<!-- 三大引擎 -->
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#6B8E4E" stroke-width="2.5"/>
+        <path d="M35,65 Q55,50 75,65 Q95,80 95,65" fill="none" stroke="#6B8E4E" stroke-width="2"/>
+        <text x="65" y="75" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="32" fill="#6B8E4E">微</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#6B8E4E">社交底盘</div>
+    <div class="en">Social Moat</div>
+    <div class="desc">微信 MAU 14 亿 · 国民级</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="35" width="90" height="60" rx="10" fill="#8B3A4E" stroke="#5A2030" stroke-width="2"/>
+        <circle cx="40" cy="65" r="10" fill="#FFC080"/>
+        <circle cx="90" cy="65" r="10" fill="#FFC080"/>
+        <rect x="55" y="55" width="20" height="5" fill="#FFC080"/>
+        <rect x="62.5" y="48" width="5" height="20" fill="#FFC080"/>
+        <text x="65" y="115" text-anchor="middle" font-size="16" fill="#4A3728" font-weight="bold">PUBG/Supercell</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">游戏引擎</div>
+    <div class="en">Game Engine</div>
+    <div class="desc">本土 +18% · 国际 +33%</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <path d="M65,20 L95,50 L80,50 L80,85 L50,85 L50,50 L35,50 Z" fill="#3A7BD4" stroke="#2A5A99" stroke-width="2"/>
+        <text x="65" y="110" text-anchor="middle" font-size="16" fill="#3A7BD4" font-weight="bold">AI ∞</text>
+        <circle cx="25" cy="25" r="6" fill="#3A7BD4" opacity="0.3"/>
+        <circle cx="105" cy="100" r="6" fill="#3A7BD4" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="cn" style="color:#3A7BD4">AI 增量</div>
+    <div class="en">AI Boost</div>
+    <div class="desc">混元 3.0 · 元宝 + DeepSeek</div>
+  </div>
+</div>
+
+<!-- 大数字战绩 -->
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">AI × 广告 × 国际游戏</div>
+    <div class="s1">2025 营销服务 +19% · 国际游戏 +33%<br>混元 3.0 即将发布 · 元宝全面拥抱 DeepSeek<br>Non-IFRS 经营利润 <strong style="color:#3A7BD4">+18%</strong> 跑赢营收</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+18%</div>
+    <div class="lab">经营利润增速</div>
+  </div>
+</div>
+
+<!-- 四档数据 -->
+<div class="yieldbox">
+  <div class="yld-title">2025 年核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">¥7,518亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+14% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#3A7BD4">¥2,807亿</div><div class="yld-lab">Non-IFRS 经营利润</div><div class="yld-sub">+18% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#6B8E4E">14亿</div><div class="yld-lab">微信 MAU</div><div class="yld-sub">国民级基本盘</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">¥1,120亿</div><div class="yld-lab">回购规模(港元)</div><div class="yld-sub">创历史纪录</div></div>
+  </div>
+</div>
+
+<!-- 经营流程 -->
+<div class="section-title"><span>腾 讯 增 长 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">社交流量</div>
+      <div class="d">微信/QQ</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">游戏/内容</div>
+      <div class="d">高 ARPU</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">广告/支付</div>
+      <div class="d">商业化</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#3A7BD4">
+      <div class="t" style="color:#3A7BD4">AI 提效</div>
+      <div class="d">混元+DS</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">投资回购</div>
+      <div class="d">股东回报</div>
+    </div>
+  </div>
+</div>
+
+<!-- 名言 -->
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI 是 2025 年唯一值得大力投入的方向。」</div>
+    <div class="tag">— 马化腾 · 年报沟通</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「腾讯经过慎重思考，全面拥抱 DeepSeek。」</div>
+    <div class="tag">— 马化腾 · AI 战略</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「微信将形成特有的 AI Agent 生态。」</div>
+    <div class="tag">— 总裁 刘炽平</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 2025 年报 · 仅供学习参考，不构成投资建议</div>
+
+</body>
+</html>

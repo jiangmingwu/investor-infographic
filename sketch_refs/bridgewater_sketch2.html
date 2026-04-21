@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px; height: 750px;
+  background: #F7F4ED;
+  font-family: 'ZCOOL XiaoWei', 'STHeiti', 'Hiragino Sans GB', serif;
+  overflow: hidden; position: relative;
+}
+body::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 29px, #E8E4DC 29px, #E8E4DC 30px),
+    repeating-linear-gradient(90deg, transparent, transparent 29px, #E8E4DC 29px, #E8E4DC 30px);
+  opacity: 0.4; pointer-events: none;
+}
+.title { text-align: center; padding-top: 20px; font-family: 'Ma Shan Zheng', 'STHeiti', serif; }
+.title h1 { font-size: 38px; color: #2D5A8A; text-shadow: 1px 1px 0 #A0C4E0; letter-spacing: 5px; }
+.title p { font-size: 15px; color: #6B7B8A; margin-top: 2px; }
+
+.stats-row { display: flex; gap: 12px; margin: 10px 35px 0; }
+.stat-card { flex: 1; background: rgba(255,255,255,0.5); border-radius: 8px; padding: 8px; text-align: center; border: 1.5px solid; }
+.stat-num { font-size: 21px; font-weight: bold; font-family: 'Ma Shan Zheng', serif; }
+.stat-label { font-size: 10px; color: #6B7B8A; margin-top: 1px; }
+
+.content { display: flex; padding: 8px 35px 0; gap: 22px; }
+.left-col { width: 510px; }
+.right-col { flex: 1; }
+
+.section-title { font-size: 16px; color: #2D5A8A; font-weight: bold; border-left: 3px solid #2D5A8A; padding-left: 8px; margin: 8px 0 6px; font-family: 'Ma Shan Zheng', serif; letter-spacing: 2px; }
+
+.holding-row { display: flex; align-items: center; padding: 2.5px 0; border-bottom: 1px dashed #E0DCD5; }
+.holding-rank { width: 20px; font-size: 12px; color: #8A9AAA; font-weight: bold; }
+.holding-icon { width: 24px; height: 24px; margin-right: 5px; }
+.holding-name { width: 140px; font-size: 12px; color: #3A4A5A; font-weight: bold; }
+.holding-bar-area { flex: 1; height: 14px; background: rgba(0,0,0,0.03); border-radius: 3px; margin: 0 6px; }
+.holding-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; justify-content: flex-end; padding-right: 3px; font-size: 9px; color: white; font-weight: bold; }
+.holding-val { width: 50px; font-size: 10px; color: #6B7B8A; text-align: right; }
+
+.pie-section { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #3A4A5A; margin: 2px 0; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+.change-item { display: flex; align-items: center; margin: 4px 0; gap: 6px; }
+.change-tag { padding: 2px 7px; border-radius: 4px; font-size: 11px; color: white; font-weight: bold; white-space: nowrap; }
+.change-detail { font-size: 11px; color: #3A4A5A; }
+
+.insight-box { margin: 8px 35px 0; background: rgba(240,248,255,0.5); border: 2px solid #5A8AAA; border-radius: 8px; padding: 8px 15px; display: flex; align-items: center; gap: 10px; }
+.insight-text { font-size: 13px; color: #3A4A5A; line-height: 1.4; }
+.insight-text strong { color: #2D5A8A; }
+
+.footer { text-align: center; font-size: 10px; color: #B0A090; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="title">
+  <h1>桥水基金 2025 持仓全景</h1>
+  <p>Bridgewater Associates · 13F Filing · 2025Q4</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card" style="border-color:#2D5A8A">
+    <div class="stat-num" style="color:#2D5A8A">$920亿</div>
+    <div class="stat-label">总管理规模 (AUM)</div>
+  </div>
+  <div class="stat-card" style="border-color:#5A8AAA">
+    <div class="stat-num" style="color:#5A8AAA">$274亿</div>
+    <div class="stat-label">13F 披露持仓</div>
+  </div>
+  <div class="stat-card" style="border-color:#6B8E4E">
+    <div class="stat-num" style="color:#6B8E4E">1,040只</div>
+    <div class="stat-label">持仓证券数量</div>
+  </div>
+  <div class="stat-card" style="border-color:#E8A840">
+    <div class="stat-num" style="color:#E8A840">+33%</div>
+    <div class="stat-label">Pure Alpha 2025</div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="section-title">▎前10大持仓（含ETF）</div>
+    <div>
+      <div class="holding-row">
+        <div class="holding-rank">1</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="#2D5A8A" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="6" fill="#2D5A8A" font-weight="bold">S&P</text></svg>
+        <div class="holding-name">SPDR S&P 500 SPY</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:100%;background:#2D5A8A">11.08%</div></div>
+        <div class="holding-val">$30.4亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">2</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="#5A8AAA" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="6" fill="#5A8AAA" font-weight="bold">IVV</text></svg>
+        <div class="holding-name">iShares S&P 500 IVV</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:94%;background:#5A8AAA">10.45%</div></div>
+        <div class="holding-val">$28.7亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">3</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><polygon points="12,3 20,20 4,20" fill="none" stroke="#6B8E4E" stroke-width="1.5"/><text x="12" y="17" text-anchor="middle" font-size="5" fill="#6B8E4E">GPU</text></svg>
+        <div class="holding-name">英伟达 NVDA</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:24%;background:#6B8E4E">2.63%</div></div>
+        <div class="holding-val">$7.2亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">4</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#8B6E4E" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="6" fill="#8B6E4E">LAM</text></svg>
+        <div class="holding-name">拉姆研究 LRCX</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:17%;background:#8B6E4E">1.90%</div></div>
+        <div class="holding-val">$5.2亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">5</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><path d="M4,18 Q8,6 12,12 Q16,6 20,18" fill="none" stroke="#5A8AAA" stroke-width="1.5"/></svg>
+        <div class="holding-name">赛富时 CRM</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:17%;background:#5A8AAA">1.87%</div></div>
+        <div class="holding-val">$5.1亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">6</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14">🔍</text></svg>
+        <div class="holding-name">谷歌 GOOGL</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:16%;background:#E8A840">1.82%</div></div>
+        <div class="holding-val">$5.0亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">7</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="#2D5A8A" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="6" fill="#2D5A8A">MS</text></svg>
+        <div class="holding-name">微软 MSFT</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:16%;background:#2D5A8A">1.74%</div></div>
+        <div class="holding-val">$4.8亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">8</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><path d="M6,18 L6,8 Q12,4 18,8 L18,18" fill="none" stroke="#E8A840" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" font-size="6" fill="#E8A840">amz</text></svg>
+        <div class="holding-name">亚马逊 AMZN</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:15%;background:#E8A840">1.64%</div></div>
+        <div class="holding-val">$4.5亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">9</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><polygon points="12,4 16,10 22,11 18,16 19,22 12,19 5,22 6,16 2,11 8,10" fill="none" stroke="#C25B4E" stroke-width="1.2"/></svg>
+        <div class="holding-name">Adobe ADBE</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:15%;background:#C25B4E">1.63%</div></div>
+        <div class="holding-val">$4.5亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">10</div>
+        <svg class="holding-icon" viewBox="0 0 24 24"><circle cx="12" cy="14" r="7" fill="none" stroke="#6B8E4E" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="7" stroke="#6B8E4E" stroke-width="1.5"/><text x="12" y="17" text-anchor="middle" font-size="6" fill="#6B8E4E">⚡</text></svg>
+        <div class="holding-name">GE Vernova GEV</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:14%;background:#6B8E4E">1.59%</div></div>
+        <div class="holding-val">$4.4亿</div>
+      </div>
+    </div>
+
+    <!-- 特点标注 -->
+    <div style="margin-top:6px; padding:5px 10px; background:rgba(240,248,255,0.4); border-radius:6px; border:1px dashed #5A8AAA;">
+      <span style="font-size:12px; color:#2D5A8A; font-weight:bold;">⚠ 桥水特色：</span>
+      <span style="font-size:11px; color:#6B7B8A;">前2大持仓为S&P 500 ETF（占21.5%），个股极度分散，最大个股英伟达仅占2.63%</span>
+    </div>
+  </div>
+
+  <!-- 右列 -->
+  <div class="right-col">
+    <div class="section-title">▎行业分布</div>
+    <div class="pie-section">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#E0DCD5" stroke-width="1"/>
+        <!-- ETF 21.5% = 77.4° -->
+        <path d="M60,60 L60,8 A52,52 0 0,1 108,72 Z" fill="#2D5A8A" stroke="white" stroke-width="1.5" opacity="0.75"/>
+        <!-- 半导体 7.3% -->
+        <path d="M60,60 L108,72 A52,52 0 0,1 85,110 Z" fill="#6B8E4E" stroke="white" stroke-width="1.5" opacity="0.75"/>
+        <!-- 软件 6.6% -->
+        <path d="M60,60 L85,110 A52,52 0 0,1 45,112 Z" fill="#5A8AAA" stroke="white" stroke-width="1.5" opacity="0.75"/>
+        <!-- 互联网 5.1% -->
+        <path d="M60,60 L45,112 A52,52 0 0,1 18,95 Z" fill="#E8A840" stroke="white" stroke-width="1.5" opacity="0.75"/>
+        <!-- 金融 4.2% -->
+        <path d="M60,60 L18,95 A52,52 0 0,1 10,72 Z" fill="#8B6E4E" stroke="white" stroke-width="1.5" opacity="0.75"/>
+        <!-- 其他 55.3% -->
+        <path d="M60,60 L10,72 A52,52 0 0,1 60,8 Z" fill="#B0A898" stroke="white" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="60" cy="60" r="20" fill="#F7F4ED" stroke="white" stroke-width="2"/>
+        <text x="60" y="57" text-anchor="middle" font-size="8" fill="#3A4A5A" font-weight="bold">行业</text>
+        <text x="60" y="68" text-anchor="middle" font-size="8" fill="#3A4A5A" font-weight="bold">分布</text>
+      </svg>
+      <div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2D5A8A"></div>ETF指数 21.5%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6B8E4E"></div>半导体 7.3%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5A8AAA"></div>软件/云 6.6%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E8A840"></div>互联网 5.1%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8B6E4E"></div>金融 4.2%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#B0A898"></div>其他 55.3%</div>
+      </div>
+    </div>
+
+    <div class="section-title">▎近期重大变动</div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#6B8E4E">📈 大幅增持</div>
+      <div class="change-detail"><strong>SPY</strong> 单季+$13亿</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#6B8E4E">📈 大幅增持</div>
+      <div class="change-detail"><strong>甲骨文 ORCL</strong> 40万→187万股</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#5A8AAA">🆕 新建仓</div>
+      <div class="change-detail"><strong>美光 MU</strong> 建仓$2.53亿</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#6B8E4E">📈 增持</div>
+      <div class="change-detail"><strong>英伟达 NVDA</strong> +135万股</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#C25B4E">📉 大幅减持</div>
+      <div class="change-detail"><strong>谷歌 GOOGL</strong> 减持$3.33亿</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#C25B4E">📉 减持</div>
+      <div class="change-detail"><strong>Uber / Meta</strong> 各减$1-2亿</div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#E8A840">🤖 AI战略</div>
+      <div class="change-detail"><strong>AIA基金</strong> 突破$50亿规模</div>
+    </div>
+  </div>
+</div>
+
+<div class="insight-box">
+  <svg width="45" height="45" viewBox="0 0 45 45">
+    <circle cx="22" cy="20" r="14" fill="#F2DCC0" stroke="#6B7B8A" stroke-width="1.5"/>
+    <ellipse cx="17" cy="18" rx="2.5" ry="3" fill="#3A4A5A"/>
+    <ellipse cx="27" cy="18" rx="2.5" ry="3" fill="#3A4A5A"/>
+    <path d="M17,26 Q22,30 27,26" fill="none" stroke="#6B7B8A" stroke-width="1.2"/>
+    <path d="M10,8 Q15,3 20,6 Q25,0 30,6 Q35,3 38,8" fill="none" stroke="#8A7A6A" stroke-width="1.8"/>
+    <text x="22" y="42" text-anchor="middle" font-size="6" fill="#6B7B8A">💡</text>
+  </svg>
+  <div class="insight-text">
+    <strong>2025年的桥水：</strong>加大指数ETF配置 → 重仓半导体/AI → AI基金AIA突破$50亿<br>
+    「多元化是投资的圣杯」— 1,040只证券的极致分散 + AI赋能的系统化宏观投资
+  </div>
+</div>
+
+<div class="footer">数据来源：SEC 13F Filing · Bridgewater Associates LP · 仅供学习参考，不构成投资建议</div>
+
+</body>
+</html>

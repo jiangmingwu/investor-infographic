@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FDE4E8 0%, #F8B8C0 100%); border: 2px solid #E31937; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #8B0A20; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #E31937; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #8B0A20; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(253,228,232,0.7); border-left: 4px solid #E31937; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #8B0A20; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>特 斯 拉 的 经 营 之 道</h1>
+  <div class="en">Tesla Inc · EV × FSD × Optimus × Energy</div>
+  <div class="sub">210 万辆电动车 × Robotaxi × 机器人赌局</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="#E31937" stroke="#8B0A20" stroke-width="2"/>
+      <path d="M -34,-28 L -34,-18 L -10,-18 L -10,30 L 10,30 L 10,-18 L 34,-18 L 34,-28 Z" fill="white"/>
+      <text x="0" y="58" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="white">TESLA</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">特 斯 拉</div>
+    <div class="tag">全球最大纯电车企 · AI + 机器人</div>
+    <div class="stats">
+      <span>🇺🇸 2003 创立</span><span>📍 Austin</span><br>
+      <span>👥 约 12.5 万人</span><span>💰 $1,050 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="25" y="55" width="80" height="30" rx="8" fill="#E31937"/>
+        <rect x="40" y="40" width="50" height="20" rx="6" fill="#E31937"/>
+        <circle cx="40" cy="90" r="10" fill="#2A2A2C"/>
+        <circle cx="90" cy="90" r="10" fill="#2A2A2C"/>
+        <text x="65" y="120" text-anchor="middle" font-size="14" fill="#E31937" font-weight="bold">210 万辆交付</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#E31937">电动车主业</div>
+    <div class="en">EV Volume</div>
+    <div class="desc">全球最大纯电车企</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="55" r="28" fill="none" stroke="#2A2A2C" stroke-width="4"/>
+        <path d="M 45,55 L 60,65 L 80,45" fill="none" stroke="#2A2A2C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="65" y="105" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="#2A2A2C">FSD v13</text>
+        <text x="65" y="123" text-anchor="middle" font-size="13" fill="#2A2A2C">端到端 AI · 50 亿英里</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#2A2A2C">自动驾驶</div>
+    <div class="en">FSD + Robotaxi</div>
+    <div class="desc">Austin 试运营</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="35" r="14" fill="#C4963C"/>
+        <rect x="52" y="50" width="26" height="36" rx="4" fill="#C4963C"/>
+        <rect x="40" y="58" width="10" height="22" rx="3" fill="#C4963C"/>
+        <rect x="80" y="58" width="10" height="22" rx="3" fill="#C4963C"/>
+        <rect x="55" y="86" width="8" height="18" fill="#C4963C"/>
+        <rect x="67" y="86" width="8" height="18" fill="#C4963C"/>
+        <text x="65" y="125" text-anchor="middle" font-size="14" fill="#C4963C" font-weight="bold">Optimus Gen 3</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">人形机器人</div>
+    <div class="en">Humanoid</div>
+    <div class="desc">2026 工厂试产</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">$1,050 亿 × AI × 机器人</div>
+    <div class="s1">FY25 营收 $1,050 亿 (+8%) · 净利 $85 亿<br>汽车业务 <strong style="color:#E31937">$820 亿 (78%)</strong> · 能源 <strong style="color:#8B0A20">$130 亿 +60%</strong><br>210 万辆交付 · Megapack 订单 <strong style="color:#8B0A20">$300 亿+</strong></div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">18%</div>
+    <div class="lab">汽车毛利率</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$1,050亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+8% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#E31937">$85亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+10% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$55亿</div><div class="yld-lab">自由现金流</div><div class="yld-sub">CapEx $120亿</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.15T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 75×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>特 斯 拉 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#E31937">
+      <div class="t" style="color:#E31937">卖车</div>
+      <div class="d">210 万辆</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#2A2A2C">
+      <div class="t" style="color:#2A2A2C">数据</div>
+      <div class="d">50 亿英里</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">训练</div>
+      <div class="d">Dojo 2.0</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">FSD</div>
+      <div class="d">端到端 AI</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">Robotaxi</div>
+      <div class="d">商业落地</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「Robotaxi 将是特斯拉历史上最重要的产品。」</div>
+    <div class="tag">— Elon Musk · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Optimus 长期看比汽车更大十倍。」</div>
+    <div class="tag">— Elon Musk</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「FSD v13 是从零重写的端到端 AI。」</div>
+    <div class="tag">— Elon Musk</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 1980px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 45px 40px 18px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
+.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
+.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
+.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
+.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
+.section-title { text-align: center; margin: 32px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.segments { padding: 0 40px; }
+.seg-row { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #D9CEBC; }
+.seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #CE1126; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.seg-name { width: 320px; font-size: 20px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
+.seg-bar-area { flex: 1; height: 22px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
+.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 14px; }
+.seg-val { width: 108px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
+.two-col { display: flex; padding: 0 40px; gap: 24px; }
+.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
+.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
+.mix-item { display: flex; align-items: center; margin: 10px 0; font-size: 18px; }
+.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
+.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
+.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
+.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
+.move-detail strong { color: #8B0A20; }
+.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #FDE4E8 0%, #F5BEC8 100%); border: 2px solid #CE1126; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
+.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B0A20; margin-bottom: 10px; }
+.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
+.insight .txt strong { color: #8B0A20; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>埃克森美孚 FY2025 经营全景</h1>
+  <div class="sub">ExxonMobil NYSE:XOM · FY2025 · 营收 $3,550 亿</div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat" style="border-color:#CE1126"><div class="num" style="color:#CE1126">$3,550亿</div><div class="lab">FY25 营收</div></div>
+  <div class="stat" style="border-color:#003E7E"><div class="num" style="color:#003E7E">460万</div><div class="lab">日产油当量</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">$335亿</div><div class="lab">净利润</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">$170亿</div><div class="lab">年分红</div></div>
+</div>
+
+<div class="section-title"><span>五 大 业 务 分 部</span></div>
+<div class="segments">
+  <div class="seg-row">
+    <div class="seg-rank">1</div>
+    <div class="seg-name">下游 (炼化销售) <span style="color:#D9534F;font-size:16px">-6%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#CE1126">52%</div></div>
+    <div class="seg-val">$1,850亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#003E7E">2</div>
+    <div class="seg-name">上游 (勘探开发) <span style="color:#D9534F;font-size:16px">-3%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:48%;background:#003E7E">25%</div></div>
+    <div class="seg-val">$890亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#8B3A4E">3</div>
+    <div class="seg-name">化工 <span style="color:#6B8E4E;font-size:16px">+2%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:29%;background:#8B3A4E">15%</div></div>
+    <div class="seg-val">$535亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#6B8E4E">4</div>
+    <div class="seg-name">其他+Pioneer 整合 <span style="color:#6B8E4E;font-size:16px">+40%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:11%;background:#6B8E4E">6%</div></div>
+    <div class="seg-val">$200亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#6B4E7A">5</div>
+    <div class="seg-name">低碳+氢能 (CCS) <span style="color:#6B8E4E;font-size:16px">+30%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:4%;background:#6B4E7A">2%</div></div>
+    <div class="seg-val">$75亿</div>
+  </div>
+</div>
+
+<div style="padding: 16px 40px 0; font-size:17px; color:#7B6650; line-height:1.6;">
+  <strong style="color:#8B0A20">营业属性:</strong>下游炼化是营收核心,但上游的 Permian + Guyana 才是真正的利润引擎,单桶成本 &lt;$15。<br>
+  <strong style="color:#8B3A4E">关键数字:</strong>Permian 日产 <strong>140 万桶</strong> · Guyana 储量 <strong>110 亿桶</strong> · 40 年连续分红 · FY25 CapEx <strong>$280 亿</strong>。
+</div>
+
+<div class="section-title" style="margin-top:24px"><span>收 入 结 构 与 战 略 动 作</span></div>
+<div class="two-col">
+  <div class="left-box">
+    <div class="box-title">收入结构</div>
+    <div class="mix-item"><div class="mix-dot" style="background:#CE1126"></div>下游炼化<span class="mix-pct">52%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#003E7E"></div>上游勘探开发<span class="mix-pct">25%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>化工<span class="mix-pct">15%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#6B8E4E"></div>其他<span class="mix-pct">6%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>低碳能源<span class="mix-pct">2%</span></div>
+    <div style="margin-top:12px; padding-top:10px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
+      <strong style="color:#8B0A20">利润引擎:</strong>上游只占营收 <strong>25%</strong>,却贡献利润 <strong>&gt;60%</strong>,是真正的价值核心。
+    </div>
+  </div>
+
+  <div class="right-box">
+    <div class="box-title">FY25-27 战略</div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#CE1126">收购</div>
+      <div class="move-detail"><strong>Pioneer $650 亿</strong>完成</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#003E7E">Guyana</div>
+      <div class="move-detail">储量 <strong>110 亿桶</strong></div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B8E4E">CCS</div>
+      <div class="move-detail"><strong>$200 亿</strong> 碳捕集</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B4E7A">锂矿</div>
+      <div class="move-detail"><strong>阿肯色州</strong> FY27 商业化</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#C4963C">分红</div>
+      <div class="move-detail"><strong>40 年连续</strong>增长</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#D9534F">风险</div>
+      <div class="move-detail"><strong>油价下行</strong>+去油化</div>
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
+    <g transform="translate(50,55)">
+      <rect x="-36" y="-14" width="72" height="28" fill="#CE1126"/>
+      <text x="0" y="6" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="10" fill="white">ExxonMobil</text>
+      <rect x="-36" y="18" width="72" height="8" fill="#003E7E"/>
+    </g>
+  </svg>
+  <div style="flex:1">
+    <div class="t">💡 美国油气的终极防御股</div>
+    <div class="txt">Permian <strong>140 万桶</strong> + Guyana <strong>75 万桶</strong> + 40 年分红 = 穿越周期三重保险。<br>Darren Woods:「我们是油价穿越周期的受益者」— 油价 $60 也能盈利,$100 能现金流爆炸。</div>
+  </div>
+</div>
+
+<div class="footer">数据来源:ExxonMobil FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

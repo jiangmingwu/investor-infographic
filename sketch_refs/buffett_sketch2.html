@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1200px;
+  height: 750px;
+  background: #F7F4ED;
+  font-family: 'ZCOOL XiaoWei', 'STHeiti', 'Hiragino Sans GB', serif;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 29px, #E8E4DC 29px, #E8E4DC 30px),
+    repeating-linear-gradient(90deg, transparent, transparent 29px, #E8E4DC 29px, #E8E4DC 30px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.title {
+  text-align: center;
+  padding-top: 22px;
+  font-family: 'Ma Shan Zheng', 'ZCOOL KuaiLe', 'STHeiti', serif;
+}
+.title h1 {
+  font-size: 40px;
+  color: #B8532F;
+  text-shadow: 1px 1px 0 #D4A574;
+  letter-spacing: 6px;
+}
+.title p {
+  font-size: 16px;
+  color: #7B6650;
+  margin-top: 2px;
+}
+
+.content {
+  display: flex;
+  padding: 12px 35px 0;
+  gap: 25px;
+}
+
+.left-col { width: 520px; }
+.right-col { flex: 1; }
+
+.section-title {
+  font-size: 17px;
+  color: #B8532F;
+  font-weight: bold;
+  border-left: 3px solid #B8532F;
+  padding-left: 8px;
+  margin: 10px 0 8px;
+  font-family: 'Ma Shan Zheng', serif;
+  letter-spacing: 2px;
+}
+
+/* 持仓表格 */
+.holdings-table {
+  width: 100%;
+}
+.holding-row {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  border-bottom: 1px dashed #D9CEBC;
+}
+.holding-rank {
+  width: 22px;
+  font-size: 13px;
+  color: #A09080;
+  font-weight: bold;
+}
+.holding-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+}
+.holding-name {
+  width: 130px;
+  font-size: 13px;
+  color: #4A3728;
+  font-weight: bold;
+}
+.holding-bar-area {
+  flex: 1;
+  height: 16px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 3px;
+  position: relative;
+  margin: 0 8px;
+}
+.holding-bar {
+  height: 100%;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+}
+.holding-val {
+  width: 55px;
+  font-size: 11px;
+  color: #7B6650;
+  text-align: right;
+}
+
+/* 变动标签 */
+.change-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  gap: 8px;
+}
+.change-tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.change-detail {
+  font-size: 12px;
+  color: #4A3728;
+}
+.change-note {
+  font-size: 11px;
+  color: #A09080;
+}
+
+/* 饼图区 */
+.pie-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #4A3728;
+  margin: 3px 0;
+}
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* 关键数字 */
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.stat-card {
+  flex: 1;
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  border: 1.5px solid;
+}
+.stat-num {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Ma Shan Zheng', serif;
+}
+.stat-label {
+  font-size: 11px;
+  color: #7B6650;
+  margin-top: 2px;
+}
+
+/* 底部洞察 */
+.insight-box {
+  margin: 10px 35px 0;
+  background: rgba(255,245,230,0.6);
+  border: 2px solid #C4963C;
+  border-radius: 8px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.insight-icon { font-size: 28px; }
+.insight-text {
+  font-size: 14px;
+  color: #4A3728;
+  line-height: 1.5;
+}
+.insight-text strong { color: #B8532F; }
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #B0A090;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="title">
+  <h1>巴菲特 2025 持仓全景</h1>
+  <p>Berkshire Hathaway · 13F Filing · 2025Q4</p>
+</div>
+
+<!-- 关键数字 -->
+<div style="padding: 0 35px;">
+  <div class="stats-row">
+    <div class="stat-card" style="border-color:#C4963C">
+      <div class="stat-num" style="color:#C4963C">$2,670亿</div>
+      <div class="stat-label">持仓总市值</div>
+    </div>
+    <div class="stat-card" style="border-color:#C25B4E">
+      <div class="stat-num" style="color:#C25B4E">$3,340亿</div>
+      <div class="stat-label">现金储备 (历史最高)</div>
+    </div>
+    <div class="stat-card" style="border-color:#5B8BA0">
+      <div class="stat-num" style="color:#5B8BA0">40只</div>
+      <div class="stat-label">持仓股票</div>
+    </div>
+    <div class="stat-card" style="border-color:#6B8E4E">
+      <div class="stat-num" style="color:#6B8E4E">19.8%</div>
+      <div class="stat-label">60年年化收益</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <!-- 左列 -->
+  <div class="left-col">
+    <div class="section-title">▎前10大持仓（占比约87%）</div>
+    <div class="holdings-table">
+      <!-- 每个持仓带小图标 -->
+      <div class="holding-row">
+        <div class="holding-rank">1</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#5B8BA0" stroke-width="1.5"/><path d="M14,6 Q20,10 18,16 Q14,20 10,16 Q8,10 14,6Z" fill="#5B8BA0" opacity="0.3"/><text x="14" y="18" text-anchor="middle" font-size="10" fill="#5B8BA0">🍎</text></svg>
+        <div class="holding-name">苹果 AAPL</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:92%;background:#5B8BA0">28.1%</div></div>
+        <div class="holding-val">$750亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">2</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><rect x="4" y="6" width="20" height="16" rx="3" fill="none" stroke="#6B8E4E" stroke-width="1.5"/><text x="14" y="18" text-anchor="middle" font-size="8" fill="#6B8E4E" font-weight="bold">AXP</text></svg>
+        <div class="holding-name">美国运通 AXP</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:50%;background:#6B8E4E">15.3%</div></div>
+        <div class="holding-val">$410亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">3</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><rect x="5" y="8" width="18" height="14" rx="2" fill="none" stroke="#8B6E4E" stroke-width="1.5"/><line x1="5" y1="13" x2="23" y2="13" stroke="#8B6E4E" stroke-width="1"/><text x="14" y="20" text-anchor="middle" font-size="6" fill="#8B6E4E">BANK</text></svg>
+        <div class="holding-name">美国银行 BAC</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:37%;background:#8B6E4E">11.2%</div></div>
+        <div class="holding-val">$300亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">4</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><ellipse cx="14" cy="16" rx="10" ry="8" fill="none" stroke="#C25B4E" stroke-width="1.5"/><path d="M8,10 Q14,2 20,10" fill="none" stroke="#C25B4E" stroke-width="1.5"/><text x="14" y="19" text-anchor="middle" font-size="7" fill="#C25B4E">Cola</text></svg>
+        <div class="holding-name">可口可乐 KO</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:31%;background:#C25B4E">9.5%</div></div>
+        <div class="holding-val">$254亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">5</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><polygon points="14,4 20,20 8,20" fill="none" stroke="#D4864E" stroke-width="1.5"/><line x1="14" y1="20" x2="14" y2="26" stroke="#D4864E" stroke-width="1.5"/></svg>
+        <div class="holding-name">雪佛龙 CVX</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:20%;background:#D4864E">6.1%</div></div>
+        <div class="holding-val">$163亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">6</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="none" stroke="#7B6650" stroke-width="1.5"/><text x="14" y="18" text-anchor="middle" font-size="9" fill="#7B6650">⛽</text></svg>
+        <div class="holding-name">西方石油 OXY</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:16%;background:#7B6650">4.9%</div></div>
+        <div class="holding-val">$131亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">7</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><rect x="6" y="10" width="16" height="12" rx="2" fill="none" stroke="#B8532F" stroke-width="1.5"/><line x1="10" y1="14" x2="10" y2="18" stroke="#B8532F" stroke-width="1"/><line x1="14" y1="12" x2="14" y2="18" stroke="#B8532F" stroke-width="1"/><line x1="18" y1="16" x2="18" y2="18" stroke="#B8532F" stroke-width="1"/></svg>
+        <div class="holding-name">卡夫亨氏 KHC</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:13%;background:#B8532F">3.9%</div></div>
+        <div class="holding-val">$104亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">8</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><path d="M6,22 L10,8 L14,16 L18,6 L22,14" fill="none" stroke="#5B8BA0" stroke-width="1.5"/></svg>
+        <div class="holding-name">穆迪 MCO</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:12%;background:#5B8BA0">3.7%</div></div>
+        <div class="holding-val">$99亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">9</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><path d="M14,4 L18,10 L24,12 L20,18 L20,24 L14,22 L8,24 L8,18 L4,12 L10,10Z" fill="none" stroke="#6B8E4E" stroke-width="1.5"/></svg>
+        <div class="holding-name">丘博保险 CB</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:9%;background:#6B8E4E">2.8%</div></div>
+        <div class="holding-val">$75亿</div>
+      </div>
+      <div class="holding-row">
+        <div class="holding-rank">10</div>
+        <svg class="holding-icon" viewBox="0 0 28 28"><text x="14" y="20" text-anchor="middle" font-size="14">🏥</text></svg>
+        <div class="holding-name">达维塔 DVA</div>
+        <div class="holding-bar-area"><div class="holding-bar" style="width:6%;background:#A09080">1.8%</div></div>
+        <div class="holding-val">$48亿</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右列 -->
+  <div class="right-col">
+    <!-- 行业分布饼图 -->
+    <div class="section-title">▎行业分布</div>
+    <div class="pie-section">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <!-- 手绘风饼图 -->
+        <circle cx="65" cy="65" r="58" fill="none" stroke="#D9CEBC" stroke-width="1"/>
+        <!-- 金融 35.1% - 0~126.4° -->
+        <path d="M65,65 L65,7 A58,58 0 0,1 118,95 Z" fill="#6B8E4E" stroke="white" stroke-width="1.5" opacity="0.8"/>
+        <!-- 科技 29.1% - 126.4~231.2° -->
+        <path d="M65,65 L118,95 A58,58 0 0,1 25,105 Z" fill="#5B8BA0" stroke="white" stroke-width="1.5" opacity="0.8"/>
+        <!-- 消费 13.4% - 231.2~279.4° -->
+        <path d="M65,65 L25,105 A58,58 0 0,1 16,48 Z" fill="#D4864E" stroke="white" stroke-width="1.5" opacity="0.8"/>
+        <!-- 能源 11% - 279.4~319° -->
+        <path d="M65,65 L16,48 A58,58 0 0,1 37,14 Z" fill="#8B6E4E" stroke="white" stroke-width="1.5" opacity="0.8"/>
+        <!-- 医疗+其他 11.4% -->
+        <path d="M65,65 L37,14 A58,58 0 0,1 65,7 Z" fill="#B0A090" stroke="white" stroke-width="1.5" opacity="0.8"/>
+        <!-- 中心 -->
+        <circle cx="65" cy="65" r="22" fill="#F7F4ED" stroke="white" stroke-width="2"/>
+        <text x="65" y="62" text-anchor="middle" font-size="10" fill="#4A3728" font-weight="bold">行业</text>
+        <text x="65" y="74" text-anchor="middle" font-size="10" fill="#4A3728" font-weight="bold">分布</text>
+      </svg>
+      <div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6B8E4E"></div>金融 35.1%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5B8BA0"></div>科技 29.1%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#D4864E"></div>消费 13.4%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8B6E4E"></div>能源 11.0%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#C25B4E"></div>医疗 1.8%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#B0A090"></div>其他 9.6%</div>
+      </div>
+    </div>
+
+    <!-- 近期重大变动 -->
+    <div class="section-title">▎近期重大变动</div>
+
+    <div class="change-item">
+      <div class="change-tag" style="background:#C25B4E">📉 大幅减持</div>
+      <div>
+        <div class="change-detail"><strong>苹果 AAPL</strong> — 减持67%仓位</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#6B8E4E">📈 新建仓</div>
+      <div>
+        <div class="change-detail"><strong>星座能源 CEG</strong> — 核能概念</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#6B8E4E">📈 新建仓</div>
+      <div>
+        <div class="change-detail"><strong>达美航空 DAL</strong> — 重返航空</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#5B8BA0">📈 增持</div>
+      <div>
+        <div class="change-detail"><strong>西方石油 OXY</strong> — 累计28%+</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#A09080">🚫 清仓</div>
+      <div>
+        <div class="change-detail"><strong>惠普 HPQ / 派拉蒙</strong> — 全部卖出</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="change-tag" style="background:#C4963C">💰 囤现金</div>
+      <div>
+        <div class="change-detail"><strong>$3,340亿</strong> — 创历史新高⚡</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 底部洞察 -->
+<div class="insight-box">
+  <svg width="50" height="50" viewBox="0 0 50 50">
+    <!-- 小巴菲特头像 -->
+    <circle cx="25" cy="22" r="16" fill="#F0D8B8" stroke="#7B6650" stroke-width="1.5"/>
+    <circle cx="20" cy="20" r="5" fill="none" stroke="#4A3728" stroke-width="1.2"/>
+    <circle cx="32" cy="20" r="5" fill="none" stroke="#4A3728" stroke-width="1.2"/>
+    <line x1="25" y1="20" x2="27" y2="20" stroke="#4A3728" stroke-width="1.2"/>
+    <circle cx="20" cy="21" r="1.5" fill="#4A3728"/>
+    <circle cx="32" cy="21" r="1.5" fill="#4A3728"/>
+    <path d="M20,28 Q25,33 30,28" fill="none" stroke="#7B6650" stroke-width="1.2"/>
+    <path d="M12,10 Q15,5 20,8 Q25,2 30,8 Q35,5 38,10" fill="none" stroke="#9A8A7A" stroke-width="2"/>
+    <text x="25" y="46" text-anchor="middle" font-size="7" fill="#7B6650">💡</text>
+  </svg>
+  <div class="insight-text">
+    <strong>2025年的巴菲特：</strong>大幅减持科技股 → 囤积天量现金 → 布局传统能源<br>
+    「别人贪婪时我恐惧」— 95岁的"奥马哈先知"正在为下一次危机储备弹药
+  </div>
+</div>
+
+<div class="footer">数据来源：SEC 13F Filing · 仅供学习参考，不构成投资建议</div>
+
+</body>
+</html>

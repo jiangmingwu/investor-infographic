@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E4EBFD 0%, #B8CCF8 100%); border: 2px solid #1877F2; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #0A3A80; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #1877F2; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #0A3A80; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(228,235,253,0.7); border-left: 4px solid #1877F2; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #0A3A80; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Meta 的 经 营 之 道</h1>
+  <div class="en">Meta Platforms · Family of Apps × AI × AR</div>
+  <div class="sub">34 亿日活 × AI 广告 × Ray-Ban Meta 爆款</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <path d="M -55,0 Q -55,-40 -25,-40 Q 0,-40 0,0 Q 0,40 25,40 Q 55,40 55,0 Q 55,-40 25,-40 Q 0,-40 0,0 Q 0,40 -25,40 Q -55,40 -55,0 Z" fill="none" stroke="#1877F2" stroke-width="14" stroke-linejoin="round"/>
+      <text x="0" y="78" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#1877F2">META</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">Meta 平 台</div>
+    <div class="tag">全球最大社交网络 · AI + 元宇宙</div>
+    <div class="stats">
+      <span>🇺🇸 2004 创立</span><span>📍 Menlo Park</span><br>
+      <span>👥 约 7.8 万人</span><span>💰 $1,750 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="40" cy="55" r="20" fill="#1877F2"/>
+        <circle cx="90" cy="55" r="20" fill="#E4405F"/>
+        <circle cx="65" cy="90" r="20" fill="#25D366"/>
+        <text x="40" y="60" text-anchor="middle" font-size="18" fill="white" font-weight="bold">f</text>
+        <text x="90" y="62" text-anchor="middle" font-size="20" fill="white" font-weight="bold">📷</text>
+        <text x="65" y="96" text-anchor="middle" font-size="14" fill="white" font-weight="bold">WA</text>
+        <text x="65" y="125" text-anchor="middle" font-size="14" fill="#1877F2" font-weight="bold">34 亿日活</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#1877F2">Family of Apps</div>
+    <div class="en">FB + IG + WA</div>
+    <div class="desc">全球一半人口</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="45" width="90" height="50" rx="6" fill="#845BFF" opacity="0.15" stroke="#845BFF" stroke-width="2"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="24" fill="#845BFF">🦙</text>
+        <text x="65" y="88" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#845BFF">Llama 4</text>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#845BFF" font-weight="bold">开源 AI 生态</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#845BFF">AI 大模型</div>
+    <div class="en">Llama + Meta AI</div>
+    <div class="desc">十亿用户助手</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <ellipse cx="40" cy="65" rx="22" ry="16" fill="none" stroke="#8B3A4E" stroke-width="3"/>
+        <ellipse cx="90" cy="65" rx="22" ry="16" fill="none" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="62" y1="65" x2="68" y2="65" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="18" y1="60" x2="12" y2="55" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="112" y1="60" x2="118" y2="55" stroke="#8B3A4E" stroke-width="3"/>
+        <text x="65" y="110" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">销量 500 万</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">Ray-Ban Meta</div>
+    <div class="en">AR Glasses</div>
+    <div class="desc">新品类突破</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">$1,750 亿 × AI 广告 × 回购</div>
+    <div class="s1">FY25 营收 $1,750 亿 (+20%) · 净利 $620 亿 (+40%)<br>广告营收 <strong style="color:#1877F2">$1,700 亿</strong> · Advantage+ AI 驱动<br>家族应用日活 <strong style="color:#1877F2">34 亿</strong> · ARPU $50/年</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">42%</div>
+    <div class="lab">营业利润率</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$1,750亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+20% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#1877F2">$620亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+40% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$750亿</div><div class="yld-lab">FY25 CapEx</div><div class="yld-sub">+100% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.80T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 28×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>Meta AI 广 告 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#1877F2">
+      <div class="t" style="color:#1877F2">34 亿日活</div>
+      <div class="d">用户规模</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#845BFF">
+      <div class="t" style="color:#845BFF">AI 推荐</div>
+      <div class="d">Llama 4</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">广告 ROI</div>
+      <div class="d">+30%</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">现金流</div>
+      <div class="d">$450 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">回购+AI</div>
+      <div class="d">$500 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI 将重塑我们的每一款产品。」</div>
+    <div class="tag">— Mark Zuckerberg · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Llama 将成为开源 AI 的标准。」</div>
+    <div class="tag">— Mark Zuckerberg</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Ray-Ban Meta 是十年来最成功的新品类。」</div>
+    <div class="tag">— Mark Zuckerberg</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

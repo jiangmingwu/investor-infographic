@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F5F2E8; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #1A1F71; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4D8 39px, #E8E4D8 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4D8 39px, #E8E4D8 40px); opacity: 0.35; pointer-events: none; }
+.hero { text-align: center; padding: 50px 40px 10px; }
+.hero h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 82px; color: #1A1F71; letter-spacing: 8px; line-height: 1.1; }
+.hero .sub { font-size: 22px; color: #6B6680; margin-top: 10px; letter-spacing: 1px; }
+.card-svg { display: block; margin: 18px auto 10px; }
+.concepts { display: flex; justify-content: center; gap: 24px; padding: 12px 40px 0; }
+.concept { flex: 1; background: rgba(255,255,255,0.6); border-radius: 14px; border: 2px solid #D9CEBC; padding: 18px 14px; text-align: center; }
+.concept .ico { font-size: 38px; margin-bottom: 6px; }
+.concept .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 22px; color: #1A1F71; margin-bottom: 4px; }
+.concept .d { font-size: 15px; color: #6B6680; line-height: 1.4; }
+.bigbox { margin: 24px 40px 0; background: linear-gradient(135deg, #1A1F71 0%, #2B3186 100%); border-radius: 18px; padding: 26px 30px; color: white; display: flex; align-items: center; gap: 22px; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 58px; line-height: 1; color: #F7B600; text-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+.bigbox .txt { flex: 1; font-size: 19px; line-height: 1.5; }
+.bigbox .txt strong { color: #F7B600; }
+.yieldbox { margin: 22px 40px 0; background: #FFFBEE; border: 2px solid #F7B600; border-radius: 14px; padding: 18px 22px; }
+.yieldbox .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.yieldbox .head .big { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 54px; color: #1A1F71; line-height: 1; }
+.yieldbox .head .mid { font-size: 24px; color: #8A7A3E; font-weight: 700; }
+.yieldbox .lst { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; font-size: 17px; color: #3A3A4E; }
+.yieldbox .lst strong { color: #1A1F71; font-weight: 700; }
+.flow-wrap { margin: 22px 40px 0; padding: 18px 22px; background: rgba(255,255,255,0.55); border-radius: 14px; }
+.flow-wrap .title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 26px; color: #1A1F71; text-align: center; margin-bottom: 14px; }
+.flow { display: flex; align-items: center; justify-content: space-between; }
+.flow .node { flex: 1; text-align: center; padding: 10px 6px; background: white; border: 2px solid #1A1F71; border-radius: 10px; }
+.flow .node .nt { font-size: 15px; color: #1A1F71; font-weight: 700; }
+.flow .node .nd { font-size: 13px; color: #6B6680; margin-top: 3px; }
+.flow .arrow { font-size: 22px; color: #F7B600; margin: 0 4px; font-weight: 700; }
+.quotes { padding: 0 40px; margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.q { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 16px 14px; border-left: 4px solid #1A1F71; }
+.q .qt { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 19px; color: #1A1F71; margin-bottom: 8px; line-height: 1.3; }
+.q .qd { font-size: 14px; color: #4A4A5A; line-height: 1.55; }
+.q .qa { font-size: 12px; color: #8A7A3E; margin-top: 6px; font-style: italic; }
+.footer { text-align: center; font-size: 15px; color: #8A8298; margin-top: 24px; padding-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>维 萨 · 支 付 帝 国</h1>
+  <div class="sub">Visa NYSE:V · 46 亿张卡 · $16 万亿支付总额 · FY2025</div>
+</div>
+
+<svg class="card-svg" width="320" height="180" viewBox="0 0 320 180">
+  <defs>
+    <linearGradient id="cardgrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1A1F71"/>
+      <stop offset="1" stop-color="#2B3186"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="20" width="300" height="150" rx="14" fill="url(#cardgrad)"/>
+  <rect x="30" y="60" width="40" height="30" rx="4" fill="#F7B600"/>
+  <rect x="30" y="66" width="40" height="3" fill="#C89A00"/>
+  <rect x="30" y="75" width="40" height="3" fill="#C89A00"/>
+  <text x="30" y="130" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="22" fill="white" letter-spacing="3">4678  8888  •••• 2025</text>
+  <text x="30" y="155" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="13" fill="#C8C6E0">VISA PAYMENT NETWORK</text>
+  <text x="280" y="158" text-anchor="end" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="26" fill="#F7B600" font-style="italic">VISA</text>
+</svg>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="ico">🌐</div>
+    <div class="t">网络 46 亿张</div>
+    <div class="d">越多卡→越多商户<br>双边网络不可破</div>
+  </div>
+  <div class="concept">
+    <div class="ico">⚡</div>
+    <div class="t">毫秒清算</div>
+    <div class="d">每秒 6.5 万笔<br>99.999% 可靠</div>
+  </div>
+  <div class="concept">
+    <div class="ico">💰</div>
+    <div class="t">67% 营业利润率</div>
+    <div class="d">边际成本近零<br>行业最高</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div class="num">$16<br>万亿</div>
+  <div class="txt">
+    <strong>FY2025 支付总额 $16 万亿</strong><br>
+    一年经手全球 2,400 亿笔交易,比全球第 3 大经济体 GDP 还多。<br>
+    跨境交易 <strong>+16%</strong>,Visa Direct 破万亿,B2B 市场 $200 万亿刚起步。
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="head">
+    <span class="big">67%</span>
+    <span class="mid">营业利润率 · 行业最高</span>
+  </div>
+  <div class="lst">
+    <div>FY25 营收 <strong>$400 亿</strong> +11%</div>
+    <div>净利润 <strong>$215 亿</strong> +13%</div>
+    <div>自由现金流 <strong>$200 亿</strong></div>
+    <div>分红+回购 <strong>$190 亿</strong></div>
+    <div>跨境交易 <strong>+16%</strong> YoY</div>
+    <div>PE 32× · 市值 <strong>$6,000 亿</strong></div>
+  </div>
+</div>
+
+<div class="flow-wrap">
+  <div class="title">支 付 链 条 · 每 刷 一 次 都 抽 佣</div>
+  <div class="flow">
+    <div class="node"><div class="nt">消费者</div><div class="nd">46 亿张卡</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">商户</div><div class="nd">1 亿+门店</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">收单行</div><div class="nd">Stripe 等</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">VisaNet</div><div class="nd">0.1% 抽佣</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">发卡行</div><div class="nd">Chase 等</div></div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="q">
+    <div class="qt">「跨境是<br>皇冠明珠」</div>
+    <div class="qd">出行复苏+电商全球化<br>费率高 3-5× 美国本土</div>
+    <div class="qa">— Ryan McInerney</div>
+  </div>
+  <div class="q">
+    <div class="qt">「稳定币是<br>VisaNet 新轨道」</div>
+    <div class="qd">USDC/PYUSD 接入<br>不是敌人是合作伙伴</div>
+    <div class="qa">— McInerney</div>
+  </div>
+  <div class="q">
+    <div class="qt">「$200 万亿<br>B2B 刚起步」</div>
+    <div class="qd">Visa Direct P2P+工资<br>长期增长跑道清晰</div>
+    <div class="qa">— CFO Chris Suh</div>
+  </div>
+</div>
+
+<div class="footer">数据来源:Visa FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

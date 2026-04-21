@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px; height: 1980px; background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E; overflow: hidden; position: relative;
+}
+body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35; pointer-events: none;
+}
+
+.header { text-align: center; padding: 45px 40px 18px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
+.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
+.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
+.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
+.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
+
+.section-title { text-align: center; margin: 32px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+
+.segments { padding: 0 40px; }
+.seg-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #D9CEBC; }
+.seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #2A2A2C; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.seg-rank.gray { background: #B0A090; }
+.seg-name { width: 260px; font-size: 21px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
+.seg-bar-area { flex: 1; height: 24px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
+.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 15px; }
+.seg-val { width: 118px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
+
+.two-col { display: flex; padding: 0 40px; gap: 24px; }
+.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
+.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
+
+.mix-item { display: flex; align-items: center; margin: 8px 0; font-size: 19px; }
+.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
+.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
+
+.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
+.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
+.move-detail strong { color: #2A2A2C; }
+
+.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #F0EDE8 0%, #D8D3CA 100%); border: 2px solid #5A5A5C; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
+.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #2A2A2C; margin-bottom: 10px; }
+.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
+.insight .txt strong { color: #2A2A2C; }
+
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>苹果 FY2025 经营全景</h1>
+  <div class="sub">Apple AAPL · FY2025 · 营收 $4,161 亿</div>
+</div>
+
+<!-- 关键数字 -->
+<div class="stats-grid">
+  <div class="stat" style="border-color:#2A2A2C">
+    <div class="num" style="color:#2A2A2C">$4,161亿</div>
+    <div class="lab">FY25 营收</div>
+  </div>
+  <div class="stat" style="border-color:#8B3A4E">
+    <div class="num" style="color:#8B3A4E">+6%</div>
+    <div class="lab">营收同比</div>
+  </div>
+  <div class="stat" style="border-color:#C4963C">
+    <div class="num" style="color:#C4963C">$1,122亿</div>
+    <div class="lab">净利润 (+20%)</div>
+  </div>
+  <div class="stat" style="border-color:#6B4E7A">
+    <div class="num" style="color:#6B4E7A">46.9%</div>
+    <div class="lab">毛利率新高</div>
+  </div>
+</div>
+
+<!-- 业务分部 -->
+<div class="section-title"><span>五 大 业 务 分 部</span></div>
+<div class="segments">
+  <div class="seg-row">
+    <div class="seg-rank">1</div>
+    <div class="seg-name">iPhone <span style="color:#6B8E4E;font-size:16px">+3%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#2A2A2C">49.3%</div></div>
+    <div class="seg-val">$2,050亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#C4963C">2</div>
+    <div class="seg-name">服务 Services <span style="color:#6B8E4E;font-size:16px">+13%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:51%;background:#C4963C">25.2%</div></div>
+    <div class="seg-val">$1,050亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#6B4E7A">3</div>
+    <div class="seg-name">可穿戴 + 家居 <span style="color:#D9534F;font-size:16px">-1%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:18%;background:#6B4E7A">9.1%</div></div>
+    <div class="seg-val">$380亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#8B3A4E">4</div>
+    <div class="seg-name">Mac <span style="color:#6B8E4E;font-size:16px">+13%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:17%;background:#8B3A4E">8.3%</div></div>
+    <div class="seg-val">$346亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#6B8E4E">5</div>
+    <div class="seg-name">iPad <span style="color:#6B8E4E;font-size:16px">+6%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:16%;background:#6B8E4E">8.1%</div></div>
+    <div class="seg-val">$335亿</div>
+  </div>
+</div>
+
+<!-- 收入结构 + 战略动作 -->
+<div class="section-title" style="margin-top:28px"><span>收 入 结 构 与 战 略 动 作</span></div>
+<div class="two-col">
+  <div class="left-box">
+    <div class="box-title">收入结构</div>
+    <div class="mix-item"><div class="mix-dot" style="background:#2A2A2C"></div>iPhone<span class="mix-pct">49.3%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>服务 Services<span class="mix-pct">25.2%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>可穿戴 + 家居<span class="mix-pct">9.1%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>Mac<span class="mix-pct">8.3%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#6B8E4E"></div>iPad<span class="mix-pct">8.1%</span></div>
+    <div style="margin-top:14px; padding-top:10px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
+      <strong style="color:#2A2A2C">服务化转型:</strong>服务占比持续抬升至 25%,高毛利(74%)拉动整体毛利率突破 47%。
+    </div>
+  </div>
+
+  <div class="right-box">
+    <div class="box-title">FY25-26 战略</div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#2A2A2C">AI</div>
+      <div class="move-detail"><strong>Apple Intelligence</strong> · 设备端 AI</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#8B3A4E">芯片</div>
+      <div class="move-detail"><strong>M4/M5</strong> · 3nm 自研基带</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#C4963C">服务</div>
+      <div class="move-detail"><strong>首破千亿</strong> · 毛利 74%</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#D9534F">中国</div>
+      <div class="move-detail"><strong>大中华 -8%</strong> · 华为回归压力</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B4E7A">Vision</div>
+      <div class="move-detail"><strong>销量低迷</strong> · 培育期漫长</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B8E4E">回报</div>
+      <div class="move-detail"><strong>回购分红 $1,000 亿</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- 洞察卡 -->
+<div class="insight">
+  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
+    <g transform="translate(50,55)">
+      <circle r="40" fill="#F5F5F7" stroke="#2A2A2C" stroke-width="2"/>
+      <path d="M -3,-28 Q 0,-34 6,-30 Q 2,-24 -3,-28" fill="#2A2A2C"/>
+      <path d="M -18,-12 Q -24,0 -18,14 Q -12,24 -4,22 Q 2,20 8,22 Q 16,24 20,14 Q 26,0 18,-12 Q 10,-18 2,-14 Q -10,-18 -18,-12 Z" fill="#2A2A2C"/>
+      <path d="M 6,-10 Q 14,-4 18,2" fill="#F5F5F7" stroke="#F5F5F7" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <div style="flex:1">
+    <div class="t">💡 硬件公司正在变成订阅公司</div>
+    <div class="txt">服务 $1,050 亿 × 毛利率 <strong>74%</strong> = 约 $780 亿毛利,接近整体毛利的 <strong>40%</strong>。<br>Cook:「用户基数创纪录 <strong>24 亿</strong>」— 苹果真正的护城河是装机量,而非单品销量。</div>
+  </div>
+</div>
+
+<div class="footer">数据来源:Apple FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

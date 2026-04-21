@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FDE4E8 0%, #F5B0B8 100%); border: 2px solid #D52B1E; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #8B0A10; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #D52B1E; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #8B0A10; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(253,228,232,0.7); border-left: 4px solid #D52B1E; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #8B0A10; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>礼 来 的 经 营 之 道</h1>
+  <div class="en">Eli Lilly · GLP-1 × Obesity × Alzheimer's</div>
+  <div class="sub">Mounjaro + Zepbound = $350 亿 × 全球减肥双龙头</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <path d="M 0,-58 L -35,-40 L -35,20 Q 0,50 35,20 L 35,-40 Z" fill="#D52B1E" stroke="#8B0A10" stroke-width="2"/>
+      <text x="0" y="-10" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="white">Lilly</text>
+      <text x="0" y="14" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="10" fill="white">℞</text>
+      <text x="0" y="75" text-anchor="middle" font-size="14" fill="#D52B1E" font-weight="bold">1876 · Indy</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">礼 来</div>
+    <div class="tag">GLP-1 双龙头 · 150 年制药王</div>
+    <div class="stats">
+      <span>🇺🇸 1876 创立</span><span>📍 Indianapolis</span><br>
+      <span>👥 约 4.8 万人</span><span>💰 $630 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="55" y="25" width="20" height="65" fill="#D52B1E" rx="3"/>
+        <rect x="45" y="90" width="40" height="14" fill="#D52B1E" rx="2"/>
+        <circle cx="65" cy="45" r="6" fill="white"/>
+        <text x="65" y="118" text-anchor="middle" font-size="14" fill="#D52B1E" font-weight="bold">Mounjaro +150%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#D52B1E">GLP-1 糖尿病</div>
+    <div class="en">Mounjaro</div>
+    <div class="desc">销售 $200 亿</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="55" y="25" width="20" height="65" fill="#C4963C" rx="3"/>
+        <rect x="45" y="90" width="40" height="14" fill="#C4963C" rx="2"/>
+        <circle cx="65" cy="45" r="6" fill="white"/>
+        <text x="65" y="118" text-anchor="middle" font-size="14" fill="#C4963C" font-weight="bold">Zepbound +150%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">GLP-1 减肥</div>
+    <div class="en">Zepbound</div>
+    <div class="desc">销售 $150 亿</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="55" r="28" fill="#8B3A4E" opacity="0.2" stroke="#8B3A4E" stroke-width="2"/>
+        <text x="65" y="62" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#8B3A4E">🧠</text>
+        <text x="65" y="98" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#8B3A4E">Kisunla</text>
+        <text x="65" y="118" text-anchor="middle" font-size="13" fill="#8B3A4E" font-weight="bold">阿尔茨海默新药</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">神经老化</div>
+    <div class="en">Alzheimer's Drug</div>
+    <div class="desc">老龄化千亿市场</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">$630 亿 × GLP-1 × 口服</div>
+    <div class="s1">FY25 营收 $630 亿 (+45%) · 净利 $180 亿 (+90%)<br>GLP-1 合计 <strong style="color:#D52B1E">$350 亿 (55%)</strong><br>毛利率 <strong style="color:#D52B1E">83%</strong> · R&D $110 亿 (17.5%)</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+45%</div>
+    <div class="lab">营收同比</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$630亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+45% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#D52B1E">$180亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+90% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$350亿</div><div class="yld-lab">GLP-1 营收</div><div class="yld-sub">55% 占比</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$7,800亿</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 65×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>礼 来 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#D52B1E">
+      <div class="t" style="color:#D52B1E">R&D</div>
+      <div class="d">$110 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">GLP-1</div>
+      <div class="d">双受体</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">扩产</div>
+      <div class="d">$500 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">现金流</div>
+      <div class="d">$150 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">新管线</div>
+      <div class="d">口服+AD</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「我们仍在供不应求的初期阶段。」</div>
+    <div class="tag">— David Ricks · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「口服 GLP-1 将打开全球更大的市场。」</div>
+    <div class="tag">— David Ricks</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「GLP-1 才刚刚开始。」</div>
+    <div class="tag">— David Ricks</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

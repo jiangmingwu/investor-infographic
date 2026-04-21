@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px; height: 1980px; background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E; overflow: hidden; position: relative;
+}
+body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35; pointer-events: none;
+}
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 82px; color: #8B3A4E; letter-spacing: 8px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #7B6650; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 68px; color: #C4963C; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #A89080; }
+
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(255,240,230,0.7); border-left: 4px solid #B8532F; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #B8532F; margin-top: 4px; font-weight: 500; }
+
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+
+svg .sl { stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>拼 多 多 的 经 营 之 道</h1>
+  <div class="en">PDD Holdings · Operating Playbook</div>
+  <div class="sub">极简组织 × 极致低价 × 海外复制</div>
+</div>
+
+<!-- 公司 -->
+<div class="hero">
+  <svg width="160" height="200" viewBox="0 0 160 200">
+    <g transform="translate(80,100)">
+      <circle r="58" fill="#E02020" stroke="#8B1010" stroke-width="2"/>
+      <text x="0" y="10" text-anchor="middle" font-family="Songti SC, SimSun, serif" font-weight="700" font-size="40" fill="white">拼</text>
+      <text x="0" y="50" text-anchor="middle" font-family="Songti SC, SimSun, serif" font-weight="700" font-size="28" fill="white">PDD</text>
+      <circle cx="-48" cy="-30" r="6" fill="#FFB800"/>
+      <circle cx="50" cy="-20" r="5" fill="#FFB800"/>
+      <circle cx="-40" cy="40" r="4" fill="#FFB800"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">拼 多 多</div>
+    <div class="tag">中国电商最大变量 · Temu 海外突围</div>
+    <div class="stats">
+      <span>🇨🇳 2015 创立</span><span>📍 上海</span><br>
+      <span>👥 约 2 万人</span><span>💰 ¥4,318 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<!-- 三大理念 -->
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <path d="M25,100 L25,50 L45,50 L45,100 Z" fill="#E02020" stroke="#8B1010" stroke-width="2"/>
+        <path d="M55,100 L55,35 L75,35 L75,100 Z" fill="#E02020" stroke="#8B1010" stroke-width="2"/>
+        <path d="M85,100 L85,20 L105,20 L105,100 Z" fill="#E02020" stroke="#8B1010" stroke-width="2"/>
+        <text x="65" y="120" text-anchor="middle" font-size="15" fill="#4A3728" font-weight="bold">低价心智</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#E02020">极致低价</div>
+    <div class="en">Price Leadership</div>
+    <div class="desc">M2C 工厂直连 · 结构性压价</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="50" width="90" height="50" fill="none" stroke="#8B3A4E" stroke-width="2.5"/>
+        <text x="65" y="85" text-anchor="middle" font-size="22" fill="#8B3A4E" font-weight="bold">2万人</text>
+        <path d="M15,30 Q65,10 115,30" fill="none" stroke="#8B3A4E" stroke-width="2"/>
+        <text x="65" y="25" text-anchor="middle" font-size="14" fill="#8B3A4E">4,318亿营收</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">极简组织</div>
+    <div class="en">Lean Operating</div>
+    <div class="desc">人均 ¥2,160 万 · 行业第一</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#C4963C" stroke-width="2.5"/>
+        <path d="M15,65 L115,65" stroke="#C4963C" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <path d="M65,15 L65,115" stroke="#C4963C" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <circle cx="35" cy="45" r="7" fill="#E02020"/>
+        <circle cx="90" cy="45" r="7" fill="#E02020"/>
+        <circle cx="40" cy="85" r="7" fill="#E02020"/>
+        <circle cx="85" cy="85" r="7" fill="#E02020"/>
+        <text x="65" y="70" text-anchor="middle" font-size="16" fill="#C4963C" font-weight="bold">Temu</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">海外复制</div>
+    <div class="en">Global Playbook</div>
+    <div class="desc">Temu 全球 MAU 约 5.8 亿</div>
+  </div>
+</div>
+
+<!-- 大数字战绩 -->
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">Temu 封神之战</div>
+    <div class="s1">2022 年上线，3 年冲到全球电商前三<br>覆盖 80+ 国家，挑战亚马逊份额<br>带动 PDD 交易服务 Q4 同比 <strong style="color:#8B3A4E">+19%</strong></div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">5.8亿</div>
+    <div class="lab">Temu 全球 MAU</div>
+  </div>
+</div>
+
+<!-- 四档数据 -->
+<div class="yieldbox">
+  <div class="yld-title">2025 年核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">¥4,318亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+10% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">¥1,020亿</div><div class="yld-lab">归母净利润</div><div class="yld-sub">-9% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#6B8E4E">¥4,223亿</div><div class="yld-lab">现金储备</div><div class="yld-sub">极强安全垫</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">25%</div><div class="yld-lab">净利率</div><div class="yld-sub">Non-GAAP</div></div>
+  </div>
+</div>
+
+<!-- 经营流程 -->
+<div class="section-title"><span>经 营 决 策 流 程</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#E02020">
+      <div class="t" style="color:#E02020">工厂直连</div>
+      <div class="d">M2C</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">算法分发</div>
+      <div class="d">无搜索</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#B8532F">
+      <div class="t" style="color:#B8532F">极致低价</div>
+      <div class="d">团购心智</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">广告变现</div>
+      <div class="d">CPC 竞价</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">海外复制</div>
+      <div class="d">Temu</div>
+    </div>
+  </div>
+</div>
+
+<!-- 名言 -->
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「力争三年再造一个拼多多。」</div>
+    <div class="tag">— CEO 陈磊 · 2026 年业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Temu 不是跨境电商，是下一代电商。」</div>
+    <div class="tag">— 创始人 黄峥 · 内部信</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「现金储备 4,223 亿是为冬天准备。」</div>
+    <div class="tag">— CFO 刘珺</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 2025 年报 · 仅供学习参考，不构成投资建议</div>
+
+</body>
+</html>

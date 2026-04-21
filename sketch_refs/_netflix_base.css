@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1200px; min-height:1500px; background:#F7F4ED;
+  font-family:'Noto Sans SC','PingFang SC',sans-serif;
+  color:#2D2D2D; position:relative;
+}
+body::before {
+  content:''; position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px);
+  opacity:0.35; pointer-events:none;
+}
+.brush { font-weight:700; }
+.page-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+  position:absolute; top:30px; right:40px;
+  font-weight:700; font-size:28px; color:#E50914;
+  border:3px solid #E50914; border-radius:50%;
+  width:60px; height:60px; line-height:54px; text-align:center;
+  background:#FFF; box-shadow:3px 3px 0 #B20710;
+}
+.header { text-align:center; padding:50px 40px 16px; position:relative; z-index:1; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight:700; font-size:90px; color:#E50914; letter-spacing:10px; }
+.header .en { font-size:20px; color:#A89080; margin-top:6px; letter-spacing:3px; font-style:italic; }
+.header .sub { font-size:26px; color:#831010; margin-top:10px; font-weight:500; }
+.section-title { text-align:center; margin:30px 0 20px; position:relative; z-index:1; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+  font-weight:700; font-size:42px; color:#E50914;
+  padding:0 24px; position:relative;
+}
+.section-title span::before, .section-title span::after {
+  content:''; position:absolute; top:55%; width:90px; height:3px;
+  background:repeating-linear-gradient(90deg,#E50914 0 8px,transparent 8px 14px);
+}
+.section-title span::before { right:100%; }
+.section-title span::after { left:100%; }
+.card {
+  background:#FFF; border:2.5px solid #2D2D2D;
+  border-radius:14px; padding:20px 22px;
+  box-shadow:5px 5px 0 #E50914;
+  position:relative; z-index:1;
+}
+.card.red { background:linear-gradient(135deg,#FFF 0%,#FFE8E8 100%); border-color:#B20710; box-shadow:5px 5px 0 #831010; }
+.card .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight:700; font-size:34px; color:#E50914; margin-bottom:8px; }
+.card .d { font-size:19px; color:#3A3A3A; line-height:1.65; }
+.quote {
+  background:rgba(229,9,20,0.08); border-left:5px solid #E50914;
+  padding:18px 24px; margin:16px 40px; border-radius:0 10px 10px 0;
+  position:relative; z-index:1;
+}
+.quote .txt { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-size:24px; color:#2D2D2D; line-height:1.5; font-weight:700; }
+.quote .tag { font-size:17px; color:#831010; margin-top:6px; font-weight:500; }
+.footer { text-align:center; font-size:16px; color:#A89080; margin-top:30px; padding:20px 0; position:relative; z-index:1; }
+.netflix-logo { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+  display:inline-block; font-weight:700;
+  font-size:34px; color:#E50914; letter-spacing:3px;
+  border:3px solid #E50914; padding:4px 18px; border-radius:8px;
+  background:#FFF; box-shadow:3px 3px 0 #B20710;
+}

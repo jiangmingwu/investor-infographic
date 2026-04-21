@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 1980px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 45px 40px 18px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
+.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
+.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
+.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
+.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
+.section-title { text-align: center; margin: 32px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.segments { padding: 0 40px; }
+.seg-row { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px dashed #D9CEBC; }
+.seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #CC092F; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.seg-name { width: 320px; font-size: 21px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
+.seg-bar-area { flex: 1; height: 24px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
+.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 15px; }
+.seg-val { width: 108px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
+.two-col { display: flex; padding: 0 40px; gap: 24px; }
+.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
+.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
+.mix-item { display: flex; align-items: center; margin: 12px 0; font-size: 19px; }
+.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
+.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
+.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
+.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
+.move-detail strong { color: #9A0A25; }
+.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #FBE3E8 0%, #F5BEC8 100%); border: 2px solid #CC092F; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
+.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #9A0A25; margin-bottom: 10px; }
+.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
+.insight .txt strong { color: #9A0A25; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>博通 FY2025 经营全景</h1>
+  <div class="sub">Broadcom AVGO · FY2025 · 营收 $620 亿</div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat" style="border-color:#CC092F"><div class="num" style="color:#CC092F">$620亿</div><div class="lab">FY25 营收</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">+20%</div><div class="lab">营收同比</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">$260亿</div><div class="lab">Non-GAAP 净利</div></div>
+  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">77%</div><div class="lab">Non-GAAP 毛利率</div></div>
+</div>
+
+<div class="section-title"><span>三 大 业 务 分 部</span></div>
+<div class="segments">
+  <div class="seg-row">
+    <div class="seg-rank">1</div>
+    <div class="seg-name">基础软件 (含 VMware) <span style="color:#6B8E4E;font-size:16px">+25%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#8B3A4E">37%</div></div>
+    <div class="seg-val">$229亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#C4963C">2</div>
+    <div class="seg-name">非 AI 半导体 <span style="color:#6B8E4E;font-size:16px">+5%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:92%;background:#C4963C">34%</div></div>
+    <div class="seg-val">$211亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank">3</div>
+    <div class="seg-name">AI 半导体 (ASIC+网络) <span style="color:#6B8E4E;font-size:16px">+120%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:78%;background:#CC092F">29%</div></div>
+    <div class="seg-val">$180亿</div>
+  </div>
+</div>
+
+<div style="padding: 20px 40px 0; font-size:17px; color:#7B6650; line-height:1.7;">
+  <strong style="color:#9A0A25">细看 AI 半导体:</strong>ASIC (定制芯片) + 网络芯片合计 29%,但增速 120%,预计 FY26 将跃升到第一大业务。<br>
+  <strong style="color:#8B3A4E">细看基础软件:</strong>VMware 订阅化转型基本完成,毛利率上移,现金流质量大幅改善。
+</div>
+
+<div class="section-title" style="margin-top:28px"><span>收 入 结 构 与 AI 战 略</span></div>
+<div class="two-col">
+  <div class="left-box">
+    <div class="box-title">收入结构</div>
+    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>基础软件 (VMware)<span class="mix-pct">37%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>非 AI 半导体<span class="mix-pct">34%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#CC092F"></div>AI 半导体<span class="mix-pct">29%</span></div>
+    <div style="margin-top:18px; padding-top:12px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
+      <strong style="color:#9A0A25">结构跃迁:</strong>AI 两年前 <strong>不足 5%</strong>,如今已是 <strong>29%</strong> 并 +120% 增长,正在成为核心引擎。
+    </div>
+  </div>
+
+  <div class="right-box">
+    <div class="box-title">FY25-27 战略</div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#CC092F">AI ASIC</div>
+      <div class="move-detail"><strong>5 大客户</strong> · Google/Meta/OpenAI</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#8B3A4E">网络</div>
+      <div class="move-detail"><strong>Tomahawk 6/Jericho 3</strong></div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#C4963C">VMware</div>
+      <div class="move-detail"><strong>订阅化完成</strong> · 毛利抬升</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B4E7A">预告</div>
+      <div class="move-detail"><strong>FY27 AI $60-90B</strong>/客户</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B8E4E">回购</div>
+      <div class="move-detail"><strong>$260 亿</strong> 回购+分红</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#D9534F">风险</div>
+      <div class="move-detail"><strong>Google 一家占 60%</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
+    <g transform="translate(50,55)">
+      <circle r="40" fill="white" stroke="#CC092F" stroke-width="2"/>
+      <rect x="-30" y="-14" width="60" height="28" rx="3" fill="#CC092F"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="11" fill="white">BROADCOM</text>
+    </g>
+  </svg>
+  <div style="flex:1">
+    <div class="t">💡 隐形的 AI 之王</div>
+    <div class="txt">AI ASIC <strong>+120%</strong> × 网络芯片 <strong>85%</strong> 市占 × VMware 订阅化 = 三轮驱动。<br>Hock Tan:「FY27 每家客户 <strong>$60-90B</strong>」— 除 NVIDIA 外,博通是 AI 浪潮中最隐蔽的大赢家。</div>
+  </div>
+</div>
+
+<div class="footer">数据来源:Broadcom FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E2EEFA 0%, #B8D5F2 100%); border: 2px solid #0071DC; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #003A80; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #0071DC; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #003A80; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(226,238,250,0.7); border-left: 4px solid #0071DC; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #003A80; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>沃 尔 玛 的 经 营 之 道</h1>
+  <div class="en">Walmart · Always Low Prices × Retail Media × Prime-killer</div>
+  <div class="sub">10,500 家门店 × 电商 $1,200 亿 × 广告爆发</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="#0071DC" stroke="#003A80" stroke-width="2"/>
+      <g stroke="#FFC220" stroke-width="8" stroke-linecap="round">
+        <line x1="0" y1="-38" x2="0" y2="-18"/>
+        <line x1="0" y1="38" x2="0" y2="18"/>
+        <line x1="-38" y1="0" x2="-18" y2="0"/>
+        <line x1="38" y1="0" x2="18" y2="0"/>
+        <line x1="-27" y1="-27" x2="-13" y2="-13"/>
+        <line x1="27" y1="-27" x2="13" y2="-13"/>
+        <line x1="-27" y1="27" x2="-13" y2="13"/>
+        <line x1="27" y1="27" x2="13" y2="13"/>
+      </g>
+      <text x="0" y="58" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="white">WALMART</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">沃 尔 玛</div>
+    <div class="tag">全球最大零售商 · 防御之王</div>
+    <div class="stats">
+      <span>🇺🇸 1962 创立</span><span>📍 Bentonville</span><br>
+      <span>👥 约 210 万人</span><span>💰 $7,150 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="40" width="90" height="55" rx="4" fill="#0071DC" opacity="0.2" stroke="#0071DC" stroke-width="2"/>
+        <rect x="30" y="50" width="16" height="20" fill="#0071DC"/>
+        <rect x="54" y="50" width="16" height="20" fill="#0071DC"/>
+        <rect x="78" y="50" width="16" height="20" fill="#0071DC"/>
+        <rect x="30" y="75" width="16" height="15" fill="#FFC220"/>
+        <rect x="54" y="75" width="16" height="15" fill="#FFC220"/>
+        <rect x="78" y="75" width="16" height="15" fill="#FFC220"/>
+        <text x="65" y="120" text-anchor="middle" font-size="14" fill="#0071DC" font-weight="bold">10,500 家门店</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#0071DC">实体大卖场</div>
+    <div class="en">Physical Retail</div>
+    <div class="desc">90% 美国人 10 英里内</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="35" width="90" height="55" rx="4" fill="#FFC220" opacity="0.2" stroke="#C4963C" stroke-width="2"/>
+        <text x="65" y="60" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="18" fill="#C4963C">Walmart+</text>
+        <text x="65" y="80" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">3,200 万会员</text>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#C4963C" font-weight="bold">1 小时达 · $98/年</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">会员电商</div>
+    <div class="en">Walmart+ Commerce</div>
+    <div class="desc">GMV $1,200 亿 +25%</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="30" y="30" width="70" height="50" rx="4" fill="#8B3A4E"/>
+        <rect x="40" y="42" width="50" height="6" fill="white"/>
+        <rect x="40" y="54" width="40" height="6" fill="white"/>
+        <rect x="40" y="66" width="30" height="6" fill="white"/>
+        <text x="65" y="98" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#8B3A4E">AD</text>
+        <text x="65" y="118" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">$50 亿 +30%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">广告业务</div>
+    <div class="en">Walmart Connect</div>
+    <div class="desc">零售媒体新引擎</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">$7,150 亿 × 低价 × 广告</div>
+    <div class="s1">FY26 营收 $7,150 亿 (+5%) · 净利 $190 亿 (+15%)<br>电商 GMV <strong style="color:#0071DC">$1,200 亿 +25%</strong> · 广告 <strong style="color:#0071DC">$50 亿 +30%</strong><br>Walmart+ 会员 <strong style="color:#0071DC">3,200 万 +20%</strong></div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">24.5%</div>
+    <div class="lab">FY26 毛利率</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2026 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$7,150亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+5% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#0071DC">$190亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+15% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$150亿</div><div class="yld-lab">自由现金流</div><div class="yld-sub">分红+回购</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$8,400亿</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 32×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>沃 尔 玛 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#0071DC">
+      <div class="t" style="color:#0071DC">低价</div>
+      <div class="d">Always Low</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">流量</div>
+      <div class="d">10,500 店</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">会员</div>
+      <div class="d">3,200 万</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">电商</div>
+      <div class="d">$1,200 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">广告</div>
+      <div class="d">$50 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「电商和广告是未来增长的核心。」</div>
+    <div class="tag">— Doug McMillon · FY26 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「AI 正在重塑从采购到配送的每一环。」</div>
+    <div class="tag">— Doug McMillon</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Walmart+ 已经是零售订阅的第二极。」</div>
+    <div class="tag">— CFO John David Rainey</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2026 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px; height: 2000px; background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E;
+  overflow: hidden; position: relative;
+}
+body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35; pointer-events: none;
+}
+.brush { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; }
+
+/* 头部 */
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; font-size: 82px; color: #8B3A4E; letter-spacing: 8px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+
+/* 人物介绍 */
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+
+/* 三大理念 */
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+  font-weight: 700;
+  font-size: 36px; color: #8B3A4E;
+  padding: 0 20px; position: relative;
+}
+.section-title span::before, .section-title span::after {
+  content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890;
+}
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept {
+  flex: 1; background: rgba(255,255,255,0.55);
+  border: 2px solid #D4B8A8; border-radius: 12px;
+  padding: 18px 10px; text-align: center;
+}
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+
+/* 核心流程 */
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step {
+  flex: 1; text-align: center;
+  border: 2px solid #8B7355; border-radius: 10px;
+  padding: 12px 6px; background: #FDFAF3;
+}
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+
+/* 比亚迪战绩 */
+.bydbox {
+  margin: 26px 40px 0;
+  background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%);
+  border: 2px solid #C4963C; border-radius: 14px;
+  padding: 20px 24px; display: flex; align-items: center; gap: 20px;
+}
+.bydbox .byd-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bydbox .byd-sub { font-size: 20px; color: #7B6650; margin-top: 4px; line-height: 1.5; }
+.bydbox .byd-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-weight: 700; font-size: 68px; color: #C4963C; line-height: 1; }
+.bydbox .byd-lab { font-size: 18px; color: #A89080; }
+
+/* 年化战绩 - 沿用bydbox风格 */
+.yieldbox {
+  margin: 18px 40px 0;
+  background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%);
+  border: 2px solid #C4963C; border-radius: 14px;
+  padding: 16px 20px;
+}
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.yieldbox .yld-note { font-size: 13px; color: #7B6650; margin-top: 8px; line-height: 1.5; text-align: center; }
+
+/* 名言 */
+.quotes { margin: 26px 40px 0; }
+.quote {
+  background: rgba(255,240,230,0.7);
+  border-left: 4px solid #B8532F;
+  padding: 14px 20px; margin-bottom: 10px;
+  border-radius: 0 8px 8px 0;
+}
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #B8532F; margin-top: 4px; font-weight: 500; }
+
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+
+svg .sl { stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>李录的投资之道</h1>
+  <div class="en">Li Lu · Investment Philosophy</div>
+  <div class="sub">芒格价值投资的中国化实践</div>
+</div>
+
+<!-- 人物 -->
+<div class="hero">
+  <svg width="160" height="200" viewBox="0 0 160 200">
+    <g transform="translate(80,30)">
+      <path d="M-35,85 Q-40,60 -20,55 L-8,50 L0,48 L8,50 L20,55 Q40,60 35,85 L35,120 Q35,130 25,130 L-25,130 Q-35,130 -35,120 Z" fill="#4A3E5C" stroke="#2A2340" stroke-width="2" class="sl"/>
+      <path d="M-3,55 L0,90 L3,55" fill="#8B3A4E"/>
+      <path d="M-10,50 L0,58 L10,50" fill="white" stroke="#7B6650" stroke-width="1.5"/>
+      <ellipse cx="0" cy="20" rx="26" ry="30" fill="#F0D8B8" stroke="#7B6650" stroke-width="2" class="sl"/>
+      <path d="M-24,0 Q-10,-15 5,-10 Q20,-12 24,0 Q26,5 22,8 L-22,8 Q-26,5 -24,0Z" fill="#3A2818"/>
+      <rect x="-20" y="12" width="16" height="12" rx="2" fill="none" stroke="#4A3728" stroke-width="2"/>
+      <rect x="4" y="12" width="16" height="12" rx="2" fill="none" stroke="#4A3728" stroke-width="2"/>
+      <line x1="-4" y1="18" x2="4" y2="18" stroke="#4A3728" stroke-width="2"/>
+      <circle cx="-12" cy="18" r="2.2" fill="#2A1810"/>
+      <circle cx="12" cy="18" r="2.2" fill="#2A1810"/>
+      <path d="M-7,35 Q0,40 7,35" fill="none" stroke="#7B6650" stroke-width="1.5" class="sl"/>
+      <ellipse cx="-26" cy="22" rx="4" ry="7" fill="#F0D8B8" stroke="#7B6650" stroke-width="1.2"/>
+      <ellipse cx="26" cy="22" rx="4" ry="7" fill="#F0D8B8" stroke="#7B6650" stroke-width="1.2"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">李　录</div>
+    <div class="tag">芒格家族基金的中国管理人</div>
+    <div class="stats">
+      <span>🎂 59岁</span><span>🇨🇳 唐山人</span><br>
+      <span>🏢 喜马拉雅资本</span><span>💰 $35.7亿 AUM</span>
+    </div>
+  </div>
+</div>
+
+<!-- 三大理念 -->
+<div class="section-title"><span>三 大 投 资 理 念</span></div>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#8B3A4E" stroke-width="2"/>
+        <circle cx="65" cy="65" r="34" fill="rgba(139,58,78,0.1)" stroke="#8B3A4E" stroke-width="2"/>
+        <circle cx="65" cy="65" r="18" fill="rgba(139,58,78,0.3)" stroke="#8B3A4E" stroke-width="2"/>
+        <circle cx="65" cy="65" r="7" fill="#8B3A4E"/>
+        <line x1="15" y1="15" x2="62" y2="62" stroke="#4A3728" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="12,12 22,16 16,22" fill="#4A3728"/>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">极致集中</div>
+    <div class="en">Concentration</div>
+    <div class="desc">9只股票 · 前3大占75%</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="45" cy="65" r="35" fill="rgba(196,74,58,0.2)" stroke="#C25B4E" stroke-width="2.5"/>
+        <text x="33" y="72" text-anchor="middle" font-size="26" fill="#C25B4E" font-weight="bold">中</text>
+        <circle cx="85" cy="65" r="35" fill="rgba(91,140,155,0.2)" stroke="#5B8BA0" stroke-width="2.5"/>
+        <text x="97" y="72" text-anchor="middle" font-size="26" fill="#5B8BA0" font-weight="bold">美</text>
+        <text x="65" y="70" text-anchor="middle" font-size="15" fill="#4A3728" font-weight="bold">看懂</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#6B4E7A">双文化α</div>
+    <div class="en">Bilingual Edge</div>
+    <div class="desc">跨中美信息套利</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <path d="M5,105 Q65,100 125,105 L125,115 L5,115 Z" fill="#8B6E4E"/>
+        <path d="M60,105 Q58,75 55,50 Q60,38 68,32" fill="none" stroke="#6B4E3A" stroke-width="5" class="sl"/>
+        <circle cx="68" cy="32" r="22" fill="rgba(107,142,78,0.5)" stroke="#6B8E4E" stroke-width="2.5"/>
+        <circle cx="52" cy="40" r="15" fill="rgba(107,142,78,0.4)" stroke="#6B8E4E" stroke-width="2"/>
+        <circle cx="85" cy="40" r="13" fill="rgba(107,142,78,0.4)" stroke="#6B8E4E" stroke-width="2"/>
+        <circle cx="64" cy="28" r="4" fill="#C4963C"/>
+        <circle cx="76" cy="36" r="4" fill="#C4963C"/>
+        <circle cx="56" cy="38" r="4" fill="#C4963C"/>
+      </svg>
+    </div>
+    <div class="cn" style="color:#6B8E4E">超长持有</div>
+    <div class="en">Ultra Long-term</div>
+    <div class="desc">年换手率 &lt; 15%</div>
+  </div>
+</div>
+
+<!-- 核心流程 -->
+<div class="section-title"><span>核 心 决 策 流 程</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">选伟大公司</div>
+      <div class="d">不平庸</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">深度独立研究</div>
+      <div class="d">跨中美</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#B8532F">
+      <div class="t" style="color:#B8532F">等错误定价</div>
+      <div class="d">逆人群</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">极致重仓</div>
+      <div class="d">9只集中</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">持有十年+</div>
+      <div class="d">时间为友</div>
+    </div>
+  </div>
+</div>
+
+<!-- 比亚迪战绩 -->
+<div class="bydbox">
+  <div style="flex:1">
+    <div class="byd-title">比亚迪封神之战</div>
+    <div class="byd-sub">2002 年李录 $1/股发掘 BYD<br>2008 年说服巴菲特 $2.3亿入股<br>峰值回报约 <strong style="color:#8B3A4E">35 倍</strong> · 一战成名</div>
+  </div>
+  <div style="text-align:center">
+    <div class="byd-num">35×</div>
+    <div class="byd-lab">封神回报</div>
+  </div>
+</div>
+
+<!-- 美股13F年化收益 -->
+<div class="yieldbox">
+  <div class="yld-title">美股 13F 持仓年化收益</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">11.5%</div><div class="yld-lab">近10年年化</div><div class="yld-sub">累计 +198%</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">7.9%</div><div class="yld-lab">近5年年化</div><div class="yld-sub">累计 +46%</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#6B8E4E">24.7%</div><div class="yld-lab">近3年年化</div><div class="yld-sub">累计 +94%</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">~30%</div><div class="yld-lab">基金成立至今*</div><div class="yld-sub">1998至今 · 含港股</div></div>
+  </div>
+  <div class="yld-note">* 13F仅追踪美股部分，不含比亚迪等港股/A股及现金；~30%为成立至今公开口径。来源：stockcircle</div>
+</div>
+
+<!-- 名言 -->
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「价值投资在中国不仅能走通，而且是唯一正路。」</div>
+    <div class="tag">— 东方化价值投资</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「我把王阳明的知行合一带到了华尔街。」</div>
+    <div class="tag">— 心学与投资</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「伟大的公司往往只需要买一次，然后持有很久很久。」</div>
+    <div class="tag">— 超长持有</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 2025Q4 · 仅供学习参考，不构成投资建议</div>
+
+</body>
+</html>

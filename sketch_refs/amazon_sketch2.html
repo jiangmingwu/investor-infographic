@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 1980px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 45px 40px 18px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
+.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
+.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
+.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
+.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
+.section-title { text-align: center; margin: 32px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.segments { padding: 0 40px; }
+.seg-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #D9CEBC; }
+.seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #FF9900; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.seg-name { width: 260px; font-size: 21px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
+.seg-bar-area { flex: 1; height: 24px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
+.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 15px; }
+.seg-val { width: 118px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
+.two-col { display: flex; padding: 0 40px; gap: 24px; }
+.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
+.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
+.mix-item { display: flex; align-items: center; margin: 8px 0; font-size: 19px; }
+.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
+.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
+.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
+.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
+.move-detail strong { color: #C47A00; }
+.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #FFF2DB 0%, #FFDFAB 100%); border: 2px solid #FF9900; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
+.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #C47A00; margin-bottom: 10px; }
+.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
+.insight .txt strong { color: #C47A00; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>亚马逊 FY2025 经营全景</h1>
+  <div class="sub">Amazon AMZN · FY2025 · 营收 $6,380 亿</div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat" style="border-color:#FF9900"><div class="num" style="color:#C47A00">$6,380亿</div><div class="lab">FY25 营收</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">+10%</div><div class="lab">营收同比</div></div>
+  <div class="stat" style="border-color:#232F3E"><div class="num" style="color:#232F3E">$620亿</div><div class="lab">净利润 (+52%)</div></div>
+  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">38%</div><div class="lab">AWS 利润率</div></div>
+</div>
+
+<div class="section-title"><span>五 大 业 务 分 部</span></div>
+<div class="segments">
+  <div class="seg-row">
+    <div class="seg-rank">1</div>
+    <div class="seg-name">北美电商 <span style="color:#6B8E4E;font-size:16px">+8%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#FF9900">64.3%</div></div>
+    <div class="seg-val">$4,100亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#C4963C">2</div>
+    <div class="seg-name">国际电商 <span style="color:#6B8E4E;font-size:16px">+9%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:37%;background:#C4963C">24.0%</div></div>
+    <div class="seg-val">$1,530亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#232F3E">3</div>
+    <div class="seg-name">AWS 云计算 <span style="color:#6B8E4E;font-size:16px">+20%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:29%;background:#232F3E">18.5%</div></div>
+    <div class="seg-val">$1,180亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#8B3A4E">4</div>
+    <div class="seg-name">广告 <span style="color:#6B8E4E;font-size:16px">+19%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:15%;background:#8B3A4E">9.7%</div></div>
+    <div class="seg-val">$620亿</div>
+  </div>
+  <div class="seg-row">
+    <div class="seg-rank" style="background:#6B4E7A">5</div>
+    <div class="seg-name">订阅 Prime <span style="color:#6B8E4E;font-size:16px">+12%</span></div>
+    <div class="seg-bar-area"><div class="seg-bar" style="width:12%;background:#6B4E7A">7.6%</div></div>
+    <div class="seg-val">$485亿</div>
+  </div>
+</div>
+
+<div class="section-title" style="margin-top:28px"><span>收 入 结 构 与 战 略 动 作</span></div>
+<div class="two-col">
+  <div class="left-box">
+    <div class="box-title">收入结构</div>
+    <div class="mix-item"><div class="mix-dot" style="background:#FF9900"></div>北美电商<span class="mix-pct">64.3%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>国际电商<span class="mix-pct">24.0%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#232F3E"></div>AWS<span class="mix-pct">18.5%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>广告<span class="mix-pct">9.7%</span></div>
+    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>订阅 Prime<span class="mix-pct">7.6%</span></div>
+    <div style="margin-top:14px; padding-top:10px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
+      <strong style="color:#C47A00">利润来源:</strong>电商仅贡献约 30% 营业利润,剩下 <strong>70% 来自 AWS+广告</strong>。
+    </div>
+  </div>
+
+  <div class="right-box">
+    <div class="box-title">FY25-26 战略</div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#FF9900">AWS</div>
+      <div class="move-detail"><strong>增速回 +20%</strong> · Anthropic 加持</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#232F3E">AI</div>
+      <div class="move-detail"><strong>投 Anthropic $80 亿</strong></div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#8B3A4E">基建</div>
+      <div class="move-detail"><strong>CapEx $1,050 亿</strong> · +55%</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#C4963C">广告</div>
+      <div class="move-detail"><strong>Prime Video</strong> 全面广告化</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B4E7A">Zoox</div>
+      <div class="move-detail"><strong>Robotaxi</strong> 2026 商业化</div>
+    </div>
+    <div class="move-item">
+      <div class="move-tag" style="background:#6B8E4E">物流</div>
+      <div class="move-detail"><strong>10 万机器人</strong> 新增</div>
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
+    <g transform="translate(50,55)">
+      <circle r="40" fill="#232F3E" stroke="#FF9900" stroke-width="2"/>
+      <text x="0" y="-2" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="15" fill="white">amazon</text>
+      <path d="M -22,10 Q 0,22 22,10" fill="none" stroke="#FF9900" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 19,7 L 24,11 L 19,15" fill="none" stroke="#FF9900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+  <div style="flex:1">
+    <div class="t">💡 电商的皮,云+广告的芯</div>
+    <div class="txt">AWS <strong>+20%</strong> + 广告 <strong>+19%</strong> 高毛利双引擎,占营业利润的 <strong>70%</strong>。<br>电商只是"流量入口",真正赚钱的是云和广告 — 亚马逊结构性利润升级的故事仍在演绎。</div>
+  </div>
+</div>
+
+<div class="footer">数据来源:Amazon FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

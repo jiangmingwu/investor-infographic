@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FBE4E8 0%, #F6C2CA 100%); border: 2px solid #C8102E; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #7A0C1F; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #9A0C24; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #7A0C1F; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(251,228,232,0.7); border-left: 4px solid #C8102E; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #9A0C24; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>台 积 电 的 经 营 之 道</h1>
+  <div class="en">TSMC · Process Leadership × CoWoS Monopoly</div>
+  <div class="sub">先进制程 × CoWoS 封装 × 30 年客户</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="white" stroke="#C8102E" stroke-width="2"/>
+      <rect x="-40" y="-28" width="80" height="56" rx="4" fill="#E6E6E6" stroke="#8B3A4E" stroke-width="2"/>
+      <rect x="-32" y="-20" width="64" height="40" rx="2" fill="#C8102E"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="white">TSMC</text>
+      <rect x="-40" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="-28" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="-16" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="-4" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="8" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="20" y="32" width="6" height="6" fill="#8B3A4E"/>
+      <rect x="32" y="32" width="6" height="6" fill="#8B3A4E"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">台 积 电</div>
+    <div class="tag">全球先进制程代工之王</div>
+    <div class="stats">
+      <span>🇹🇼 1987 创立</span><span>📍 新竹</span><br>
+      <span>👥 约 8.3 万人</span><span>💰 $1,180 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="30" y="35" width="70" height="50" rx="4" fill="#C8102E" stroke="#7A0C1F" stroke-width="2"/>
+        <text x="65" y="65" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="22" fill="white">3nm</text>
+        <text x="65" y="112" text-anchor="middle" font-size="14" fill="#7A0C1F" font-weight="bold">+180% · 独家量产</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#9A0C24">先进制程</div>
+    <div class="en">Process Leadership</div>
+    <div class="desc">领先对手 2-3 代</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="40" width="90" height="50" rx="4" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
+        <rect x="28" y="48" width="22" height="34" fill="#FFF"/>
+        <rect x="54" y="48" width="22" height="34" fill="#FFF"/>
+        <rect x="80" y="48" width="22" height="34" fill="#FFF"/>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">CoWoS 产能翻倍</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">CoWoS 封装</div>
+    <div class="en">AI Packaging</div>
+    <div class="desc">AI 芯片核心卡脖子</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="40" fill="#8B3A4E" stroke="#6A2A3A" stroke-width="2"/>
+        <circle cx="40" cy="55" r="5" fill="#FFF"/>
+        <circle cx="90" cy="55" r="5" fill="#FFF"/>
+        <circle cx="65" cy="40" r="5" fill="#FFF"/>
+        <circle cx="40" cy="85" r="5" fill="#FFF"/>
+        <circle cx="90" cy="85" r="5" fill="#FFF"/>
+        <circle cx="65" cy="95" r="5" fill="#FFF"/>
+        <text x="65" y="70" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="11" fill="#FFF">KEY</text>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#6A2A3A" font-weight="bold">苹果/NVDA/AMD</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">头部客户</div>
+    <div class="en">Key Customers</div>
+    <div class="desc">30 年深度绑定</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">40% 营收 × 58% 毛利</div>
+    <div class="s1">FY25 营收 $1,180 亿 · 净利 $465 亿 +55%<br>3nm 占比 <strong style="color:#9A0C24">25%</strong> · 同比 +180%<br>先进制程市占 <strong style="color:#9A0C24">90%+</strong> · 护城河极深</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+40%</div>
+    <div class="lab">营收增速</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$1,180亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+40% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#9A0C24">$465亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+55% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">58%</div><div class="yld-lab">毛利率</div><div class="yld-sub">历史新高</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.30T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 28×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>台 积 电 增 长 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#9A0C24">
+      <div class="t" style="color:#9A0C24">AI 需求</div>
+      <div class="d">NVDA/AMD</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">独家量产</div>
+      <div class="d">3nm / 2nm</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">CoWoS 封装</div>
+      <div class="d">产能瓶颈</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">定价权</div>
+      <div class="d">涨价 8-10%</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">再投制程</div>
+      <div class="d">CapEx $420 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI 需求仍然非常强劲,持续至少 10 年。」</div>
+    <div class="tag">— 魏哲家 · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「CoWoS 产能仍在紧张,FY26 将再翻倍。」</div>
+    <div class="tag">— 魏哲家</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「2nm 将按计划 2026 下半年投产。」</div>
+    <div class="tag">— 魏哲家</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

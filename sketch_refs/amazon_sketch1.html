@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FFF2DB 0%, #FFDFAB 100%); border: 2px solid #FF9900; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #8B5A00; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #C47A00; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #8B5A00; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(255,242,219,0.7); border-left: 4px solid #FF9900; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #8B5A00; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>亚 马 逊 的 经 营 之 道</h1>
+  <div class="en">Amazon · Retail × AWS × Ads Triple Engine</div>
+  <div class="sub">电商底盘 × AWS 云 × 广告第三极</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="#232F3E" stroke="#0F1A28" stroke-width="2"/>
+      <text x="0" y="-2" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="24" fill="white">amazon</text>
+      <path d="M -32,12 Q 0,28 32,12" fill="none" stroke="#FF9900" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 28,8 L 34,12 L 28,18" fill="none" stroke="#FF9900" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">亚 马 逊</div>
+    <div class="tag">全球电商 × 云计算双巨头</div>
+    <div class="stats">
+      <span>🇺🇸 1994 创立</span><span>📍 Seattle</span><br>
+      <span>👥 约 156 万人</span><span>💰 $6,380 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="25" y="40" width="80" height="50" rx="4" fill="#FF9900" stroke="#C47A00" stroke-width="2"/>
+        <circle cx="45" cy="100" r="8" fill="#232F3E"/>
+        <circle cx="85" cy="100" r="8" fill="#232F3E"/>
+        <rect x="30" y="48" width="70" height="18" rx="2" fill="#FFF"/>
+        <text x="65" y="61" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="12" fill="#232F3E">PRIME</text>
+        <text x="65" y="125" text-anchor="middle" font-size="14" fill="#C47A00" font-weight="bold">2 亿+ 会员</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C47A00">电商 + Prime</div>
+    <div class="en">Retail Base</div>
+    <div class="desc">北美+国际 88% 营收</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <path d="M 25,75 Q 22,55 42,55 Q 45,35 68,35 Q 95,35 98,58 Q 115,58 115,74 Q 115,88 100,88 L 35,88 Q 25,88 25,75 Z" fill="#232F3E" stroke="#0F1A28" stroke-width="2"/>
+        <text x="68" y="72" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#FF9900">AWS</text>
+        <text x="68" y="115" text-anchor="middle" font-size="14" fill="#0F1A28" font-weight="bold">+20% · 利润 38%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#232F3E">AWS 云</div>
+    <div class="en">Profit Engine</div>
+    <div class="desc">$1,180 亿 · 市占 31%</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="60" width="18" height="40" fill="#8B3A4E"/>
+        <rect x="45" y="45" width="18" height="55" fill="#8B3A4E"/>
+        <rect x="70" y="30" width="18" height="70" fill="#8B3A4E"/>
+        <rect x="95" y="20" width="18" height="80" fill="#8B3A4E"/>
+        <text x="66" y="120" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">+19% · $620 亿</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">广告业务</div>
+    <div class="en">Third Engine</div>
+    <div class="desc">全球第三大广告平台</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">10% 营收 × 52% 净利</div>
+    <div class="s1">FY25 营收 $6,380 亿 · 净利 $620 亿 +52%<br>AWS 回升 <strong style="color:#C47A00">+20%</strong> · 利润率 <strong style="color:#C47A00">38%</strong><br>CapEx <strong style="color:#C47A00">$1,050 亿</strong> +55% AI 军备加码</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+52%</div>
+    <div class="lab">净利增速</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$6,380亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+10% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C47A00">$620亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+52% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">9.7%</div><div class="yld-lab">净利率</div><div class="yld-sub">结构性提升</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$2.30T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 37×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>亚 马 逊 增 长 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#C47A00">
+      <div class="t" style="color:#C47A00">Prime 会员</div>
+      <div class="d">2 亿+ 锁定</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#232F3E">
+      <div class="t" style="color:#232F3E">电商交易</div>
+      <div class="d">$6,000 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">广告变现</div>
+      <div class="d">+19%</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">AWS 现金</div>
+      <div class="d">+20%</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">再投 AI</div>
+      <div class="d">$1,050 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI 是新一代的互联网。」</div>
+    <div class="tag">— Andy Jassy · FY25 年报</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「AWS 增速在回升,AI 需求超过供给。」</div>
+    <div class="tag">— Andy Jassy</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「我们每天都在降低单件履约成本。」</div>
+    <div class="tag">— Andy Jassy</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>

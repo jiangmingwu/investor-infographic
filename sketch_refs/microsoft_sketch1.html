@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height: 2020px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E0EEFB 0%, #BEDAF4 100%); border: 2px solid #0078D4; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #1A4C7A; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #0057A3; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #1A4C7A; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(224,238,251,0.6); border-left: 4px solid #0078D4; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #0057A3; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>微 软 的 经 营 之 道</h1>
+  <div class="en">Microsoft · Cloud × AI × Subscription Moat</div>
+  <div class="sub">Azure 云 × OpenAI 独占 × 企业订阅</div>
+</div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="white" stroke="#8B3A4E" stroke-width="2"/>
+      <rect x="-35" y="-35" width="30" height="30" fill="#F25022"/>
+      <rect x="5" y="-35" width="30" height="30" fill="#7FBA00"/>
+      <rect x="-35" y="5" width="30" height="30" fill="#00A4EF"/>
+      <rect x="5" y="5" width="30" height="30" fill="#FFB900"/>
+      <text x="0" y="52" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#8B3A4E">Microsoft</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">微 软</div>
+    <div class="tag">AI 云巨头 · OpenAI 最大股东</div>
+    <div class="stats">
+      <span>🇺🇸 1975 创立</span><span>📍 Redmond</span><br>
+      <span>👥 约 22.8 万人</span><span>💰 $2,817 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <path d="M 20,70 Q 18,55 35,55 Q 38,38 60,38 Q 85,38 88,58 Q 105,58 105,72 Q 105,85 92,85 L 30,85 Q 20,85 20,70 Z" fill="#0078D4" stroke="#0057A3" stroke-width="2"/>
+        <text x="65" y="75" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#FFF">Azure</text>
+        <text x="65" y="110" text-anchor="middle" font-size="14" fill="#0057A3" font-weight="bold">+33% · AI 驱动</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#0057A3">Azure 云</div>
+    <div class="en">AI Cloud</div>
+    <div class="desc">独占 OpenAI 接口</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="25" y="30" width="80" height="60" rx="6" fill="#8B3A4E" stroke="#6A2A3A" stroke-width="2"/>
+        <rect x="35" y="42" width="60" height="8" rx="2" fill="#FFF"/>
+        <rect x="35" y="56" width="45" height="8" rx="2" fill="#FFF"/>
+        <rect x="35" y="70" width="52" height="8" rx="2" fill="#FFF"/>
+        <text x="65" y="112" text-anchor="middle" font-size="14" fill="#6A2A3A" font-weight="bold">Copilot · +13%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">M365 生产力</div>
+    <div class="en">Productivity</div>
+    <div class="desc">渗透率 30%+</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="38" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
+        <circle cx="65" cy="65" r="20" fill="none" stroke="#FFF" stroke-width="3"/>
+        <text x="65" y="70" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#FFF">GPT</text>
+        <text x="65" y="118" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">49% 经济权益</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">OpenAI</div>
+    <div class="en">Strategic Stake</div>
+    <div class="desc">Stargate $5,000 亿</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">15% 营收 × 45% 利润率</div>
+    <div class="s1">FY25 营收 $2,817 亿 · 净利 $1,018 亿 +18%<br>Azure <strong style="color:#0057A3">+33%</strong> 逆势加速,AI 贡献 16pp<br>CapEx <strong style="color:#0057A3">$880 亿</strong> +80%,军备全力加码</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+33%</div>
+    <div class="lab">Azure 增速</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$2,817亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+15% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#0057A3">$1,018亿</div><div class="yld-lab">净利润</div><div class="yld-sub">+18% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">45%</div><div class="yld-lab">营业利润率</div><div class="yld-sub">极高</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$3.52T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 36×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>微 软 增 长 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#0057A3">
+      <div class="t" style="color:#0057A3">企业订阅</div>
+      <div class="d">M365/Office</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">Copilot</div>
+      <div class="d">AI 升级</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">Azure 云</div>
+      <div class="d">AI 算力</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">现金流</div>
+      <div class="d">$1,300 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">再投 AI</div>
+      <div class="d">CapEx $880 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「我们已进入 AI 的通用阶段。」</div>
+    <div class="tag">— Satya Nadella · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Copilot 正在重新定义每一类企业工作流。」</div>
+    <div class="tag">— Satya Nadella</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Stargate 是一次世纪级算力投资。」</div>
+    <div class="tag">— Satya Nadella · 2026</div>
+  </div>
+</div>
+
+<div class="footer">数据截至 FY2025 年报 · 仅供学习参考,不构成投资建议</div>
+
+</body>
+</html>
