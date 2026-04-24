@@ -296,14 +296,16 @@ class InfographicBuilder:
 
     def _draw_footer(self):
         d = self.data
-        h = s(60)
+        lines = d.get("FOOTER_LINES", [
+            f"数据来源：{d.get('DATA_SOURCE', '公开信息')}",
+            "免责声明：本图仅供学习参考，不构成投资建议"
+        ])
+        if not any(str(line).strip() == "by 江明" for line in lines):
+            lines = [*lines, "by 江明"]
+        h = s(18 + len(lines) * 22)
         if not self.calculating:
             self.draw.rectangle([0, self.y, WIDTH, self.y + h], fill=HEADER_BG)
             font = get_font(13)
-            lines = d.get("FOOTER_LINES", [
-                f"数据来源：{d.get('DATA_SOURCE', '公开信息')}",
-                "免责声明：本图仅供学习参考，不构成投资建议"
-            ])
             for i, line in enumerate(lines):
                 tw = self.draw.textlength(line, font=font)
                 self.draw.text(((WIDTH - tw) / 2, self.y + s(12) + i * s(22)), line, fill="#F0D9C4", font=font)

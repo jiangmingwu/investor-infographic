@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px;
+  height: 1900px;
+  background: #f7f2e8;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  color: #2d2723;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #e9dfcf 39px, #e9dfcf 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #e9dfcf 39px, #e9dfcf 40px);
+  opacity: 0.38;
+  pointer-events: none;
+}
+.page { position: relative; z-index: 1; padding: 42px 42px 0; }
+.hero { text-align: center; }
+.hero h1 {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 54px;
+  line-height: 1.08;
+  color: #243b6b;
+  letter-spacing: 0;
+}
+.hero .sub {
+  margin-top: 12px;
+  font-size: 22px;
+  color: #806858;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+.side {
+  min-height: 240px;
+  background: rgba(255,255,255,0.64);
+  border: 3px solid #243b6b;
+  border-radius: 16px;
+  padding: 20px;
+}
+.side.claude { border-color: #8e4c2a; }
+.side h2 {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 36px;
+  color: #243b6b;
+  margin-bottom: 10px;
+}
+.side.claude h2 { color: #8e4c2a; }
+.side p {
+  font-size: 18px;
+  color: #4e443e;
+  line-height: 1.55;
+}
+.side .tag {
+  margin-top: 14px;
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: #eef3ff;
+  color: #243b6b;
+  font-weight: 800;
+  font-size: 16px;
+}
+.claude .tag { background: #fff0e6; color: #8e4c2a; }
+.section-title {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.section-title::before,
+.section-title::after {
+  content: "";
+  display: block;
+  width: 110px;
+  border-top: 3px solid #d8bfa8;
+}
+.section-title span {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 33px;
+  color: #243b6b;
+  font-weight: 700;
+}
+.scoreboard {
+  margin-top: 18px;
+  border: 2px solid #d8bfa8;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.6);
+  padding: 16px 18px;
+}
+.head,
+.row {
+  display: grid;
+  grid-template-columns: 230px 130px 130px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.head {
+  color: #8e4c2a;
+  font-weight: 900;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #cdb69f;
+}
+.row {
+  min-height: 48px;
+  border-bottom: 1px dashed #dfd0c0;
+  font-size: 17px;
+}
+.row:last-child { border-bottom: 0; }
+.eval { font-weight: 800; color: #2d2723; }
+.gpt { color: #243b6b; font-weight: 900; }
+.cla { color: #8e4c2a; font-weight: 900; }
+.winner {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 900;
+  background: #eef3ff;
+  color: #243b6b;
+}
+.winner.claude { background: #fff0e6; color: #8e4c2a; }
+.winner.tie { background: #f2eadc; color: #6c5a4c; }
+.map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+.panel {
+  background: rgba(255,255,255,0.64);
+  border: 2px solid #d8bfa8;
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+}
+.panel h3 {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.panel.g h3 { color: #243b6b; }
+.panel.c h3 { color: #8e4c2a; }
+.item {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  margin-bottom: 13px;
+  font-size: 17px;
+  color: #4e443e;
+  line-height: 1.45;
+}
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #243b6b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+}
+.c .dot { background: #8e4c2a; }
+.sketch {
+  margin: 24px auto 0;
+  width: 760px;
+  height: 210px;
+  border: 3px dashed #d8bfa8;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.42);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+}
+.sketch svg { width: 120px; height: 120px; display: block; margin: 0 auto 8px; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sketch .left svg { stroke: #243b6b; }
+.sketch .right svg { stroke: #8e4c2a; }
+.caption {
+  text-align: center;
+  font-size: 18px;
+  color: #4e443e;
+  line-height: 1.35;
+}
+.takeaway {
+  margin-top: 24px;
+  border: 3px solid #243b6b;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(36,59,107,0.12), rgba(142,76,42,0.18));
+  padding: 20px 24px;
+  font-size: 22px;
+  line-height: 1.55;
+}
+.takeaway strong { color: #243b6b; }
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 86px;
+  text-align: center;
+  color: #8a7565;
+  font-size: 15px;
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <h1>GPT-5.5 vs Claude Opus 4.7</h1>
+    <div class="sub">不是一边倒：一个更像工具编排者，一个更像资深工程审稿人</div>
+  </div>
+
+  <div class="two">
+    <div class="side">
+      <h2>GPT-5.5</h2>
+      <p>OpenAI 新旗舰，强调“复杂真实工作”：能跨网页、文件、代码、表格和电脑界面持续推进。官方表格里它在工具使用、浏览、长上下文和专业办公上很突出。</p>
+      <div class="tag">强项：多工具长链路</div>
+    </div>
+    <div class="side claude">
+      <h2>Opus 4.7</h2>
+      <p>Anthropic 新 Opus，定位为高难软件工程升级。官方强调长时间任务、代码审查、指令一致性和高分辨率视觉，API 已可用，价格与 4.6 相同。</p>
+      <div class="tag">强项：深工程与审阅</div>
+    </div>
+  </div>
+
+  <div class="section-title"><span>同 场 数 据：谁 领 先 哪 一 项</span></div>
+  <div class="scoreboard">
+    <div class="head"><div>评测</div><div>GPT-5.5</div><div>Opus 4.7</div><div>读法</div></div>
+    <div class="row"><div class="eval">SWE-Bench Pro</div><div class="gpt">58.6%</div><div class="cla">64.3%</div><div><span class="winner claude">Claude 领先</span></div></div>
+    <div class="row"><div class="eval">Terminal-Bench 2.0</div><div class="gpt">82.7%</div><div class="cla">69.4%</div><div><span class="winner">GPT 领先</span></div></div>
+    <div class="row"><div class="eval">GDPval</div><div class="gpt">84.9%</div><div class="cla">80.3%</div><div><span class="winner">GPT 领先</span></div></div>
+    <div class="row"><div class="eval">FinanceAgent v1.1</div><div class="gpt">60.0%</div><div class="cla">64.4%</div><div><span class="winner claude">Claude 领先</span></div></div>
+    <div class="row"><div class="eval">OfficeQA Pro</div><div class="gpt">54.1%</div><div class="cla">43.6%</div><div><span class="winner">GPT 领先</span></div></div>
+    <div class="row"><div class="eval">OSWorld-Verified</div><div class="gpt">78.7%</div><div class="cla">78.0%</div><div><span class="winner tie">几乎打平</span></div></div>
+    <div class="row"><div class="eval">BrowseComp</div><div class="gpt">84.4%</div><div class="cla">79.3%</div><div><span class="winner">GPT 领先</span></div></div>
+    <div class="row"><div class="eval">MCP Atlas</div><div class="gpt">75.3%</div><div class="cla">79.1%</div><div><span class="winner claude">Claude 领先</span></div></div>
+  </div>
+
+  <div class="map">
+    <div class="panel g">
+      <h3>GPT-5.5 更适合</h3>
+      <div class="item"><div class="dot">1</div><div>跨工具任务：浏览、表格、文档、代码、电脑界面混在一起。</div></div>
+      <div class="item"><div class="dot">2</div><div>长上下文找线索：MRCR 512K-1M 为 74.0%，官方表格明显高于 5.4。</div></div>
+      <div class="item"><div class="dot">3</div><div>办公交付：GDPval、OfficeQA Pro、IB 建模任务表现稳。</div></div>
+    </div>
+    <div class="panel c">
+      <h3>Opus 4.7 更适合</h3>
+      <div class="item"><div class="dot">1</div><div>高难代码修复和审阅：SWE-Bench Pro 官方同表领先。</div></div>
+      <div class="item"><div class="dot">2</div><div>金融代理类流程：FinanceAgent v1.1 分数更高。</div></div>
+      <div class="item"><div class="dot">3</div><div>需要强主见、少迎合、反复自查的工程讨论。</div></div>
+    </div>
+  </div>
+
+  <div class="sketch">
+    <div class="left">
+      <svg viewBox="0 0 80 80">
+        <rect x="12" y="14" width="56" height="38" rx="5"/>
+        <path d="M22 26h18M22 36h28M22 46h16"/>
+        <path d="M28 64h24M40 52v12"/>
+        <path d="M56 18l8-8"/>
+        <path d="M62 10h8v8"/>
+      </svg>
+      <div class="caption">GPT-5.5 像“带工具箱的项目推进器”</div>
+    </div>
+    <div class="right">
+      <svg viewBox="0 0 80 80">
+        <path d="M18 16h32l12 12v36H18z"/>
+        <path d="M50 16v12h12"/>
+        <path d="M28 38h24M28 48h18"/>
+        <path d="M24 64l-8 8"/>
+        <path d="M16 72l-4-4"/>
+      </svg>
+      <div class="caption">Opus 4.7 像“挑错很狠的资深 reviewer”</div>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <strong>结论：</strong>做多工具、长链路、浏览研究和办公交付，我会优先看 GPT-5.5；做特别难的软件工程、代码审查、金融代理流程，Opus 4.7 仍然很有竞争力。这里不是谁全面替代谁，而是工作形态不同。
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：OpenAI GPT-5.5 发布文(2026-04-23) · Anthropic Claude Opus 4.7 发布文(2026-04-16)<br>
+  横向评测主要采用 OpenAI 发布文同表数据；实际体验会受提示词、工具权限、上下文和成本预算影响<br>
+  by 江明
+</div>
+</body>
+</html>

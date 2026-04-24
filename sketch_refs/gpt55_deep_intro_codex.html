@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px;
+  height: 3420px;
+  background: #f7f2e8;
+  color: #29251f;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(38, 78, 88, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 78, 88, 0.055) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.page {
+  position: relative;
+  z-index: 1;
+  padding: 54px 42px 0;
+}
+.hero { text-align: center; }
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 62px;
+  color: #145d6f;
+  line-height: 1.02;
+  font-weight: 700;
+}
+.sub {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #806f62;
+}
+.thesis {
+  margin: 34px auto 0;
+  width: 650px;
+  border: 3px solid #df6f24;
+  color: #823b13;
+  background: rgba(255,255,255,0.56);
+  padding: 22px 30px;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.45;
+  font-weight: 800;
+  border-radius: 8px;
+}
+.section-title {
+  margin: 52px auto 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #145d6f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 40px;
+  font-weight: 700;
+}
+.section-title::before,
+.section-title::after {
+  content: "";
+  height: 3px;
+  width: 120px;
+  background: #d4bea9;
+}
+.core {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.core-card {
+  min-height: 240px;
+  border: 2.5px solid #d3bda7;
+  background: rgba(255,255,255,0.55);
+  border-radius: 8px;
+  padding: 22px 18px;
+  text-align: center;
+}
+.core-card svg {
+  width: 66px;
+  height: 66px;
+  stroke: #145d6f;
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-bottom: 14px;
+}
+.core-card h3 {
+  font-size: 25px;
+  color: #145d6f;
+  margin-bottom: 12px;
+}
+.core-card p {
+  font-size: 18px;
+  line-height: 1.48;
+  color: #5f544d;
+}
+.flow {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 22px;
+}
+.flow-card {
+  border: 3px solid #7d6f64;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.58);
+  padding: 24px 22px;
+  min-height: 310px;
+}
+.flow-card.codex { border-color: #145d6f; }
+.flow-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  color: #7d6f64;
+  margin-bottom: 18px;
+}
+.flow-card.codex h3 { color: #145d6f; }
+.step {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 14px 0;
+  font-size: 19px;
+  line-height: 1.45;
+  color: #514943;
+}
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  background: #7d6f64;
+}
+.codex .dot { background: #145d6f; }
+.bench {
+  border: 3px solid #d3bda7;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.62);
+  padding: 24px 26px;
+}
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.bench-item {
+  border: 2px solid #ead8c6;
+  border-radius: 8px;
+  min-height: 128px;
+  padding: 16px 10px;
+  text-align: center;
+  background: #fffaf2;
+}
+.bench-item .num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  color: #df6f24;
+  font-weight: 700;
+}
+.bench-item .label {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #5f544d;
+}
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.vs-card {
+  min-height: 310px;
+  border-radius: 8px;
+  border: 3px solid #d3bda7;
+  background: rgba(255,255,255,0.58);
+  padding: 24px 22px;
+}
+.vs-card.strong {
+  border-color: #df6f24;
+  box-shadow: inset 10px 0 0 #df6f24;
+}
+.vs-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  margin-bottom: 16px;
+  color: #7d6f64;
+}
+.vs-card.strong h3 { color: #145d6f; }
+.vs-card p {
+  font-size: 20px;
+  line-height: 1.55;
+  color: #514943;
+}
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.usecase {
+  border: 2.5px solid #d3bda7;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.58);
+  padding: 22px 22px;
+  min-height: 160px;
+}
+.usecase h3 {
+  color: #145d6f;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.usecase p {
+  color: #514943;
+  font-size: 19px;
+  line-height: 1.5;
+}
+.takeaway {
+  margin-top: 34px;
+  border: 4px solid #145d6f;
+  border-radius: 8px;
+  background: rgba(20,93,111,0.06);
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 20px;
+  padding: 24px 30px;
+  align-items: center;
+}
+.takeaway svg {
+  width: 86px;
+  height: 86px;
+  stroke: #145d6f;
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.takeaway .txt {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #2c2925;
+}
+.takeaway strong { color: #145d6f; }
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 82px;
+  text-align: center;
+  color: #8a7565;
+  font-size: 15px;
+  line-height: 1.65;
+  z-index: 2;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <h1>GPT-5.5 使用者指南</h1>
+    <div class="sub">给编程人员、Codex 重度用户和复杂任务执行者</div>
+  </div>
+
+  <div class="thesis">它最强的地方不是“更会回答”，而是更会把一个混乱任务接过去、拆开、动手、检查，然后继续推进。</div>
+
+  <div class="section-title">三 个 核 心 能 力</div>
+  <div class="core">
+    <div class="core-card">
+      <svg viewBox="0 0 80 80"><path d="M16 56h48"/><rect x="18" y="18" width="44" height="28" rx="5"/><path d="M28 30h24M28 38h16"/><path d="M34 56v-10M46 46v10"/></svg>
+      <h3>会操作工具</h3>
+      <p>不是只给建议，而是能在网页、文件、终端、表格、代码和电脑界面之间连续切换。</p>
+    </div>
+    <div class="core-card">
+      <svg viewBox="0 0 80 80"><path d="M18 18h18v18H18zM44 18h18v18H44zM18 44h18v18H18zM44 44h18v18H44z"/><path d="M36 27h8M27 36v8M53 36v8M36 53h8"/></svg>
+      <h3>会拆长任务</h3>
+      <p>面对多步骤目标，会先理解意图、规划路径，再逐步执行；少一点“你下一步该干嘛”的催促。</p>
+    </div>
+    <div class="core-card">
+      <svg viewBox="0 0 80 80"><path d="M20 18h34l10 10v34H20z"/><path d="M54 18v10h10"/><path d="M30 35h24M30 45h20M30 55h14"/><path d="M56 54l6 6 10-14"/></svg>
+      <h3>会自查闭环</h3>
+      <p>更适合“读代码 -> 改代码 -> 跑测试 -> 看失败 -> 再修”的循环，而不只是一次性输出。</p>
+    </div>
+  </div>
+
+  <div class="section-title">实 际 工 作 流：差 距 在 哪</div>
+  <div class="flow">
+    <div class="flow-card">
+      <h3>普通问答式用法</h3>
+      <div class="step"><div class="dot">1</div><div>用户把问题切小，一段段问。</div></div>
+      <div class="step"><div class="dot">2</div><div>模型给答案，用户自己复制、粘贴、执行。</div></div>
+      <div class="step"><div class="dot">3</div><div>失败后再贴错误，重新解释上下文。</div></div>
+      <div class="step"><div class="dot">4</div><div>最后仍由人整合成真正交付。</div></div>
+    </div>
+    <div class="flow-card codex">
+      <h3>GPT-5.5 + Codex 用法</h3>
+      <div class="step"><div class="dot">1</div><div>把目标交给它：修 bug、加功能、查回归、写测试。</div></div>
+      <div class="step"><div class="dot">2</div><div>它读仓库、找相关文件、判断影响范围。</div></div>
+      <div class="step"><div class="dot">3</div><div>它编辑代码、跑命令、分析失败日志。</div></div>
+      <div class="step"><div class="dot">4</div><div>它把结果、风险和下一步交代清楚。</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">官 方 数 据 里 最 能 说明 问 题 的 指 标</div>
+  <div class="bench">
+    <div class="bench-grid">
+      <div class="bench-item"><div class="num">82.7%</div><div class="label">Terminal-Bench 2.0<br>真实终端任务</div></div>
+      <div class="bench-item"><div class="num">78.7%</div><div class="label">OSWorld-Verified<br>电脑界面操作</div></div>
+      <div class="bench-item"><div class="num">84.4%</div><div class="label">BrowseComp<br>浏览与查证</div></div>
+      <div class="bench-item"><div class="num">75.3%</div><div class="label">MCP Atlas<br>工具调用能力</div></div>
+      <div class="bench-item"><div class="num">74.0%</div><div class="label">MRCR 512K-1M<br>长上下文找线索</div></div>
+      <div class="bench-item"><div class="num">58.6%</div><div class="label">SWE-Bench Pro<br>软件工程修复</div></div>
+      <div class="bench-item"><div class="num">73.1%</div><div class="label">Expert-SWE<br>内部工程任务</div></div>
+      <div class="bench-item"><div class="num">400K</div><div class="label">Codex 上下文窗口<br>适合大仓库阅读</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">对 编 程 人 员 最 有 价 值 的 提 升</div>
+  <div class="usecases">
+    <div class="usecase">
+      <h3>1. 少交代背景</h3>
+      <p>大仓库里，它更能自己读上下文、找调用链、看测试结构，减少你反复“补课”。</p>
+    </div>
+    <div class="usecase">
+      <h3>2. 少中断工作流</h3>
+      <p>以前你要来回切 IDE、浏览器、终端；现在它更能把这些动作串成一条执行链。</p>
+    </div>
+    <div class="usecase">
+      <h3>3. 更适合模糊任务</h3>
+      <p>比如“这个页面慢，帮我查原因”，它能从现象进入代码、日志、配置和测试。</p>
+    </div>
+    <div class="usecase">
+      <h3>4. 更会复盘交付</h3>
+      <p>做完后会说明改了什么、怎么验证、剩余风险在哪，这对工程协作很关键。</p>
+    </div>
+  </div>
+
+  <div class="section-title">它 比 普 通 人 强 在 哪</div>
+  <div class="vs">
+    <div class="vs-card">
+      <h3>普通人强在判断</h3>
+      <p>知道业务目标、权衡取舍、识别“这个需求到底值不值得做”。这些仍然应该由人把关。</p>
+    </div>
+    <div class="vs-card strong">
+      <h3>GPT-5.5 强在执行密度</h3>
+      <p>它可以在很长上下文里记住线索，连续操作多个工具，不怕重复跑测试和查资料，把大量低创造性但高摩擦的步骤吃掉。</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <svg viewBox="0 0 80 80"><path d="M14 58h52"/><path d="M22 50l13-17 10 8 17-26"/><path d="M56 15h8v8"/><circle cx="22" cy="50" r="4"/><circle cx="35" cy="33" r="4"/><circle cx="45" cy="41" r="4"/></svg>
+    <div class="txt"><strong>一句话结论：</strong>GPT-5.5 最强的不是单点聪明，而是“长链路执行力”：它更像一个能读仓库、会用工具、会自查的工程搭档。</div>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：OpenAI GPT-5.5 发布文与 GPT-5.5 System Card（2026-04-23）；基准测试为官方披露结果<br>
+  实际体验会受任务类型、工具权限、提示词、上下文质量、成本预算和产品环境影响<br>
+  by 江明
+</div>
+</body>
+</html>

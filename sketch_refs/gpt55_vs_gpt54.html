@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px;
+  height: 1800px;
+  background: #f7f2e8;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  color: #2d2723;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #e9dfcf 39px, #e9dfcf 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #e9dfcf 39px, #e9dfcf 40px);
+  opacity: 0.38;
+  pointer-events: none;
+}
+.page { position: relative; z-index: 1; padding: 44px 42px 0; }
+.hero { text-align: center; }
+.hero h1 {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 58px;
+  line-height: 1.06;
+  color: #1b5f75;
+  letter-spacing: 0;
+}
+.hero .sub {
+  margin-top: 12px;
+  font-size: 22px;
+  color: #806858;
+}
+.stamp {
+  width: 500px;
+  margin: 24px auto 0;
+  border: 3px solid #dd6b20;
+  border-radius: 10px;
+  padding: 14px 18px;
+  transform: rotate(-1.2deg);
+  background: rgba(255,255,255,0.58);
+  text-align: center;
+  font-size: 24px;
+  color: #8a3f11;
+  font-weight: 800;
+}
+.duel {
+  display: grid;
+  grid-template-columns: 1fr 116px 1fr;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+.model-card {
+  border: 3px solid #1b5f75;
+  background: rgba(255,255,255,0.62);
+  border-radius: 16px;
+  min-height: 220px;
+  padding: 22px;
+}
+.model-card.old { border-color: #846f5f; }
+.label {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #1b5f75;
+}
+.old .label { color: #846f5f; }
+.model-card .line {
+  font-size: 18px;
+  line-height: 1.58;
+  color: #4e443e;
+  margin-top: 12px;
+}
+.vs {
+  height: 116px;
+  border-radius: 50%;
+  border: 3px dashed #dd6b20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dd6b20;
+  font-size: 34px;
+  font-weight: 900;
+  background: rgba(255,248,236,0.9);
+}
+.section-title {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.section-title::before,
+.section-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  border-top: 3px solid #d8bfa8;
+}
+.section-title span {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 34px;
+  color: #1b5f75;
+  font-weight: 700;
+}
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.metric {
+  background: rgba(255,255,255,0.68);
+  border: 2px solid #d8bfa8;
+  border-radius: 12px;
+  padding: 16px 10px 14px;
+  text-align: center;
+}
+.metric svg { width: 40px; height: 40px; stroke: #1b5f75; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.metric .num {
+  margin-top: 8px;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 30px;
+  color: #dd6b20;
+  font-weight: 700;
+}
+.metric .cap {
+  margin-top: 5px;
+  font-size: 15px;
+  color: #66574d;
+  line-height: 1.35;
+}
+.bars {
+  margin-top: 22px;
+  background: rgba(255,255,255,0.58);
+  border-radius: 14px;
+  border: 2px solid #d8bfa8;
+  padding: 18px 20px 12px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 210px 1fr 88px 88px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 17px;
+}
+.barbox {
+  height: 28px;
+  background: #efe6d8;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.bar {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1b5f75, #2fa1b9);
+  color: white;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.small {
+  text-align: right;
+  font-weight: 800;
+  color: #1b5f75;
+}
+.small.old { color: #846f5f; }
+.notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+.note {
+  min-height: 206px;
+  background: rgba(255,255,255,0.64);
+  border: 2px solid #d8bfa8;
+  border-left: 8px solid #dd6b20;
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.note h3 {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 28px;
+  color: #1b5f75;
+  margin-bottom: 10px;
+}
+.note p {
+  font-size: 18px;
+  line-height: 1.65;
+  color: #4e443e;
+}
+.takeaway {
+  margin-top: 24px;
+  border: 3px solid #1b5f75;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(27,95,117,0.14), rgba(221,107,32,0.18));
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 18px;
+}
+.takeaway svg { width: 84px; height: 84px; stroke: #1b5f75; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.takeaway .txt {
+  font-size: 22px;
+  line-height: 1.55;
+  color: #2d2723;
+}
+.takeaway strong { color: #1b5f75; }
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 86px;
+  text-align: center;
+  color: #8a7565;
+  font-size: 15px;
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <h1>GPT-5.5 vs GPT-5.4</h1>
+    <div class="sub">新一代工作型模型：更会自己推进，也更贵</div>
+  </div>
+
+  <div class="stamp">一句话：5.5 是“长任务 + 多工具 + 长上下文”的升级版</div>
+
+  <div class="duel">
+    <div class="model-card">
+      <div class="label">GPT-5.5</div>
+      <div class="line">2026-04-23 发布；ChatGPT 与 Codex 已开始滚动上线。官方定位是复杂真实工作：写代码、查资料、做表格文档、跨工具执行。</div>
+    </div>
+    <div class="vs">VS</div>
+    <div class="model-card old">
+      <div class="label">GPT-5.4</div>
+      <div class="line">2026-03-05 发布；把 GPT-5.3-Codex 的编码能力并入主线模型，是上一代专业工作与电脑使用旗舰。</div>
+    </div>
+  </div>
+
+  <div class="section-title"><span>四 个 最 直 观 的 提 升</span></div>
+  <div class="grid4">
+    <div class="metric">
+      <svg viewBox="0 0 64 64"><path d="M12 50h40"/><rect x="16" y="32" width="8" height="18" rx="2"/><rect x="29" y="22" width="8" height="28" rx="2"/><rect x="42" y="14" width="8" height="36" rx="2"/></svg>
+      <div class="num">82.7%</div>
+      <div class="cap">Terminal-Bench<br>5.4 为 75.1%</div>
+    </div>
+    <div class="metric">
+      <svg viewBox="0 0 64 64"><path d="M14 48c6-18 16-26 36-32"/><path d="M42 16h8v8"/><path d="M12 52h40"/></svg>
+      <div class="num">45.4%</div>
+      <div class="cap">Graphwalks 1M BFS<br>5.4 为 9.4%</div>
+    </div>
+    <div class="metric">
+      <svg viewBox="0 0 64 64"><rect x="12" y="14" width="40" height="30" rx="4"/><path d="M22 52h20M32 44v8"/><path d="M22 26h20M22 34h14"/></svg>
+      <div class="num">78.7%</div>
+      <div class="cap">OSWorld<br>5.4 为 75.0%</div>
+    </div>
+    <div class="metric">
+      <svg viewBox="0 0 64 64"><path d="M14 18h36v34H14z"/><path d="M22 28h20M22 36h16M22 44h12"/><path d="M50 18l-8-8H22l-8 8"/></svg>
+      <div class="num">84.9%</div>
+      <div class="cap">GDPval<br>5.4 为 83.0%</div>
+    </div>
+  </div>
+
+  <div class="section-title"><span>榜 单 上 的 具 体 差 异</span></div>
+  <div class="bars">
+    <div class="row"><div>SWE-Bench Pro</div><div class="barbox"><div class="bar" style="width:58.6%">GPT-5.5 58.6</div></div><div class="small">58.6%</div><div class="small old">57.7%</div></div>
+    <div class="row"><div>Terminal-Bench 2.0</div><div class="barbox"><div class="bar" style="width:82.7%">GPT-5.5 82.7</div></div><div class="small">82.7%</div><div class="small old">75.1%</div></div>
+    <div class="row"><div>BrowseComp</div><div class="barbox"><div class="bar" style="width:84.4%">GPT-5.5 84.4</div></div><div class="small">84.4%</div><div class="small old">82.7%</div></div>
+    <div class="row"><div>MCP Atlas</div><div class="barbox"><div class="bar" style="width:75.3%">GPT-5.5 75.3</div></div><div class="small">75.3%</div><div class="small old">70.6%</div></div>
+    <div class="row"><div>FrontierMath T4</div><div class="barbox"><div class="bar" style="width:35.4%">GPT-5.5 35.4</div></div><div class="small">35.4%</div><div class="small old">27.1%</div></div>
+    <div class="row"><div>MRCR 512K-1M</div><div class="barbox"><div class="bar" style="width:74%">GPT-5.5 74.0</div></div><div class="small">74.0%</div><div class="small old">36.6%</div></div>
+  </div>
+
+  <div class="notes">
+    <div class="note">
+      <h3>什么时候用 5.5</h3>
+      <p>任务很散、很长、要跨网页/文件/工具连续推进，或者你不想一步步 babysit，它更适合。尤其是 Codex、研究、表格、文档、浏览与电脑操作。</p>
+    </div>
+    <div class="note">
+      <h3>什么时候 5.4 还够</h3>
+      <p>需求清晰、成本敏感、已有稳定 API 流程，5.4 仍然是很强的生产模型。5.5 API 官方写的是 soon，正式接入前也别急着全量切换。</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <svg viewBox="0 0 64 64"><path d="M12 48h40"/><path d="M18 40l12-14 9 8 11-18"/><path d="M45 16h6v6"/><circle cx="18" cy="40" r="3"/><circle cx="30" cy="26" r="3"/><circle cx="39" cy="34" r="3"/></svg>
+    <div class="txt"><strong>结论：</strong>GPT-5.5 不是简单“分数高一点”，它的价值在于更能独立完成长链路任务；代价是 API 价格约为 GPT-5.4 的 2 倍。</div>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：OpenAI GPT-5.5 发布文(2026-04-23) · OpenAI GPT-5.4 发布文(2026-03-05)<br>
+  基准测试为官方披露结果；不同产品环境、提示词和工具配置会影响实际表现<br>
+  by 江明
+</div>
+</body>
+</html>
