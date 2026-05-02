@@ -14,6 +14,10 @@ import os
 import sys
 import importlib
 
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+if os.path.isdir(DATA_DIR) and DATA_DIR not in sys.path:
+    sys.path.insert(0, DATA_DIR)
+
 SCALE = 3
 
 def s(v):
@@ -75,9 +79,9 @@ class CompanyInfographic:
         d = self.data
         self._draw_header()
         if d.get("COMPANY_PROFILE"):
-            self._draw_kv_section("公司档案", "🏢", d["COMPANY_PROFILE"])
+            self._draw_kv_section("公司档案", "[i]", d["COMPANY_PROFILE"])
         if d.get("FINANCIAL_SUMMARY"):
-            self._draw_kv_section("核心财务摘要", "📊", d["FINANCIAL_SUMMARY"])
+            self._draw_kv_section("核心财务摘要", "[$]", d["FINANCIAL_SUMMARY"])
         if d.get("BUSINESS_SEGMENTS"):
             self._draw_business_segments()
         if d.get("REVENUE_MIX"):
@@ -146,7 +150,7 @@ class CompanyInfographic:
     def _draw_business_segments(self):
         segments = self.data["BUSINESS_SEGMENTS"]
         label = self.data.get("SEGMENTS_LABEL", "业务分部营收")
-        self._draw_section_header(label, "🏆")
+        self._draw_section_header(label, "[B]")
 
         font_h = get_font(14, bold=True)
         if not self.calculating:
@@ -179,7 +183,7 @@ class CompanyInfographic:
         self.y += s(10)
 
     def _draw_revenue_mix(self):
-        self._draw_section_header("收入结构占比", "📈")
+        self._draw_section_header("收入结构占比", "[%]")
         font = get_font(16)
         font_b = get_font(16, bold=True)
         max_name_w = 0
@@ -204,7 +208,7 @@ class CompanyInfographic:
 
     def _draw_strategic_moves(self):
         label = self.data.get("MOVES_LABEL", "近期战略动作")
-        self._draw_section_header(label, "🔄")
+        self._draw_section_header(label, "[M]")
         font_b = get_font(15, bold=True)
         for action, target, detail, color in self.data["STRATEGIC_MOVES"]:
             if not self.calculating:
@@ -222,7 +226,7 @@ class CompanyInfographic:
         self.y += s(5)
 
     def _draw_moat(self):
-        self._draw_section_header("护城河 / 核心竞争力", "💡")
+        self._draw_section_header("护城河 / 核心竞争力", "[O]")
         font_title = get_font(16, bold=True)
         font_desc = get_font(14)
         for title, desc in self.data["MOAT"]:
@@ -256,7 +260,7 @@ class CompanyInfographic:
         self.y = y
 
     def _draw_key_metrics(self):
-        self._draw_section_header("关键经营指标", "📋")
+        self._draw_section_header("关键经营指标", "[K]")
         font_key = get_font(15, bold=True)
         font_val = get_font(15)
         for key, val in self.data["KEY_METRICS"]:
@@ -273,7 +277,7 @@ class CompanyInfographic:
         self.y += s(10)
 
     def _draw_risks_highlights(self):
-        self._draw_section_header("亮点与风险", "⚖️")
+        self._draw_section_header("亮点与风险", "[!]")
         font_title = get_font(16, bold=True)
         font_desc = get_font(14)
         for kind, title, desc in self.data["RISKS_HIGHLIGHTS"]:
@@ -295,7 +299,7 @@ class CompanyInfographic:
 
     def _draw_quotes(self):
         label = self.data.get("QUOTES_LABEL", "管理层 & 分析师观点")
-        self._draw_section_header(label, "✨")
+        self._draw_section_header(label, "[Q]")
         font = get_font(15)
         for quote in self.data["QUOTES"]:
             if not self.calculating:

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:900px; height:2180px; background:#F7F4ED; font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif; color:#3A2A1E; overflow:hidden; position:relative; }
+body::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px); opacity:.35; pointer-events:none; }
+.header { text-align:center; padding:50px 40px 20px; }
+.header h1 { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:78px; color:#8B3A4E; letter-spacing:6px; }
+.header .en { font-size:22px; color:#A89080; margin-top:6px; letter-spacing:1px; font-style:italic; }
+.header .sub { font-size:26px; color:#7B6650; margin-top:12px; font-weight:400; }
+.hero { display:flex; align-items:center; justify-content:center; gap:30px; padding:20px 60px 10px; }
+.hero-meta { flex:1; } .name { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:56px; color:#4A3728; letter-spacing:4px; }
+.tag { font-size:22px; color:#8B3A4E; margin-top:6px; font-weight:500; } .stats { font-size:20px; color:#7B6650; margin-top:10px; line-height:1.8; } .stats span { display:inline-block; margin-right:16px; }
+.section-title { text-align:center; margin:30px 0 18px; } .section-title span { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:36px; color:#8B3A4E; padding:0 20px; position:relative; }
+.section-title span::before,.section-title span::after { content:''; position:absolute; top:50%; width:80px; height:2px; background:#C89890; } .section-title span::before { right:100%; } .section-title span::after { left:100%; }
+.concepts { display:flex; gap:16px; padding:0 40px; } .concept { flex:1; background:rgba(255,255,255,.55); border:2px solid #D4B8A8; border-radius:12px; padding:18px 10px; text-align:center; min-height:295px; }
+.svg-wrap { height:82px; display:flex; align-items:center; justify-content:center; } .icon-num { width:58px; height:58px; border:3px solid #1C4F8F; color:#1C4F8F; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Songti SC',serif; font-size:34px; font-weight:700; }
+.cn { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:26px; margin-top:4px; line-height:1.15; } .en { font-size:15px; color:#A89080; margin-top:2px; letter-spacing:1px; } .desc { font-size:17px; color:#5A4A3A; margin-top:10px; line-height:1.45; }
+.bigbox { margin:26px 40px 0; background:linear-gradient(135deg,#E8F0FF 0%,#D0E0F5 100%); border:2px solid #1C4F8F; border-radius:14px; padding:20px 24px; display:flex; align-items:center; gap:20px; }
+.bigbox .t1 { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:40px; color:#8B3A4E; } .bigbox .s1 { font-size:20px; color:#5A4A3A; margin-top:4px; line-height:1.5; } .bigbox .num { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:58px; color:#1C4F8F; line-height:1; } .bigbox .lab { font-size:18px; color:#7B6650; }
+.yieldbox { margin:18px 40px 0; background:linear-gradient(135deg,#FFF5E8 0%,#FDE8D5 100%); border:2px solid #C4963C; border-radius:14px; padding:16px 20px; } .yld-title { font-family:'Songti SC','STSong','SimSun',serif; font-size:24px; font-weight:700; color:#8B3A4E; text-align:center; margin-bottom:10px; } .yld-row { display:flex; justify-content:space-around; align-items:center; } .yld-cell { text-align:center; flex:1; } .yld-num { font-family:'Songti SC','STSong','SimSun',serif; font-size:34px; font-weight:700; color:#B8532F; line-height:1.08; } .yld-lab { font-size:15px; color:#7B6650; margin-top:4px; }
+.flow-wrap { margin:26px 40px 0; background:rgba(255,255,255,.4); border-radius:12px; padding:20px 18px; } .flow-row { display:flex; align-items:stretch; justify-content:space-between; gap:6px; } .flow-step { flex:1; text-align:center; border:2px solid #8B7355; border-radius:10px; padding:12px 6px; background:#FDFAF3; min-height:90px; } .flow-step .t { font-size:21px; font-weight:700; } .flow-step .d { font-size:15px; color:#8B7355; margin-top:4px; line-height:1.25; } .flow-arr { color:#8B7355; font-size:26px; font-weight:700; display:flex; align-items:center; }
+.quotes { margin:26px 40px 0; } .quote { background:rgba(232,240,255,.7); border-left:4px solid #1C4F8F; padding:14px 20px; margin-bottom:10px; border-radius:0 8px 8px 0; } .quote .txt { font-size:21px; color:#4A3728; line-height:1.45; } .quote .tag { font-size:15px; color:#1C4F8F; margin-top:4px; font-weight:500; }
+.footer { position:absolute; left:35px; right:35px; bottom:24px; text-align:center; font-size:14px; color:#B0A090; line-height:1.55; }
+</style></head><body>
+<div class="header"><h1>美国银行 的 经 营 之 道</h1><div class="en">Bank of America (NYSE: BAC) · 存款、消费金融与投行业务巨头</div><div class="sub">低成本存款 × 财富管理 × 资本市场</div></div>
+<div class="hero"><svg width="170" height="200" viewBox="0 0 170 200">
+      <g transform="translate(85,100)">
+        <circle r="62" fill="white" stroke="#1C4F8F" stroke-width="3"/>
+        <circle r="44" fill="#1C4F8F" opacity="0.12"/>
+        <text x="0" y="8" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="30" fill="#1C4F8F">BAC</text>
+        <path d="M-38,46 C-12,60 12,60 38,46" fill="none" stroke="#1C4F8F" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </svg><div class="hero-meta"><div class="name">美国银行</div><div class="tag">第 30 名 · 低成本存款 × 财富管理 × 资本市场</div><div class="stats"><span>核心业务：Consumer Banking + GWIM + Gl</span><br><span>营收 $113.1B</span><span>市值 约$52.7 / $3,755 …</span></div></div></div>
+<div class="section-title"><span>三 大 经 营 引 擎</span></div><div class="concepts">
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">1</div></div>
+        <div class="cn" style="color:#1C4F8F">低成本存款基础</div>
+        <div class="en">MOAT</div>
+        <div class="desc">庞大零售存款是银行最核心护城河</div>
+      </div>
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">2</div></div>
+        <div class="cn" style="color:#1C4F8F">全国消费者网络</div>
+        <div class="en">MOAT</div>
+        <div class="desc">信用卡、按揭、小企业和日常银行账户形成粘性</div>
+      </div>
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">3</div></div>
+        <div class="cn" style="color:#1C4F8F">财富管理规模</div>
+        <div class="en">MOAT</div>
+        <div class="desc">Merrill 和 Private Bank 客户余额巨大</div>
+      </div></div>
+<div class="bigbox"><div style="flex:1"><div class="t1">低成本存款 是核心抓手</div><div class="s1">净息收入恢复：利率和资产重定价支撑 2025 增长</div></div><div style="text-align:center"><div class="num">第 30 名</div><div class="lab">全球市值排名</div></div></div>
+<div class="yieldbox"><div class="yld-title">关键经营数字</div><div class="yld-row"><div class="yld-cell"><div class="yld-num">$113.1B</div><div class="yld-lab">收入</div></div><div class="yld-cell"><div class="yld-num">$30.5B</div><div class="yld-lab">利润</div></div><div class="yld-cell"><div class="yld-num">约$52.7 / $3,755 …</div><div class="yld-lab">股价 / 市值</div></div><div class="yld-cell"><div class="yld-num">约12×</div><div class="yld-lab">估值</div></div></div></div>
+<div class="flow-wrap"><div class="section-title" style="margin:0 0 14px"><span>增长飞轮</span></div><div class="flow-row">
+        <div class="flow-step"><div class="t" style="color:#1C4F8F">NII</div><div class="d">净息收入恢复</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#1C4F8F">财富</div><div class="d">客户余额 $4.8T</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#1C4F8F">数字</div><div class="d">43 亿次数字登录</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#1C4F8F">投行</div><div class="d">费用收入复苏</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#1C4F8F">资本</div><div class="d">ROTCE 14.2%</div></div></div></div>
+<div class="quotes"><div class="quote"><div class="txt">「2025 年收入达 $113.1B。」— BofA 8-K</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「ROTCE 达 14.2%。」— BofA 8-K</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「客户余额达到 $4.8T。」— BofA 公告</div><div class="tag">经营观察</div></div></div><div class="footer">经营数据：Bank of America FY2025 业绩公告/8-K（2026-01-14）<br>行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）<br>免责声明：本图仅供学习参考，不构成投资建议<br>by 江明</div></body></html>

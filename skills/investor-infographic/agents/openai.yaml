@@ -1,0 +1,4 @@
+interface:
+  display_name: "持仓信息图"
+  short_description: "用本机模板和GPT Image 2生成持仓及经营分析图"
+  default_prompt: "Use $investor-infographic 生成一组中文持仓分析信息图。"

@@ -16,6 +16,10 @@ import os
 import sys
 import importlib
 
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+if os.path.isdir(DATA_DIR) and DATA_DIR not in sys.path:
+    sys.path.insert(0, DATA_DIR)
+
 # ============ 缩放因子（3 = 4K级清晰度，宽度2400px）============
 SCALE = 3
 
