@@ -23,24 +23,28 @@ Use Jiangming's existing local template system to produce polished Chinese finan
 ## Decide The Mode
 
 - If the user asks for an investor, fund, fund manager, 13F, portfolio, or "持仓" image, create the investor set: one orange long image plus two hand-drawn landscape images.
-- If the user asks for a listed company, business model, operations, moat, financials, or "经营分析", use the company orange engine and the company-style sketch references.
+- If the user asks for a listed company, business model, operations, moat, financials, or "经营分析", create the company set: one orange operating-analysis image plus three company-style hand-drawn images. The fourth image must cover the company's distinctive management culture / operating culture.
 - If the request is ambiguous, infer from the subject. People/funds usually mean investor holdings; companies usually mean operating analysis.
 
 ## Workflow
 
 1. Research current data before writing images. For holdings, prefer SEC 13F, fund websites, WhaleWisdom, Nasdaq/official filings, and clearly record the quarter/date. For companies, prefer annual reports, earnings releases, investor relations, and market data with exact dates.
 2. Convert all monetary figures to U.S. dollars before writing image text. Clearly label dollar values as `美元`, `USD`, or `$...`; do not leave revenue, profit, market cap, holdings value, cash, CapEx, dividends, buybacks, or debt in local currency as the main displayed value.
-3. Separate stable operating data from dynamic market data. Annual/quarterly revenue, profit, cash flow, CapEx, segment revenue, and management commentary must cite the filing or earnings release date. Stock price, market cap, PE, dividend yield, ranking, and analyst target prices must be re-checked at generation time and carry an exact "as of" date.
-4. Create or update a data module in `/Users/jiangming/templates`, named `data_<slug>.py`. Match the relevant schema exactly: investor keys for `investor_infographic.py`, company keys for `company_infographic.py`.
-5. Add detailed source metadata to the data module, not just generic labels like "年报" or "彭博". Use `FOOTER_LINES` whenever possible with separate centered lines for:
+3. Separate stable operating data from dynamic market data. Annual/quarterly revenue, profit, cash flow, CapEx, segment revenue, full-year ROI/ROIC, and management commentary must cite the filing or earnings release date. Stock price, market cap, PE, dividend yield, ranking, and analyst target prices must be re-checked at generation time and carry an exact "as of" date.
+4. For company operating-analysis images, include a full-year `ROI/投资回报率` profitability metric by default. Prefer the company-level ROIC-style口径: `NOPAT / average invested capital`, where invested capital is `total debt + total equity - cash and equivalents`, averaged across beginning/end fiscal-year balance sheets. If NOPAT is not available, use `net income / average invested capital` and label it `ROI（净利润口径）`. Do not confuse this with stock-price total return. If reliable invested-capital inputs are unavailable, show `ROI口径：资料不足/不可比` rather than inventing a number; ROE/ROA may be shown as secondary context only when clearly labeled.
+5. For company sets, add a dedicated fourth image about `经营管理文化 / 企业文化`. Research and show the company's distinctive hiring and management practices, such as compensation/talent density, engineering bar, technical interview or recruiting requirements, founder/leadership principles, decision-making mechanisms, performance management, internal mobility, research culture, manufacturing discipline, customer obsession, compliance/safety culture, or other company-specific operating norms. Use concrete evidence and avoid generic slogans like `重视创新` unless tied to a specific policy, quote, or source.
+6. Create or update a data module in `/Users/jiangming/templates`, named `data_<slug>.py`. Match the relevant schema exactly: investor keys for `investor_infographic.py`, company keys for `company_infographic.py`.
+7. Add detailed source metadata to the data module, not just generic labels like "年报" or "彭博". Use `FOOTER_LINES` whenever possible with separate centered lines for:
    - `经营数据：<company annual report / 10-K / annual results / earnings release>，<period/date>`
+   - `ROI口径：<NOPAT or net income> / <average invested capital formula and fiscal year>，数据来自 <filing/source/date>` when a company ROI/ROIC metric is shown
+   - `管理文化：<company careers / annual report / founder letter / official blog / employee handbook / credible compensation or recruiting source>，截至 <YYYY-MM-DD>` when a company culture image is included
    - `行情数据：<market-data provider such as StockAnalysis / CompaniesMarketCap / Yahoo Finance / Nasdaq / Wind>，截至 <YYYY-MM-DD>`
    - `汇率口径：<provider or filing rate>，截至 <YYYY-MM-DD>` when any non-USD figures were converted
    - `免责声明：本图仅供学习参考，不构成投资建议`
    - `by 江明`
    If a source is unavailable or only approximate, say so explicitly in the footer rather than hiding it.
-6. Put generated images under `/Users/jiangming/持仓分析/<number_or_subject_folder>/`. Use existing naming style when a subject folder already exists.
-7. Generate the orange long image from `/Users/jiangming/templates`:
+8. Put generated images under `/Users/jiangming/持仓分析/<number_or_subject_folder>/`. Use existing naming style when a subject folder already exists.
+9. Generate the orange long image from `/Users/jiangming/templates`:
 
 ```bash
 cd /Users/jiangming/templates
@@ -48,7 +52,7 @@ python3 investor_infographic.py data_<slug> "/Users/jiangming/持仓分析/<fold
 python3 company_infographic.py data_<slug> "/Users/jiangming/持仓分析/<folder>/<slug>_经营分析.png"
 ```
 
-8. For each hand-drawn image, choose the closest references in `/Users/jiangming/templates/sketch_refs`, create a new HTML file, and screenshot it with headless Chrome. Use the HTML template's real CSS canvas size, not a hard-coded viewport. Many company sketches are portrait canvases such as `900x2020` or `900x1980`; using `1200x750` will crop them.
+10. For each hand-drawn image, choose the closest references in `/Users/jiangming/templates/sketch_refs`, create a new HTML file, and screenshot it with headless Chrome. Use the HTML template's real CSS canvas size, not a hard-coded viewport. Many company sketches are portrait canvases such as `900x2020` or `900x1980`; using `1200x750` will crop them.
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
@@ -59,9 +63,9 @@ python3 company_infographic.py data_<slug> "/Users/jiangming/持仓分析/<folde
   "file:///Users/jiangming/templates/sketch_refs/<slug>_sketch1.html"
 ```
 
-9. Verify outputs exist and dimensions are high resolution. Open the images if visual inspection is useful.
-10. Before calling any image final, confirm the bottom footer contains a separate centered line exactly reading `by 江明`.
-11. Run the image review stage before final delivery. Do not tell the user the images are done until this stage has been completed or any remaining issues have been disclosed.
+11. Verify outputs exist and dimensions are high resolution. Open the images if visual inspection is useful.
+12. Before calling any image final, confirm the bottom footer contains a separate centered line exactly reading `by 江明`.
+13. Run the image review stage before final delivery. Do not tell the user the images are done until this stage has been completed or any remaining issues have been disclosed.
 
 ## Optional GPT Image 2 Layer
 
@@ -90,6 +94,8 @@ Read `references/gpt-image-2-layer.md` before using the API helper.
 - Match every icon or pictogram to the adjacent metric's actual meaning. Use chart/report icons for revenue, gauge/percent/profit icons for margin, chip/factory icons for production or capacity, and portfolio/table icons for holdings. Avoid generic brain, money-bag, or AI symbols unless the adjacent label is specifically about AI capability, cash, or capital allocation.
 - Use U.S. dollars as the default monetary display currency. For non-U.S. companies, convert local-currency filings to USD and add the exchange-rate date or conversion basis in the footnote/data source. Main chart labels should read like `$35.7B USD`, `$357亿美元`, or `约 $357 亿美元`, not `₩52.6万亿` as the primary amount.
 - Footers must explain data provenance in enough detail for Jiangming to audit the chart later. Avoid vague source-only lines such as `年报 · 彭博`; prefer `经营数据：Alphabet FY2025 Form 10-K / FY2025 earnings release；行情数据：StockAnalysis + CompaniesMarketCap，截至 2026-04-28；汇率口径：...`.
+- Company operating-analysis images should reserve one key profitability slot for full-year `ROI/投资回报率` or `ROIC/投资资本回报率`. Label the formula口径 near the metric or in the footer. Use a return/gauge/loop icon for ROI/ROIC, not a cash, revenue, or generic AI icon.
+- Company sets should include a fourth image titled around `管理文化`, `经营文化`, `组织文化`, or `人才文化`. This image should explain what makes the company unusual as an organization: hiring bar, compensation/talent density, technical standards, management mechanisms, founder principles, engineering culture, manufacturing discipline, or other company-specific practices. Prefer concrete policies, numbers, and quotes over vague adjectives.
 - Include `by 江明` as its own centered footer line in every final image. Use the exact same font, size, and color as the data-source footnote, and place it below the data-source/footer text rather than inline with it. If the footer clips extra lines, adjust the engine or layout height rather than forcing cramped text.
 
 ## Image Review Stage
@@ -99,10 +105,13 @@ Every completed image batch must be reviewed before delivery. Treat this as a ma
 Review at least these items:
 
 - File structure: expected number of folders and images, correct output root, no accidental mixing of company images with fund/investor images.
+- Company set count: company operating-analysis requests should normally produce 4 images: the orange operating-analysis image, two business/strategy hand-drawn images, and one management-culture hand-drawn image. If the user asks for fewer or more, follow the request and note the deviation.
 - Resolution: orange long images are 2400px wide; hand-drawn images must match the full HTML canvas at high scale, for example 4800x3000 for 1200x750 landscape sketches or 2700x6060 / 2700x5940 for 900px-wide portrait company sketches.
 - Text rendering: Chinese fonts render correctly, no tofu boxes/missing glyphs, footer is readable, and the signature line is visible.
 - Layout: no obvious overlap, clipping, excessive tilt, cropped footer, off-canvas cards, broken chart bars, or text running outside its container.
 - Financial currency: all main monetary figures use USD/美元 by default; local currency appears only in conversion notes or source context.
+- Company ROI audit: company operating-analysis images include a full-year ROI/ROIC metric when inputs are available; the formula is labeled; numerator and denominator come from the cited annual filing or earnings release; the metric is not confused with stock-price return, ROE, ROA, or margin.
+- Management-culture audit: the dedicated company culture image cites concrete sources for hiring, compensation, technical bar, management mechanisms, founder principles, or operating norms. Reject generic culture claims that could apply to any company, such as `创新文化`, `人才优秀`, or `重视技术`, unless backed by a specific policy, quote, number, or documented practice.
 - Source audit: every final image footer separates operating-data sources from market-data sources; includes filing/earnings period, source/provider names, exact market-data "as of" date, and exchange-rate basis/date when relevant. Reject images whose footer only says generic `年报`, `业绩会`, `彭博`, `公开资料`, or `wind` without date/provider context.
 - Dynamic market-data audit: stock price, market cap, PE, ranking, and analyst target prices must be freshly checked against current sources during generation and must not be copied from stale templates.
 - Footers: data source is present; non-USD source conversion basis is present when needed; `by 江明` appears as a separate centered bottom line in the same font, size, and color as the footnote.
@@ -114,8 +123,11 @@ Review at least these items:
 ## Completion Checklist
 
 - Confirm the data quarter/date in the image text.
+- Confirm company sets include the fourth management-culture image unless the user explicitly requested a different count.
 - Confirm detailed source provenance is in the footer: operating-data source/date, market-data provider/date, and exchange-rate source/date if used.
 - Confirm dynamic market data was freshly verified during the current run and not blindly reused from an older template.
+- Confirm company operating-analysis images include full-year ROI/ROIC when reliable inputs exist; confirm the ROI formula, fiscal year, and source are stated; if omitted, confirm the image or footer explicitly says why the ROI口径 is unavailable or not comparable.
+- Confirm the management-culture image uses concrete, company-specific evidence and cites sources for claims about compensation, hiring bar, engineering standards, management mechanisms, or culture.
 - Confirm all monetary values shown in the image are in USD/美元, with local-currency values omitted or only used as secondary source context.
 - Confirm the data source/footer states the exchange-rate date or conversion basis when local-currency data was converted.
 - Confirm data source/footer is present.
