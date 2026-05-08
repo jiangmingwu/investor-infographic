@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 900px;
+  height: 2340px;
+  background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.header { text-align: center; }
+.header h1 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 76px;
+  color: #1877F2;
+  letter-spacing: 4px;
+  line-height: 1.05;
+}
+.header .en {
+  font-size: 21px;
+  color: #A89080;
+  margin-top: 8px;
+  letter-spacing: 1.5px;
+  font-style: italic;
+}
+.header .sub {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 18px;
+  border: 2px solid #9EB8E8;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.52);
+  font-size: 22px;
+  color: #6D6878;
+  font-weight: 700;
+}
+.hero {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.logo-card {
+  height: 204px;
+  border: 2px solid #1877F2;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.58);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-1.3deg);
+}
+.hero-copy {
+  border-left: 5px solid #1877F2;
+  padding: 8px 0 8px 22px;
+}
+.hero-copy .kicker {
+  color: #0A5AC5;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.hero-copy .big {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  margin-top: 6px;
+  color: #3A2A1E;
+  font-size: 42px;
+  line-height: 1.22;
+  font-weight: 700;
+}
+.hero-copy .note {
+  margin-top: 10px;
+  color: #7B6650;
+  font-size: 19px;
+  line-height: 1.55;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+.stat {
+  min-height: 128px;
+  border: 2px solid;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.58);
+  text-align: center;
+  padding: 15px 8px 12px;
+}
+.stat .num {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 1.1;
+}
+.stat .lab {
+  margin-top: 8px;
+  font-size: 17px;
+  color: #6F5E4D;
+  line-height: 1.25;
+}
+.section-title { text-align: center; margin: 34px 0 18px; }
+.section-title span {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #1877F2;
+  padding: 0 20px;
+  position: relative;
+}
+.section-title span::before, .section-title span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 86px;
+  height: 2px;
+  background: #9EB8E8;
+}
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  position: relative;
+  min-height: 214px;
+  border: 2px solid #D4B8A8;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.64);
+  padding: 18px 18px 15px;
+}
+.card:nth-child(2) { transform: rotate(0.7deg); }
+.card:nth-child(3) { transform: rotate(-0.7deg); }
+.card .top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icon { width: 58px; height: 58px; flex-shrink: 0; }
+.card h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 29px;
+  color: #0A5AC5;
+  line-height: 1.15;
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+.card p {
+  margin-top: 12px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: #4A3728;
+}
+.card strong { color: #0A5AC5; }
+.flywheel {
+  margin-top: 4px;
+  border: 2px solid #845BFF;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #F2EEFF 0%, #E5DCFF 100%);
+  padding: 20px 18px 18px;
+}
+.wheel-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 6px;
+}
+.wheel-step {
+  flex: 1;
+  min-height: 112px;
+  border: 2px solid #8B7355;
+  border-radius: 12px;
+  background: #FDFAF3;
+  text-align: center;
+  padding: 12px 6px 8px;
+}
+.wheel-step .t {
+  font-size: 21px;
+  font-weight: 900;
+  color: #0A5AC5;
+}
+.wheel-step .d {
+  font-size: 15px;
+  color: #7B6650;
+  margin-top: 6px;
+  line-height: 1.32;
+}
+.arrow {
+  display: flex;
+  align-items: center;
+  color: #8B7355;
+  font-size: 24px;
+  font-weight: 900;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+.panel {
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  border: 2px solid;
+  background: rgba(255,255,255,0.58);
+  min-height: 260px;
+}
+.panel h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+.line {
+  display: flex;
+  gap: 10px;
+  margin: 11px 0;
+  align-items: flex-start;
+}
+.mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+  margin-top: 2px;
+}
+.line div:last-child {
+  font-size: 18px;
+  color: #4A3728;
+  line-height: 1.45;
+}
+.bottom {
+  margin-top: 24px;
+  border: 2px solid #1877F2;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #E4EBFD 0%, #C7D7FB 100%);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.bottom h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 31px;
+  color: #0A5AC5;
+  margin-bottom: 8px;
+}
+.bottom p {
+  font-size: 19px;
+  line-height: 1.58;
+  color: #3A2A1E;
+}
+.bottom strong { color: #0A5AC5; }
+.footer {
+  text-align: center;
+  font-size: 16px;
+  color: #B0A090;
+  margin-top: 23px;
+  line-height: 1.58;
+  padding-bottom: 18px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>Meta 的 管 理 文 化</h1>
+    <div class="en">Meta Platforms · Management Culture</div>
+    <div class="sub">高股权激励 × 半年绩效 × 创始人长期下注</div>
+  </div>
+
+  <div class="hero">
+    <div class="logo-card">
+      <svg width="170" height="150" viewBox="0 0 170 150">
+        <path d="M30 75 C30 40, 55 36, 75 63 C85 77, 86 77, 95 63 C115 36, 140 40, 140 75 C140 110, 115 114, 95 87 C86 73, 85 73, 75 87 C55 114, 30 110, 30 75 Z" fill="none" stroke="#1877F2" stroke-width="12" stroke-linejoin="round"/>
+        <text x="85" y="132" text-anchor="middle" font-family="Noto Sans SC, Arial, sans-serif" font-weight="900" font-size="19" fill="#1877F2" letter-spacing="1">META</text>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">不是“福利公司”，而是高绩效工程组织</div>
+      <div class="big">Meta 用高股权绑定人才，用半年评审压强度，用创始人控制支持 AI 与 Reality Labs 长期下注。</div>
+      <div class="note">这张图把福利待遇、人员管理、企业文化合在一起：钱怎么给，人怎么评，资源怎么押注。</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat" style="border-color:#1877F2"><div class="num" style="color:#1877F2">7.9万</div><div class="lab">FY2025 员工<br>78,865 人</div></div>
+    <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">$204亿</div><div class="lab">股权薪酬费用<br>RSU 驱动</div></div>
+    <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">2次</div><div class="lab">每年绩效评审<br>成长+奖惩</div></div>
+    <div class="stat" style="border-color:#845BFF"><div class="num" style="color:#845BFF">$192亿</div><div class="lab">Reality Labs<br>2025 经营亏损</div></div>
+  </div>
+
+  <div class="section-title"><span>四 个 管 理 机制</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <rect x="14" y="18" width="42" height="34" rx="6" fill="#E4EBFD" stroke="#1877F2" stroke-width="3"/>
+          <path d="M23 45 L47 45 M26 27 H44 M25 36 H45" stroke="#1877F2" stroke-width="3" stroke-linecap="round"/>
+          <path d="M20 12 L35 5 L50 12" fill="none" stroke="#C4963C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><h3>高薪酬<br>高股权</h3><span class="tag" style="background:#1877F2">人才激励</span></div>
+      </div>
+      <p>10-K 写明总薪酬包括 <strong>薪资、奖金/销售激励和股权</strong>；通常入职和年度都会给全职员工股权，让员工像所有者一样思考。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="25" fill="#FFF5E8" stroke="#C4963C" stroke-width="3"/>
+          <path d="M23 37 L31 45 L49 25" fill="none" stroke="#C4963C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 13 L30 8 M46 13 L40 8" stroke="#C4963C" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div><h3>半年评审<br>强反馈</h3><span class="tag" style="background:#C4963C">绩效机制</span></div>
+      </div>
+      <p>Meta 每年做 <strong>两次绩效评审</strong>，同时有公司级员工调查和实时情绪抽样，用反馈推动经理、团队和个人体验改进。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <rect x="18" y="18" width="34" height="34" rx="5" fill="#F2EEFF" stroke="#845BFF" stroke-width="3"/>
+          <path d="M9 28 H18 M9 42 H18 M52 28 H61 M52 42 H61 M28 9 V18 M42 9 V18 M28 52 V61 M42 52 V61" stroke="#845BFF" stroke-width="3" stroke-linecap="round"/>
+          <text x="35" y="40" text-anchor="middle" font-size="13" font-weight="900" fill="#845BFF">AI</text>
+        </svg>
+        <div><h3>AI 化<br>工作方式</h3><span class="tag" style="background:#845BFF">工程文化</span></div>
+      </div>
+      <p>公司明确要把 <strong>AI 使用变成运营核心</strong>，给员工 AI 工具和训练；2025 年研发费用 $574 亿，AI 是产品和内部效率共同底座。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="26" fill="#E4EBFD" stroke="#8B3A4E" stroke-width="3"/>
+          <path d="M25 42 C31 28, 40 24, 50 24" fill="none" stroke="#8B3A4E" stroke-width="4" stroke-linecap="round"/>
+          <path d="M45 18 L52 24 L46 31" fill="none" stroke="#8B3A4E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="35" y="55" text-anchor="middle" font-size="12" font-weight="900" fill="#8B3A4E">10Y</text>
+        </svg>
+        <div><h3>创始人<br>长期下注</h3><span class="tag" style="background:#8B3A4E">治理结构</span></div>
+      </div>
+      <p>10-K 风险披露显示，创始人兼 CEO 通过双层股权控制多数投票权；这让 Meta 能承受 <strong>Reality Labs 长期亏损</strong>。</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span>管理飞轮</span></div>
+  <div class="flywheel">
+    <div class="wheel-row">
+      <div class="wheel-step"><div class="t">股权绑定</div><div class="d">入职 + 年度<br>RSU 激励</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">半年评审</div><div class="d">绩效反馈<br>奖惩分明</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">AI 提效</div><div class="d">工具训练<br>研发杠杆</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">FoA 现金流</div><div class="d">$1,025亿<br>营业利润</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">长期下注</div><div class="d">AI 基建<br>Reality Labs</div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel" style="border-color:#1877F2">
+      <h3 style="color:#0A5AC5">员工视角：高回报高压力</h3>
+      <div class="line"><div class="mark" style="background:#1877F2">1</div><div>Life@Meta 覆盖健康、家庭、财务、社区和休假，福利是全套基础设施。</div></div>
+      <div class="line"><div class="mark" style="background:#1877F2">2</div><div>股权激励强，但绩效评审和组织效率调整也强，回报与压力一起出现。</div></div>
+      <div class="line"><div class="mark" style="background:#1877F2">3</div><div>价值观强调 <strong>Move Fast</strong>、长期影响和直率沟通，适合强自驱工程人才。</div></div>
+    </div>
+
+    <div class="panel" style="border-color:#8B3A4E">
+      <h3 style="color:#8B3A4E">投资人视角：优势与风险</h3>
+      <div class="line"><div class="mark" style="background:#8B3A4E">+</div><div>优势是高人才密度、AI 投入能力和 FoA 巨额现金流，能支撑长期研发。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">!</div><div>风险是创始人控制、监管压力、隐私/内容安全和 AI 基建 CapEx 快速上升。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">!</div><div>Reality Labs 2025 亏损 $192 亿，长期主义如果判断错，成本也极高。</div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <path d="M18 50 C18 27, 36 25, 49 43 C55 52, 55 52, 61 43 C74 25, 92 27, 92 50 C92 73, 74 75, 61 57 C55 48, 55 48, 49 57 C36 75, 18 73, 18 50 Z" fill="none" stroke="#1877F2" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M26 88 C42 80, 62 80, 78 88" fill="none" stroke="#C4963C" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h3>一句话总结</h3>
+      <p>Meta 的管理文化，是 <strong>用股权吸引强人，用绩效系统筛选强人，再用创始人长期主义把现金流押向 AI 和下一代计算平台</strong>。</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    管理文化：Meta FY2025 Form 10-K（Human Capital / Segment / Share-based Compensation / Risk Factors）；Meta 2026 Proxy Statement（核心价值观 / 治理结构），核查 2026-05-08<br>
+    货币口径：Meta 为美元财报，图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>
+    by 江明
+  </div>
+</div>
+</body>
+</html>
