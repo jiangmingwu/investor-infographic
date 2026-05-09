@@ -92,6 +92,31 @@ def compact(text, limit=78):
     return text if len(text) <= limit else text[: limit - 1] + "…"
 
 
+def strategy_text(text, limit=42):
+    text = compact(text, limit * 2)
+    replacements = [
+        (r"\$[\d,\.]+(?:\s?(?:T|B|M|万亿|亿美元|亿|美元|\+|区间))*", "相关规模"),
+        (r"FY\d{2,4}", "最新年度"),
+        (r"\bPE\b|P/E", "市场定价"),
+        (r"市值|股价|估值", "市场位置"),
+        (r"全年营收|营收|收入", "业务规模"),
+        (r"净利润|净利|利润", "利润质量"),
+        (r"自由现金流|现金流", "现金创造"),
+        (r"CapEx|资本开支", "长期投入"),
+        (r"毛利率|营业利润率", "盈利结构"),
+    ]
+    for pattern, repl in replacements:
+        text = re.sub(pattern, repl, text, flags=re.I)
+    text = re.sub(r"\s+", " ", text).strip(" ，；,;")
+    return compact(text, limit)
+
+
+def first_tuple_value(rows, index, default=""):
+    if rows and len(rows[0]) > index:
+        return rows[0][index]
+    return default
+
+
 def source_footer(slug, data, extra=None):
     lines = data.get("FOOTER_LINES") or [data.get("DATA_SOURCE", "公司公开资料"), "免责声明：本图仅供学习参考，不构成投资建议"]
     source = "；".join(
@@ -102,6 +127,20 @@ def source_footer(slug, data, extra=None):
     if extra:
         source = f"{extra}；{source}"
     return f"{source}<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明"
+
+
+def strategy_footer(slug, data):
+    lines = data.get("FOOTER_LINES") or [data.get("DATA_SOURCE", "公司公开资料")]
+    keep = []
+    for line in lines:
+        text = str(line)
+        if not text or "by 江明" in text or text.startswith("免责声明"):
+            continue
+        if any(k in text for k in ("ROI口径", "ROI 口径", "CapEx口径", "CapEx 口径", "行情数据", "最新市值", "股价")):
+            continue
+        keep.append(text)
+    source = "；".join(keep[:3]) or "公司年报、业绩资料、管理层公开表述"
+    return f"经营之道：{source}；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明"
 
 
 def strip_codex_blocks(html_text):
@@ -118,6 +157,21 @@ def strip_codex_blocks(html_text):
         flags=re.S,
     )
     return html_text
+
+
+def div_end(html_text, start):
+    first_close = html_text.find(">", start)
+    if first_close < 0:
+        return None
+    depth = 1
+    for tag in re.finditer(r"</?div\b[^>]*>", html_text[first_close + 1 :], flags=re.I):
+        if tag.group(0).startswith("</"):
+            depth -= 1
+            if depth == 0:
+                return first_close + 1 + tag.end()
+        else:
+            depth += 1
+    return None
 
 
 LEGACY_FOOTER_CSS = """<!-- codex-legacy-footer-start -->
@@ -162,24 +216,21 @@ def replace_footer(html_text, footer_html):
     if not match:
         return html_text
 
-    def div_end(start):
-        first_close = html_text.find(">", start)
-        if first_close < 0:
-            return None
-        depth = 1
-        for tag in re.finditer(r"</?div\b[^>]*>", html_text[first_close + 1 :], flags=re.I):
-            if tag.group(0).startswith("</"):
-                depth -= 1
-                if depth == 0:
-                    return first_close + 1 + tag.end()
-            else:
-                depth += 1
-        return None
-
-    end = div_end(match.start())
+    end = div_end(html_text, match.start())
     if end is None:
         return html_text
     return html_text[: match.start()] + f'<div class="footer">{footer_html}</div>' + html_text[end:]
+
+
+def replace_first_class_block(html_text, class_name, replacement):
+    pattern = rf'<div\b(?=[^>]*class=["\'][^"\']*\b{re.escape(class_name)}\b[^"\']*["\'])[^>]*>'
+    match = re.search(pattern, html_text)
+    if not match:
+        return html_text
+    end = div_end(html_text, match.start())
+    if end is None:
+        return html_text
+    return html_text[: match.start()] + replacement + html_text[end:]
 
 
 def insert_before_footer(html_text, block):
@@ -192,6 +243,88 @@ def insert_before_first_section(html_text, block):
     pattern = r'(<div\s+class=["\']section-title["\'][^>]*>)'
     updated, count = re.subn(pattern, block + r"\n\1", html_text, count=1)
     return updated if count else insert_before_footer(html_text, block)
+
+
+def make_strategy_panel(slug, data):
+    ov = OPERATING_OVERRIDES[slug]
+    accent, _, _ = theme_for(slug)
+    nodes = ov.get("flywheel", [])[:4]
+    thesis = strategy_text(ov.get("thesis", ""), 62)
+    return f"""<!-- codex-strategy-panel-start -->
+<div class="bigbox codex-strategy-panel">
+  <div style="flex:1">
+    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
+    <div class="s1">{esc(thesis)}<br>关键链条：{esc(" → ".join(nodes[:4]))}</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num" style="color:{accent}">逻辑</div>
+    <div class="lab">数据只作证据</div>
+  </div>
+</div>
+<!-- codex-strategy-panel-end -->"""
+
+
+def make_strategy_evidence(slug, data):
+    ov = OPERATING_OVERRIDES[slug]
+    moat = data.get("MOAT", [])
+    moves = data.get("STRATEGIC_MOVES", [])
+    risk = data.get("RISKS_HIGHLIGHTS", [])
+    cells = [
+        ("护城河", strategy_text(first_tuple_value(moat, 0, "结构优势"), 22), strategy_text(first_tuple_value(moat, 1, "长期竞争壁垒"), 34)),
+        ("飞轮", strategy_text(" → ".join(ov.get("flywheel", [])[:3]), 22), "解释增长如何自我强化"),
+        ("战略动作", strategy_text(first_tuple_value(moves, 1, "下一步动作"), 22), strategy_text(first_tuple_value(moves, 2, "管理层正在推进的关键动作"), 34)),
+        ("关键变量", strategy_text(first_tuple_value(risk, 1, "需要验证的变量"), 22), strategy_text(first_tuple_value(risk, 2, "这决定逻辑能否兑现"), 34)),
+    ]
+    cell_html = "".join(
+        f"<div class=\"yld-cell\"><div class=\"yld-num\">{esc(title)}</div><div class=\"yld-lab\">{esc(main)}</div><div class=\"yld-sub\">{esc(sub)}</div></div>"
+        for title, main, sub in cells
+    )
+    return f"""<!-- codex-strategy-evidence-start -->
+<div class="yieldbox codex-strategy-evidence">
+  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
+  <div class="yld-row">{cell_html}</div>
+</div>
+<!-- codex-strategy-evidence-end -->"""
+
+
+def replace_strategy_stats(html_text, slug):
+    ov = OPERATING_OVERRIDES[slug]
+    nodes = ov.get("flywheel", [])[:4]
+    stats = f"""<div class="stats">
+      <span>核心逻辑：{esc(strategy_text(ov.get("thesis", ""), 34))}</span><br>
+      <span>飞轮变量：{esc(" → ".join(nodes[:4]))}</span>
+    </div>"""
+    return replace_first_class_block(html_text, "stats", stats)
+
+
+def scrub_strategy_financial_labels(html_text):
+    replacements = [
+        ("关键经营数字", "经营证据"),
+        ("核心经营数据", "经营证据"),
+        ("FY2025", "最新年度"),
+        ("FY2026", "最新年度"),
+        ("全年营收", "业务规模"),
+        ("营收", "业务规模"),
+        ("净利润", "利润质量"),
+        ("净利", "利润质量"),
+        ("自由现金流", "现金创造"),
+        ("最新市值", "市场位置"),
+        ("股价 / 市值", "市场位置"),
+        ("市值", "市场位置"),
+        ("PE", "市场定价"),
+        ("CapEx", "长期投入"),
+        ("资本开支", "长期投入"),
+    ]
+    for old, new in replacements:
+        html_text = html_text.replace(old, new)
+    return re.sub(r"\$[\d,\.]+(?:\s?(?:T|B|M|万亿|亿美元|亿|美元|\+|区间))*", "规模数据见全景", html_text)
+
+
+def differentiate_strategy_sketch(html_text, slug, data):
+    html_text = replace_strategy_stats(html_text, slug)
+    html_text = replace_first_class_block(html_text, "bigbox", make_strategy_panel(slug, data))
+    html_text = replace_first_class_block(html_text, "yieldbox", make_strategy_evidence(slug, data))
+    return scrub_strategy_financial_labels(html_text)
 
 
 def augment_legacy_sketch1(html_text, slug, data):
@@ -210,14 +343,19 @@ def augment_legacy_sketch1(html_text, slug, data):
   text-align: center;
 }}
 .codex-role-note b {{ color: var(--codex-accent); }}
+.codex-strategy-panel .num {{ font-size: 42px !important; }}
+.codex-strategy-evidence .yld-num {{ font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }}
+.codex-strategy-evidence .yld-lab {{ font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }}
+.codex-strategy-evidence .yld-sub {{ font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }}
 <!-- codex-legacy-style-end -->"""
     block = """<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
 <!-- codex-role-note-end -->"""
     html_text = strip_codex_blocks(html_text)
     html_text = ensure_min_body_height(html_text, 2300)
+    html_text = differentiate_strategy_sketch(html_text, slug, data)
     html_text = inject_style(html_text, style + "\n" + LEGACY_FOOTER_CSS)
-    html_text = replace_footer(html_text, source_footer(slug, data, "经营之道：公司年报/业绩资料/管理层公开表述"))
+    html_text = replace_footer(html_text, strategy_footer(slug, data))
     return insert_before_footer(html_text, block)
 
 
@@ -526,7 +664,7 @@ def main():
         culture = SKETCH_DIR / f"{slug}_management_culture.html"
         sketch1_html = sketch1.read_text(encoding="utf-8") if sketch1.exists() else make_sketch1(slug, run, data)
         sketch2_html = sketch2.read_text(encoding="utf-8") if sketch2.exists() else make_sketch2(slug, run, data)
-        if culture.exists() and slug in LEGACY_MANAGEMENT_SLUGS:
+        if culture.exists():
             culture_html = replace_footer(
                 strip_codex_blocks(culture.read_text(encoding="utf-8")),
                 f"管理文化：{esc(CULTURE_PROFILES[slug]['sources'])}<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明",

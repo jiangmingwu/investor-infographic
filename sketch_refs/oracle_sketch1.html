@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTY市场定价 html>
 <html><head><meta charset="utf-8"><style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -37,6 +37,10 @@ body::before { content:''; position:absolute; inset:0; background:repeating-line
   text-align: center;
 }
 .codex-role-note b { color: var(--codex-accent); }
+.codex-strategy-panel .num { font-size: 42px !important; }
+.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
+.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
+.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
 <!-- codex-legacy-style-end -->
 <!-- codex-legacy-footer-start -->
 body { position: relative; }
@@ -59,7 +63,10 @@ body { position: relative; }
         <text x="0" y="8" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="30" fill="#B13A32">ORCL</text>
         <path d="M-38,46 C-12,60 12,60 38,46" fill="none" stroke="#B13A32" stroke-width="3" stroke-linecap="round"/>
       </g>
-    </svg><div class="hero-meta"><div class="name">甲骨文</div><div class="tag">第 24 名 · 数据库护城河 × OCI AI 云 × 企业软件</div><div class="stats"><span>核心业务：数据库 + OCI + Fusion/NetSuite </span><br><span>营收 $57.4B</span><span>市值 约$166 / $4,773 亿…</span></div></div></div>
+    </svg><div class="hero-meta"><div class="name">甲骨文</div><div class="tag">第 24 名 · 数据库护城河 × OCI AI 云 × 企业软件</div><div class="stats">
+      <span>核心逻辑：用数据库客户锁定切入云基础设施，靠 AI 训练集群抢云增长。</span><br>
+      <span>飞轮变量：数据库锁定 → 企业客户 → OCI 低价 → AI 集群</span>
+    </div></div></div>
 <div class="section-title"><span>三 大 经 营 引 擎</span></div><div class="concepts">
       <div class="concept">
         <div class="svg-wrap"><div class="icon-num">1</div></div>
@@ -79,15 +86,31 @@ body { position: relative; }
         <div class="en">MOAT</div>
         <div class="desc">不只和三大云竞争,也把数据库卖进三大云</div>
       </div></div>
-<div class="bigbox"><div style="flex:1"><div class="t1">数据库护城河 是核心抓手</div><div class="s1">云基础设施 +52%：Q4 OCI 继续高速增长,AI 训练需求拉动</div></div><div style="text-align:center"><div class="num">第 24 名</div><div class="lab">全球市值排名</div></div></div>
-<div class="yieldbox"><div class="yld-title">关键经营数字</div><div class="yld-row"><div class="yld-cell"><div class="yld-num">$57.4B</div><div class="yld-lab">收入</div></div><div class="yld-cell"><div class="yld-num">$12.4B</div><div class="yld-lab">利润</div></div><div class="yld-cell"><div class="yld-num">约$166 / $4,773 亿…</div><div class="yld-lab">股价 / 市值</div></div><div class="yld-cell"><div class="yld-num">约39×</div><div class="yld-lab">估值</div></div></div></div>
+<!-- codex-strategy-panel-start -->
+<div class="bigbox codex-strategy-panel">
+  <div style="flex:1">
+    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
+    <div class="s1">用数据库客户锁定切入云基础设施，靠 AI 训练集群抢云增长。<br>关键链条：数据库锁定 → 企业客户 → OCI 低价 → AI 集群</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num" style="color:#C74634">逻辑</div>
+    <div class="lab">数据只作证据</div>
+  </div>
+</div>
+<!-- codex-strategy-panel-end -->
+<!-- codex-strategy-evidence-start -->
+<div class="yieldbox codex-strategy-evidence">
+  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
+  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">Oracle Database 粘性</div><div class="yld-sub">银行、政府和大型企业核心系统迁移成本高</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">数据库锁定 → 企业客户 → OCI 低价</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">云基础设施 +52%</div><div class="yld-sub">Q4 OCI 继续高速增长,AI 训练需求拉动</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">OCI 高速增长</div><div class="yld-sub">云基础设施成为第二增长曲线</div></div></div>
+</div>
+<!-- codex-strategy-evidence-end -->
 <div class="flow-wrap"><div class="section-title" style="margin:0 0 14px"><span>增长飞轮</span></div><div class="flow-row">
         <div class="flow-step"><div class="t" style="color:#B13A32">OCI</div><div class="d">云基础设施 +52%</div></div><div class="flow-arr">›</div>
-        <div class="flow-step"><div class="t" style="color:#B13A32">RPO</div><div class="d">$138B 待履约订单</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#B13A32">RPO</div><div class="d">规模数据见全景 待履约订单</div></div><div class="flow-arr">›</div>
         <div class="flow-step"><div class="t" style="color:#B13A32">多云</div><div class="d">AWS/Google/Azure 多云数据库</div></div><div class="flow-arr">›</div>
         <div class="flow-step"><div class="t" style="color:#B13A32">SaaS</div><div class="d">Fusion + NetSuite</div></div><div class="flow-arr">›</div>
-        <div class="flow-step"><div class="t" style="color:#B13A32">风险</div><div class="d">CapEx 与租赁承诺</div></div></div></div>
+        <div class="flow-step"><div class="t" style="color:#B13A32">风险</div><div class="d">长期投入 与租赁承诺</div></div></div></div>
 <div class="quotes"><div class="quote"><div class="txt">「FY26 会更好。」— Safra Catz</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「OCI demand is skyrocketing。」— Larry Ellison</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「多云数据库收入 Q3 到 Q4 增长 115%。」— Oracle 公告</div><div class="tag">经营观察</div></div></div><!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
 <!-- codex-role-note-end -->
-<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Oracle FY2025 业绩公告（2025-06-11）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：数据库现金流稳定；AI 云扩张和租赁承诺会拉高资本压力。；CapEx口径：数据中心、GPU 集群和 OCI 扩张是重点，需看自由现金流压力。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div></body></html>
+<div class="footer">经营之道：经营数据：Oracle FY2025 业绩公告（2025-06-11）；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div></body></html>
