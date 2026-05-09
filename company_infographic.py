@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 import sys
 import importlib
+import copy
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 if os.path.isdir(DATA_DIR) and DATA_DIR not in sys.path:
@@ -82,6 +83,8 @@ class CompanyInfographic:
             self._draw_kv_section("公司档案", "[i]", d["COMPANY_PROFILE"])
         if d.get("FINANCIAL_SUMMARY"):
             self._draw_kv_section("核心财务摘要", "[$]", d["FINANCIAL_SUMMARY"])
+        if d.get("CAPITAL_AND_ROI"):
+            self._draw_capital_and_roi()
         if d.get("BUSINESS_SEGMENTS"):
             self._draw_business_segments()
         if d.get("REVENUE_MIX"):
@@ -146,6 +149,30 @@ class CompanyInfographic:
             for k, v in data:
                 self._draw_kv_pair(k, v)
         self.y += s(10)
+
+    def _draw_capital_and_roi(self):
+        self._draw_section_header("ROI 与 2026 CapEx", "[R]")
+        rows = self.data["CAPITAL_AND_ROI"]
+        font_key = get_font(15, bold=True)
+        font_val = get_font(15, bold=True)
+        font_note = get_font(13)
+        for key, value, note in rows:
+            box_h = s(70)
+            start_y = self.y
+            if not self.calculating:
+                x = PADDING + s(16)
+                self.draw.rounded_rectangle(
+                    [x, start_y, WIDTH - PADDING - s(16), start_y + box_h],
+                    radius=s(8), fill=LIGHT_BG, outline=BORDER_COLOR, width=s(1)
+                )
+                self.draw.text((x + s(14), start_y + s(10)), key, fill=TEXT_COLOR, font=font_key)
+                vw = self.draw.textlength(value, font=font_val)
+                self.draw.text((WIDTH - PADDING - s(30) - vw, start_y + s(10)), value, fill=ACCENT_COLOR, font=font_val)
+                self._draw_wrapped_text(x + s(14), start_y + s(36), note, font_note, GRAY_TEXT, CONTENT_W - s(60))
+            else:
+                self._draw_wrapped_text(0, start_y + s(36), note, font_note, GRAY_TEXT, CONTENT_W - s(60))
+            self.y = max(start_y + box_h, self.y) + s(12)
+        self.y += s(6)
 
     def _draw_business_segments(self):
         segments = self.data["BUSINESS_SEGMENTS"]
@@ -337,7 +364,13 @@ class CompanyInfographic:
 
 def generate(data_module_name, output_path=None):
     mod = importlib.import_module(data_module_name)
-    data = mod.DATA
+    data = copy.deepcopy(mod.DATA)
+    slug = data_module_name.replace("data_", "")
+    try:
+        from top30_enhancement_data import apply_operating_overrides
+        data = apply_operating_overrides(data, slug)
+    except Exception:
+        pass
     if output_path is None:
         output_path = os.path.expanduser(f"~/Downloads/{data_module_name.replace('data_', '')}.png")
     builder = CompanyInfographic(data)

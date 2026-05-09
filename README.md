@@ -1,14 +1,14 @@
 # Investor Infographic Generator 投资人持仓信息图生成器
 
-自动生成投资人/基金/公司的高质量持仓分析信息图。每个主题输出 **3 张图**：1 张橙色长图 + 2 张手绘风格信息图。
+自动生成投资人/基金/公司的高质量持仓分析信息图。投资人主题通常输出 **3 张图**：1 张橙色长图 + 2 张手绘风格信息图；公司经营分析默认输出 **4 张图**：经营分析橙色长图、经营之道、经营全景、管理文化。
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue) ![Pillow](https://img.shields.io/badge/Pillow-10.0+-green) ![Chrome](https://img.shields.io/badge/Chrome-Headless-yellow)
 
 ## 效果预览
 
-| 橙色长图 (Pillow) | 手绘图1 (HTML+SVG) | 手绘图2 (HTML+SVG) |
-|:---:|:---:|:---:|
-| 暖橙色系 · 4K · 2400px宽 | 经营之道/投资哲学 · 4800×3000px | 经营全景/持仓数据 · 4800×3000px |
+| 橙色长图 (Pillow) | 手绘图1 (HTML+SVG) | 手绘图2 (HTML+SVG) | 管理文化 (HTML+SVG) |
+|:---:|:---:|:---:|:---:|
+| 暖橙色系 · 4K · 2400px宽 | 经营之道/投资哲学 | 经营全景/持仓数据 | 组织文化/管理机制 |
 
 ## 已覆盖 44 个数据模块
 
@@ -34,6 +34,7 @@
 - 全球市值前列公司：英伟达、谷歌、苹果、微软、亚马逊、台积电、博通、沙特阿美、Meta、特斯拉、沃尔玛、伯克希尔、三星、摩根大通、礼来、埃克森美孚、维萨、腾讯、SK海力士、阿斯麦。
 - 21-30 扩展批次：腾讯、阿斯麦、AMD、甲骨文、万事达、好市多、英特尔、奈飞、卡特彼勒、美国银行。
 - 其他补充公司：拼多多、茅台、雪佛龙、美光等。
+- 前 30 公司刷新脚本：`generate_top30_refresh.py` 会补齐经营分析、经营之道、经营全景、管理文化，并额外生成前 30 管理文化对比图。
 
 ## 快速开始
 
@@ -60,6 +61,9 @@ python3 investor_infographic.py data_buffett ~/Downloads/buffett_holdings.png
 
 # 公司经营分析版
 python3 company_infographic.py data_nvidia ~/Downloads/nvidia_analysis.png
+
+# 批量刷新前 30 公司经营分析 + 管理文化对比
+python3 generate_top30_refresh.py
 ```
 
 ### 生成手绘信息图
@@ -108,6 +112,8 @@ investor-infographic/
 ├── README.md                      # 本文件
 ├── investor_infographic.py        # 橙色长图绘图引擎（投资人）
 ├── company_infographic.py         # 橙色长图绘图引擎（公司）
+├── top30_enhancement_data.py      # 前30公司 ROI、2026 CapEx、管理文化资料
+├── generate_top30_refresh.py      # 前30公司批量刷新脚本
 ├── data/                          # 数据文件
 │   ├── data_template.py           # 空白数据模板
 │   ├── data_buffett.py            # 巴菲特
@@ -146,6 +152,8 @@ investor-infographic/
 - **三色法则** — 每张图不超过 3 个主色
 - **感受优先** — 做减法不做加法，信息密度适中
 - **美元默认** — 所有主要金额默认转换为美元 / USD，并在脚注写明汇率口径
+- **ROI + 2026 CapEx** — 公司经营分析/经营全景默认加入全年 ROI/ROIC 与 2026 资本开支，无法可靠取得时明确写 `未披露/不可比`
+- **手绘分工** — `经营之道` 讲商业逻辑、护城河和飞轮；`经营全景` 讲财务、分部、ROI、2026 CapEx 和风险；`管理文化` 讲组织、招聘、绩效、待遇和管理机制
 - **数据备注** — 底部分行列出经营数据来源、行情数据来源、汇率口径和免责声明
 - **署名固定** — 所有最终图片底部单独居中显示 `by 江明`，样式与脚注一致
 - **生成后复核** — 每批图片必须检查文件数、分辨率、字体、排版、脚注、币种、来源和图标语义

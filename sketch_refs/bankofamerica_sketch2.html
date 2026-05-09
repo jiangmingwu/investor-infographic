@@ -1,17 +1,66 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box} body{width:900px;height:2140px;background:#F7F4ED;font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;color:#3A2A1E;overflow:hidden;position:relative} body:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px);opacity:.35;pointer-events:none}
-.header{text-align:center;padding:45px 40px 18px} .header h1{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:72px;color:#8B3A4E;letter-spacing:4px} .header .sub{font-size:22px;color:#7B6650;margin-top:8px;letter-spacing:1px}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:10px 40px 0} .stat{background:rgba(255,255,255,.6);border-radius:12px;border:2px solid;padding:16px 8px;text-align:center;min-height:108px} .stat .num{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:35px;line-height:1.1} .stat .lab{font-size:16px;color:#7B6650;margin-top:6px}
-.section-title{text-align:center;margin:30px 0 18px} .section-title span{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:36px;color:#8B3A4E;padding:0 20px;position:relative} .section-title span:before,.section-title span:after{content:'';position:absolute;top:50%;width:90px;height:2px;background:#C89890} .section-title span:before{right:100%} .section-title span:after{left:100%}
-.segments{padding:0 40px} .seg-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px dashed #D9CEBC} .seg-rank{width:34px;height:34px;border-radius:50%;color:white;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0} .seg-name{width:310px;font-size:20px;font-weight:600;color:#3A2A1E;padding-left:14px} .seg-bar-area{flex:1;height:24px;background:rgba(0,0,0,.04);border-radius:4px;position:relative;overflow:hidden} .seg-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;color:white;font-weight:700;font-size:14px} .seg-val{width:108px;text-align:right;font-size:18px;color:#5A4A3A;font-weight:600}
-.two-col{display:flex;padding:0 40px;gap:22px} .left-box,.right-box{flex:1;background:rgba(255,255,255,.5);border-radius:12px;padding:18px;min-height:360px} .box-title{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:30px;color:#8B3A4E;margin-bottom:14px;text-align:center} .mix-item{display:flex;align-items:center;margin:11px 0;font-size:18px} .mix-dot{width:16px;height:16px;border-radius:3px;margin-right:10px;flex-shrink:0} .mix-pct{margin-left:auto;font-weight:700;color:#4A3728} .move-item{display:flex;align-items:flex-start;margin:10px 0;gap:8px} .move-tag{padding:3px 8px;border-radius:5px;font-size:15px;color:white;font-weight:700;white-space:nowrap;flex-shrink:0} .move-detail{font-size:17px;color:#4A3728;line-height:1.38} .move-detail strong{color:#1C4F8F}
-.risk-box{margin:20px 40px 0;background:rgba(255,255,255,.45);border-radius:12px;padding:16px 20px} .risk-item{font-size:17px;line-height:1.5;margin:7px 0} .risk-tag{display:inline-block;color:#fff;border-radius:5px;padding:2px 7px;margin-right:8px;font-weight:700}
-.insight{margin:20px 40px 0;background:linear-gradient(135deg,#FFF5E8,#FDE8D5);border:2px solid #C4963C;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:18px} .insight .badge{width:76px;height:76px;border-radius:50%;border:3px solid #1C4F8F;display:flex;align-items:center;justify-content:center;font-family:'Songti SC',serif;font-size:28px;color:#1C4F8F;font-weight:700;flex-shrink:0} .insight .t{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:28px;color:#1C4F8F;margin-bottom:8px} .insight .txt{font-size:19px;color:#3A2A1E;line-height:1.5}
-.footer{position:absolute;left:35px;right:35px;bottom:22px;text-align:center;font-size:14px;color:#B0A090;line-height:1.5}
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2080px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #3A2A1E;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.title { text-align:center; color:#8B3A4E; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
+.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
+.mark { width:190px; height:190px; border:4px solid #8B3A4E; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#8B3A4E; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
+.thesis { flex:1; border-left:8px solid #8B3A4E; padding-left:24px; }
+.thesis .k { color:#8B3A4E; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
+.section-title { margin:32px 0 20px; text-align:center; color:#8B3A4E; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
+.card h3 { color:#8B3A4E; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
+.tag { display:inline-block; background:#8B3A4E; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
+.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
+.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
+.flow .node { flex:1; border:3px solid #8B3A4E; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
+.flow .node b { display:block; color:#8B3A4E; font-size:22px; margin-bottom:6px; }
+.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
+.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
+.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
+.seg-row:last-child { border-bottom:0; }
+.rank { width:30px; height:30px; border-radius:50%; background:#8B3A4E; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.bar { height:100%; background:#8B3A4E; border-radius:5px; }
+.note-box { margin-top:24px; border:4px solid #8B3A4E; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#8B3A4E; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:23px; line-height:1.55; }
+.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
+.list li { margin:8px 0 8px 28px; }
+.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
 </style></head><body>
-<div class="header"><h1>美国银行 FY2025 经营全景</h1><div class="sub">Bank of America (NYSE: BAC) · 存款、消费金融与投行业务巨头 · 第 30 名</div></div>
-<div class="stats-grid"><div class="stat" style="border-color:#1C4F8F"><div class="num" style="color:#1C4F8F">第 30 名</div><div class="lab">市值排名</div></div><div class="stat" style="border-color:#C43B32"><div class="num" style="color:#C43B32">$113.1B</div><div class="lab">FY25 营收</div></div><div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">$30.5B</div><div class="lab">净利润</div></div><div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">$113.1B (+7% YoY…</div><div class="lab">FY2025 营收</div></div></div><div class="section-title"><span>核心业务分部</span></div><div class="segments"><div class="seg-row"><div class="seg-rank" style="background:#1C4F8F">1</div><div class="seg-name">Consumer Banking <span style="color:#6B8E4E;font-size:16px">+5%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:100.0%;background:#1C4F8F">核心</div></div><div class="seg-val">收入$11.2B(Q4)</div></div><div class="seg-row"><div class="seg-rank" style="background:#C43B32">2</div><div class="seg-name">Global Wealth &amp; IM <span style="color:#6B8E4E;font-size:16px">+10%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:100.0%;background:#C43B32">财富</div></div><div class="seg-val">收入$6.6B(Q4)</div></div><div class="seg-row"><div class="seg-rank" style="background:#C4963C">3</div><div class="seg-name">Global Banking <span style="color:#6B8E4E;font-size:16px">复苏</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:100.0%;background:#C4963C">企业</div></div><div class="seg-val">投行费用增长</div></div><div class="seg-row"><div class="seg-rank" style="background:#5BA85B">4</div><div class="seg-name">Global Markets <span style="color:#6B8E4E;font-size:16px">强劲</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:100.0%;background:#5BA85B">交易</div></div><div class="seg-val">费率/股票强</div></div></div>
-<div class="section-title" style="margin-top:28px"><span>收入结构与战略动作</span></div><div class="two-col"><div class="left-box"><div class="box-title">收入结构</div><div class="mix-item"><div class="mix-dot" style="background:#1C4F8F"></div>净利息收入<span class="mix-pct">53%</span></div><div class="mix-item"><div class="mix-dot" style="background:#C43B32"></div>非息收入<span class="mix-pct">47%</span></div><div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>消费银行<span class="mix-pct">38%</span></div><div class="mix-item"><div class="mix-dot" style="background:#5BA85B"></div>财富/市场<span class="mix-pct">24%</span></div></div><div class="right-box"><div class="box-title">FY25-26 战略</div><div class="move-item"><div class="move-tag" style="background:#3B6EA8">NII</div><div class="move-detail"><strong>净息收入恢复</strong> · 利率和资产重定价支撑 2025 增长</div></div><div class="move-item"><div class="move-tag" style="background:#5BA85B">财富</div><div class="move-detail"><strong>客户余额 $4.8T</strong> · 市场上涨和净流入推动资产管理费</div></div><div class="move-item"><div class="move-tag" style="background:#D4793A">数字</div><div class="move-detail"><strong>43 亿次数字登录</strong> · 消费者银行数字化降低成本</div></div><div class="move-item"><div class="move-tag" style="background:#6B4E7A">投行</div><div class="move-detail"><strong>费用收入复苏</strong> · 资本市场活跃带来弹性</div></div><div class="move-item"><div class="move-tag" style="background:#C4963C">资本</div><div class="move-detail"><strong>ROTCE 14.2%</strong> · 大型银行里资本回报稳健</div></div><div class="move-item"><div class="move-tag" style="background:#D9534F">风险</div><div class="move-detail"><strong>信用周期</strong> · 失业率和商业地产是主要压力点</div></div></div></div>
-<div class="risk-box"><div class="box-title" style="margin-bottom:8px">亮点与风险</div><div class="risk-item"><span class="risk-tag" style="background:#5BA85B">亮点</span>净利润 +13%：收入增长和费用控制带来经营杠杆</div><div class="risk-item"><span class="risk-tag" style="background:#5BA85B">亮点</span>ROTCE 14.2%：大型银行中资本回报稳健</div><div class="risk-item"><span class="risk-tag" style="background:#5BA85B">亮点</span>财富客户余额 $4.8T：资产管理费随市场和净流入增长</div><div class="risk-item"><span class="risk-tag" style="background:#D9534F">风险</span>信用损失周期：经济下行会推高拨备</div><div class="risk-item"><span class="risk-tag" style="background:#D9534F">风险</span>利率路径：降息会影响净息收入</div></div>
-<div class="insight"><div class="badge">BA</div><div><div class="t">低成本存款基础</div><div class="txt">庞大零售存款是银行最核心护城河</div></div></div><div class="footer">经营数据：Bank of America FY2025 业绩公告/8-K（2026-01-14）<br>行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）<br>免责声明：本图仅供学习参考，不构成投资建议<br>by 江明</div></body></html>
+<div class='page'>
+  <div class='title'>美国银行 经营全景</div>
+  <div class='subtitle'>BAC · Financial Dashboard · ROI + 2026 CapEx</div>
+  <div class='pill'>只回答：现在怎么赚钱，钱投到哪里</div>
+  <div class='grid-4'><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>$113.1B (+7% YoY)</div><div class='lab'>营收</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>$30.5B (+13% YoY)</div><div class='lab'>利润</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>银行口径</div><div class='lab'>ROI</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>不适用</div><div class='lab'>2026 CapEx</div></div></div>
+  <div class='section-title'>业务分部与收入结构</div>
+  <div class='segments'><div class='seg-row'><div class='rank'>1</div><b>Consumer Banking</b><span>核心</span><b>收入$11.2B(Q4)</b><div class='bar-bg'><div class='bar' style='width:18%'></div></div></div><div class='seg-row'><div class='rank'>2</div><b>Global Wealth &amp; IM</b><span>财富</span><b>收入$6.6B(Q4)</b><div class='bar-bg'><div class='bar' style='width:18%'></div></div></div><div class='seg-row'><div class='rank'>3</div><b>Global Banking</b><span>企业</span><b>投行费用增长</b><div class='bar-bg'><div class='bar' style='width:18%'></div></div></div><div class='seg-row'><div class='rank'>4</div><b>Global Markets</b><span>交易</span><b>费率/股票强</b><div class='bar-bg'><div class='bar' style='width:18%'></div></div></div></div>
+  <div class='cards' style='margin-top:24px'>
+    <div class='card'><span class='tag'>ROI / ROIC</span><h3>银行口径</h3><div class='body'>传统 ROIC 不适用；重点看 ROE、ROTCE、存款成本和信用损失。</div></div>
+    <div class='card'><span class='tag'>2026 CapEx</span><h3>不适用</h3><div class='body'>资本投入主要体现为技术平台、分行数字化、资本充足率和风险资产。</div></div>
+  </div>
+  <div class='section-title'>亮点与风险</div>
+  <div class='note-box'><ul class='list'><li><b>亮点 · 净利润 +13%：</b>收入增长和费用控制带来经营杠杆</li><li><b>亮点 · ROTCE 14.2%：</b>大型银行中资本回报稳健</li><li><b>亮点 · 财富客户余额 $4.8T：</b>资产管理费随市场和净流入增长</li><li><b>风险 · 信用损失周期：</b>经济下行会推高拨备</li><li><b>风险 · 利率路径：</b>降息会影响净息收入</li></ul></div>
+  <div class='note-box'><h3>一句话判断</h3><p>美国银行 的经营全景，核心是把利润质量、资本开支和长期回报放在同一张表里看，而不是只看营收增长。</p></div>
+</div>
+<div class='footer'>经营全景：公司年报/业绩资料/行情资料；经营数据：Bank of America FY2025 业绩公告/8-K（2026-01-14）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：传统 ROIC 不适用；重点看 ROE、ROTCE、存款成本和信用损失。；CapEx口径：资本投入主要体现为技术平台、分行数字化、资本充足率和风险资产。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+</body></html>

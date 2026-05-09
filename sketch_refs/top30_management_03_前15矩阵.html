@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1640px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #3A2A1E;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.title { text-align:center; color:#6B4E7A; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
+.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
+.mark { width:190px; height:190px; border:4px solid #6B4E7A; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#6B4E7A; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
+.thesis { flex:1; border-left:8px solid #6B4E7A; padding-left:24px; }
+.thesis .k { color:#6B4E7A; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
+.section-title { margin:32px 0 20px; text-align:center; color:#6B4E7A; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
+.card h3 { color:#6B4E7A; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
+.tag { display:inline-block; background:#6B4E7A; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
+.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
+.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
+.flow .node { flex:1; border:3px solid #6B4E7A; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
+.flow .node b { display:block; color:#6B4E7A; font-size:22px; margin-bottom:6px; }
+.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
+.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
+.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
+.seg-row:last-child { border-bottom:0; }
+.rank { width:30px; height:30px; border-radius:50%; background:#6B4E7A; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.bar { height:100%; background:#6B4E7A; border-radius:5px; }
+.note-box { margin-top:24px; border:4px solid #6B4E7A; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#6B4E7A; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:23px; line-height:1.55; }
+.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
+.list li { margin:8px 0 8px 28px; }
+.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+</style></head><body><div class='page'><div class='title'>前15公司管理文化矩阵</div><div class='subtitle'>公司 · 组织模型 · 文化关键词 · 2026 CapEx</div><div class='pill'>把公司放在同一张管理文化表里看</div><div class='segments'><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>1</div><b>英伟达</b><span>工程师创始人平台</span><span>高人才密度 × 扁平沟通 × 年度架构…</span><span>FY26 约 $30亿</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>2</div><b>谷歌</b><span>研究型平台</span><span>研究自由 × OKR × AI 基建</span><span>2026E 高位</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>3</div><b>苹果</b><span>保密型产品组织</span><span>少而精 × 端到端控制 × 品牌纪律</span><span>2026E 未披露</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>4</div><b>微软</b><span>学习型企业软件组织</span><span>Growth Mindset × 平台…</span><span>FY26 高投入</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>5</div><b>亚马逊</b><span>客户执念运营机器</span><span>Leadership Principl…</span><span>2026E 高位</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>6</div><b>台积电</b><span>制造纪律型组织</span><span>客户信任 × 良率纪律 × 工程师文化</span><span>2026E $400亿+级</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>7</div><b>博通</b><span>资本配置型高压组织</span><span>并购整合 × 大客户聚焦 × 现金流纪律</span><span>2026E 低资本强度</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>8</div><b>沙特阿美</b><span>国家能源工程组织</span><span>安全生产 × 超低成本 × 国家战略</span><span>2026E 高位</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>9</div><b>Meta</b><span>创始人高绩效组织</span><span>高股权激励 × 半年绩效 × 长期下注</span><span>2026E $1,150-1,350亿</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>10</div><b>特斯拉</b><span>第一性原理制造组织</span><span>极限工程 × 垂直整合 × 创始人驱动</span><span>2026E 约 $100亿+级</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>11</div><b>沃尔玛</b><span>基层运营零售组织</span><span>低价文化 × 门店执行 × 技术升级</span><span>FY26 约 $230亿</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>12</div><b>伯克希尔</b><span>去中心化资本配置组织</span><span>信任经理人 × 少干预 × 长期资本</span><span>2026E 不可比</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>13</div><b>三星电子</b><span>韩式制造集团组织</span><span>垂直整合 × 制造规模 × 快速追赶</span><span>2026E 高位</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>14</div><b>摩根大通</b><span>风险纪律型金融组织</span><span>强风控 × 全牌照 × 危机执行</span><span>不适用</span></div><div class='seg-row' style='grid-template-columns:46px 110px 190px 210px 1fr'><div class='rank'>15</div><b>礼来</b><span>研发和制造双轮药企</span><span>科学研发 × 临床证据 × 产能扩张</span><span>2026E 高位</span></div></div><div class='note-box'><h3>读法</h3><p>同样是大公司，真正的差异不在口号，而在人才筛选、资本开支、绩效机制和风险边界。CapEx 高不一定好，关键是组织有没有把钱投到自己的瓶颈上。</p></div></div><div class='footer'>来源：前30公司年报、Proxy/治理文件、官方 Careers/文化页面，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div></body></html>

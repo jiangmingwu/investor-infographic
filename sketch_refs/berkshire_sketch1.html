@@ -1,202 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 900px; height: 2180px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
-.header { text-align: center; padding: 50px 40px 20px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
-.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
-.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
-.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
-.hero-meta { flex: 1; }
-.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
-.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
-.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
-.hero-meta .stats span { display: inline-block; margin-right: 16px; }
-.section-title { text-align: center; margin: 30px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
-.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-.concepts { display: flex; gap: 16px; padding: 0 40px; }
-.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
-.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
-.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
-.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
-.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
-.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #DCE5F2 0%, #B0C4DE 100%); border: 2px solid #1C4E80; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
-.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
-.bigbox .s1 { font-size: 20px; color: #0C2E60; margin-top: 4px; line-height: 1.5; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #1C4E80; line-height: 1; }
-.bigbox .lab { font-size: 18px; color: #0C2E60; }
-.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
-.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
-.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
-.yieldbox .yld-cell { text-align: center; flex: 1; }
-.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
-.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
-.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
-.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
-.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
-.flow-step .t { font-size: 22px; font-weight: 700; }
-.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
-.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
-.quotes { margin: 26px 40px 0; }
-.quote { background: rgba(220,229,242,0.7); border-left: 4px solid #1C4E80; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
-.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
-.quote .tag { font-size: 16px; color: #0C2E60; margin-top: 4px; font-weight: 500; }
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
-</style>
-</head>
-<body>
-<div class="header">
-  <h1>伯 克 希 尔 的 经 营 之 道</h1>
-  <div class="en">Berkshire Hathaway · Insurance × Railroad × Compounding</div>
-  <div class="sub">$3,500 亿现金 × $1,800 亿浮存金 × 60 年复合 20%</div>
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2180px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #3A2A1E;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
+.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
+.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
+.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
+.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
+.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
+.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
+.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
+.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
+.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
+.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
+.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
+.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
+.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
+.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
+.seg-row:last-child { border-bottom:0; }
+.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.bar { height:100%; background:#1877F2; border-radius:5px; }
+.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:23px; line-height:1.55; }
+.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
+.list li { margin:8px 0 8px 28px; }
+.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>伯克希尔 的 经 营 之 道</div>
+  <div class='subtitle'>BRK.B · Business Logic · 低重复版</div>
+  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
+  <div class='hero'><div class='mark'>伯克</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>用保险浮存金和长期资本配置，买入能穿越周期的现金流资产。</div></div></div>
+  <div class='section-title'>核心飞轮</div>
+  <div class='flow'><div class='node'><b>保险浮存金</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>耐心资本</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>控股现金流</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>危机买入</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>少干预管理</b><span>经营飞轮</span></div></div>
+  <div class='section-title'>护城河不是口号</div>
+  <div class='cards'><div class='card'><h3>保险浮存金杠杆</h3><div class='body'>$1,800 亿浮存金是零成本资金,相当于全球最便宜的杠杆</div></div><div class='card'><h3>巴菲特品牌+文化</h3><div class='body'>60 年复合 20% 的收益记录,吸引被收购企业主动投奔</div></div><div class='card'><h3>多元化现金奶牛</h3><div class='body'>保险+铁路+能源+零售,穿越周期的稳定现金流矩阵</div></div><div class='card'><h3>$3,500 亿弹药库</h3><div class='body'>历史新高现金储备,可在市场崩盘时大规模抄底</div></div></div>
+  <div class='section-title'>正在发生的变化</div>
+  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>接班：</b>Greg Abel 2025 接任 CEO，巴菲特 94 岁正式交棒,Abel 接手运营,投资继续 Buffett+Todd/Ted</li><li><b>减持苹果：</b>大幅减持苹果至 3 亿股，现金储备飙升至 $3,500 亿,等待市场机会</li><li><b>日本五商社：</b>继续加仓伊藤忠/三菱/三井/住友/丸红，日本综合商社为长期核心海外配置,持股均超 9%</li></ul></div>
+  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
 </div>
-
-<div class="hero">
-  <svg width="170" height="200" viewBox="0 0 170 200">
-    <g transform="translate(85,100)">
-      <circle r="62" fill="#1C4E80" stroke="#0C2E60" stroke-width="2"/>
-      <text x="0" y="-5" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="28" fill="white">BRK</text>
-      <text x="0" y="22" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#FFC220">HATHAWAY</text>
-      <text x="0" y="48" text-anchor="middle" font-size="12" fill="white">1839 · OMAHA</text>
-    </g>
-  </svg>
-  <div class="hero-meta">
-    <div class="name">伯 克 希 尔</div>
-    <div class="tag">巴菲特帝国 · 复利之神</div>
-    <div class="stats">
-      <span>🇺🇸 1839 创立</span><span>📍 Omaha</span><br>
-      <span>👥 约 39.2 万人</span><span>💰 $3,800 亿营收</span>
-    </div>
-  </div>
-</div>
-
-<div class="section-title"><span>三 大 经 营 引 擎</span></div>
-<div class="concepts">
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <path d="M 30,45 Q 65,25 100,45 L 100,90 L 30,90 Z" fill="#1C4E80" stroke="#0C2E60" stroke-width="2"/>
-        <rect x="40" y="60" width="50" height="25" fill="#FFC220"/>
-        <text x="65" y="78" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="11" fill="#0C2E60">GEICO</text>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#1C4E80" font-weight="bold">浮存金 $1,800 亿</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#1C4E80">保险业务</div>
-    <div class="en">Insurance Float</div>
-    <div class="desc">零成本长期杠杆</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="15" y="55" width="30" height="28" rx="2" fill="#C4963C"/>
-        <rect x="48" y="55" width="30" height="28" rx="2" fill="#C4963C"/>
-        <rect x="81" y="55" width="30" height="28" rx="2" fill="#C4963C"/>
-        <circle cx="25" cy="88" r="6" fill="#2A2A2C"/>
-        <circle cx="40" cy="88" r="6" fill="#2A2A2C"/>
-        <circle cx="58" cy="88" r="6" fill="#2A2A2C"/>
-        <circle cx="73" cy="88" r="6" fill="#2A2A2C"/>
-        <circle cx="91" cy="88" r="6" fill="#2A2A2C"/>
-        <circle cx="106" cy="88" r="6" fill="#2A2A2C"/>
-        <text x="65" y="118" text-anchor="middle" font-size="14" fill="#C4963C" font-weight="bold">BNSF + BHE 能源</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#C4963C">基础设施</div>
-    <div class="en">Rail + Energy</div>
-    <div class="desc">穿越周期现金流</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="25" y="35" width="80" height="55" rx="4" fill="#8B3A4E" opacity="0.15" stroke="#8B3A4E" stroke-width="2"/>
-        <text x="65" y="62" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="#8B3A4E">💰</text>
-        <text x="65" y="82" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#8B3A4E">$3,500 亿</text>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">现金 + 股票</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#8B3A4E">弹药库</div>
-    <div class="en">Cash & Stock</div>
-    <div class="desc">等待抄底时机</div>
-  </div>
-</div>
-
-<div class="bigbox">
-  <div style="flex:1">
-    <div class="t1">$3,800 亿 × 复利 × 接班</div>
-    <div class="s1">FY25 营收 $3,800 亿 · 经营利润 $500 亿<br>现金 <strong style="color:#1C4E80">$3,500 亿</strong> · 股票 <strong style="color:#1C4E80">$3,500 亿</strong><br>浮存金 <strong style="color:#1C4E80">$1,800 亿</strong> · P/B 1.6×</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num">60 年</div>
-    <div class="lab">复合 20%</div>
-  </div>
-</div>
-
-<div class="yieldbox">
-  <div class="yld-title">FY2025 核心经营数据</div>
-  <div class="yld-row">
-    <div class="yld-cell"><div class="yld-num">$3,800亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+3% YoY</div></div>
-    <div class="yld-cell"><div class="yld-num" style="color:#1C4E80">$900亿</div><div class="yld-lab">净利润</div><div class="yld-sub">含投资收益</div></div>
-    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$3,500亿</div><div class="yld-lab">现金储备</div><div class="yld-sub">历史新高</div></div>
-    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.03T</div><div class="yld-lab">最新市值</div><div class="yld-sub">P/B 约 1.6×</div></div>
-  </div>
-</div>
-
-<div class="section-title"><span>巴 菲 特 飞 轮</span></div>
-<div class="flow-wrap">
-  <div class="flow-row">
-    <div class="flow-step" style="border-color:#1C4E80">
-      <div class="t" style="color:#1C4E80">保险</div>
-      <div class="d">GEICO 承保</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#8B3A4E">
-      <div class="t" style="color:#8B3A4E">浮存金</div>
-      <div class="d">$1,800 亿</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#C4963C">
-      <div class="t" style="color:#C4963C">投资</div>
-      <div class="d">苹果/AMEX</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B8E4E">
-      <div class="t" style="color:#6B8E4E">现金流</div>
-      <div class="d">$500 亿</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B4E7A">
-      <div class="t" style="color:#6B4E7A">再投资</div>
-      <div class="d">复利永动</div>
-    </div>
-  </div>
-</div>
-
-<div class="quotes">
-  <div class="quote">
-    <div class="txt">「Greg 将带领伯克希尔进入下一个时代。」</div>
-    <div class="tag">— Warren Buffett · 2025 年度信</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「我们永远会保留充足的现金。」</div>
-    <div class="tag">— Warren Buffett</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「日本商社是我们海外最重要的投资。」</div>
-    <div class="tag">— Warren Buffett</div>
-  </div>
-</div>
-
-<div class="footer">经营数据：Berkshire Hathaway FY2025 年报/股东信（2026-02）<br>行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29<br>仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Berkshire Hathaway FY2025 年报/股东信（2026-02）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：控股公司口径不适合用普通 ROIC；更适合看每股账面价值、保险浮存金和经营利润。；CapEx口径：CapEx 分散在铁路、能源、制造服务等子公司，不能直接与科技公司比较。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+</body></html>

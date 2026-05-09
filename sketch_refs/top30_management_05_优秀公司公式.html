@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1540px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #3A2A1E;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.title { text-align:center; color:#0A5AC5; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
+.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
+.mark { width:190px; height:190px; border:4px solid #0A5AC5; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#0A5AC5; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
+.thesis { flex:1; border-left:8px solid #0A5AC5; padding-left:24px; }
+.thesis .k { color:#0A5AC5; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
+.section-title { margin:32px 0 20px; text-align:center; color:#0A5AC5; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
+.card h3 { color:#0A5AC5; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
+.tag { display:inline-block; background:#0A5AC5; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
+.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
+.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
+.flow .node { flex:1; border:3px solid #0A5AC5; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
+.flow .node b { display:block; color:#0A5AC5; font-size:22px; margin-bottom:6px; }
+.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
+.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
+.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
+.seg-row:last-child { border-bottom:0; }
+.rank { width:30px; height:30px; border-radius:50%; background:#0A5AC5; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.bar { height:100%; background:#0A5AC5; border-radius:5px; }
+.note-box { margin-top:24px; border:4px solid #0A5AC5; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#0A5AC5; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:23px; line-height:1.55; }
+.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
+.list li { margin:8px 0 8px 28px; }
+.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+</style></head><body><div class='page'><div class='title'>优秀公司管理文化公式</div><div class='subtitle'>What Great Companies Have In Common</div><div class='pill'>高人才密度 × 硬机制 × 长期资本 × 信任</div><div class='cards'><div class='card'><h3>第一层：选人</h3><div class='body'>高人才密度、关键岗位高标准、愿意付出高薪酬或高股权。</div></div><div class='card'><h3>第二层：机制</h3><div class='body'>目标清楚、反馈足够硬、好项目能拿到资源，低回报项目会被停止。</div></div><div class='card'><h3>第三层：资本</h3><div class='body'>现金流投向真正瓶颈：AI 算力、制程、产能、网络安全、内容或药物管线。</div></div><div class='card'><h3>第四层：信任</h3><div class='body'>客户、员工、监管和供应链都信任公司能长期兑现承诺。</div></div><div class='card'><h3>第五层：时间</h3><div class='body'>优秀公司不是不犯错，而是能用长期主义和复盘机制修正错误。</div></div><div class='card'><h3>反面信号</h3><div class='body'>口号很多、绩效很软、资本开支讲不清、创始人押注无反馈、人才流失却不调整。</div></div></div><div class='note-box'><h3>最终判断</h3><p>真正优秀的公司，会让人才、机制和资本互相增强。只有文化，没有现金流，是口号；只有现金流，没有文化，是周期；二者能相互喂养，才是长期复利。</p></div></div><div class='footer'>来源：前30公司年报、Proxy/治理文件、官方 Careers/文化页面，核查 2026-05-09<br>仅供学习参考，不构成投资建议<br>by 江明</div></body></html>

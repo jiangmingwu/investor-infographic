@@ -1,0 +1,66 @@
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2050px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #3A2A1E;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 40px 0; }
+.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
+.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
+.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
+.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
+.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
+.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
+.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
+.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
+.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
+.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
+.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
+.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
+.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
+.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
+.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
+.seg-row:last-child { border-bottom:0; }
+.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.bar { height:100%; background:#1877F2; border-radius:5px; }
+.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:23px; line-height:1.55; }
+.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
+.list li { margin:8px 0 8px 28px; }
+.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>美国银行 的 管 理 文 化</div>
+  <div class='subtitle'>规模零售金融组织 · Management Culture</div>
+  <div class='pill'>低成本存款 × 数字银行 × 风险合规</div>
+  <div class='hero'><div class='mark'>美国</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>美国银行文化围绕全国零售存款、数字银行和风险合规，核心是用规模降低资金成本。</div></div></div>
+  <div class='grid-4'><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>零售存款</div><div class='lab'>低成本资金</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>Erica</div><div class='lab'>数字银行</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>合规</div><div class='lab'>金融底线</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>财富管理</div><div class='lab'>交叉销售</div></div></div>
+  <div class='section-title'>四个管理机制</div>
+  <div class='cards'><div class='card'><span class='tag'>商业底座</span><h3>低成本存款</h3><div class='body'>大规模零售客户和工资账户带来稳定资金来源。</div></div><div class='card'><span class='tag'>效率机制</span><h3>数字化服务</h3><div class='body'>移动银行、AI 助手和自动化提高客户服务效率。</div></div><div class='card'><span class='tag'>管理底线</span><h3>风险合规</h3><div class='body'>信用、反洗钱、消费者保护和资本要求决定经营边界。</div></div><div class='card'><span class='tag'>客户机制</span><h3>综合金融</h3><div class='body'>零售、信用卡、财富管理和商业银行交叉服务。</div></div></div>
+  <div class='section-title'>员工与投资人两种视角</div>
+  <div class='cards'>
+    <div class='card'><h3>员工视角</h3><ul class='list'><li>流程和合规要求强，客户覆盖面大。</li><li>适合金融销售、风控、运营和技术人才。</li><li>组织稳定但创新速度受监管约束。</li></ul></div>
+    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是存款基础和规模。</li><li>风险是利率周期、信用成本和监管。</li><li>文化价值是稳健执行。</li></ul></div>
+  </div>
+  <div class='note-box'><h3>一句话总结</h3><p>美国银行的文化，是用规模和合规管理低成本金融网络。</p></div>
+</div>
+<div class='footer'>管理文化：Bank of America FY2025 Annual Report / Proxy / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+</body></html>
