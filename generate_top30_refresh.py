@@ -8,6 +8,7 @@ import importlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -38,6 +39,41 @@ SKETCH2_HEIGHT = 2080
 MANAGEMENT_HEIGHT = 2050
 COMPARE_HEIGHT = 1540
 COMPARE_MATRIX_HEIGHT = 1640
+LEGACY_MANAGEMENT_SLUGS = {"broadcom", "aramco", "meta"}
+COMPANY_THEMES = {
+    "nvidia": ("#76B900", "#4A7A00", "rgba(234,251,208,.62)"),
+    "alphabet": ("#4285F4", "#0F9D58", "rgba(232,240,255,.68)"),
+    "apple": ("#60656F", "#2E3035", "rgba(235,238,242,.72)"),
+    "microsoft": ("#0078D4", "#2F7D32", "rgba(224,240,255,.68)"),
+    "amazon": ("#FF9900", "#146EB4", "rgba(255,244,220,.72)"),
+    "tsmc": ("#B21F2D", "#6B4E7A", "rgba(255,230,232,.64)"),
+    "broadcom": ("#CC092F", "#9A0A25", "rgba(253,228,232,.68)"),
+    "aramco": ("#00A3A1", "#006C67", "rgba(220,246,244,.68)"),
+    "meta": ("#1877F2", "#0A5AC5", "rgba(224,238,255,.72)"),
+    "tesla": ("#E31937", "#8B0A20", "rgba(253,228,232,.68)"),
+    "walmart": ("#0071CE", "#FFC220", "rgba(225,241,255,.70)"),
+    "berkshire": ("#4A6B3B", "#8B3A4E", "rgba(232,242,225,.68)"),
+    "samsung": ("#1428A0", "#1F4E79", "rgba(228,233,255,.70)"),
+    "jpmorgan": ("#6B4E2E", "#B28B5E", "rgba(244,235,222,.70)"),
+    "lilly": ("#D52B1E", "#8B3A4E", "rgba(253,230,228,.68)"),
+    "exxon": ("#D71920", "#0B3D91", "rgba(255,229,230,.68)"),
+    "visa": ("#1A1F71", "#F7B600", "rgba(228,230,250,.70)"),
+    "tencent": ("#2E8B57", "#1D5F3B", "rgba(226,244,233,.70)"),
+    "skhynix": ("#E0002A", "#F37021", "rgba(255,230,235,.68)"),
+    "asml": ("#005EB8", "#F28C28", "rgba(226,239,255,.70)"),
+    "amd": ("#2E5D8A", "#B8532F", "rgba(232,240,255,.70)"),
+    "oracle": ("#C74634", "#312D2A", "rgba(252,232,229,.70)"),
+    "mastercard": ("#EB001B", "#F79E1B", "rgba(255,232,230,.68)"),
+    "costco": ("#005DAA", "#E31837", "rgba(226,240,255,.70)"),
+    "intel": ("#0068B5", "#00AEEF", "rgba(226,241,255,.70)"),
+    "netflix": ("#E50914", "#221F1F", "rgba(255,228,230,.68)"),
+    "caterpillar": ("#FFCD11", "#2D2D2D", "rgba(255,247,218,.72)"),
+    "bankofamerica": ("#D4001A", "#004C97", "rgba(255,229,232,.68)"),
+}
+
+
+def theme_for(slug):
+    return COMPANY_THEMES.get(slug, (BLUE, "#0A5AC5", "rgba(210,226,255,.65)"))
 
 
 def esc(value) -> str:
@@ -68,7 +104,169 @@ def source_footer(slug, data, extra=None):
     return f"{source}<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明"
 
 
-def css(height, accent="#1877F2"):
+def strip_codex_blocks(html_text):
+    html_text = re.sub(
+        r"\n?<!-- codex-(?:role-note|roi-capex|legacy-style|legacy-footer)-start -->.*?<!-- codex-(?:role-note|roi-capex|legacy-style|legacy-footer)-end -->\n?",
+        "\n",
+        html_text,
+        flags=re.S,
+    )
+    html_text = re.sub(
+        r"\n\s*(?:<div\s+class=[\"']row[\"'][^>]*>.*?</div>\s*){1,8}<div\s+class=[\"']by[\"'][^>]*>\s*by 江明\s*</div>\s*</div>",
+        "\n",
+        html_text,
+        flags=re.S,
+    )
+    return html_text
+
+
+LEGACY_FOOTER_CSS = """<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
+}
+<!-- codex-legacy-footer-end -->"""
+
+
+def inject_style(html_text, style_text):
+    if "</style>" not in html_text:
+        return html_text
+    return html_text.replace("</style>", f"\n{style_text}\n</style>", 1)
+
+
+def ensure_min_body_height(html_text, min_height):
+    def repl(match):
+        current = int(match.group(1))
+        return f"height:{max(current, min_height)}px"
+
+    patterns = [
+        r"height\s*:\s*(\d+)px",
+        r"height=(\d+)px",
+    ]
+    for pattern in patterns:
+        updated, count = re.subn(pattern, repl, html_text, count=1)
+        if count:
+            return updated
+    return html_text
+
+
+def replace_footer(html_text, footer_html):
+    pattern = r'<div\s+class=["\']footer["\'][^>]*>'
+    match = re.search(pattern, html_text)
+    if not match:
+        return html_text
+
+    def div_end(start):
+        first_close = html_text.find(">", start)
+        if first_close < 0:
+            return None
+        depth = 1
+        for tag in re.finditer(r"</?div\b[^>]*>", html_text[first_close + 1 :], flags=re.I):
+            if tag.group(0).startswith("</"):
+                depth -= 1
+                if depth == 0:
+                    return first_close + 1 + tag.end()
+            else:
+                depth += 1
+        return None
+
+    end = div_end(match.start())
+    if end is None:
+        return html_text
+    return html_text[: match.start()] + f'<div class="footer">{footer_html}</div>' + html_text[end:]
+
+
+def insert_before_footer(html_text, block):
+    pattern = r'(<div\s+class=["\']footer["\'][^>]*>)'
+    updated, count = re.subn(pattern, block + r"\n\1", html_text, count=1)
+    return updated if count else html_text.replace("</body>", block + "\n</body>", 1)
+
+
+def insert_before_first_section(html_text, block):
+    pattern = r'(<div\s+class=["\']section-title["\'][^>]*>)'
+    updated, count = re.subn(pattern, block + r"\n\1", html_text, count=1)
+    return updated if count else insert_before_footer(html_text, block)
+
+
+def augment_legacy_sketch1(html_text, slug, data):
+    accent, _, soft = theme_for(slug)
+    style = f"""<!-- codex-legacy-style-start -->
+:root {{ --codex-accent: {accent}; --codex-soft: {soft}; }}
+.codex-role-note {{
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
+}}
+.codex-role-note b {{ color: var(--codex-accent); }}
+<!-- codex-legacy-style-end -->"""
+    block = """<!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->"""
+    html_text = strip_codex_blocks(html_text)
+    html_text = ensure_min_body_height(html_text, 2300)
+    html_text = inject_style(html_text, style + "\n" + LEGACY_FOOTER_CSS)
+    html_text = replace_footer(html_text, source_footer(slug, data, "经营之道：公司年报/业绩资料/管理层公开表述"))
+    return insert_before_footer(html_text, block)
+
+
+def augment_legacy_sketch2(html_text, slug, data):
+    ov = OPERATING_OVERRIDES[slug]
+    accent, _, soft = theme_for(slug)
+    style = f"""<!-- codex-legacy-style-start -->
+:root {{ --codex-accent: {accent}; --codex-soft: {soft}; }}
+.codex-roi-capex {{
+  margin: 18px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}}
+.codex-fin-card {{
+  border: 2px solid var(--codex-accent);
+  border-radius: 12px;
+  background: var(--codex-soft);
+  padding: 13px 16px;
+  min-height: 108px;
+}}
+.codex-fin-card .k {{ color: var(--codex-accent); font-weight: 800; font-size: 18px; }}
+.codex-fin-card .v {{ font-family: 'Songti SC','STSong','SimSun',serif; color: #3A2A1E; font-size: 30px; font-weight: 700; margin-top: 4px; }}
+.codex-fin-card .n {{ color: #6F5E4D; font-size: 15px; line-height: 1.35; margin-top: 5px; }}
+<!-- codex-legacy-style-end -->"""
+    block = f"""<!-- codex-roi-capex-start -->
+<div class="codex-roi-capex">
+  <div class="codex-fin-card"><div class="k">ROI / ROIC</div><div class="v">{esc(ov['roi'])}</div><div class="n">{esc(compact(ov['roi_note'], 58))}</div></div>
+  <div class="codex-fin-card"><div class="k">2026 CapEx</div><div class="v">{esc(ov['capex'])}</div><div class="n">{esc(compact(ov['capex_note'], 58))}</div></div>
+</div>
+<!-- codex-roi-capex-end -->"""
+    html_text = strip_codex_blocks(html_text)
+    html_text = ensure_min_body_height(html_text, 2320)
+    html_text = inject_style(html_text, style + "\n" + LEGACY_FOOTER_CSS)
+    html_text = replace_footer(html_text, source_footer(slug, data, "经营全景：公司年报/业绩资料/行情资料"))
+    return insert_before_first_section(html_text, block)
+
+
+def html_canvas_size(path, fallback_height):
+    text = Path(path).read_text(encoding="utf-8")
+    width_match = re.search(r"width\s*:\s*(\d+)px", text)
+    height_match = re.search(r"height\s*:\s*(\d+)px", text)
+    return {
+        "width": int(width_match.group(1)) if width_match else 900,
+        "height": int(height_match.group(1)) if height_match else fallback_height,
+    }
+
+
+def css(height, accent="#1877F2", soft="rgba(210,226,255,.65)"):
     return f"""
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 body {{
@@ -85,7 +283,7 @@ body::before {{
 .page {{ position: relative; z-index: 1; padding: 42px 40px 0; }}
 .title {{ text-align:center; color:{accent}; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }}
 .subtitle {{ margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }}
-.pill {{ margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }}
+.pill {{ margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid {accent}; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }}
 .hero {{ display:flex; gap:28px; align-items:center; margin:18px 0 28px; }}
 .mark {{ width:190px; height:190px; border:4px solid {accent}; border-radius:28px; display:flex; align-items:center; justify-content:center; color:{accent}; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }}
 .thesis {{ flex:1; border-left:8px solid {accent}; padding-left:24px; }}
@@ -111,7 +309,7 @@ body::before {{
 .rank {{ width:30px; height:30px; border-radius:50%; background:{accent}; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }}
 .bar-bg {{ height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }}
 .bar {{ height:100%; background:{accent}; border-radius:5px; }}
-.note-box {{ margin-top:24px; border:4px solid {accent}; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }}
+.note-box {{ margin-top:24px; border:4px solid {accent}; background:{soft}; border-radius:18px; padding:24px 28px; }}
 .note-box h3 {{ color:{accent}; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }}
 .note-box p {{ font-size:23px; line-height:1.55; }}
 .list {{ font-size:23px; line-height:1.55; color:#4B3B2F; }}
@@ -195,11 +393,12 @@ def make_sketch2(slug, run, data):
 
 def make_management(slug, run):
     c = CULTURE_PROFILES[slug]
-    stats = "".join(f"<div class='stat' style='border-color:{BLUE}'><div class='num' style='color:{BLUE}'>{esc(a)}</div><div class='lab'>{esc(b)}</div></div>" for a, b in c["stats"])
+    accent, _, soft = theme_for(slug)
+    stats = "".join(f"<div class='stat' style='border-color:{accent}'><div class='num' style='color:{accent}'>{esc(a)}</div><div class='lab'>{esc(b)}</div></div>" for a, b in c["stats"])
     cards = "".join(f"<div class='card'><span class='tag'>{esc(tag)}</span><h3>{esc(title)}</h3><div class='body'>{esc(body)}</div></div>" for title, tag, body in c["mechanisms"])
     emp = "".join(f"<li>{esc(x)}</li>" for x in c["employee_view"])
     inv = "".join(f"<li>{esc(x)}</li>" for x in c["investor_view"])
-    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{css(MANAGEMENT_HEIGHT, BLUE)}</style></head><body>
+    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{css(MANAGEMENT_HEIGHT, accent, soft)}</style></head><body>
 <div class='page'>
   <div class='title'>{esc(run['name'])} 的 管 理 文 化</div>
   <div class='subtitle'>{esc(c['archetype'])} · Management Culture</div>
@@ -283,8 +482,14 @@ const jobs = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
   const browser = await chromium.launch({ headless: true, args: ['--disable-dev-shm-usage'] });
   for (const job of jobs) {
     const page = await browser.newPage({ viewport: { width: job.width, height: job.height }, deviceScaleFactor: job.scale || 3 });
-    await page.goto('file://' + job.html, { waitUntil: 'load', timeout: 15000 });
-    await page.screenshot({ path: job.out, fullPage: false, animations: 'disabled' });
+    await page.route('**/*', route => {
+      const url = route.request().url();
+      if (url.includes('fonts.googleapis.com') || url.includes('fonts.gstatic.com')) return route.abort();
+      return route.continue();
+    });
+    await page.goto('file://' + job.html, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(150);
+    await page.screenshot({ path: job.out, fullPage: false, animations: 'disabled', timeout: 60000 });
     await page.close();
     console.log(`${job.out} ${job.width * (job.scale || 3)}x${job.height * (job.scale || 3)}`);
   }
@@ -319,14 +524,28 @@ def main():
         sketch1 = SKETCH_DIR / f"{slug}_sketch1.html"
         sketch2 = SKETCH_DIR / f"{slug}_sketch2.html"
         culture = SKETCH_DIR / f"{slug}_management_culture.html"
-        write_html(sketch1, make_sketch1(slug, run, data))
-        write_html(sketch2, make_sketch2(slug, run, data))
-        write_html(culture, make_management(slug, run))
+        sketch1_html = sketch1.read_text(encoding="utf-8") if sketch1.exists() else make_sketch1(slug, run, data)
+        sketch2_html = sketch2.read_text(encoding="utf-8") if sketch2.exists() else make_sketch2(slug, run, data)
+        if culture.exists() and slug in LEGACY_MANAGEMENT_SLUGS:
+            culture_html = replace_footer(
+                strip_codex_blocks(culture.read_text(encoding="utf-8")),
+                f"管理文化：{esc(CULTURE_PROFILES[slug]['sources'])}<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明",
+            )
+        else:
+            culture_html = make_management(slug, run)
+
+        write_html(sketch1, augment_legacy_sketch1(sketch1_html, slug, data))
+        write_html(sketch2, augment_legacy_sketch2(sketch2_html, slug, data))
+        write_html(culture, culture_html)
+
+        sketch1_size = html_canvas_size(sketch1, SKETCH1_HEIGHT)
+        sketch2_size = html_canvas_size(sketch2, SKETCH2_HEIGHT)
+        culture_size = html_canvas_size(culture, MANAGEMENT_HEIGHT)
 
         jobs.extend([
-            {"html": str(sketch1), "out": str(out_dir / f"{run['prefix']}_sketch1.png"), "width": 900, "height": SKETCH1_HEIGHT, "scale": 3},
-            {"html": str(sketch2), "out": str(out_dir / f"{run['prefix']}_sketch2.png"), "width": 900, "height": SKETCH2_HEIGHT, "scale": 3},
-            {"html": str(culture), "out": str(out_dir / f"{run['prefix']}_管理文化.png"), "width": 900, "height": MANAGEMENT_HEIGHT, "scale": 3},
+            {"html": str(sketch1), "out": str(out_dir / f"{run['prefix']}_sketch1.png"), **sketch1_size, "scale": 3},
+            {"html": str(sketch2), "out": str(out_dir / f"{run['prefix']}_sketch2.png"), **sketch2_size, "scale": 3},
+            {"html": str(culture), "out": str(out_dir / f"{run['prefix']}_管理文化.png"), **culture_size, "scale": 3},
         ])
 
     for name, height, content in make_compare_pages():

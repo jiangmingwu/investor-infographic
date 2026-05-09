@@ -1,64 +1,229 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2180px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height:2300px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E4EBFD 0%, #B8CCF8 100%); border: 2px solid #1877F2; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #0A3A80; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #1877F2; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #0A3A80; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(228,235,253,0.7); border-left: 4px solid #1877F2; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #0A3A80; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
+
+<!-- codex-legacy-style-start -->
+:root { --codex-accent: #1877F2; --codex-soft: rgba(224,238,255,.72); }
+.codex-role-note {
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+.codex-role-note b { color: var(--codex-accent); }
+<!-- codex-legacy-style-end -->
+<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>Meta 的 经 营 之 道</div>
-  <div class='subtitle'>META · Business Logic · 低重复版</div>
-  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
-  <div class='hero'><div class='mark'>Me</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>35 亿级日活的社交分发网络，用 AI 提升广告效率，再押注下一代计算入口。</div></div></div>
-  <div class='section-title'>核心飞轮</div>
-  <div class='flow'><div class='node'><b>社交关系</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>内容推荐</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>广告量价</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>AI 基建</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>眼镜/下一入口</b><span>经营飞轮</span></div></div>
-  <div class='section-title'>护城河不是口号</div>
-  <div class='cards'><div class='card'><h3>34 亿日活的超级网络效应</h3><div class='body'>Family of Apps 覆盖全球一半人口,广告主无可替代的触达规模</div></div><div class='card'><h3>AI 驱动的精准投放</h3><div class='body'>Advantage+ 广告系统用 AI 自动生成+定向,中小企业广告 ROI 提升 30%</div></div><div class='card'><h3>Instagram Reels 护城河</h3><div class='body'>短视频时长反超 Feed,成功狙击 TikTok 在欧美市场的增长</div></div><div class='card'><h3>开源 Llama 生态</h3><div class='body'>Llama 4 成为全球最大开源大模型,吸引开发者生态,对抗 OpenAI/Google</div></div></div>
-  <div class='section-title'>正在发生的变化</div>
-  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>AI：</b>Llama 4 开源 · Meta AI 助手十亿用户，AI 重塑推荐+广告+搜索,广告效果提升 20%+</li><li><b>智能眼镜：</b>Ray-Ban Meta 销量破 500 万，AR 眼镜意外成爆款,与 EssilorLuxottica 深度合作</li><li><b>CapEx：</b>FY26 资本支出 $1,000-1,200 亿，AI 基建大幅加码,堪比云厂商,自建数据中心+自研 MTIA 芯片</li></ul></div>
-  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
+<!-- codex-legacy-footer-end -->
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Meta 的 经 营 之 道</h1>
+  <div class="en">Meta Platforms · Family of Apps × AI × AR</div>
+  <div class="sub">35.8 亿日活 × AI 广告 × AI 眼镜</div>
 </div>
-<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Meta FY2025 年报/业绩会（2026-01）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：Family of Apps 广告现金流很强；AI 与 Reality Labs CapEx 正在重塑回报曲线。；CapEx口径：公司指引口径，主要投 AI 数据中心、服务器和网络基础设施。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <path d="M -55,0 Q -55,-40 -25,-40 Q 0,-40 0,0 Q 0,40 25,40 Q 55,40 55,0 Q 55,-40 25,-40 Q 0,-40 0,0 Q 0,40 -25,40 Q -55,40 -55,0 Z" fill="none" stroke="#1877F2" stroke-width="14" stroke-linejoin="round"/>
+      <text x="0" y="78" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#1877F2">META</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">Meta 平 台</div>
+    <div class="tag">全球最大社交网络 · AI + 元宇宙</div>
+    <div class="stats">
+      <span>🇺🇸 2004 创立</span><span>📍 Menlo Park</span><br>
+      <span>👥 约 7.9 万人</span><span>💰 $2,010 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="40" cy="55" r="20" fill="#1877F2"/>
+        <circle cx="90" cy="55" r="20" fill="#E4405F"/>
+        <circle cx="65" cy="90" r="20" fill="#25D366"/>
+        <text x="40" y="60" text-anchor="middle" font-size="18" fill="white" font-weight="bold">f</text>
+        <text x="90" y="62" text-anchor="middle" font-size="20" fill="white" font-weight="bold">📷</text>
+        <text x="65" y="96" text-anchor="middle" font-size="14" fill="white" font-weight="bold">WA</text>
+        <text x="65" y="125" text-anchor="middle" font-size="14" fill="#1877F2" font-weight="bold">35.8 亿日活</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#1877F2">Family of Apps</div>
+    <div class="en">FB + IG + WA</div>
+    <div class="desc">全球一半人口</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="20" y="45" width="90" height="50" rx="6" fill="#845BFF" opacity="0.15" stroke="#845BFF" stroke-width="2"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="24" fill="#845BFF">🦙</text>
+        <text x="65" y="88" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#845BFF">Llama 4</text>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#845BFF" font-weight="bold">开源 AI 生态</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#845BFF">AI 大模型</div>
+    <div class="en">Llama + Meta AI</div>
+    <div class="desc">十亿用户助手</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <ellipse cx="40" cy="65" rx="22" ry="16" fill="none" stroke="#8B3A4E" stroke-width="3"/>
+        <ellipse cx="90" cy="65" rx="22" ry="16" fill="none" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="62" y1="65" x2="68" y2="65" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="18" y1="60" x2="12" y2="55" stroke="#8B3A4E" stroke-width="3"/>
+        <line x1="112" y1="60" x2="118" y2="55" stroke="#8B3A4E" stroke-width="3"/>
+        <text x="65" y="110" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">销量 500 万</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">Ray-Ban Meta</div>
+    <div class="en">AR Glasses</div>
+    <div class="desc">新品类突破</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">$2,010 亿 × AI 广告 × 回购</div>
+    <div class="s1">FY25 营收 $2,010 亿 (+22%) · 净利 $605 亿<br>广告营收 <strong style="color:#1877F2">$1,962 亿</strong> · FoA 营业利润 $1,025 亿<br>家族应用日活 <strong style="color:#1877F2">35.8 亿</strong> · 年 ARPP $57.03</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">41%</div>
+    <div class="lab">营业利润率</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$2,010亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+22% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#1877F2">$605亿</div><div class="yld-lab">净利润</div><div class="yld-sub">税率扰动</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">$722亿</div><div class="yld-lab">FY25 CapEx</div><div class="yld-sub">AI 基建</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.56T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 22×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>Meta AI 广 告 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#1877F2">
+      <div class="t" style="color:#1877F2">35.8 亿日活</div>
+      <div class="d">用户规模</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#845BFF">
+      <div class="t" style="color:#845BFF">AI 推荐</div>
+      <div class="d">Llama 4</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">广告量+价</div>
+      <div class="d">+12%/+9%</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">现金流</div>
+      <div class="d">$436 亿</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">回购分红</div>
+      <div class="d">$316 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI 投入用于推荐、广告工具、生成式体验和产品开发效率。」</div>
+    <div class="tag">— Meta FY2025 Form 10-K</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「Meta 继续相信开源创新的力量，Llama 是 AI 生态的一部分。」</div>
+    <div class="tag">— Meta FY2025 Form 10-K</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「2026 年 Reality Labs 约 70% 费用将投向可穿戴。」</div>
+    <div class="tag">— Meta FY2025 Form 10-K</div>
+  </div>
+</div>
+
+<!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->
+<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Meta FY2025 年报/业绩会（2026-01）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：Family of Apps 广告现金流很强；AI 与 Reality Labs CapEx 正在重塑回报曲线。；CapEx口径：公司指引口径，主要投 AI 数据中心、服务器和网络基础设施。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+
+</body>
+</html>

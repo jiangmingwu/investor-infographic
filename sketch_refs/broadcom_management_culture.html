@@ -1,66 +1,435 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  width: 900px;
+  height: 2260px;
+  background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E;
+  overflow: hidden;
+  position: relative;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35;
+  pointer-events: none;
 }
 .page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>博通 的 管 理 文 化</div>
-  <div class='subtitle'>资本配置型高压组织 · Management Culture</div>
-  <div class='pill'>并购整合 × 大客户聚焦 × 现金流纪律</div>
-  <div class='hero'><div class='mark'>博通</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>博通文化不是温和创新，而是极强的资本纪律：买成熟资产、砍低回报业务、聚焦大客户、释放现金流。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>Hock Tan</div><div class='lab'>CEO/资本配置</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>VMware</div><div class='lab'>订阅化整合</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>AI ASIC</div><div class='lab'>大客户定制</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>高利润率</div><div class='lab'>现金流目标</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>战略取舍</span><h3>大客户聚焦</h3><div class='body'>资源向高价值客户和高回报产品集中，低回报长尾被削减。</div></div><div class='card'><span class='tag'>经营机制</span><h3>并购后重塑</h3><div class='body'>通过成本、销售和订阅化调整释放现金流。</div></div><div class='card'><span class='tag'>管理风格</span><h3>结果导向</h3><div class='body'>强调利润、现金流和资本回报，组织压力强。</div></div><div class='card'><span class='tag'>护城河</span><h3>技术卡位</h3><div class='body'>在网络芯片、ASIC 和 VMware 等卡位高切换成本环节。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>回报明确但压力强。</li><li>适合结果导向、能接受重组和高绩效的人。</li><li>稳定性取决于业务是否在核心战略内。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是资本配置和利润纪律。</li><li>风险是客户集中、并购整合争议和创新投入边界。</li><li>文化更像投资公司管理科技资产。</li></ul></div>
+.header { text-align: center; }
+.header h1 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 72px;
+  color: #8B3A4E;
+  letter-spacing: 5px;
+  line-height: 1.05;
+}
+.header .en {
+  font-size: 21px;
+  color: #A89080;
+  margin-top: 8px;
+  letter-spacing: 1.5px;
+  font-style: italic;
+}
+.header .sub {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 18px;
+  border: 2px solid #C89890;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.5);
+  font-size: 22px;
+  color: #7B6650;
+  font-weight: 700;
+}
+.hero {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.logo-card {
+  height: 204px;
+  border: 2px solid #CC092F;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-1.5deg);
+}
+.hero-copy {
+  border-left: 5px solid #CC092F;
+  padding: 8px 0 8px 22px;
+}
+.hero-copy .kicker {
+  color: #9A0A25;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.hero-copy .big {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  margin-top: 6px;
+  color: #3A2A1E;
+  font-size: 42px;
+  line-height: 1.22;
+  font-weight: 700;
+}
+.hero-copy .note {
+  margin-top: 10px;
+  color: #7B6650;
+  font-size: 19px;
+  line-height: 1.55;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+.stat {
+  min-height: 128px;
+  border: 2px solid;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.58);
+  text-align: center;
+  padding: 15px 8px 12px;
+}
+.stat .num {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 1.1;
+}
+.stat .lab {
+  margin-top: 8px;
+  font-size: 17px;
+  color: #6F5E4D;
+  line-height: 1.25;
+}
+.section-title { text-align: center; margin: 34px 0 18px; }
+.section-title span {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #8B3A4E;
+  padding: 0 20px;
+  position: relative;
+}
+.section-title span::before, .section-title span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 86px;
+  height: 2px;
+  background: #C89890;
+}
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  position: relative;
+  min-height: 214px;
+  border: 2px solid #D4B8A8;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.62);
+  padding: 18px 18px 15px;
+}
+.card:nth-child(2) { transform: rotate(0.8deg); }
+.card:nth-child(3) { transform: rotate(-0.7deg); }
+.card .top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icon {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+}
+.card h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 29px;
+  color: #8B3A4E;
+  line-height: 1.15;
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+.card p {
+  margin-top: 12px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: #4A3728;
+}
+.card strong { color: #9A0A25; }
+.flywheel {
+  margin-top: 4px;
+  border: 2px solid #C4963C;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #FFF5E8 0%, #FCE7D6 100%);
+  padding: 20px 18px 18px;
+}
+.wheel-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 6px;
+}
+.wheel-step {
+  flex: 1;
+  min-height: 112px;
+  border: 2px solid #8B7355;
+  border-radius: 12px;
+  background: #FDFAF3;
+  text-align: center;
+  padding: 12px 6px 8px;
+}
+.wheel-step .t {
+  font-size: 21px;
+  font-weight: 900;
+  color: #8B3A4E;
+}
+.wheel-step .d {
+  font-size: 15px;
+  color: #7B6650;
+  margin-top: 6px;
+  line-height: 1.32;
+}
+.arrow {
+  display: flex;
+  align-items: center;
+  color: #8B7355;
+  font-size: 24px;
+  font-weight: 900;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+.panel {
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  border: 2px solid;
+  background: rgba(255,255,255,0.56);
+  min-height: 260px;
+}
+.panel h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+.line {
+  display: flex;
+  gap: 10px;
+  margin: 11px 0;
+  align-items: flex-start;
+}
+.mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+  margin-top: 2px;
+}
+.line div:last-child {
+  font-size: 18px;
+  color: #4A3728;
+  line-height: 1.45;
+}
+.bottom {
+  margin-top: 24px;
+  border: 2px solid #CC092F;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #FBE3E8 0%, #F5BEC8 100%);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.bottom h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 31px;
+  color: #9A0A25;
+  margin-bottom: 8px;
+}
+.bottom p {
+  font-size: 19px;
+  line-height: 1.58;
+  color: #3A2A1E;
+}
+.bottom strong { color: #9A0A25; }
+.footer {
+  text-align: center;
+  font-size: 16px;
+  color: #B0A090;
+  margin-top: 23px;
+  line-height: 1.58;
+  padding-bottom: 18px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>博 通 的 管 理 文 化</h1>
+    <div class="en">Broadcom · Management Culture</div>
+    <div class="sub">高绩效人才 × 工程硬门槛 × 并购整合纪律</div>
   </div>
-  <div class='note-box'><h3>一句话总结</h3><p>博通的文化，是把公司当作现金流资产组合来管理。</p></div>
+
+  <div class="hero">
+    <div class="logo-card">
+      <svg width="170" height="150" viewBox="0 0 170 150">
+        <rect x="18" y="46" width="134" height="58" rx="6" fill="#CC092F" stroke="#7A0A20" stroke-width="2"/>
+        <text x="85" y="82" text-anchor="middle" font-family="Noto Sans SC, Arial, sans-serif" font-weight="900" font-size="18" letter-spacing="1" fill="white">BROADCOM</text>
+        <path d="M31 36 C53 20, 76 24, 95 33 S133 41, 144 24" fill="none" stroke="#C4963C" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="36" cy="116" r="8" fill="#8B3A4E"/>
+        <circle cx="85" cy="123" r="8" fill="#C4963C"/>
+        <circle cx="134" cy="116" r="8" fill="#8B3A4E"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">不是“福利型公司”，而是“执行型组织”</div>
+      <div class="big">用高股权回报吸引硬核工程师，再用极强整合纪律榨出现金流。</div>
+      <div class="note">这张图只写可核查的文化机制：薪酬结构、工程密度、客户共创、组织简化和并购后的执行方式。</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat" style="border-color:#CC092F"><div class="num" style="color:#CC092F">3.3万</div><div class="lab">FY2025 全球员工<br>约 33,000 人</div></div>
+    <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">57%</div><div class="lab">员工在研发岗位<br>工程密度很高</div></div>
+    <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">4.1%</div><div class="lab">FY2025 自愿离职率<br>低于科技业基准</div></div>
+    <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">1.9万</div><div class="lab">专利数量<br>技术壁垒外显</div></div>
+  </div>
+
+  <div class="section-title"><span>四 个 管 理 机制</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="23" cy="25" r="12" fill="#F5BEC8" stroke="#9A0A25" stroke-width="2"/>
+          <circle cx="47" cy="25" r="12" fill="#F5BEC8" stroke="#9A0A25" stroke-width="2"/>
+          <path d="M11 56 C13 42, 31 42, 34 56" fill="none" stroke="#9A0A25" stroke-width="3" stroke-linecap="round"/>
+          <path d="M36 56 C39 42, 57 42, 59 56" fill="none" stroke="#9A0A25" stroke-width="3" stroke-linecap="round"/>
+          <path d="M20 10 L35 4 L50 10" fill="none" stroke="#C4963C" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div><h3>高绩效<br>高回报</h3><span class="tag" style="background:#CC092F">薪酬机制</span></div>
+      </div>
+      <p>公开招聘文案强调 <strong>行业领先股权、奖金和底薪</strong>；FY2025 股权薪酬费用约 <strong>$75.7 亿美元</strong>，ESPP 允许员工以折扣价持股。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <rect x="18" y="18" width="34" height="34" rx="4" fill="#FDE8D5" stroke="#C4963C" stroke-width="3"/>
+          <path d="M8 25 H18 M8 35 H18 M8 45 H18 M52 25 H62 M52 35 H62 M52 45 H62 M25 8 V18 M35 8 V18 M45 8 V18 M25 52 V62 M35 52 V62 M45 52 V62" stroke="#C4963C" stroke-width="3" stroke-linecap="round"/>
+          <text x="35" y="40" text-anchor="middle" font-size="14" font-weight="900" fill="#8B6630">R&D</text>
+        </svg>
+        <div><h3>工程门槛<br>很硬</h3><span class="tag" style="background:#C4963C">技术标准</span></div>
+      </div>
+      <p>年报说工程与技术人员是关键资产；研发、产品和软件工程师分布在全球，并常常靠近核心客户，支持从设计到量产。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <path d="M14 22 H33 V14 H47 V34 H39 V49 H18 V39 H14 Z" fill="#E8DCE5" stroke="#8B3A4E" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M36 22 H56 V42 H47 V56 H28 V49 H39 V34 H36 Z" fill="#FBE3E8" stroke="#8B3A4E" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <div><h3>并购后<br>强整合</h3><span class="tag" style="background:#8B3A4E">组织方式</span></div>
+      </div>
+      <p>VMware 并入后，博通把复杂产品和渠道做“简化”：官方披露曾将约 <strong>8,000 个 SKU</strong> 整合为 <strong>4 个核心产品</strong>。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="26" fill="#F7F4ED" stroke="#6B8E4E" stroke-width="3"/>
+          <path d="M20 42 C26 30, 36 26, 50 24" fill="none" stroke="#6B8E4E" stroke-width="4" stroke-linecap="round"/>
+          <path d="M45 19 L52 24 L46 31" fill="none" stroke="#6B8E4E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="35" y="55" text-anchor="middle" font-size="13" font-weight="900" fill="#6B8E4E">ROI</text>
+        </svg>
+        <div><h3>现金流<br>纪律</h3><span class="tag" style="background:#6B8E4E">资本纪律</span></div>
+      </div>
+      <p>10-K 明确写到：研发投入、战略收购和运营专注共同服务“稳健经营与财务结果”。文化关键词不是热闹，而是 <strong>执行与回报</strong>。</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span>管理飞轮</span></div>
+  <div class="flywheel">
+    <div class="wheel-row">
+      <div class="wheel-step"><div class="t">给足股权</div><div class="d">底薪 + 奖金<br>+ equity</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">吸引硬核人</div><div class="d">57% 研发<br>工程密度</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">贴近客户</div><div class="d">共同定义<br>定制芯片</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">简化组织</div><div class="d">SKU / 渠道<br>快速收拢</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">释放现金流</div><div class="d">并购整合<br>利润纪律</div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel" style="border-color:#8B3A4E">
+      <h3 style="color:#8B3A4E">投资人看到的优点</h3>
+      <div class="line"><div class="mark" style="background:#8B3A4E">1</div><div>组织不追求“大而散”，更像一台 <strong>高毛利基础设施机器</strong>。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">2</div><div>并购不是买故事，而是买可整合的产品线、客户和工程资产。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">3</div><div>高股权激励让员工收益和公司股价、现金流表现绑定。</div></div>
+    </div>
+
+    <div class="panel" style="border-color:#CC092F">
+      <h3 style="color:#9A0A25">也要盯住的风险</h3>
+      <div class="line"><div class="mark" style="background:#CC092F">!</div><div>高压整合可能带来客户与员工摩擦，尤其是 VMware 这类大并购。</div></div>
+      <div class="line"><div class="mark" style="background:#CC092F">!</div><div>大客户协同很强，也意味着核心客户集中度需要持续跟踪。</div></div>
+      <div class="line"><div class="mark" style="background:#CC092F">!</div><div>文化优势建立在执行纪律上，一旦整合失误，反噬也会很快。</div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <rect x="22" y="20" width="56" height="56" rx="8" fill="white" stroke="#CC092F" stroke-width="3"/>
+      <path d="M35 50 L45 60 L66 36" fill="none" stroke="#6B8E4E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 84 C36 76, 64 76, 78 84" fill="none" stroke="#C4963C" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h3>一句话总结</h3>
+      <p>博通的管理文化不是“温和叙事”，而是 <strong>高回报吸引强人，强执行压缩复杂度，最后把技术优势变成现金流</strong>。</p>
+    </div>
+  </div>
+
+  <div class="footer">管理文化：Broadcom FY2025 Annual Report / Proxy / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
 </div>
-<div class='footer'>管理文化：Broadcom FY2025 Annual Report / Proxy / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+</body>
+</html>

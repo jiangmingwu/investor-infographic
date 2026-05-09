@@ -1,64 +1,175 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2180px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height:2300px; background: #F5F2E8; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #1A1F71; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4D8 39px, #E8E4D8 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4D8 39px, #E8E4D8 40px); opacity: 0.35; pointer-events: none; }
+.hero { text-align: center; padding: 50px 40px 10px; }
+.hero h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 82px; color: #1A1F71; letter-spacing: 8px; line-height: 1.1; }
+.hero .sub { font-size: 22px; color: #6B6680; margin-top: 10px; letter-spacing: 1px; }
+.card-svg { display: block; margin: 18px auto 10px; }
+.concepts { display: flex; justify-content: center; gap: 24px; padding: 12px 40px 0; }
+.concept { flex: 1; background: rgba(255,255,255,0.6); border-radius: 14px; border: 2px solid #D9CEBC; padding: 18px 14px; text-align: center; }
+.concept .ico { font-size: 38px; margin-bottom: 6px; }
+.concept .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 22px; color: #1A1F71; margin-bottom: 4px; }
+.concept .d { font-size: 15px; color: #6B6680; line-height: 1.4; }
+.bigbox { margin: 24px 40px 0; background: linear-gradient(135deg, #1A1F71 0%, #2B3186 100%); border-radius: 18px; padding: 26px 30px; color: white; display: flex; align-items: center; gap: 22px; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 58px; line-height: 1; color: #F7B600; text-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+.bigbox .txt { flex: 1; font-size: 19px; line-height: 1.5; }
+.bigbox .txt strong { color: #F7B600; }
+.yieldbox { margin: 22px 40px 0; background: #FFFBEE; border: 2px solid #F7B600; border-radius: 14px; padding: 18px 22px; }
+.yieldbox .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.yieldbox .head .big { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 54px; color: #1A1F71; line-height: 1; }
+.yieldbox .head .mid { font-size: 24px; color: #8A7A3E; font-weight: 700; }
+.yieldbox .lst { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; font-size: 17px; color: #3A3A4E; }
+.yieldbox .lst strong { color: #1A1F71; font-weight: 700; }
+.flow-wrap { margin: 22px 40px 0; padding: 18px 22px; background: rgba(255,255,255,0.55); border-radius: 14px; }
+.flow-wrap .title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 26px; color: #1A1F71; text-align: center; margin-bottom: 14px; }
+.flow { display: flex; align-items: center; justify-content: space-between; }
+.flow .node { flex: 1; text-align: center; padding: 10px 6px; background: white; border: 2px solid #1A1F71; border-radius: 10px; }
+.flow .node .nt { font-size: 15px; color: #1A1F71; font-weight: 700; }
+.flow .node .nd { font-size: 13px; color: #6B6680; margin-top: 3px; }
+.flow .arrow { font-size: 22px; color: #F7B600; margin: 0 4px; font-weight: 700; }
+.quotes { padding: 0 40px; margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.q { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 16px 14px; border-left: 4px solid #1A1F71; }
+.q .qt { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 19px; color: #1A1F71; margin-bottom: 8px; line-height: 1.3; }
+.q .qd { font-size: 14px; color: #4A4A5A; line-height: 1.55; }
+.q .qa { font-size: 12px; color: #8A7A3E; margin-top: 6px; font-style: italic; }
+.footer { text-align: center; font-size: 15px; color: #8A8298; margin-top: 24px; padding-bottom: 18px; line-height: 1.6; }
+
+<!-- codex-legacy-style-start -->
+:root { --codex-accent: #1A1F71; --codex-soft: rgba(228,230,250,.70); }
+.codex-role-note {
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+.codex-role-note b { color: var(--codex-accent); }
+<!-- codex-legacy-style-end -->
+<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>Visa 的 经 营 之 道</div>
-  <div class='subtitle'>V · Business Logic · 低重复版</div>
-  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
-  <div class='hero'><div class='mark'>Vi</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>连接银行、商户和消费者的支付网络，规模越大单位成本越低。</div></div></div>
-  <div class='section-title'>核心飞轮</div>
-  <div class='flow'><div class='node'><b>支付接受度</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>交易数据</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>风控安全</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>跨境网络</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>高利润回购</b><span>经营飞轮</span></div></div>
-  <div class='section-title'>护城河不是口号</div>
-  <div class='cards'><div class='card'><h3>46 亿张卡网络效应</h3><div class='body'>全球最大发卡网络,越多发卡越吸引商户,双边网络深不可破</div></div><div class='card'><h3>67% 营业利润率</h3><div class='body'>边际成本近零,每增 1 美元交易成本几乎为零,行业最高</div></div><div class='card'><h3>支付网络 4 家寡头</h3><div class='body'>与 Mastercard/Amex/Discover 形成寡头格局,新进者几乎不可能</div></div><div class='card'><h3>跨境业务壁垒</h3><div class='body'>汇率+合规+清算复杂度,本地钱包无法替代</div></div></div>
-  <div class='section-title'>正在发生的变化</div>
-  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>跨境：</b>跨境交易增速 +16%，出行复苏+电商全球化,费率高 3-5×</li><li><b>B2B：</b>Visa Direct 支付总额破万亿，P2P/工资发放/B2B 支付,市场空间 $200 万亿</li><li><b>代币：</b>Visa Token Service 100 亿张，替代卡号的安全凭证,欺诈率下降 60%</li></ul></div>
-  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
+<!-- codex-legacy-footer-end -->
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>维 萨 · 支 付 帝 国</h1>
+  <div class="sub">Visa NYSE:V · 46 亿张卡 · $16 万亿支付总额 · FY2025</div>
 </div>
-<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Visa FY2025 年报/业绩会（2026-03；财年 10 月-9 月）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：网络型轻资产公司，交易量增长带来极高增量利润。；CapEx口径：资本开支不是主要约束；重点是网络安全、AI 风控和全球支付基础设施。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+
+<svg class="card-svg" width="320" height="180" viewBox="0 0 320 180">
+  <defs>
+    <linearGradient id="cardgrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1A1F71"/>
+      <stop offset="1" stop-color="#2B3186"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="20" width="300" height="150" rx="14" fill="url(#cardgrad)"/>
+  <rect x="30" y="60" width="40" height="30" rx="4" fill="#F7B600"/>
+  <rect x="30" y="66" width="40" height="3" fill="#C89A00"/>
+  <rect x="30" y="75" width="40" height="3" fill="#C89A00"/>
+  <text x="30" y="130" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="22" fill="white" letter-spacing="3">4678  8888  •••• 2025</text>
+  <text x="30" y="155" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="13" fill="#C8C6E0">VISA PAYMENT NETWORK</text>
+  <text x="280" y="158" text-anchor="end" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="26" fill="#F7B600" font-style="italic">VISA</text>
+</svg>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="ico">🌐</div>
+    <div class="t">网络 46 亿张</div>
+    <div class="d">越多卡→越多商户<br>双边网络不可破</div>
+  </div>
+  <div class="concept">
+    <div class="ico">⚡</div>
+    <div class="t">毫秒清算</div>
+    <div class="d">每秒 6.5 万笔<br>99.999% 可靠</div>
+  </div>
+  <div class="concept">
+    <div class="ico">💰</div>
+    <div class="t">67% 营业利润率</div>
+    <div class="d">边际成本近零<br>行业最高</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div class="num">$16<br>万亿</div>
+  <div class="txt">
+    <strong>FY2025 支付总额 $16 万亿</strong><br>
+    一年经手全球 2,400 亿笔交易,比全球第 3 大经济体 GDP 还多。<br>
+    跨境交易 <strong>+16%</strong>,Visa Direct 破万亿,B2B 市场 $200 万亿刚起步。
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="head">
+    <span class="big">67%</span>
+    <span class="mid">营业利润率 · 行业最高</span>
+  </div>
+  <div class="lst">
+    <div>FY25 营收 <strong>$400 亿</strong> +11%</div>
+    <div>净利润 <strong>$215 亿</strong> +13%</div>
+    <div>自由现金流 <strong>$200 亿</strong></div>
+    <div>分红+回购 <strong>$190 亿</strong></div>
+    <div>跨境交易 <strong>+16%</strong> YoY</div>
+    <div>PE 28× · 市值 <strong>$5,963 亿</strong></div>
+  </div>
+</div>
+
+<div class="flow-wrap">
+  <div class="title">支 付 链 条 · 每 刷 一 次 都 抽 佣</div>
+  <div class="flow">
+    <div class="node"><div class="nt">消费者</div><div class="nd">46 亿张卡</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">商户</div><div class="nd">1 亿+门店</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">收单行</div><div class="nd">Stripe 等</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">VisaNet</div><div class="nd">0.1% 抽佣</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">发卡行</div><div class="nd">Chase 等</div></div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="q">
+    <div class="qt">「跨境是<br>皇冠明珠」</div>
+    <div class="qd">出行复苏+电商全球化<br>费率高 3-5× 美国本土</div>
+    <div class="qa">— Ryan McInerney</div>
+  </div>
+  <div class="q">
+    <div class="qt">「稳定币是<br>VisaNet 新轨道」</div>
+    <div class="qd">USDC/PYUSD 接入<br>不是敌人是合作伙伴</div>
+    <div class="qa">— McInerney</div>
+  </div>
+  <div class="q">
+    <div class="qt">「$200 万亿<br>B2B 刚起步」</div>
+    <div class="qd">Visa Direct P2P+工资<br>长期增长跑道清晰</div>
+    <div class="qa">— CFO Chris Suh</div>
+  </div>
+</div>
+
+<!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->
+<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Visa FY2025 年报/业绩会（2026-03；财年 10 月-9 月）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：网络型轻资产公司，交易量增长带来极高增量利润。；CapEx口径：资本开支不是主要约束；重点是网络安全、AI 风控和全球支付基础设施。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+
+</body>
+</html>

@@ -1,64 +1,233 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2180px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height:2300px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
+.header { text-align: center; padding: 50px 40px 20px; }
+.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
+.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
+.hero-meta { flex: 1; }
+.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
+.hero-meta .stats span { display: inline-block; margin-right: 16px; }
+.section-title { text-align: center; margin: 30px 0 18px; }
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.concepts { display: flex; gap: 16px; padding: 0 40px; }
+.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
+.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
+.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
+.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #FBE3E8 0%, #F5BEC8 100%); border: 2px solid #CC092F; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
+.bigbox .s1 { font-size: 20px; color: #7A0A20; margin-top: 4px; line-height: 1.5; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #9A0A25; line-height: 1; }
+.bigbox .lab { font-size: 18px; color: #7A0A20; }
+.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
+.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
+.yieldbox .yld-cell { text-align: center; flex: 1; }
+.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
+.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
+.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
+.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
+.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
+.flow-step .t { font-size: 22px; font-weight: 700; }
+.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
+.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
+.quotes { margin: 26px 40px 0; }
+.quote { background: rgba(251,227,232,0.7); border-left: 4px solid #CC092F; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
+.quote .tag { font-size: 16px; color: #9A0A25; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
+
+<!-- codex-legacy-style-start -->
+:root { --codex-accent: #CC092F; --codex-soft: rgba(253,228,232,.68); }
+.codex-role-note {
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+.codex-role-note b { color: var(--codex-accent); }
+<!-- codex-legacy-style-end -->
+<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>博通 的 经 营 之 道</div>
-  <div class='subtitle'>AVGO · Business Logic · 低重复版</div>
-  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
-  <div class='hero'><div class='mark'>博通</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>Hock Tan 用并购、裁剪、订阅化，把成熟资产变成现金流机器。</div></div></div>
-  <div class='section-title'>核心飞轮</div>
-  <div class='flow'><div class='node'><b>买入资产</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>聚焦大客户</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>砍低回报线</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>订阅化</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>回购分红</b><span>经营飞轮</span></div></div>
-  <div class='section-title'>护城河不是口号</div>
-  <div class='cards'><div class='card'><h3>AI ASIC 定制设计垄断</h3><div class='body'>除了 NVIDIA 通用 GPU 之外,定制 AI 芯片几乎都由博通操刀</div></div><div class='card'><h3>网络芯片 85% 市占</h3><div class='body'>数据中心交换机芯片绝对领导,Tomahawk/Jericho 系列无对手</div></div><div class='card'><h3>VMware 企业虚拟化垄断</h3><div class='body'>全球 90% 世界 500 强使用 VMware,转订阅后现金流极稳</div></div><div class='card'><h3>Hock Tan 资本配置</h3><div class='body'>并购+砍成本+订阅化+回报股东,15 年市值从 $90 亿涨到 $1.15 万亿</div></div></div>
-  <div class='section-title'>正在发生的变化</div>
-  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>AI ASIC：</b>定制 AI 芯片扩至 5 大超大规模客户，Google TPU/Meta MTIA/OpenAI 自研芯片全部委托博通设计</li><li><b>网络：</b>Tomahawk 6/Jericho 3 系列，AI 集群网络芯片绝对领先,NVIDIA 的 NVLink 之外唯一选项</li><li><b>VMware：</b>完成硬切订阅 · 砍掉长尾客户，从永久授权强制切换订阅,毛利率大幅抬升,短期流失部分客户</li></ul></div>
-  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
+<!-- codex-legacy-footer-end -->
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>博 通 的 经 营 之 道</h1>
+  <div class="en">Broadcom · Custom AI × Network × Software</div>
+  <div class="sub">隐形 AI 之王 × 网络霸主 × VMware</div>
 </div>
-<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Broadcom FY2025 年报/业绩会（2025-12）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：ASIC/网络芯片 + VMware 软件现金流；并购摊销使 GAAP 口径波动。；CapEx口径：Fabless + 软件模式，重点是研发、并购整合和客户定制 ASIC。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <circle r="62" fill="white" stroke="#CC092F" stroke-width="2"/>
+      <rect x="-45" y="-22" width="90" height="44" rx="4" fill="#CC092F"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="18" fill="white">BROADCOM</text>
+      <text x="0" y="46" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#CC092F">AVGO</text>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">博 通</div>
+    <div class="tag">AI ASIC × 网络芯片 × 基础软件</div>
+    <div class="stats">
+      <span>🇺🇸 CEO Hock Tan</span><span>📍 San Jose</span><br>
+      <span>👥 约 2 万人</span><span>💰 $620 亿营收</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="25" y="35" width="80" height="55" rx="4" fill="#CC092F" stroke="#7A0A20" stroke-width="2"/>
+        <text x="65" y="70" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="white">ASIC</text>
+        <text x="65" y="112" text-anchor="middle" font-size="14" fill="#7A0A20" font-weight="bold">+120% · 5 大客户</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#9A0A25">AI ASIC</div>
+    <div class="en">Custom AI Silicon</div>
+    <div class="desc">Google TPU/Meta MTIA</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="12" fill="#C4963C"/>
+        <circle cx="25" cy="30" r="8" fill="#C4963C"/>
+        <circle cx="105" cy="30" r="8" fill="#C4963C"/>
+        <circle cx="25" cy="100" r="8" fill="#C4963C"/>
+        <circle cx="105" cy="100" r="8" fill="#C4963C"/>
+        <line x1="65" y1="65" x2="25" y2="30" stroke="#8B6630" stroke-width="2"/>
+        <line x1="65" y1="65" x2="105" y2="30" stroke="#8B6630" stroke-width="2"/>
+        <line x1="65" y1="65" x2="25" y2="100" stroke="#8B6630" stroke-width="2"/>
+        <line x1="65" y1="65" x2="105" y2="100" stroke="#8B6630" stroke-width="2"/>
+        <text x="65" y="122" text-anchor="middle" font-size="13" fill="#8B6630" font-weight="bold">Tomahawk 6</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#C4963C">网络芯片</div>
+    <div class="en">Data Center Switch</div>
+    <div class="desc">市占 85% · AI 集群标配</div>
+  </div>
+
+  <div class="concept">
+    <div class="svg-wrap">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <rect x="25" y="35" width="80" height="60" rx="6" fill="#8B3A4E" stroke="#6A2A3A" stroke-width="2"/>
+        <rect x="35" y="45" width="60" height="8" rx="1" fill="white"/>
+        <rect x="35" y="58" width="45" height="8" rx="1" fill="white"/>
+        <rect x="35" y="71" width="55" height="8" rx="1" fill="white"/>
+        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#6A2A3A" font-weight="bold">世界 500 强 · 90%</text>
+      </svg>
+    </div>
+    <div class="cn" style="color:#8B3A4E">VMware</div>
+    <div class="en">Enterprise Software</div>
+    <div class="desc">订阅化完成 · 毛利抬升</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div style="flex:1">
+    <div class="t1">20% 营收 × 77% 毛利</div>
+    <div class="s1">FY25 营收 $620 亿 · Non-GAAP 净利 $260 亿 +30%<br>AI 半导体 <strong style="color:#9A0A25">+120%</strong> 跃升到 $180 亿<br>Hock Tan 预告 FY27 AI ASIC <strong style="color:#9A0A25">$60-90B/客户</strong></div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">+120%</div>
+    <div class="lab">AI 半导体增速</div>
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="yld-title">FY2025 核心经营数据</div>
+  <div class="yld-row">
+    <div class="yld-cell"><div class="yld-num">$620亿</div><div class="yld-lab">全年营收</div><div class="yld-sub">+20% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#9A0A25">$260亿</div><div class="yld-lab">Non-GAAP 净利</div><div class="yld-sub">+30% YoY</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#8B3A4E">77%</div><div class="yld-lab">Non-GAAP 毛利率</div><div class="yld-sub">软硬件双轮</div></div>
+    <div class="yld-cell"><div class="yld-num" style="color:#C4963C">$1.89T</div><div class="yld-lab">最新市值</div><div class="yld-sub">PE 约 73×</div></div>
+  </div>
+</div>
+
+<div class="section-title"><span>博 通 增 长 飞 轮</span></div>
+<div class="flow-wrap">
+  <div class="flow-row">
+    <div class="flow-step" style="border-color:#9A0A25">
+      <div class="t" style="color:#9A0A25">客户定制</div>
+      <div class="d">Google/Meta</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#8B3A4E">
+      <div class="t" style="color:#8B3A4E">ASIC+网络</div>
+      <div class="d">成套方案</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#C4963C">
+      <div class="t" style="color:#C4963C">高毛利</div>
+      <div class="d">77% 毛利</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B8E4E">
+      <div class="t" style="color:#6B8E4E">并购整合</div>
+      <div class="d">VMware</div>
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step" style="border-color:#6B4E7A">
+      <div class="t" style="color:#6B4E7A">回购分红</div>
+      <div class="d">$260 亿</div>
+    </div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote">
+    <div class="txt">「AI ASIC 市场到 FY27 每家客户 $60-90 亿。」</div>
+    <div class="tag">— Hock Tan · FY25 业绩会</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「我们是唯一能做全栈 AI 定制芯片的公司。」</div>
+    <div class="tag">— Hock Tan</div>
+  </div>
+  <div class="quote">
+    <div class="txt">「博通不做炒作,我们做现金流。」</div>
+    <div class="tag">— Hock Tan</div>
+  </div>
+</div>
+
+<!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->
+<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Broadcom FY2025 年报/业绩会（2025-12）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：ASIC/网络芯片 + VMware 软件现金流；并购摊销使 GAAP 口径波动。；CapEx口径：Fabless + 软件模式，重点是研发、并购整合和客户定制 ASIC。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+
+</body>
+</html>

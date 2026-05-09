@@ -1,66 +1,429 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  width: 900px;
+  height: 2340px;
+  background: #F7F4ED;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  color: #3A2A1E;
+  overflow: hidden;
+  position: relative;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+  opacity: 0.35;
+  pointer-events: none;
 }
 .page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>沙特阿美 的 管 理 文 化</div>
-  <div class='subtitle'>国家能源工程组织 · Management Culture</div>
-  <div class='pill'>安全生产 × 超低成本 × 国家战略</div>
-  <div class='hero'><div class='mark'>沙特</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>沙特阿美管理文化来自超大规模油气工程、安全纪律和国家战略目标，重点是可靠供给而非高速互联网式试错。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>低成本</div><div class='lab'>上游资源</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>安全</div><div class='lab'>运营底线</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>Vision 2030</div><div class='lab'>国家战略</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>天然气</div><div class='lab'>扩张方向</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>运营纪律</span><h3>安全第一</h3><div class='body'>油气生产以安全、可靠和连续性为底线。</div></div><div class='card'><span class='tag'>管理机制</span><h3>工程项目制</h3><div class='body'>大型上游、管道、炼化和天然气项目用长期工程管理推进。</div></div><div class='card'><span class='tag'>治理结构</span><h3>国家战略</h3><div class='body'>公司承担能源安全、分红和经济转型多重目标。</div></div><div class='card'><span class='tag'>人才机制</span><h3>本土人才培养</h3><div class='body'>长期培养工程、地质、运营和项目管理人才。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>稳定、工程体系完整，层级和安全规则强。</li><li>适合能源、工程、项目管理和长期职业路径。</li><li>创新速度不如科技公司，但执行纪律强。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是资源成本和国家支持。</li><li>风险是油价、政策分红和能源转型。</li><li>文化强项是长期工程可靠性。</li></ul></div>
+.header { text-align: center; }
+.header h1 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 72px;
+  color: #007A4D;
+  letter-spacing: 5px;
+  line-height: 1.05;
+}
+.header .en {
+  font-size: 21px;
+  color: #A89080;
+  margin-top: 8px;
+  letter-spacing: 1.5px;
+  font-style: italic;
+}
+.header .sub {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 18px;
+  border: 2px solid #9CC7AC;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.52);
+  font-size: 22px;
+  color: #6E705D;
+  font-weight: 700;
+}
+.hero {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.logo-card {
+  height: 204px;
+  border: 2px solid #00A04B;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.58);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-1.3deg);
+}
+.hero-copy {
+  border-left: 5px solid #00A04B;
+  padding: 8px 0 8px 22px;
+}
+.hero-copy .kicker {
+  color: #007A38;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.hero-copy .big {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  margin-top: 6px;
+  color: #3A2A1E;
+  font-size: 42px;
+  line-height: 1.22;
+  font-weight: 700;
+}
+.hero-copy .note {
+  margin-top: 10px;
+  color: #7B6650;
+  font-size: 19px;
+  line-height: 1.55;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+.stat {
+  min-height: 128px;
+  border: 2px solid;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.58);
+  text-align: center;
+  padding: 15px 8px 12px;
+}
+.stat .num {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 1.1;
+}
+.stat .lab {
+  margin-top: 8px;
+  font-size: 17px;
+  color: #6F5E4D;
+  line-height: 1.25;
+}
+.section-title { text-align: center; margin: 34px 0 18px; }
+.section-title span {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #007A4D;
+  padding: 0 20px;
+  position: relative;
+}
+.section-title span::before, .section-title span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 86px;
+  height: 2px;
+  background: #9CC7AC;
+}
+.section-title span::before { right: 100%; }
+.section-title span::after { left: 100%; }
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  position: relative;
+  min-height: 214px;
+  border: 2px solid #D4B8A8;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.64);
+  padding: 18px 18px 15px;
+}
+.card:nth-child(2) { transform: rotate(0.7deg); }
+.card:nth-child(3) { transform: rotate(-0.7deg); }
+.card .top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icon { width: 58px; height: 58px; flex-shrink: 0; }
+.card h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 29px;
+  color: #007A4D;
+  line-height: 1.15;
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+.card p {
+  margin-top: 12px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: #4A3728;
+}
+.card strong { color: #007A38; }
+.flywheel {
+  margin-top: 4px;
+  border: 2px solid #C4963C;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #FFF7E8 0%, #FCE9D5 100%);
+  padding: 20px 18px 18px;
+}
+.wheel-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 6px;
+}
+.wheel-step {
+  flex: 1;
+  min-height: 112px;
+  border: 2px solid #8B7355;
+  border-radius: 12px;
+  background: #FDFAF3;
+  text-align: center;
+  padding: 12px 6px 8px;
+}
+.wheel-step .t {
+  font-size: 21px;
+  font-weight: 900;
+  color: #007A4D;
+}
+.wheel-step .d {
+  font-size: 15px;
+  color: #7B6650;
+  margin-top: 6px;
+  line-height: 1.32;
+}
+.arrow {
+  display: flex;
+  align-items: center;
+  color: #8B7355;
+  font-size: 24px;
+  font-weight: 900;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+.panel {
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  border: 2px solid;
+  background: rgba(255,255,255,0.58);
+  min-height: 260px;
+}
+.panel h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+.line {
+  display: flex;
+  gap: 10px;
+  margin: 11px 0;
+  align-items: flex-start;
+}
+.mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+  margin-top: 2px;
+}
+.line div:last-child {
+  font-size: 18px;
+  color: #4A3728;
+  line-height: 1.45;
+}
+.bottom {
+  margin-top: 24px;
+  border: 2px solid #00A04B;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #DFF5E6 0%, #BDE8C9 100%);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.bottom h3 {
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  font-size: 31px;
+  color: #007A38;
+  margin-bottom: 8px;
+}
+.bottom p {
+  font-size: 19px;
+  line-height: 1.58;
+  color: #3A2A1E;
+}
+.bottom strong { color: #007A38; }
+.footer {
+  text-align: center;
+  font-size: 16px;
+  color: #B0A090;
+  margin-top: 23px;
+  line-height: 1.58;
+  padding-bottom: 18px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>沙特阿美的管理文化</h1>
+    <div class="en">Saudi Aramco · Management Culture</div>
+    <div class="sub">安全第一 × 运营卓越 × 国家工业生态</div>
   </div>
-  <div class='note-box'><h3>一句话总结</h3><p>阿美的文化，是用工程纪律管理国家级能源现金流。</p></div>
+
+  <div class="hero">
+    <div class="logo-card">
+      <svg width="170" height="150" viewBox="0 0 170 150">
+        <circle cx="85" cy="74" r="58" fill="#00A04B" stroke="#007A38" stroke-width="3"/>
+        <path d="M50 74 C58 44, 78 30, 104 35 C91 48, 101 61, 122 68 C102 76, 94 88, 89 108 C79 89, 65 79, 50 74 Z" fill="white"/>
+        <path d="M58 82 C72 82, 88 82, 112 82" stroke="#007A38" stroke-width="5" stroke-linecap="round"/>
+        <text x="85" y="123" text-anchor="middle" font-family="Noto Sans SC, Arial, sans-serif" font-weight="900" font-size="17" fill="white" letter-spacing="1">ARAMCO</text>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">不是“石油公司福利图”，而是巨型能源系统的组织方式</div>
+      <div class="big">阿美的文化核心，是把安全、人才、供应链和国家战略做成同一套运营纪律。</div>
+      <div class="note">这张图把福利保障、管理方式、企业文化整合在一起：人怎么培养，风险怎么管，供应怎么稳。</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat" style="border-color:#00A04B"><div class="num" style="color:#00A04B">7.7万</div><div class="lab">FY2025 员工<br>76,664 人</div></div>
+    <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">99.9%</div><div class="lab">供应可靠性<br>运营纪律外显</div></div>
+    <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">70%</div><div class="lab">iktva 本地采购<br>供应链本土化</div></div>
+    <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">0.011</div><div class="lab">损失工时伤病率<br>/20万工时</div></div>
+  </div>
+
+  <div class="section-title"><span>四 个 管 理 机制</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <path d="M35 8 L58 18 V34 C58 48, 48 58, 35 63 C22 58, 12 48, 12 34 V18 Z" fill="#DFF5E6" stroke="#007A38" stroke-width="3"/>
+          <path d="M23 36 L32 45 L49 25" fill="none" stroke="#00A04B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><h3>安全第一<br>不是口号</h3><span class="tag" style="background:#00A04B">HSE 管理</span></div>
+      </div>
+      <p>年报把安全责任放到 <strong>President & CEO</strong> 和 GHSSE 委员会层级；SMS 同时覆盖职业安全、过程安全和应急。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="35" cy="39" r="25" fill="#F7F4ED" stroke="#C4963C" stroke-width="3"/>
+          <path d="M19 43 C25 29, 38 23, 52 27" fill="none" stroke="#C4963C" stroke-width="4" stroke-linecap="round"/>
+          <path d="M48 20 L55 27 L47 33" fill="none" stroke="#C4963C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="35" y="54" text-anchor="middle" font-size="12" font-weight="900" fill="#8B6630">OE</text>
+        </svg>
+        <div><h3>运营卓越<br>系统化</h3><span class="tag" style="background:#C4963C">OE 体系</span></div>
+      </div>
+      <p>阿美的 Operational Excellence 框架把流程、系统、政策和评估串起来，目标是 <strong>效率、可靠性、安全</strong> 同时达标。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <rect x="14" y="20" width="42" height="34" rx="4" fill="#E8F6EE" stroke="#007A38" stroke-width="3"/>
+          <path d="M21 29 H49 M21 38 H42 M21 47 H46" stroke="#007A38" stroke-width="3" stroke-linecap="round"/>
+          <path d="M20 18 L35 8 L50 18" fill="none" stroke="#8B3A4E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><h3>人才培养<br>长期管线</h3><span class="tag" style="background:#8B3A4E">训练体系</span></div>
+      </div>
+      <p>从预就业、技术/职业训练、上游工程中心到领导力项目，阿美把人才培养做成 <strong>几十年跨度</strong> 的能力工程。</p>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 70 70">
+          <circle cx="18" cy="35" r="9" fill="#DFF5E6" stroke="#007A38" stroke-width="3"/>
+          <circle cx="35" cy="20" r="9" fill="#FFF5E8" stroke="#C4963C" stroke-width="3"/>
+          <circle cx="52" cy="35" r="9" fill="#DFF5E6" stroke="#007A38" stroke-width="3"/>
+          <circle cx="35" cy="52" r="9" fill="#FBE3E8" stroke="#8B3A4E" stroke-width="3"/>
+          <path d="M25 31 L31 25 M43 25 L47 31 M25 40 L31 47 M45 43 L41 48" stroke="#8B7355" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div><h3>供应链<br>本土化</h3><span class="tag" style="background:#6B8E4E">iktva</span></div>
+      </div>
+      <p>iktva 已达到 <strong>70% 本地采购</strong>，下一目标 2030 年 75%；它不只是社会责任，也是减少断供和成本波动的运营机制。</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span>管理飞轮</span></div>
+  <div class="flywheel">
+    <div class="wheel-row">
+      <div class="wheel-step"><div class="t">安全标准</div><div class="d">SMS / HSE<br>CEO 负责</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">训练管线</div><div class="d">工程师<br>技工/领导力</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">流程纪律</div><div class="d">OE 评估<br>持续改进</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">供应稳定</div><div class="d">99.9%<br>可靠性</div></div>
+      <div class="arrow">→</div>
+      <div class="wheel-step"><div class="t">国家生态</div><div class="d">70% 本地<br>工业链</div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel" style="border-color:#007A38">
+      <h3 style="color:#007A38">员工视角：保障与发展</h3>
+      <div class="line"><div class="mark" style="background:#007A38">1</div><div>福利不是只看薪酬；阿美把 <strong>健康、安全、尊重</strong> 放在工作环境底层。</div></div>
+      <div class="line"><div class="mark" style="background:#007A38">2</div><div>2025 年女性员工占比 <strong>8.2%</strong>、女性领导占比 <strong>6.2%</strong>，仍在爬坡。</div></div>
+      <div class="line"><div class="mark" style="background:#007A38">3</div><div>超过 <strong>20,300</strong> 人参加 E&I 培训，说明包容不是一句话，而在制度里推进。</div></div>
+    </div>
+
+    <div class="panel" style="border-color:#8B3A4E">
+      <h3 style="color:#8B3A4E">投资人视角：优势与风险</h3>
+      <div class="line"><div class="mark" style="background:#8B3A4E">+</div><div>优势是极高可靠性和低成本生产，文化服务的是 <strong>稳定现金流</strong>。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">!</div><div>风险是国家目标、油价周期与能源转型会同时影响公司决策。</div></div>
+      <div class="line"><div class="mark" style="background:#8B3A4E">!</div><div>2025 年仍有 <strong>4 起承包商死亡</strong>，安全文化必须持续接受结果检验。</div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <path d="M50 10 L80 24 V48 C80 66, 66 80, 50 88 C34 80, 20 66, 20 48 V24 Z" fill="white" stroke="#00A04B" stroke-width="4"/>
+      <path d="M36 53 L47 64 L67 36" fill="none" stroke="#007A38" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M27 90 C41 82, 60 82, 73 90" fill="none" stroke="#C4963C" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h3>一句话总结</h3>
+      <p>沙特阿美的管理文化，是 <strong>用安全治理守住底线，用工程训练守住能力，用本土供应链守住长期可靠性</strong>。</p>
+    </div>
+  </div>
+
+  <div class="footer">管理文化：Saudi Aramco FY2025 Annual Report / Sustainability / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
 </div>
-<div class='footer'>管理文化：Saudi Aramco FY2025 Annual Report / Sustainability / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+</body>
+</html>

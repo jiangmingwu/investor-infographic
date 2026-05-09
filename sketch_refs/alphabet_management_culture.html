@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
+  width: 900px; height: 3260px; overflow: hidden; position: relative;
   background: #F7F4ED; color: #3A2A1E;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
@@ -12,55 +12,265 @@ body::before {
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
 .page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+.title { text-align:center; color:#4285F4; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
 .subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
+.pill { margin:22px auto 28px; width:max-content; max-width:780px; border:3px solid #4285F4; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:25px; font-weight:800; background:rgba(255,255,255,.45); }
 .hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
+.mark { width:190px; height:190px; border:3px solid #D5BFAE; border-radius:28px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.85); transform:rotate(-1.5deg); padding:14px; }
+.thesis { flex:1; border-left:8px solid #4285F4; padding-left:24px; }
+.thesis .k { color:#4285F4; font-size:26px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:36px; line-height:1.4; font-weight:800; color:#3A2A1E; }
+.section-title { margin:36px 0 18px; text-align:center; color:#4285F4; font-family:'Songti SC','STSong',serif; font-size:46px; font-weight:900; letter-spacing:2px; }
+
 .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
+.stat .num { font-family:'Songti SC','STSong',serif; font-size:32px; font-weight:900; line-height:1.05; }
+.stat .lab { margin-top:8px; font-size:17px; line-height:1.3; color:#6E6256; }
+
 .cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:220px; }
+.card .top { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+.card .icon { width:64px; height:64px; flex-shrink:0; }
+.card .top-meta { flex:1; }
+.card h3 { color:#4285F4; font-family:'Songti SC','STSong',serif; font-size:28px; line-height:1.15; margin-bottom:6px; }
+.tag { display:inline-block; background:#4285F4; color:white; border-radius:8px; padding:4px 11px; font-size:15px; font-weight:800; }
+.body { color:#4B3B2F; font-size:19px; line-height:1.55; }
+
+.note-box { margin-top:26px; border:4px solid #4285F4; background:rgba(66,133,244,.08); border-radius:18px; padding:24px 28px; }
+.note-box h3 { color:#4285F4; font-family:'Songti SC','STSong',serif; font-size:32px; margin-bottom:8px; }
+.note-box p { font-size:22px; line-height:1.55; }
+.list { font-size:20px; line-height:1.6; color:#4B3B2F; }
+.list li { margin:6px 0 6px 24px; }
+
+.footer { margin-top:30px; text-align:center; color:#A89684; font-size:15px; line-height:1.95; padding:0 30px 26px; letter-spacing:0.3px; }
+.footer .row { margin:0; }
+.footer .by { margin-top:10px; font-family:'Songti SC', serif; font-size:17px; color:#8B7355; letter-spacing:2px; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>谷歌 的 管 理 文 化</div>
-  <div class='subtitle'>研究型平台 · Management Culture</div>
-  <div class='pill'>研究自由 × OKR × AI 基建</div>
-  <div class='hero'><div class='mark'>谷歌</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>Alphabet 的文化核心是研究驱动和平台化实验，用强现金流支持长期 AI、云、自动驾驶和生命科学探索。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>18万+</div><div class='lab'>员工规模</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>OKR</div><div class='lab'>目标管理</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>TPU</div><div class='lab'>自研算力</div></div><div class='stat' style='border-color:#1877F2'><div class='num' style='color:#1877F2'>Other Bets</div><div class='lab'>长期实验</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>目标机制</span><h3>OKR 管理</h3><div class='body'>用公开目标和关键结果协调跨团队资源，鼓励透明和可衡量。</div></div><div class='card'><span class='tag'>创新机制</span><h3>研究自由</h3><div class='body'>DeepMind、Google Research 和产品团队之间形成基础研究到产品化通道。</div></div><div class='card'><span class='tag'>组织规模</span><h3>平台治理</h3><div class='body'>搜索、YouTube、Android、Cloud 各自平台化，同时接受合规和反垄断约束。</div></div><div class='card'><span class='tag'>资源配置</span><h3>AI 优先</h3><div class='body'>资本开支和人才持续向 Gemini、TPU、Cloud 与搜索重构倾斜。</div></div></div>
+  <div class='title'>谷歌管理文化</div>
+  <div class='subtitle'>工程师研究院 + 全栈 AI 平台 · Management Culture</div>
+  <div class='pill'>研究院文化 × 20% 时间 × 多业务并行 × 高薪激励</div>
+
+  <div class='hero'>
+    <div class='mark'>
+      <svg width='100%' height='100%' viewBox='0 0 170 200' preserveAspectRatio='xMidYMid meet'>
+        <g transform='translate(85,100)'>
+          <circle r='62' fill='#FFFFFF' stroke='#D4B8A8' stroke-width='2'/>
+          <g transform='translate(-32,-30)'>
+            <path d='M 32,12 A 22,22 0 1 1 12,28 L 24,28 A 10,10 0 1 0 32,22 L 32,12 Z' fill='#4285F4'/>
+            <path d='M 32,12 L 32,22 L 56,22 L 56,12 Z' fill='#EA4335'/>
+            <path d='M 12,28 L 12,38 A 22,22 0 0 0 32,52 L 32,42 A 10,10 0 0 1 22,32 Z' fill='#FBBC05'/>
+            <path d='M 32,42 L 32,52 A 22,22 0 0 0 54,38 L 44,32 A 10,10 0 0 1 32,42 Z' fill='#34A853'/>
+          </g>
+          <text x='0' y='48' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='14' fill='#3A2A1E' letter-spacing='2'>Alphabet</text>
+        </g>
+      </svg>
+    </div>
+    <div class='thesis'>
+      <div class='k'>不是单一公司，而是研究院 + 多业务平台</div>
+      <div class='v'>谷歌的管理文化是工程师研究院 + 大型平台公司的混合体：DeepMind 自主研究、产品团队 OKR 驱动、Other Bets 独立实验、母公司 Alphabet 提供资本与避风港。</div>
+    </div>
+  </div>
+
+  <div class='grid-4'>
+    <div class='stat' style='border-color:#4285F4'><div class='num' style='color:#4285F4'>18.3 万</div><div class='lab'>FY25 员工</div></div>
+    <div class='stat' style='border-color:#EA4335'><div class='num' style='color:#EA4335'>~38%</div><div class='lab'>研发岗占比</div></div>
+    <div class='stat' style='border-color:#FBBC05'><div class='num' style='color:#D4793A'>20%</div><div class='lab'>员工自主探索时间</div></div>
+    <div class='stat' style='border-color:#34A853'><div class='num' style='color:#34A853'>~6%</div><div class='lab'>员工流失率<br/>(行业 ~13%)</div></div>
+  </div>
+
+  <div class='section-title'>核心思维</div>
+  <div class='cards'>
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <rect x='10' y='15' width='50' height='50' rx='8' fill='none' stroke='#4285F4' stroke-width='3'/>
+          <circle cx='25' cy='32' r='4' fill='#4285F4'/>
+          <circle cx='45' cy='32' r='4' fill='#4285F4'/>
+          <path d='M22 50 Q35 58 48 50' fill='none' stroke='#4285F4' stroke-width='3' stroke-linecap='round'/>
+          <line x1='10' y1='15' x2='10' y2='8' stroke='#4285F4' stroke-width='2.5'/>
+          <line x1='25' y1='15' x2='25' y2='6' stroke='#4285F4' stroke-width='2.5'/>
+          <line x1='45' y1='15' x2='45' y2='6' stroke='#4285F4' stroke-width='2.5'/>
+          <line x1='60' y1='15' x2='60' y2='8' stroke='#4285F4' stroke-width='2.5'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>研究院文化，非短期 KPI</h3>
+          <span class='tag'>工程师为本</span>
+        </div>
+      </div>
+      <div class='body'>DeepMind 独立运作（AlphaFold / AlphaGo / Gemini），<strong>研究优先于产品 KPI</strong>。Google Brain + Research 长期投入基础研究，论文产出业内最多。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <circle cx='35' cy='35' r='26' fill='none' stroke='#EA4335' stroke-width='3'/>
+          <path d='M 35 35 L 35 9 A 26 26 0 0 1 56 50 Z' fill='#EA4335' opacity='0.45'/>
+          <text x='35' y='42' text-anchor='middle' font-size='15' fill='#EA4335' font-weight='900'>20%</text>
+        </svg>
+        <div class='top-meta'>
+          <h3>"20% 时间"自由探索</h3>
+          <span class='tag' style='background:#EA4335'>员工自主</span>
+        </div>
+      </div>
+      <div class='body'><strong>20% 时间制度</strong>让员工把 1/5 工作时间用于自选项目；<strong>Gmail / AdSense / Google News</strong> 都从这个机制诞生。形式上时松时紧，但理念延续至今。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <rect x='8' y='32' width='14' height='30' rx='2' fill='#FBBC05' opacity='0.85'/>
+          <rect x='28' y='22' width='14' height='40' rx='2' fill='#FBBC05'/>
+          <rect x='48' y='10' width='14' height='52' rx='2' fill='#D4793A'/>
+          <line x1='6' y1='30' x2='25' y2='20' stroke='#8B6630' stroke-width='2.5' stroke-linecap='round'/>
+          <line x1='25' y1='20' x2='45' y2='8' stroke='#8B6630' stroke-width='2.5' stroke-linecap='round'/>
+          <polygon points='42,6 50,8 46,14' fill='#8B6630'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>OKR 目标管理 + 长期主义</h3>
+          <span class='tag' style='background:#D4793A'>OKR 创立者</span>
+        </div>
+      </div>
+      <div class='body'>Andy Grove 把 OKR 引入 Google，从此扩散到全行业。<strong>季度 OKR + 年度 OKR</strong> 平衡短期执行与长期愿景；<strong>Waymo 投了 17 年</strong>才商业化。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <circle cx='20' cy='28' r='10' fill='#34A853' opacity='0.45' stroke='#34A853' stroke-width='2'/>
+          <circle cx='50' cy='28' r='10' fill='#34A853' opacity='0.45' stroke='#34A853' stroke-width='2'/>
+          <circle cx='35' cy='52' r='10' fill='#34A853' opacity='0.45' stroke='#34A853' stroke-width='2'/>
+          <line x1='20' y1='28' x2='35' y2='52' stroke='#34A853' stroke-width='2.5'/>
+          <line x1='50' y1='28' x2='35' y2='52' stroke='#34A853' stroke-width='2.5'/>
+          <line x1='20' y1='28' x2='50' y2='28' stroke='#34A853' stroke-width='2.5'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>多业务并行 + Other Bets</h3>
+          <span class='tag' style='background:#34A853'>组织设计</span>
+        </div>
+      </div>
+      <div class='body'>2015 年重组为 <strong>Alphabet 母公司 + Google + Other Bets</strong>：搜索/AI 等核心业务由 Sundar Pichai 管，<strong>Waymo / Verily / Isomorphic</strong> 独立运作，避免成熟业务拖累。</div>
+    </div>
+  </div>
+
+  <div class='section-title'>福利待遇与激励</div>
+  <div class='cards'>
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <path d='M22 16 Q24 8 35 8 Q46 8 48 16 L52 22 Q60 32 60 44 Q60 62 35 64 Q10 62 10 44 Q10 32 18 22 Z' fill='#FFF5E8' stroke='#D4793A' stroke-width='3' stroke-linejoin='round'/>
+          <line x1='22' y1='16' x2='48' y2='16' stroke='#D4793A' stroke-width='3' stroke-linecap='round'/>
+          <text x='35' y='50' text-anchor='middle' font-family='Songti SC, serif' font-weight='900' font-size='24' fill='#D4793A'>$</text>
+        </svg>
+        <div class='top-meta'>
+          <h3>中位数员工总薪酬 ~$33 万</h3>
+          <span class='tag' style='background:#D4793A'>薪酬水平</span>
+        </div>
+      </div>
+      <div class='body'>FY24 10-K 披露员工总薪酬中位数约 <strong>$33 万 USD</strong>（含 GSU 股票），<strong>科技行业最高之一</strong>，与 NVIDIA / Meta 同档。FY25 因股价上涨实际到手更高。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <rect x='10' y='44' width='10' height='20' fill='#34A853'/>
+          <rect x='26' y='32' width='10' height='32' fill='#34A853' opacity='0.85'/>
+          <rect x='42' y='18' width='10' height='46' fill='#1F6E36'/>
+          <path d='M8 30 L25 26 L40 16 L60 6' fill='none' stroke='#EA4335' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/>
+          <polygon points='56,4 66,8 60,16' fill='#EA4335'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>GSU 股权激励 · 4 年 vest</h3>
+          <span class='tag' style='background:#34A853'>股权激励</span>
+        </div>
+      </div>
+      <div class='body'>普通工程师 <strong>GSU（Google Stock Units）占年薪 50%+</strong>，4 年分批 vest（前重型）。<strong>Refresh grants</strong> 每年补充，留任老员工身价随股价持续抬升。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <path d='M35 60 C20 50, 6 38, 6 22 C6 12, 14 6, 22 6 C28 6, 32 10, 35 16 C38 10, 42 6, 48 6 C56 6, 64 12, 64 22 C64 38, 50 50, 35 60 Z' fill='rgba(234,67,53,0.18)' stroke='#EA4335' stroke-width='3' stroke-linejoin='round'/>
+          <rect x='32' y='22' width='6' height='18' fill='#EA4335'/>
+          <rect x='26' y='28' width='18' height='6' fill='#EA4335'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>免费餐饮 · 巴士 · 医疗 · 育儿</h3>
+          <span class='tag' style='background:#EA4335'>软福利</span>
+        </div>
+      </div>
+      <div class='body'>园区<strong>三餐免费 + 通勤巴士 + 健身房 + 医疗中心</strong>；<strong>20 周带薪育儿假</strong>、丧亲假、心理咨询、教育报销。Glassdoor 长期评级前列，"科技园区福利天花板"。</div>
+    </div>
+
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <path d='M8 50 L13 22 L25 36 L35 16 L45 36 L57 22 L62 50 Z' fill='rgba(107,78,122,0.18)' stroke='#6B4E7A' stroke-width='3' stroke-linejoin='round'/>
+          <rect x='8' y='50' width='54' height='10' fill='#6B4E7A'/>
+          <circle cx='13' cy='22' r='3.5' fill='#6B4E7A'/>
+          <circle cx='35' cy='16' r='3.5' fill='#6B4E7A'/>
+          <circle cx='57' cy='22' r='3.5' fill='#6B4E7A'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>Pichai 年度 ~$1,090 万 + 巨额持股</h3>
+          <span class='tag' style='background:#6B4E7A'>CEO 薪酬</span>
+        </div>
+      </div>
+      <div class='body'>FY24 Sundar Pichai 年度总薪酬约 <strong>$1,090 万 USD</strong>（基本工资 $200 万 + 业绩奖金 + 股票），<strong>每 3 年大型股票授予</strong>一次（最近 ~$2.26 亿包裹）。本人持股市值约 $20 亿+。</div>
+    </div>
+  </div>
+
   <div class='section-title'>员工与投资人两种视角</div>
   <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>自由度高、研究资源强，但大组织协调成本高。</li><li>适合喜欢深技术和大规模平台的人。</li><li>绩效和项目优先级会随 AI 战略快速调整。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是搜索现金流支持长期研发。</li><li>风险是组织复杂、监管压力和 AI 对搜索模式的冲击。</li><li>管理文化的关键是把研究转化为产品速度。</li></ul></div>
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <circle cx='35' cy='22' r='11' fill='none' stroke='#4285F4' stroke-width='3'/>
+          <path d='M12 60 C14 44, 28 38, 35 38 C42 38, 56 44, 58 60' fill='none' stroke='#4285F4' stroke-width='3' stroke-linecap='round'/>
+          <rect x='28' y='44' width='14' height='16' fill='rgba(66,133,244,0.18)' stroke='#4285F4' stroke-width='2'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>员工视角</h3>
+        </div>
+      </div>
+      <ul class='list'>
+        <li>机会大：研究院 + 平台 + Other Bets 三轨</li>
+        <li>压力大：规模化后 OKR 内卷、AI 军备赛节奏</li>
+        <li>适合既能做基础研究又能做产品工程的人</li>
+      </ul>
+    </div>
+    <div class='card'>
+      <div class='top'>
+        <svg class='icon' viewBox='0 0 70 70'>
+          <circle cx='28' cy='28' r='18' fill='rgba(212,121,58,0.15)' stroke='#D4793A' stroke-width='3'/>
+          <line x1='42' y1='42' x2='62' y2='62' stroke='#D4793A' stroke-width='5' stroke-linecap='round'/>
+          <path d='M18 32 L24 26 L30 30 L36 22' fill='none' stroke='#D4793A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/>
+          <polygon points='36,22 36,28 32,24' fill='#D4793A'/>
+        </svg>
+        <div class='top-meta'>
+          <h3>投资人视角</h3>
+        </div>
+      </div>
+      <ul class='list'>
+        <li>优势：全栈 AI + 现金流机器 + 分布式决策</li>
+        <li>风险：搜索反垄断 + AI Mode 可能蚕食广告</li>
+        <li>多业务平衡是护城河，也是组织复杂度的代价</li>
+      </ul>
+    </div>
   </div>
-  <div class='note-box'><h3>一句话总结</h3><p>Alphabet 的优秀，来自能把科学研究、平台分发和资本开支连起来。</p></div>
+
+  <div class='note-box'>
+    <h3>一句话总结</h3>
+    <p>谷歌的文化，是把<strong>研究院 + 多业务平台</strong>装进同一家公司：DeepMind 做基础研究、Google 做规模化产品、Other Bets 做长期实验、Alphabet 母公司提供资本——一套组织结构同时打 AI、搜索、云、自动驾驶四场战争。</p>
+  </div>
+
+  <div class='footer'>
+    <div class='row'>管理文化：Alphabet FY2024 / FY2025 Form 10-K · Proxy Statement · Careers 公开资料</div>
+    <div class='row'>薪酬数据：Alphabet 10-K Pay Ratio Disclosure（中位数员工总薪酬）· FY24</div>
+    <div class='row'>引用来源：Sundar Pichai 公开演讲、Google I/O、媒体访谈、Glassdoor</div>
+    <div class='row'>核查日期：2026-05-09　·　货币口径：图中金额均为 USD / 美元</div>
+    <div class='row'>免责声明：本图仅供学习参考，不构成投资建议</div>
+    <div class='by'>by 江明</div>
+  </div>
 </div>
-<div class='footer'>管理文化：Alphabet FY2025 Form 10-K / Proxy / Careers / AI principles，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
 </body></html>

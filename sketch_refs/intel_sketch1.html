@@ -1,64 +1,93 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2180px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:900px; height:2300px; background:#F7F4ED; font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif; color:#3A2A1E; overflow:hidden; position:relative; }
+body::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px); opacity:.35; pointer-events:none; }
+.header { text-align:center; padding:50px 40px 20px; }
+.header h1 { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:78px; color:#8B3A4E; letter-spacing:6px; }
+.header .en { font-size:22px; color:#A89080; margin-top:6px; letter-spacing:1px; font-style:italic; }
+.header .sub { font-size:26px; color:#7B6650; margin-top:12px; font-weight:400; }
+.hero { display:flex; align-items:center; justify-content:center; gap:30px; padding:20px 60px 10px; }
+.hero-meta { flex:1; } .name { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:56px; color:#4A3728; letter-spacing:4px; }
+.tag { font-size:22px; color:#8B3A4E; margin-top:6px; font-weight:500; } .stats { font-size:20px; color:#7B6650; margin-top:10px; line-height:1.8; } .stats span { display:inline-block; margin-right:16px; }
+.section-title { text-align:center; margin:30px 0 18px; } .section-title span { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:36px; color:#8B3A4E; padding:0 20px; position:relative; }
+.section-title span::before,.section-title span::after { content:''; position:absolute; top:50%; width:80px; height:2px; background:#C89890; } .section-title span::before { right:100%; } .section-title span::after { left:100%; }
+.concepts { display:flex; gap:16px; padding:0 40px; } .concept { flex:1; background:rgba(255,255,255,.55); border:2px solid #D4B8A8; border-radius:12px; padding:18px 10px; text-align:center; min-height:295px; }
+.svg-wrap { height:82px; display:flex; align-items:center; justify-content:center; } .icon-num { width:58px; height:58px; border:3px solid #0071C5; color:#0071C5; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Songti SC',serif; font-size:34px; font-weight:700; }
+.cn { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:26px; margin-top:4px; line-height:1.15; } .en { font-size:15px; color:#A89080; margin-top:2px; letter-spacing:1px; } .desc { font-size:17px; color:#5A4A3A; margin-top:10px; line-height:1.45; }
+.bigbox { margin:26px 40px 0; background:linear-gradient(135deg,#E8F0FF 0%,#D0E0F5 100%); border:2px solid #0071C5; border-radius:14px; padding:20px 24px; display:flex; align-items:center; gap:20px; }
+.bigbox .t1 { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:40px; color:#8B3A4E; } .bigbox .s1 { font-size:20px; color:#5A4A3A; margin-top:4px; line-height:1.5; } .bigbox .num { font-family:'Songti SC','STSong','SimSun',serif; font-weight:700; font-size:58px; color:#0071C5; line-height:1; } .bigbox .lab { font-size:18px; color:#7B6650; }
+.yieldbox { margin:18px 40px 0; background:linear-gradient(135deg,#FFF5E8 0%,#FDE8D5 100%); border:2px solid #C4963C; border-radius:14px; padding:16px 20px; } .yld-title { font-family:'Songti SC','STSong','SimSun',serif; font-size:24px; font-weight:700; color:#8B3A4E; text-align:center; margin-bottom:10px; } .yld-row { display:flex; justify-content:space-around; align-items:center; } .yld-cell { text-align:center; flex:1; } .yld-num { font-family:'Songti SC','STSong','SimSun',serif; font-size:34px; font-weight:700; color:#B8532F; line-height:1.08; } .yld-lab { font-size:15px; color:#7B6650; margin-top:4px; }
+.flow-wrap { margin:26px 40px 0; background:rgba(255,255,255,.4); border-radius:12px; padding:20px 18px; } .flow-row { display:flex; align-items:stretch; justify-content:space-between; gap:6px; } .flow-step { flex:1; text-align:center; border:2px solid #8B7355; border-radius:10px; padding:12px 6px; background:#FDFAF3; min-height:90px; } .flow-step .t { font-size:21px; font-weight:700; } .flow-step .d { font-size:15px; color:#8B7355; margin-top:4px; line-height:1.25; } .flow-arr { color:#8B7355; font-size:26px; font-weight:700; display:flex; align-items:center; }
+.quotes { margin:26px 40px 0; } .quote { background:rgba(232,240,255,.7); border-left:4px solid #0071C5; padding:14px 20px; margin-bottom:10px; border-radius:0 8px 8px 0; } .quote .txt { font-size:21px; color:#4A3728; line-height:1.45; } .quote .tag { font-size:15px; color:#0071C5; margin-top:4px; font-weight:500; }
+.footer { position:absolute; left:35px; right:35px; bottom:24px; text-align:center; font-size:14px; color:#B0A090; line-height:1.55; }
+
+<!-- codex-legacy-style-start -->
+:root { --codex-accent: #0068B5; --codex-soft: rgba(226,241,255,.70); }
+.codex-role-note {
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+.codex-role-note b { color: var(--codex-accent); }
+<!-- codex-legacy-style-end -->
+<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+<!-- codex-legacy-footer-end -->
 </style></head><body>
-<div class='page'>
-  <div class='title'>英特尔 的 经 营 之 道</div>
-  <div class='subtitle'>INTC · Business Logic · 低重复版</div>
-  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
-  <div class='hero'><div class='mark'>英特</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>试图用 IDM 2.0 重建制造能力，但需要用多年 CapEx 换技术追赶。</div></div></div>
-  <div class='section-title'>核心飞轮</div>
-  <div class='flow'><div class='node'><b>制程追赶</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>晶圆厂投资</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>封装</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>政府补贴</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>客户信任</b><span>经营飞轮</span></div></div>
-  <div class='section-title'>护城河不是口号</div>
-  <div class='cards'><div class='card'><h3>x86 生态根基</h3><div class='body'>企业和 PC 软件生态仍深度依赖 x86</div></div><div class='card'><h3>美国本土制造战略</h3><div class='body'>地缘政治让 Intel Foundry 具战略稀缺性</div></div><div class='card'><h3>客户端规模</h3><div class='body'>PC CPU 仍是收入和现金流基础</div></div><div class='card'><h3>封装与制程资产</h3><div class='body'>先进封装和晶圆厂资产重,复制难</div></div></div>
-  <div class='section-title'>正在发生的变化</div>
-  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>18A：</b>首批 18A 产品推出，美国本土先进制程复兴的关键节点</li><li><b>Foundry：</b>代工业务继续烧钱，长期价值取决于外部客户导入</li><li><b>AI PC：</b>x86 在 AI PC 中延续地位，客户端仍是现金流基础</li></ul></div>
-  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
-</div>
-<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Intel FY2025 业绩公告/10-K（2026-01-22）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：亏损和 Foundry 转型使短期 ROI 承压；要看制程恢复和资本效率。；CapEx口径：晶圆厂、先进封装和政府补贴项目；重资产转型风险高。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+<div class="header"><h1>英特尔 的 经 营 之 道</h1><div class="en">Intel Corp. (NASDAQ: INTC) · x86 CPU + 美国本土先进制程复兴</div><div class="sub">x86 基本盘 × Foundry 转型 × 美国制造</div></div>
+<div class="hero"><svg width="170" height="200" viewBox="0 0 170 200">
+      <g transform="translate(85,100)">
+        <circle r="62" fill="white" stroke="#0071C5" stroke-width="3"/>
+        <circle r="44" fill="#0071C5" opacity="0.12"/>
+        <text x="0" y="8" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="30" fill="#0071C5">INTC</text>
+        <path d="M-38,46 C-12,60 12,60 38,46" fill="none" stroke="#0071C5" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </svg><div class="hero-meta"><div class="name">英特尔</div><div class="tag">第 27 名 · x86 基本盘 × Foundry 转型 × 美国制造</div><div class="stats"><span>核心业务：Client CPU + Data Center AI </span><br><span>营收 $52.9B</span><span>市值 约$84.5 / $4,248 …</span></div></div></div>
+<div class="section-title"><span>三 大 经 营 引 擎</span></div><div class="concepts">
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">1</div></div>
+        <div class="cn" style="color:#0071C5">x86 生态根基</div>
+        <div class="en">MOAT</div>
+        <div class="desc">企业和 PC 软件生态仍深度依赖 x86</div>
+      </div>
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">2</div></div>
+        <div class="cn" style="color:#0071C5">美国本土制造战略</div>
+        <div class="en">MOAT</div>
+        <div class="desc">地缘政治让 Intel Foundry 具战略稀缺性</div>
+      </div>
+      <div class="concept">
+        <div class="svg-wrap"><div class="icon-num">3</div></div>
+        <div class="cn" style="color:#0071C5">客户端规模</div>
+        <div class="en">MOAT</div>
+        <div class="desc">PC CPU 仍是收入和现金流基础</div>
+      </div></div>
+<div class="bigbox"><div style="flex:1"><div class="t1">x86 基本盘 是核心抓手</div><div class="s1">首批 18A 产品推出：美国本土先进制程复兴的关键节点</div></div><div style="text-align:center"><div class="num">第 27 名</div><div class="lab">全球市值排名</div></div></div>
+<div class="yieldbox"><div class="yld-title">关键经营数字</div><div class="yld-row"><div class="yld-cell"><div class="yld-num">$52.9B</div><div class="yld-lab">收入</div></div><div class="yld-cell"><div class="yld-num">-$0.3B</div><div class="yld-lab">利润</div></div><div class="yld-cell"><div class="yld-num">约$84.5 / $4,248 …</div><div class="yld-lab">股价 / 市值</div></div><div class="yld-cell"><div class="yld-num">GAAP 亏损；Non-GAAP…</div><div class="yld-lab">估值</div></div></div></div>
+<div class="flow-wrap"><div class="section-title" style="margin:0 0 14px"><span>增长飞轮</span></div><div class="flow-row">
+        <div class="flow-step"><div class="t" style="color:#0071C5">18A</div><div class="d">首批 18A 产品推出</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#0071C5">Foundry</div><div class="d">代工业务继续烧钱</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#0071C5">AI PC</div><div class="d">x86 在 AI PC 中延续地位</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#0071C5">重组</div><div class="d">Altera 去合并</div></div><div class="flow-arr">›</div>
+        <div class="flow-step"><div class="t" style="color:#0071C5">风险</div><div class="d">GAAP 仍亏损</div></div></div></div>
+<div class="quotes"><div class="quote"><div class="txt">「CPU 在 AI 时代仍扮演关键角色。」— Lip-Bu Tan</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「我们正在建设新的 Intel。」— Lip-Bu Tan</div><div class="tag">经营观察</div></div><div class="quote"><div class="txt">「Q4 超出预期。」— David Zinsner</div><div class="tag">经营观察</div></div></div><!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->
+<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：Intel FY2025 业绩公告/10-K（2026-01-22）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：亏损和 Foundry 转型使短期 ROI 承压；要看制程恢复和资本效率。；CapEx口径：晶圆厂、先进封装和政府补贴项目；重资产转型风险高。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div></body></html>

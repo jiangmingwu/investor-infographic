@@ -1,64 +1,206 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2180px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 900px; height:2300px; background: #FAF3E8; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #2A1A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #EDE4D4 39px, #EDE4D4 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #EDE4D4 39px, #EDE4D4 40px); opacity: 0.35; pointer-events: none; }
+.hero { text-align: center; padding: 50px 40px 10px; }
+.hero h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 80px; color: #EA002C; letter-spacing: 6px; line-height: 1.1; }
+.hero .sub { font-size: 22px; color: #7B5A50; margin-top: 10px; letter-spacing: 1px; }
+.chip-svg { display: block; margin: 18px auto 10px; }
+.concepts { display: flex; justify-content: center; gap: 24px; padding: 12px 40px 0; }
+.concept { flex: 1; background: rgba(255,255,255,0.6); border-radius: 14px; border: 2px solid #E8C9AA; padding: 18px 14px; text-align: center; }
+.concept .ico { height: 46px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; }
+.concept .ico svg { width: 48px; height: 48px; fill: none; stroke: #EA002C; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.concept:nth-child(2) .ico svg { stroke: #FF7A00; }
+.concept:nth-child(3) .ico svg { stroke: #6B4E7A; }
+.concept .ico text { fill: currentColor; stroke: none; font-family: 'Noto Sans SC', sans-serif; font-size: 13px; font-weight: 700; }
+.concept .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 22px; color: #EA002C; margin-bottom: 4px; }
+.concept .d { font-size: 15px; color: #7B5A50; line-height: 1.4; }
+.bigbox { margin: 24px 40px 0; background: linear-gradient(135deg, #EA002C 0%, #FF7A00 100%); border-radius: 18px; padding: 26px 30px; color: white; display: flex; align-items: center; gap: 22px; }
+.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 62px; line-height: 1; color: #FFF1C4; text-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+.bigbox .txt { flex: 1; font-size: 19px; line-height: 1.5; }
+.bigbox .txt strong { color: #FFF1C4; }
+.yieldbox { margin: 22px 40px 0; background: #FFF7EC; border: 2px solid #FF7A00; border-radius: 14px; padding: 18px 22px; }
+.yieldbox .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.yieldbox .head .big { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 54px; color: #EA002C; line-height: 1; }
+.yieldbox .head .mid { font-size: 24px; color: #A04A00; font-weight: 700; }
+.yieldbox .lst { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; font-size: 17px; color: #4A3A2E; }
+.yieldbox .lst strong { color: #EA002C; font-weight: 700; }
+.flow-wrap { margin: 22px 40px 0; padding: 18px 22px; background: rgba(255,255,255,0.55); border-radius: 14px; }
+.flow-wrap .title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 26px; color: #EA002C; text-align: center; margin-bottom: 14px; }
+.flow { display: flex; align-items: center; justify-content: space-between; }
+.flow .node { flex: 1; text-align: center; padding: 10px 6px; background: white; border: 2px solid #EA002C; border-radius: 10px; }
+.flow .node .nt { font-size: 15px; color: #EA002C; font-weight: 700; }
+.flow .node .nd { font-size: 13px; color: #7B5A50; margin-top: 3px; }
+.flow .arrow { font-size: 22px; color: #FF7A00; margin: 0 4px; font-weight: 700; }
+.quotes { padding: 0 40px; margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.q { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 16px 14px; border-left: 4px solid #EA002C; }
+.q .qt { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 19px; color: #EA002C; margin-bottom: 8px; line-height: 1.3; }
+.q .qd { font-size: 14px; color: #4A3A2E; line-height: 1.55; }
+.q .qa { font-size: 12px; color: #A04A00; margin-top: 6px; font-style: italic; }
+.footer { text-align: center; font-size: 15px; color: #8A7060; margin-top: 24px; padding-bottom: 18px; line-height: 1.6; }
+
+<!-- codex-legacy-style-start -->
+:root { --codex-accent: #E0002A; --codex-soft: rgba(255,230,235,.68); }
+.codex-role-note {
+  margin: 18px 40px 0;
+  border: 2px dashed var(--codex-accent);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  padding: 12px 18px;
+  color: #5A4A3A;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+.codex-role-note b { color: var(--codex-accent); }
+<!-- codex-legacy-style-end -->
+<!-- codex-legacy-footer-start -->
+body { position: relative; }
+.footer {
+  position: absolute !important;
+  left: 40px !important;
+  right: 40px !important;
+  bottom: 24px !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  text-align: center !important;
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid rgba(24,119,242,.35); border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1877F2; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1877F2; padding-left:24px; }
-.thesis .k { color:#1877F2; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1877F2; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1877F2; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1877F2; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1877F2; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1877F2; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1877F2; background:rgba(210,226,255,.65); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1877F2; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>SK海力士 的 经 营 之 道</div>
-  <div class='subtitle'>000660.KS · Business Logic · 低重复版</div>
-  <div class='pill'>只回答：这家公司为什么能长期赚钱</div>
-  <div class='hero'><div class='mark'>SK</div><div class='thesis'><div class='k'>一句话逻辑</div><div class='v'>抓住 HBM 供给瓶颈，成为 AI GPU 时代最关键的内存配套。</div></div></div>
-  <div class='section-title'>核心飞轮</div>
-  <div class='flow'><div class='node'><b>HBM 技术</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>英伟达认证</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>产能扩张</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>高 ASP</b><span>经营飞轮</span></div><div class='arrow'>→</div><div class='node'><b>研发迭代</b><span>经营飞轮</span></div></div>
-  <div class='section-title'>护城河不是口号</div>
-  <div class='cards'><div class='card'><h3>HBM / 高端 DRAM 技术领先</h3><div class='body'>AI 服务器对带宽、容量、功耗的要求持续抬高,高价值产品组合推高利润率</div></div><div class='card'><h3>HBM4 + Custom HBM</h3><div class='body'>公司强调 HBM4 与客户协同优化,把内存从标准件推进到定制基础设施</div></div><div class='card'><h3>SK 集团生态支持</h3><div class='body'>韩国第二大财阀,能源+化工+电信协同,资本支持强大</div></div><div class='card'><h3>3.2 万人工程师团队</h3><div class='body'>韩国顶级半导体工程师聚集,工艺 know-how 深厚</div></div></div>
-  <div class='section-title'>正在发生的变化</div>
-  <div class='note-box'><h3>2025-2026 关键动作</h3><ul class='list'><li><b>HBM：</b>HBM3E + HBM4 领导力，AI 服务器内存需求持续上行,Custom HBM 成为差异化重点</li><li><b>产能：</b>M15X 快速爬坡，围绕可见需求前置投资,提升高端 DRAM/HBM 供给能力</li><li><b>NAND：</b>321 层 QLC + eSSD，企业级存储受益 AI 数据中心容量需求</li></ul></div>
-  <div class='note-box'><h3>这张图的边界</h3><p>这里不重复财务表。ROI、2026 CapEx、分部收入和估值放在“经营全景”里，这张只讲商业逻辑和护城河。</p></div>
+<!-- codex-legacy-footer-end -->
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>SK 海 力 士 · HBM 之 王</h1>
+  <div class="sub">SK Hynix KRX:000660 · 全球 HBM 龙头 · 1Q26 营收约 $35.5B USD</div>
 </div>
-<div class='footer'>经营之道：公司年报/业绩资料/管理层公开表述；经营数据：SK Hynix 1Q26 业绩公告（2026-04-22）与 FY2025 财报；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；汇率口径：韩元金额按 2026-04-23 汇率 1 USD≈1,480 KRW 折算；ROI口径：HBM 景气高点回报优秀，但存储周期反转时会快速下行。；CapEx口径：HBM、先进 DRAM 和封装产能是核心；韩元披露按美元口径展示。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+
+<svg class="chip-svg" width="340" height="180" viewBox="0 0 340 180">
+  <rect x="40" y="40" width="260" height="110" rx="8" fill="#2A1A1E" stroke="#EA002C" stroke-width="3"/>
+  <g>
+    <rect x="55" y="55" width="230" height="14" fill="#FF7A00"/>
+    <rect x="55" y="72" width="230" height="14" fill="#E8650A"/>
+    <rect x="55" y="89" width="230" height="14" fill="#FF7A00"/>
+    <rect x="55" y="106" width="230" height="14" fill="#E8650A"/>
+    <rect x="55" y="123" width="230" height="14" fill="#FF7A00"/>
+  </g>
+  <text x="170" y="30" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="16" fill="#EA002C">HBM3E · 12H Stack · 36GB</text>
+  <text x="170" y="170" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#7B5A50">SK hynix</text>
+  <line x1="30" y1="95" x2="45" y2="95" stroke="#EA002C" stroke-width="2"/>
+  <line x1="295" y1="95" x2="310" y2="95" stroke="#EA002C" stroke-width="2"/>
+  <text x="20" y="99" text-anchor="end" font-family="sans-serif" font-size="11" fill="#EA002C">CPU</text>
+  <text x="320" y="99" font-family="sans-serif" font-size="11" fill="#EA002C">GPU</text>
+</svg>
+
+<div class="concepts">
+  <div class="concept">
+    <div class="ico" aria-label="营收增长柱状图">
+      <svg class="metric-icon" viewBox="0 0 64 64" role="img">
+        <path d="M10 52h44" />
+        <rect x="16" y="34" width="8" height="18" rx="2" />
+        <rect x="29" y="24" width="8" height="28" rx="2" />
+        <rect x="42" y="14" width="8" height="38" rx="2" />
+        <path d="M15 20c10 3 19-1 31-10" />
+        <path d="M42 10h8v8" />
+      </svg>
+    </div>
+    <div class="t">$35.5B USD</div>
+    <div class="d">1Q26 营收<br>季度历史新高</div>
+  </div>
+  <div class="concept">
+    <div class="ico" aria-label="利润率仪表盘">
+      <svg class="metric-icon" viewBox="0 0 64 64" role="img">
+        <path d="M14 42a18 18 0 0 1 36 0" />
+        <path d="M32 42l12-15" />
+        <circle cx="32" cy="42" r="3" />
+        <path d="M19 42h-5M50 42h-5" />
+        <text x="32" y="24" text-anchor="middle">%</text>
+      </svg>
+    </div>
+    <div class="t">72% 利润率</div>
+    <div class="d">1Q26 营业利润率<br>制造业罕见高度</div>
+  </div>
+  <div class="concept">
+    <div class="ico" aria-label="HBM4芯片量产">
+      <svg class="metric-icon" viewBox="0 0 64 64" role="img">
+        <path d="M12 50V36l10-6v20" />
+        <path d="M22 50V36l10-6v20" />
+        <path d="M32 50h20V24l-8-8-8 8v26" />
+        <rect x="38" y="32" width="10" height="10" rx="2" />
+        <path d="M36 32h-4M36 38h-4M48 32h4M48 38h4" />
+        <path d="M10 50h44" />
+      </svg>
+    </div>
+    <div class="t">HBM4 量产</div>
+    <div class="d">率先准备量产<br>Custom HBM 加速</div>
+  </div>
+</div>
+
+<div class="bigbox">
+  <div class="num">$35.5B<br>USD</div>
+  <div class="txt">
+    <strong>1Q26 营收约 $35.5B USD,创公司单季历史新高</strong><br>
+    营业利润约 <strong>$25.4B USD</strong>,营业利润率 <strong>72%</strong>。<br>
+    AI 基建投资拉动 HBM、高容量服务器 DRAM、eSSD 持续放量。
+  </div>
+</div>
+
+<div class="yieldbox">
+  <div class="head">
+    <span class="big">$25.4B</span>
+    <span class="mid">USD 营业利润 · 1Q26 单季新高</span>
+  </div>
+  <div class="lst">
+    <div>1Q26 营收 <strong>$35.5B USD</strong></div>
+    <div>1Q26 净利润 <strong>$27.3B USD</strong></div>
+    <div>营收同比 <strong>+198%</strong></div>
+    <div>营业利润同比 <strong>+405%</strong></div>
+    <div>FY25 营收 <strong>$65.7B USD</strong></div>
+    <div>FY25 营业利润 <strong>$31.9B USD</strong></div>
+  </div>
+</div>
+
+<div class="flow-wrap">
+  <div class="title">AI 算 力 的 内 存 瓶 颈 · SK 海 力 士 从 年 度 纪 录 到 单 季 爆 发</div>
+  <div class="flow">
+    <div class="node"><div class="nt">台积电</div><div class="nd">CoWoS 封装</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">SK Hynix</div><div class="nd">HBM3E / HBM4</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">AI GPU</div><div class="nd">训练+推理</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">AI 巨头</div><div class="nd">微软/Meta</div></div>
+    <div class="arrow">›</div>
+    <div class="node"><div class="nt">Agentic AI</div><div class="nd">内存需求升级</div></div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="q">
+    <div class="qt">「核心基础设施<br>伙伴」</div>
+    <div class="qd">不只是产品供应商<br>而是 AI 时代底座</div>
+    <div class="qa">— FY25 财报</div>
+  </div>
+  <div class="q">
+    <div class="qt">「Full Stack<br>AI Memory」</div>
+    <div class="qd">HBM4、SOCAMM2<br>AI NAND 一起推进</div>
+    <div class="qa">— 2026 股东会</div>
+  </div>
+  <div class="q">
+    <div class="qt">「需求可见<br>投资前置」</div>
+    <div class="qd">M15X、龙仁、EUV<br>围绕 AI 内存扩产</div>
+    <div class="qa">— 1Q26 财报</div>
+  </div>
+</div>
+
+<!-- codex-role-note-start -->
+<div class="codex-role-note"><b>经营之道：</b>逻辑为主，数据只做证据；系统财务、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
+<!-- codex-role-note-end -->
+<div class="footer">经营之道：公司年报/业绩资料/管理层公开表述；经营数据：SK Hynix 1Q26 业绩公告（2026-04-22）与 FY2025 财报；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；汇率口径：韩元金额按 2026-04-23 汇率 1 USD≈1,480 KRW 折算；ROI口径：HBM 景气高点回报优秀，但存储周期反转时会快速下行。；CapEx口径：HBM、先进 DRAM 和封装产能是核心；韩元披露按美元口径展示。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+
+</body>
+</html>
