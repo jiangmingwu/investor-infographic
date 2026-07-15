@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>NVIDIA Cobalt Grid Management Culture</title>
+<style>
+  :root {
+    --paper: #F0EBDE;
+    --ink: #1F2BE0;
+    --ink-soft: #5862DF;
+    --grid: rgba(31,43,224,0.10);
+    --wash: rgba(240,235,222,0.78);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 900px;
+    height: 1950px;
+    overflow: hidden;
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    left: 42px;
+    right: 42px;
+    top: 34px;
+    bottom: 34px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    pointer-events: none;
+  }
+  .sheet {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 64px 54px 88px;
+  }
+  .micro, .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr 108px;
+    gap: 26px;
+    align-items: start;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: Georgia, "Songti SC", "STSong", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 86px;
+    line-height: .89;
+    max-width: 690px;
+  }
+  .subtitle {
+    margin-top: 18px;
+    width: 650px;
+    font-size: 23px;
+    line-height: 1.44;
+    font-weight: 700;
+  }
+  .qr {
+    width: 98px;
+    height: 98px;
+    border: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 8px;
+    background: var(--paper);
+  }
+  .qr i.on { background: var(--ink); }
+  .matrix {
+    position: absolute;
+    right: 54px;
+    top: 224px;
+    width: 208px;
+    height: 298px;
+    opacity: .16;
+    border: 3px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 5px;
+    padding: 10px;
+  }
+  .matrix i:nth-child(3n+1),
+  .matrix i:nth-child(4n+2) { background: var(--ink); }
+  .thesis {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 24px;
+  }
+  .quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 20px 0;
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  .stamp {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    background: var(--wash);
+  }
+  .stamp .big {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 54px;
+    line-height: .9;
+  }
+  .stamp .small {
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.34;
+    font-weight: 800;
+  }
+  .section {
+    margin-top: 30px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 14px;
+  }
+  .section-title span {
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .section-title::after {
+    content: "";
+    height: 1.5px;
+    background: rgba(31,43,224,.65);
+    flex: 1;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 11px;
+  }
+  .fact {
+    min-height: 130px;
+    border: 2px solid var(--ink);
+    background: var(--wash);
+    padding: 13px 11px;
+  }
+  .fact .v {
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: .98;
+  }
+  .fact .k {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.28;
+    font-weight: 800;
+  }
+  .fact .n {
+    margin-top: 5px;
+    font-size: 11.5px;
+    line-height: 1.25;
+    color: var(--ink-soft);
+    font-weight: 750;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .card {
+    min-height: 196px;
+    border: 2px solid var(--ink);
+    background: var(--wash);
+    padding: 17px;
+  }
+  .card .k {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .card h3 {
+    margin-top: 10px;
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.05;
+  }
+  .card p {
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.45;
+    font-weight: 650;
+  }
+  .card .proof {
+    margin-top: 10px;
+    display: inline-block;
+    border-top: 1.5px solid var(--ink);
+    padding-top: 7px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 800;
+  }
+  .bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .lens {
+    min-height: 205px;
+    border: 2px solid var(--ink);
+    background: var(--wash);
+    padding: 18px;
+  }
+  .lens h3 {
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 33px;
+    line-height: 1.05;
+  }
+  .lens ul {
+    margin-top: 14px;
+    padding-left: 19px;
+    font-size: 16px;
+    line-height: 1.42;
+    font-weight: 700;
+  }
+  .lens li { margin-bottom: 7px; }
+  .footer {
+    position: absolute;
+    left: 54px;
+    right: 54px;
+    bottom: 50px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .footer .by { margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="matrix" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <div class="topbar">
+      <div>
+        <div class="eyebrow micro">management culture · NVDA · founder platform</div>
+        <h1>NVIDIA<br>Operating<br>Culture</h1>
+        <div class="subtitle">英伟达的组织方式不是“福利好”这么简单，而是用高技术密度、公开同步和长期股权激励，支撑一年一代的平台迁移。</div>
+      </div>
+      <div class="qr" aria-hidden="true">
+        <i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <div class="quote">“The mission is boss. Everyone has a voice.” 这句话背后，是一个让工程问题绕过层级、快速到达决策层的组织系统。</div>
+      <div class="stamp">
+        <div class="big">ORG</div>
+        <div class="small">管理文化<br>人才密度 / 沟通机制 / 激励结构</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="micro">01 / hard facts</span></div>
+      <div class="facts">
+        <div class="fact"><div class="v">42,000</div><div class="k">FY2026 员工</div><div class="n">覆盖 38 个国家</div></div>
+        <div class="fact"><div class="v">31,000</div><div class="k">研发岗位</div><div class="n">约 74% 员工在 R&D</div></div>
+        <div class="fact"><div class="v">80%+</div><div class="k">技术角色</div><div class="n">10-K 披露口径</div></div>
+        <div class="fact"><div class="v">3.7%</div><div class="k">FY2026 流失率</div><div class="n">人才留存异常强</div></div>
+      </div>
+    </div>
+
+    <div class="section cards">
+      <div class="card">
+        <div class="k">mechanism 01</div>
+        <h3>任务是老板，不是层级</h3>
+        <p>NVIDIA 官方文化页把 “mission is boss” 放在公司叙事里。对投资人来说，这意味着关键判断更围绕技术瓶颈和客户问题，而不是内部流程。</p>
+        <span class="proof">来源：NVIDIA About / Careers 页面，核查 2026-05-09。</span>
+      </div>
+      <div class="card">
+        <div class="k">mechanism 02</div>
+        <h3>公开同步，少做单线汇报</h3>
+        <p>黄仁勋被多家采访描述为拥有约 60 名直接下属，并偏好团队公开会议，避免信息只在一对一里流动。</p>
+        <span class="proof">来源：Lex Fridman / Fortune / Entrepreneur 相关访谈报道。</span>
+      </div>
+      <div class="card">
+        <div class="k">mechanism 03</div>
+        <h3>高技术密度</h3>
+        <p>10-K 披露超过 80% 员工具备技术角色，超过一半员工具有高等学位；这让硬件、网络、系统软件和客户工程能在一个平台里协同。</p>
+        <span class="proof">来源：NVIDIA FY2026 Form 10-K Human Capital Management。</span>
+      </div>
+      <div class="card">
+        <div class="k">mechanism 04</div>
+        <h3>股权把员工绑到长期</h3>
+        <p>NVIDIA 明确把股权参与视为薪酬体系的一部分，用来奖励绩效并让员工利益与股东利益一致。</p>
+        <span class="proof">来源：NVIDIA FY2026 Form 10-K；FY2027 Outlook 提到股票薪酬是吸引和留住人才的基础组件。</span>
+      </div>
+    </div>
+
+    <div class="section bottom">
+      <div class="lens">
+        <h3>员工视角</h3>
+        <ul>
+          <li>机会：直接参与全球 AI 基础设施。</li>
+          <li>压力：节奏快，项目复杂度高。</li>
+          <li>适合：强自驱、跨硬件/软件/系统协作的人。</li>
+        </ul>
+      </div>
+      <div class="lens">
+        <h3>投资人视角</h3>
+        <ul>
+          <li>优点：文化把技术路线图变成交付能力。</li>
+          <li>风险：对创始人判断、核心人才和供应链依赖高。</li>
+          <li>关键：低流失率和高技术密度能否维持。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      管理文化来源：NVIDIA FY2026 Form 10-K（2026-02-25，员工/技术角色/流失率/股权薪酬）、NVIDIA About 与 Careers 页面（核查 2026-05-09）、Lex Fridman / Fortune / Entrepreneur 对黄仁勋管理方式报道；货币口径：涉及金额均为 USD/美元；仅供学习参考，不构成投资建议
+      <div class="by">by 江明</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --paper: #F8F1E6;
+  --grid: #E8DED1;
+  --accent: #7A3B2E;
+  --main: #C4633E;
+  --blue: #455C84;
+  --dark: #231714;
+  --line: #D8BDA9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  color: #292622;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px);
+}
+.page { position: relative; z-index: 1; padding: 48px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #897d72;
+  font-size: 20px;
+  font-style: italic;
+}
+.pill {
+  margin: 18px auto 26px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #49433e;
+  font-size: 21px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 14px 0 25px; }
+.mark {
+  width: 190px;
+  height: 176px;
+  border: 4px solid var(--main);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.54), transparent 25%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  box-shadow: 0 5px 0 rgba(40,40,40,.13);
+  transform: rotate(-1deg);
+}
+.brand-lockup {
+  width: 146px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #121715;
+}
+.wordmark {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 850;
+}
+.openai-wordmark {
+  font-family: "OpenAI Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.anthropic-wordmark {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.anthropic-symbol {
+  width: 40px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+.anthropic-symbol path { fill: currentColor; }
+.mark .small { color: #7c7168; font-size: 13px; font-weight: 900; margin-top: 14px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.36; font-weight: 800; color: #2e2924; }
+.section-title { margin: 29px 0 17px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 38px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 72px; height: 2px; background: var(--line); vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.66);
+  border: 3px solid var(--line);
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 150px;
+}
+.card.core { position: relative; min-height: 174px; padding-left: 74px; }
+.core-icon {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  color: var(--main);
+}
+.core-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 14px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #493d33; font-size: 17.4px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric {
+  background: rgba(255,255,255,.68);
+  border: 3px solid;
+  border-radius: 14px;
+  padding: 12px 8px;
+  min-height: 136px;
+  text-align: center;
+}
+.metric-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  display: block;
+}
+.metric-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 30px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 14.4px; line-height: 1.32; color: #6e6256; }
+.metric .yoy { margin-top: 5px; font-size: 13px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 19px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6e6256; font-size: 15.4px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(239,231,223,.78); border-radius: 8px; padding: 14px 20px; font-size: 20px; line-height: 1.5; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 96px; gap: 14px; align-items: center; }
+.bar-label { font-size: 17px; font-weight: 900; color: #44372b; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 17px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #b8aaa0;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 1540px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">Anthropic 管理文化</h1>
+  <div class="subtitle">Safety Research + Enterprise Delivery + Long-term Governance</div>
+  <div class="pill">安全治理 × RSP制度 × 企业交付 × 高密度人才 × 多云协作</div>
+
+    <div class="hero">
+
+    <div class="mark">
+
+        <div class="brand-lockup">
+          <svg class="anthropic-symbol" viewBox="0 0 35 24" aria-hidden="true">
+            <path d="M24.5475 0H19.3384L28.8374 24H34.0465L24.5475 0Z"></path>
+            <path d="M9.49897 0L0 24H5.31125L7.25395 18.96H17.1914L19.1341 24H24.4454L14.9464 0H9.49897ZM8.97193 14.5029L12.2227 6.06857L15.4735 14.5029H8.97193Z"></path>
+          </svg>
+          <div class="wordmark anthropic-wordmark">Anthropic</div>
+        </div>
+
+      <div class="small">Claude + Safety</div>
+    </div>
+
+      <div class="thesis"><div class="k">这张图讲“组织怎么跑起来”</div><div class="v">Anthropic 的管理文化，是把安全研究、产品工程和企业交付放在同一条线上：先建立可信边界，再把 Claude 放进客户真实流程。</div></div>
+    </div>
+    <div class="section-title">公开可验证的组织机制</div><div class="cards">
+    <div class="card">
+      <span class="tag">使命</span>
+      <h3>安全优先的 AI 公司</h3>
+      <p class="body">公司公开材料长期强调 AI safety、interpretability 和 responsible scaling，安全不是外部装饰，而是品牌核心。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">RSP</span>
+      <h3>Responsible Scaling Policy</h3>
+      <p class="body">RSP 用能力阈值和防护等级决定模型训练、部署与安全措施，把风险管理写成制度。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">治理</span>
+      <h3>Long-Term Benefit Trust</h3>
+      <p class="body">LTBT 负责选任部分董事，强化长期公共利益导向，降低纯商业压力对治理的扭曲。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">产品</span>
+      <h3>从研究转向交付</h3>
+      <p class="body">Claude Code、Claude for Enterprise、AWS/GCP/Azure 多云接入，让公司从研究文化进入企业交付文化。</p>
+    </div>
+    </div><div class="section-title">员工与福利待遇</div><div class="cards">
+    <div class="card">
+      <span class="tag">福利</span>
+      <h3>健康、家庭与远程支持</h3>
+      <p class="body">官方 Careers 披露医疗、牙科、视力、心理健康、育儿支持、带薪假期和混合办公等福利。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">补偿</span>
+      <h3>高薪 + 股权激励</h3>
+      <p class="body">私营高估值 AI 公司通常以现金薪酬和股权吸引研究员、工程师与产品人才；具体岗位以招聘页为准。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">人才</span>
+      <h3>研究员与工程师混合</h3>
+      <p class="body">岗位覆盖安全研究、模型训练、解释性、产品工程、基础设施和企业销售，文化不是单纯实验室。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">压力</span>
+      <h3>安全声誉 + 高速增长</h3>
+      <p class="body">ARR 爆发后，组织既要保留谨慎安全文化，也要承受企业客户 SLA、算力交付和竞品速度压力。</p>
+    </div>
+    </div>
+</div>
+<div class="footer"><div>经营数据：Anthropic 官方公告，ARR/客户/算力：2026年4月；融资估值：2026年2月；新估值谈判来自媒体报道，未关闭</div>
+<div>估值/融资：官方 Series G $30B，post-money $380B；Reuters/Bloomberg/FT 2026年5月报道 $900B+ 融资谈判，未作已完成估值</div>
+<div>ROI/CapEx/分红：未披露利润与资产负债，ROI不可比；2026公司CapEx未披露；$50B美国基础设施与TPU容量为长期承诺；无公开现金股息</div>
+<div>模型/客户采用：Claude产品页、Google TPU公告、PwC/ServiceNow/Infosys/Zoom客户案例、Project Glasswing/Mythos Preview与伙伴反馈，核查：2026年5月</div>
+<div>管理文化：Anthropic Careers / Responsible Scaling Policy / Long-Term Benefit Trust / Core Views，核查：2026年5月</div>
+<div>货币口径：金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

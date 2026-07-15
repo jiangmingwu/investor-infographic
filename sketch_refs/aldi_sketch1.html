@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:900px;height:2200px;background:#F7F4ED;font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;color:#3A2A1E;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px);opacity:.35;pointer-events:none}
+.header{text-align:center;padding:50px 40px 16px}
+.header h1{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:74px;color:#1B438B;letter-spacing:6px}
+.header .en{font-size:21px;color:#A89080;margin-top:8px;letter-spacing:1px;font-style:italic}
+.header .sub{font-size:24px;color:#7B6650;margin-top:12px}
+.hero{display:flex;align-items:center;justify-content:center;gap:30px;padding:18px 60px 6px}
+.hero-meta{flex:1}
+.name{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:52px;color:#4A3728;letter-spacing:4px}
+.tag{font-size:21px;color:#E60012;margin-top:6px;font-weight:600}
+.stats{font-size:18px;color:#7B6650;margin-top:10px;line-height:1.75}
+.section-title{text-align:center;margin:26px 0 16px}
+.section-title span{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:34px;color:#1B438B;padding:0 22px;position:relative}
+.section-title span::before,.section-title span::after{content:'';position:absolute;top:50%;width:80px;height:2px;background:#C89890}
+.section-title span::before{right:100%}.section-title span::after{left:100%}
+.concepts{display:flex;gap:14px;padding:0 40px}
+.concept{flex:1;background:rgba(255,255,255,.55);border:2px solid #D4B8A8;border-radius:12px;padding:18px 12px;text-align:center;min-height:290px}
+.icon-num{width:58px;height:58px;border:3px solid #1B438B;color:#1B438B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Songti SC',serif;font-size:32px;font-weight:700;margin:0 auto 8px}
+.cn{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:24px;margin-top:2px;line-height:1.2}
+.en{font-size:14px;color:#A89080;margin-top:2px;letter-spacing:1px}
+.desc{font-size:16px;color:#5A4A3A;margin-top:10px;line-height:1.5}
+.thesis-box{margin:24px 40px 0;background:linear-gradient(135deg,#E8EEF7 0%,#D0DCEE 100%);border:2px solid #1B438B;border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:20px}
+.thesis-box .t1{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:32px;color:#1B438B}
+.thesis-box .s1{font-size:18px;color:#4A3728;margin-top:6px;line-height:1.55}
+.thesis-box .num{font-family:'Songti SC','STSong','SimSun',serif;font-weight:700;font-size:46px;color:#E60012;line-height:1}
+.thesis-box .lab{font-size:16px;color:#7B6650;margin-top:4px;text-align:center}
+.evidence{margin:18px 40px 0;background:linear-gradient(135deg,#FFF5E8 0%,#FDE8D5 100%);border:2px solid #F39800;border-radius:14px;padding:16px 20px}
+.ev-title{font-family:'Songti SC','STSong','SimSun',serif;font-size:23px;font-weight:700;color:#1B438B;text-align:center;margin-bottom:12px}
+.ev-row{display:flex;justify-content:space-around;align-items:flex-start;gap:8px}
+.ev-cell{text-align:center;flex:1}
+.ev-num{font-family:'Songti SC','STSong','SimSun',serif;font-size:22px;font-weight:700;color:#E60012;line-height:1.15}
+.ev-lab{font-size:15px;font-weight:700;color:#4B3B2F;margin-top:4px}
+.ev-sub{font-size:13px;line-height:1.4;color:#7B6650;margin-top:3px}
+.flow-wrap{margin:24px 40px 0;background:rgba(255,255,255,.4);border-radius:12px;padding:20px 18px}
+.flow-row{display:flex;align-items:stretch;justify-content:space-between;gap:6px}
+.flow-step{flex:1;text-align:center;border:2px solid #8B7355;border-radius:10px;padding:12px 6px;background:#FDFAF3;min-height:90px}
+.flow-step .t{font-size:19px;font-weight:700;color:#1B438B}
+.flow-step .d{font-size:14px;color:#5A4A3A;margin-top:4px;line-height:1.3}
+.flow-arr{color:#8B7355;font-size:24px;font-weight:700;display:flex;align-items:center}
+.quotes{margin:22px 40px 0}
+.quote{background:rgba(232,238,247,.7);border-left:4px solid #1B438B;padding:13px 18px;margin-bottom:9px;border-radius:0 8px 8px 0}
+.quote .txt{font-size:19px;color:#4A3728;line-height:1.45}
+.quote .tag{font-size:14px;color:#1B438B;margin-top:4px;font-weight:500}
+.role-note{margin:18px 40px 0;border:2px dashed #1B438B;border-radius:12px;background:rgba(255,255,255,.5);padding:12px 18px;color:#5A4A3A;font-size:16px;line-height:1.55;text-align:center}
+.role-note b{color:#1B438B}
+.footer{position:absolute;left:35px;right:35px;bottom:22px;text-align:center;font-size:13px;color:#B0A090;line-height:1.6}
+</style></head><body>
+<div class="header"><h1>奥乐齐 的 经 营 之 道</h1><div class="en">ALDI Group (Süd + Nord) · FY2025 全年口径</div><div class="sub">90% 自有品牌 × 极简 SKU × 倒推算法</div></div>
+
+<div class="hero">
+  <svg width="170" height="200" viewBox="0 0 170 200">
+    <g transform="translate(85,100)">
+      <rect x="-58" y="-50" width="116" height="100" rx="10" fill="white" stroke="#1B438B" stroke-width="3"/>
+      <text x="0" y="-2" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="32" fill="#1B438B">ALDI</text>
+      <text x="0" y="32" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="#E60012">奥乐齐</text>
+      <path d="M-42,58 C-14,72 14,72 42,58" fill="none" stroke="#F39800" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="name">奥乐齐</div>
+    <div class="tag">硬折扣鼻祖 · 90% 自有品牌 × 极简 SKU × 倒推算法</div>
+    <div class="stats">
+      <span>核心逻辑：先定终端低价，反向压缩供应链成本与冗余 SKU。</span><br>
+      <span>飞轮变量：极简 SKU → 高周转 → 直采议价 → 自有品牌信任</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title"><span>三 大 经 营 引 擎</span></div>
+<div class="concepts">
+  <div class="concept">
+    <div class="icon-num">1</div>
+    <div class="cn" style="color:#1B438B">90% 自有品牌</div>
+    <div class="en">PRIVATE LABEL</div>
+    <div class="desc">绕开品牌商加价，国家市场可复制；2025 已把 90 品牌整合为 26</div>
+  </div>
+  <div class="concept">
+    <div class="icon-num">2</div>
+    <div class="cn" style="color:#1B438B">极简 SKU 纪律</div>
+    <div class="en">SKU DISCIPLINE</div>
+    <div class="desc">门店仅 ~1,800 SKU vs 商超 20,000+，单 SKU 议价力极强</div>
+  </div>
+  <div class="concept">
+    <div class="icon-num">3</div>
+    <div class="cn" style="color:#1B438B">倒推算法供应链</div>
+    <div class="en">REVERSE-ENGINEERING</div>
+    <div class="desc">先锁终端低价（中国 600+ ¥9.9 SKU），反推上游成本</div>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div style="flex:1">
+    <div class="t1">2025 经营主线：硬折扣模型的全球化复利</div>
+    <div class="s1">关键链条：90% 私牌 → ~1,800 SKU 极简 → 直采议价 → 终端低价 → 客户信任复购<br>2025 全年验证：Nord +7.4%、英国市占 10.8%、美国 225 店扩张创历史</div>
+  </div>
+  <div style="text-align:center">
+    <div class="num">逻辑</div>
+    <div class="lab">数据只作证据</div>
+  </div>
+</div>
+
+<div class="evidence">
+  <div class="ev-title">2025 经营证据：只保留能解释护城河的硬数据</div>
+  <div class="ev-row">
+    <div class="ev-cell"><div class="ev-num">~90%</div><div class="ev-lab">自有品牌 SKU</div><div class="ev-sub">2025 完成 90→26 品牌整合</div></div>
+    <div class="ev-cell"><div class="ev-num">~1,800</div><div class="ev-lab">门店 SKU 数</div><div class="ev-sub">vs 普通商超 20,000+</div></div>
+    <div class="ev-cell"><div class="ev-num">80%+</div><div class="ev-lab">中国本土供应商</div><div class="ev-sub">长三角+珠三角 400+ 直采</div></div>
+    <div class="ev-cell"><div class="ev-num">600+</div><div class="ev-lab">¥9.9 以下 SKU</div><div class="ev-sub">2025 最高降价 45%</div></div>
+  </div>
+</div>
+
+<div class="flow-wrap">
+  <div class="section-title" style="margin:0 0 14px"><span>增 长 飞 轮</span></div>
+  <div class="flow-row">
+    <div class="flow-step"><div class="t">私牌</div><div class="d">90% SKU 自有品牌</div></div><div class="flow-arr">›</div>
+    <div class="flow-step"><div class="t">极简</div><div class="d">~1,800 SKU 纪律</div></div><div class="flow-arr">›</div>
+    <div class="flow-step"><div class="t">直采</div><div class="d">OEM+本土直采</div></div><div class="flow-arr">›</div>
+    <div class="flow-step"><div class="t">低价</div><div class="d">倒推算法定价</div></div><div class="flow-arr">›</div>
+    <div class="flow-step"><div class="t">信任</div><div class="d">复购+口碑外溢</div></div>
+  </div>
+</div>
+
+<div class="quotes">
+  <div class="quote"><div class="txt">「ALDI Nord FY2025 营收 €31B+，同比 +7.4%，同店 +5.6%。」— ESM Magazine 2025-09</div><div class="tag">2025 业绩</div></div>
+  <div class="quote"><div class="txt">「我承诺保留我们家族的哲学：节俭和克制的生活方式。」— Cäcilie Albrecht 遗嘱</div><div class="tag">家族治理</div></div>
+  <div class="quote"><div class="txt">「2025 全年最高降价 45%，600+ SKU 低至 ¥9.9。」— 投资界 2025-12-26</div><div class="tag">中国战术</div></div>
+</div>
+
+<div class="role-note"><b>经营之道：</b>只讲护城河、飞轮与战略变量；2025 全球财务/分国家分部/ROI/2026 CapEx 与风险列入《经营全景》。</div>
+
+<div class="footer">
+经营之道：ALDI 自有品牌占比 + SKU 纪律 + 倒推算法供应链 + 家族基金会治理（FY2025 数据，核查 2026-06-02）<br>
+财务看板、ROI/ROIC、2026 CapEx 与风险详见《经营全景》；货币口径：图中金额均为 USD/美元（中国 ¥ 保留原币并标注汇率）<br>
+by 江明
+</div>
+</body></html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>郭宇 AI 观点图 3</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 1200px;
+  height: 750px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(63, 51, 44, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 51, 44, .045) 1px, transparent 1px),
+    #F7F4ED;
+  background-size: 26px 26px;
+  color: #2F2A25;
+  font-family: "Hiragino Sans GB", "Noto Sans SC", "PingFang SC", sans-serif;
+}
+.page { position: relative; width: 1200px; height: 750px; padding: 34px 42px 54px; }
+h1 {
+  margin: 0;
+  font-family: "Songti SC", "STSong", serif;
+  font-weight: 900;
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+.subtitle { margin-top: 8px; color: #7A6655; font-size: 17px; }
+.topline {
+  position: absolute; top: 40px; right: 46px;
+  display: flex; gap: 10px; align-items: center;
+}
+.pill { border: 2px solid #3B332C; border-radius: 999px; padding: 8px 14px; background: #FFF2D8; font-weight: 900; }
+.layout { display: grid; grid-template-columns: 402px 330px 340px; gap: 18px; margin-top: 20px; }
+.panel {
+  min-height: 462px;
+  border: 2px solid #3B332C; border-radius: 16px;
+  background: rgba(255,253,246,.88);
+  padding: 17px;
+  box-shadow: 5px 6px 0 rgba(47,42,37,.12);
+}
+.panel:nth-child(1) { transform: rotate(.2deg); }
+.panel:nth-child(2) { transform: rotate(-.28deg); }
+.panel:nth-child(3) { transform: rotate(.16deg); }
+.title { display: flex; align-items: center; gap: 9px; font-weight: 900; font-size: 22px; margin-bottom: 13px; }
+.tag {
+  width: 31px; height: 31px; border: 2px solid #3B332C; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; background: #E8883A; color: #FFF; font-weight: 900;
+}
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.case {
+  min-height: 96px;
+  border: 2px solid #3B332C; border-radius: 12px;
+  background: #FFF6E8;
+  padding: 10px;
+}
+.case b { display: block; color: #B6532D; font-size: 18px; line-height: 1.05; margin-bottom: 5px; }
+.case span { display: block; color: #55483D; font-size: 12.6px; line-height: 1.3; }
+.big-case {
+  margin-top: 11px; padding: 12px;
+  border: 2px dashed #2F7D76; border-radius: 13px;
+  background: #EFF8F2;
+}
+.big-case b { display: block; font-size: 19px; color: #245E58; margin-bottom: 5px; }
+.big-case p { margin: 0; color: #55483D; line-height: 1.34; font-size: 13px; }
+.macro { display: grid; gap: 8px; }
+.macro-item { border: 2px solid #3B332C; border-radius: 12px; padding: 9px 10px; background: #EAF1FF; }
+.macro-item b { display: block; font-size: 21px; color: #2F5F96; line-height: 1; margin-bottom: 5px; }
+.macro-item span { color: #55483D; line-height: 1.28; font-size: 12.8px; }
+.map {
+  height: 56px; position: relative; margin: 5px 0 0;
+}
+.map svg { width: 100%; height: 100%; }
+.steps { display: grid; gap: 8px; }
+.step {
+  display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: start;
+  border: 2px solid #3B332C; border-radius: 12px; padding: 8px 9px; background: #FFFDF6;
+}
+.num {
+  width: 38px; height: 38px; border-radius: 50%; background: #2F7D76; color: white;
+  display: flex; align-items: center; justify-content: center; font-weight: 900; border: 2px solid #3B332C;
+}
+.step b { display: block; font-size: 15.5px; color: #B6532D; margin-bottom: 2px; }
+.step span { font-size: 12.6px; line-height: 1.26; color: #55483D; }
+.bottom {
+  position: absolute; left: 42px; right: 42px; bottom: 77px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.metric {
+  min-height: 64px; padding: 9px 10px; border: 2px solid #3B332C; border-radius: 12px; background: #F9EFE5; text-align: center;
+}
+.metric b { display: block; color: #C25B2C; font-size: 23px; line-height: 1; }
+.metric span { display: block; margin-top: 5px; color: #67584C; font-size: 12px; line-height: 1.25; }
+.footer {
+  position: absolute; left: 42px; right: 42px; top: 684px; z-index: 20;
+  text-align: center; color: #7F7062; font-size: 12px; line-height: 1.38;
+  padding: 5px 8px; background: rgba(247, 244, 237, .92); border-radius: 10px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>从 one man AI 到算力霸权：他给出的行动地图</h1>
+  <div class="subtitle">把两集连起来看，郭宇关心的不是“AI 会不会写代码”，而是自动化公司、自动化营销、自动化研究会怎样重写社会</div>
+  <div class="topline"><div class="pill">上集 + 下集</div><div class="pill">数字与案例</div></div>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="title"><span class="tag">案</span>他提到的具体案例</div>
+      <div class="case-grid">
+        <div class="case"><b>个人网站 Demo</b><span>用 Claude Code 读取记者个人站、Web Search、自动安装设计 Skill，重构网站。</span></div>
+        <div class="case"><b>7 个 Skills</b><span>Demo 中安装了 7 个设计相关 Skill，用专业设计方法改网页。</span></div>
+        <div class="case"><b>扫地机器人</b><span>用 Claude Code 连接带机械爪的石头扫地机器人，让 Agent 自主判断哪里脏。</span></div>
+        <div class="case"><b>$26,000</b><span>他提到有人用生成式视频做《星球大战》模仿视频，获得平台分成。</span></div>
+      </div>
+      <div class="big-case"><b>one man AI 公司实验</b><p>他在自己的 5090 PC 上，夜里跑 1000 个 loop，6 个多小时内推演一家东京装置艺术公司：财务计划、网站、3D 产品、给画廊和公共空间的邮件都让 Agent 去做。</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="title"><span class="tag">势</span>宏观判断</div>
+      <div class="macro">
+        <div class="macro-item"><b>中国缺卡，美国缺电</b><span>他认为美国模型强但数据中心受电力约束；中国有电但高端卡与编码训练资源受限。</span></div>
+        <div class="macro-item"><b>推理成本 1/10</b><span>他提到 Rubin 架构后，明后年 AI 数据中心推理成本可能降到当前十分之一。</span></div>
+        <div class="macro-item"><b>6-12个月代差</b><span>他判断中美在编码模型上仍有代差，许多国内模型通过蒸馏 Claude Opus 跟进。</span></div>
+        <div class="macro-item"><b>生产力 vs 分配</b><span>AI 公司赚钱、利润提升、同时裁员；工作减少与服务降价可能带来通缩压力。</span></div>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 300 100">
+          <path d="M20 78 C80 20, 170 86, 280 26" fill="none" stroke="#3B332C" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8"/>
+          <circle cx="20" cy="78" r="9" fill="#E8883A" stroke="#3B332C" stroke-width="3"/>
+          <circle cx="150" cy="66" r="9" fill="#2F7D76" stroke="#3B332C" stroke-width="3"/>
+          <circle cx="280" cy="26" r="9" fill="#2F5F96" stroke="#3B332C" stroke-width="3"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="title"><span class="tag">做</span>普通人的应对</div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><b>先把工具用起来</b><span>三到六个月内，学会 Claude Code / Agent 仍能形成短期差距。</span></div></div>
+        <div class="step"><div class="num">2</div><div><b>把想法拆成实验</b><span>不要只写计划；让 Agent 反复跑、反复试，低成本淘汰失败路径。</span></div></div>
+        <div class="step"><div class="num">3</div><div><b>转向高客单价场景</b><span>Automatic Marketing Agent 可点对点找人、发短信、邮件、送礼，更适合高价值客户。</span></div></div>
+        <div class="step"><div class="num">4</div><div><b>训练不可外包部分</b><span>直觉、审美、世界经验、价值判断，是你给 Agent 的方向盘。</span></div></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <div class="metric"><b>800万日元</b><span>他提到日本开公司曾需要的注册资金门槛</span></div>
+    <div class="metric"><b>1000 loop</b><span>夜间自动推演一个商业想法的实验规模</span></div>
+    <div class="metric"><b>6+小时</b><span>1000 个循环的运行时间</span></div>
+    <div class="metric"><b>24×7</b><span>Agent 常驻本地或云端持续运行</span></div>
+  </div>
+
+  <div class="footer">
+    资料来源：YouTube「郭宇｜Claude Code：知识工作者的终结」（2026-04-26）与「郭宇｜人类唯一无法被AI替代的是什么？」（2026-04-27）字幕整理；观点为转述摘要<br>
+    by 江明
+  </div>
+</div>
+</body>
+</html>

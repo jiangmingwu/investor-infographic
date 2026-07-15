@@ -1,0 +1,68 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2320px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #005BAC; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 2px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #005BAC; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #005BAC; border-radius: 26px; background: rgba(255,255,255,.58); color: #005BAC; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 51px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #005BAC; padding-left: 22px; }
+.thesis .k { color: #005BAC; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 188px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 48px; height: 48px; border: 3px solid #005BAC; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #005BAC; font-weight: 900; font-size: 13px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.core h3 { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #00A0E9; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #005BAC; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #005BAC; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid #005BAC; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #00A0E9; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 205px 78px 96px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #005BAC; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #005BAC; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>东京电子 FY2026 经营全景</div>
+  <div class='subtitle'>TSE:8035 · Financial Dashboard · 当前估值 + ROI + 2026 CapEx</div>
+  <div class='pill'>财务结果 × 当前估值 × 资本投入 × 股东回报</div>
+  <div class='section-title'>核心财务与当前估值</div>
+  <div class='metrics'><div class='stat'><div class='num'>$153.3亿</div><div class='sub'>YoY +0.5%</div><div class='lab'>FY2026 营收</div></div><div class='stat'><div class='num'>$39.2亿</div><div class='sub'>YoY -10.4%</div><div class='lab'>FY2026 经营利润</div></div><div class='stat'><div class='num'>$33.9亿</div><div class='sub'>YoY -7.3%</div><div class='lab'>FY2026 经营现金流</div></div><div class='stat'><div class='num'>$36.0亿</div><div class='sub'>YoY +5.6%</div><div class='lab'>FY2026 净利润</div></div><div class='stat'><div class='num'>$1,411亿</div><div class='lab'>当前市值</div></div><div class='stat'><div class='num'>39.8×</div><div class='lab'>当前 PE</div></div><div class='stat'><div class='num'>32.6×</div><div class='lab'>Forward PE</div></div><div class='stat'><div class='num'>29.6%</div><div class='lab'>FY2026 ROE</div></div><div class='stat'><div class='num'>$20.3亿</div><div class='lab'>FY2026 自由现金流</div></div><div class='stat'><div class='num'>$11.9亿</div><div class='lab'>2026E CapEx</div></div><div class='stat'><div class='num'>$17.4亿</div><div class='lab'>FY2026 R&amp;D</div></div><div class='stat'><div class='num'>$3.94/股</div><div class='lab'>年度股息</div></div></div>
+  <div class='section-title'>业务结构与产品权重</div>
+  <div class='seg'><div class='row'><div class='rank'>1</div><b>Etch 刻蚀系统</b><span>36%</span><b>$40.1亿</b><div class='bar-bg'><div class='bar' style='width:36.0%'></div></div></div><div class='row'><div class='rank'>2</div><b>Coater/Developer</b><span>28%</span><b>$31.2亿</b><div class='bar-bg'><div class='bar' style='width:28.0%'></div></div></div><div class='row'><div class='rank'>3</div><b>Deposition 沉积</b><span>20%</span><b>$22.3亿</b><div class='bar-bg'><div class='bar' style='width:20.0%'></div></div></div><div class='row'><div class='rank'>4</div><b>Cleaning 清洗</b><span>9%</span><b>$10.0亿</b><div class='bar-bg'><div class='bar' style='width:9.0%'></div></div></div><div class='row'><div class='rank'>5</div><b>Field Solutions</b><span>约27%</span><b>$38.1亿</b><div class='bar-bg'><div class='bar' style='width:27.0%'></div></div></div></div>
+  <div class='section-title'>ROI / CapEx / 股东回报</div>
+  <div class='cards'><div class='card'><span class='mini'>ROI / ROE</span><h3>ROE 29.6%</h3><div class='body'>官方 FY2026 ROE；半导体设备周期性强，需结合订单、毛利率、CapEx 和客户投资节奏看。</div></div><div class='card'><span class='mini'>2026E CapEx</span><h3>约 $11.9 亿</h3><div class='body'>公司 FY2027 CapEx 计划 JPY 1,900 亿；对应 2026年4月-2027年3月财年。</div></div><div class='card'><span class='mini'>股东分红</span><h3>$3.94/股 · 派息约50%</h3><div class='body'>FY2026 年度股息 JPY 628/股；公司政策为净利润约 50% payout，并可灵活回购。</div></div><div class='card'><span class='mini'>股东回报</span><h3>约 $27.4 亿</h3><div class='body'>FY2026 现金股息 JPY 2,716 亿 + 回购 JPY 1,500 亿，合计约为净利润 73%。</div></div></div>
+  <div class='section-title'>亮点与风险</div>
+  <div class='actions'><div class='action'><div class='tag' style='background:#4A7C59'>亮点</div><div class='body'><b>AI 服务器拉动 FY2027 H1</b>：公司预计 FY2027 H1 新设备销售同比 +41%，DRAM 与先进逻辑增量在 2026 下半年发货。</div></div><div class='action'><div class='tag' style='background:#4A7C59'>亮点</div><div class='body'><b>ROE 仍高达 29.6%</b>：即使 FY2026 经营利润下滑，净利润与资本回报仍处高位。</div></div><div class='action'><div class='tag' style='background:#4A7C59'>亮点</div><div class='body'><b>涂胶显影近垄断</b>：TEL 官方披露 Coater/Developer 整体约 90% 份额，High-NA 工艺接近 100%。</div></div><div class='action'><div class='tag' style='background:#B94442'>风险</div><div class='body'><b>设备周期波动</b>：客户晶圆厂 CapEx 如果延后，TEL 营收和订单会被放大影响。</div></div><div class='action'><div class='tag' style='background:#B94442'>风险</div><div class='body'><b>估值已较高</b>：当前 PE 约 39.8×，Forward PE 约 32.6×，市场已经计入 AI 设备周期回暖。</div></div></div>
+</div>
+<div class='footer'><div>经营数据：Tokyo Electron FY2026 Results / FY2026 Q4 Presentation，FY2026: 2025年4月-2026年3月</div><div>同比口径：FY2026 vs FY2025；营收 +0.5%，经营利润 -10.4%，经营现金流 -7.3%，净利润 +5.6%</div><div>行情数据：StockAnalysis TYO:8035，查看：2026年5月31日；页面延迟行情股价 JPY 49,830，市值 JPY 22.49T，PE 39.84×，Forward PE 32.56×</div><div>ROI口径：官方 ROE 29.6%；自由现金流按 OCF - CapEx 近似；半导体设备需结合周期观察</div><div>2026 CapEx口径：FY2027 公司计划 JPY 1,900亿，期间 2026年4月-2027年3月；非自然年单年指引</div><div>股东分红：FY2026 年度股息 JPY 628/股，派息率约 50%；另回购 JPY 1,500亿</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

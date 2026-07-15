@@ -1,66 +1,93 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
+  width: 900px; height: 1480px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#EB001B; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #EB001B; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #EB001B; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#EB001B; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #EB001B; padding-left:24px; }
-.thesis .k { color:#EB001B; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#EB001B; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#EB001B; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#EB001B; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #EB001B; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#EB001B; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#EB001B; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#EB001B; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #EB001B; background:rgba(255,232,230,.68); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#EB001B; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #EB001B; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #EB001B; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #EB001B; border-radius: 26px; background: rgba(255,255,255,.58); color: #EB001B; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #EB001B; padding-left: 22px; }
+.thesis .k { color: #EB001B; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #EB001B; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #EB001B; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #EB001B; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #EB001B; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #F79E1B; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #EB001B; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #EB001B; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #EB001B; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #F79E1B; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #EB001B; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #EB001B; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #EB001B; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #EB001B; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #EB001B; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>万事达 的 管 理 文 化</div>
-  <div class='subtitle'>支付网络与数据服务组织 · Management Culture</div>
-  <div class='pill'>网络信任 × 数据服务 × 合作生态</div>
-  <div class='hero'><div class='mark'>万事</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>万事达文化与 Visa 类似，但更强调数据服务、网络安全和多边合作，靠全球支付网络创造轻资产高回报。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#EB001B'><div class='num' style='color:#EB001B'>轻资产</div><div class='lab'>高 ROIC</div></div><div class='stat' style='border-color:#EB001B'><div class='num' style='color:#EB001B'>网络安全</div><div class='lab'>信任底线</div></div><div class='stat' style='border-color:#EB001B'><div class='num' style='color:#EB001B'>数据服务</div><div class='lab'>增值业务</div></div><div class='stat' style='border-color:#EB001B'><div class='num' style='color:#EB001B'>全球合作</div><div class='lab'>生态</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>商业机制</span><h3>多边网络</h3><div class='body'>银行、商户、消费者和金融科技共同参与，网络越大价值越高。</div></div><div class='card'><span class='tag'>运营底线</span><h3>安全和信任</h3><div class='body'>支付可用性、反欺诈和隐私是核心文化。</div></div><div class='card'><span class='tag'>增长机制</span><h3>数据服务</h3><div class='body'>把交易数据、咨询和安全能力变成高毛利业务。</div></div><div class='card'><span class='tag'>全球治理</span><h3>合规合作</h3><div class='body'>与监管者和金融机构合作适配本地规则。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>稳定、专业、全球协作多。</li><li>适合支付、数据、安全、金融合作人才。</li><li>文化偏稳健和合作。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是网络效应和低资本开支。</li><li>风险是费率监管和支付替代。</li><li>文化价值是把信任做成平台。</li></ul></div>
-  </div>
-  <div class='note-box'><h3>一句话总结</h3><p>万事达的文化，是用信任网络和数据服务复利增长。</p></div>
+  <div class='title'>万事达管理文化</div>
+  <div class='subtitle'>MA · Management Culture · 真实公开口径</div>
+  <div class='pill'>做事风格 × 真实案例 × 公开来源</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="万事达" viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="72" cy="50" r="35" fill="#EB001B"/>
+  <circle cx="108" cy="50" r="35" fill="#F79E1B" fill-opacity=".92"/>
+  <text x="90" y="102" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#231F20">mastercard</text>
+</svg></div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>万事达把高绩效和同理心放在一起：团队既要快速创造价值，也要用 decency、合规和社会行动证明“做得好，也要做好事”。</div></div></div>
+  <div class='section-title'>理念与真实案例</div>
+  <div class='culture-cards'><div class='culture-card'><h3>经营｜让数字经济更包容</h3><div class='body'>做法：把金融普惠当成可规模化的长期经营目标，而不是一次性公益。数字：Mastercard 官方披露，自 2015 年以来已帮助约 9.6 亿人进入数字经济，并自 2020 年以来支持约 6,500 万家中小微企业。</div></div><div class='culture-card'><h3>组织｜高绩效也要高同理心</h3><div class='body'>做法：Mastercard Way 把 Create value、Grow together、Move fast 作为统一行动准则。案例：CEO 在年度公开信中明确要求团队同时追求 high performance 与 high empathy，不把速度等同于牺牲尊重。</div></div><div class='culture-card'><h3>组织｜Decency 落进管理责任</h3><div class='body'>做法：管理者必须营造 decency、accountability、compliance 的工作环境。案例：Code of Conduct 要求主管认真听取伦理疑虑、及时升级处理，并明确禁止对提出问题的员工进行报复。</div></div><div class='culture-card'><h3>组织｜把公益变成正式制度</h3><div class='body'>做法：员工每年最多可使用 5 个带薪工作日参加合资格志愿活动。案例：2025 年洛杉矶山火后，超过 36 名接受红十字会训练的万事达员工进驻避难所，协助数千个受灾家庭。</div></div></div>
 </div>
-<div class='footer'>管理文化：Mastercard FY2025 Annual Report / Careers / Proxy，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class='footer'><div>经营数据：Mastercard FY2025 earnings release / SEC 8-K，FY2025: 2025年1-12月</div><div>管理文化：Mastercard Inclusive Growth / CEO Letter / Code of Conduct / Volunteer Time Off，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
 </body></html>

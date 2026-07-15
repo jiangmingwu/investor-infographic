@@ -1,178 +1,67 @@
-<!DOCTY市场定价 html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 900px; height:2300px; background: #FAF1E4; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #2A1A0E; overflow: hidden; position: relative; }
-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #EDE0CC 39px, #EDE0CC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #EDE0CC 39px, #EDE0CC 40px); opacity: 0.35; pointer-events: none; }
-.hero { text-align: center; padding: 50px 40px 10px; }
-.hero h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 82px; color: #FF6A13; letter-spacing: 8px; line-height: 1.1; }
-.hero .sub { font-size: 22px; color: #7B5A40; margin-top: 10px; letter-spacing: 1px; }
-.euv-svg { display: block; margin: 18px auto 10px; }
-.concepts { display: flex; justify-content: center; gap: 24px; padding: 12px 40px 0; }
-.concept { flex: 1; background: rgba(255,255,255,0.6); border-radius: 14px; border: 2px solid #E8C9AA; padding: 18px 14px; text-align: center; }
-.concept .ico { font-size: 38px; margin-bottom: 6px; }
-.concept .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 22px; color: #FF6A13; margin-bottom: 4px; }
-.concept .d { font-size: 15px; color: #7B5A40; line-height: 1.4; }
-.bigbox { margin: 24px 40px 0; background: linear-gradient(135deg, #FF6A13 0%, #E54A00 100%); border-radius: 18px; padding: 26px 30px; color: white; display: flex; align-items: center; gap: 22px; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 68px; line-height: 1; color: #FFF1C4; text-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-.bigbox .txt { flex: 1; font-size: 19px; line-height: 1.5; }
-.bigbox .txt strong { color: #FFF1C4; }
-.yieldbox { margin: 22px 40px 0; background: #FFF7EC; border: 2px solid #FF6A13; border-radius: 14px; padding: 18px 22px; }
-.yieldbox .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
-.yieldbox .head .big { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 54px; color: #FF6A13; line-height: 1; }
-.yieldbox .head .mid { font-size: 24px; color: #A04A00; font-weight: 700; }
-.yieldbox .lst { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; font-size: 17px; color: #4A3A2E; }
-.yieldbox .lst strong { color: #FF6A13; font-weight: 700; }
-.flow-wrap { margin: 22px 40px 0; padding: 18px 22px; background: rgba(255,255,255,0.55); border-radius: 14px; }
-.flow-wrap .title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 26px; color: #FF6A13; text-align: center; margin-bottom: 14px; }
-.flow { display: flex; align-items: center; justify-content: space-between; }
-.flow .node { flex: 1; text-align: center; padding: 10px 6px; background: white; border: 2px solid #FF6A13; border-radius: 10px; }
-.flow .node .nt { font-size: 15px; color: #FF6A13; font-weight: 700; }
-.flow .node .nd { font-size: 13px; color: #7B5A40; margin-top: 3px; }
-.flow .arrow { font-size: 22px; color: #0066CC; margin: 0 4px; font-weight: 700; }
-.quotes { padding: 0 40px; margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.q { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 16px 14px; border-left: 4px solid #FF6A13; }
-.q .qt { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 19px; color: #FF6A13; margin-bottom: 8px; line-height: 1.3; }
-.q .qd { font-size: 14px; color: #4A3A2E; line-height: 1.55; }
-.q .qa { font-size: 12px; color: #A04A00; margin-top: 6px; font-style: italic; }
-.footer { text-align: center; font-size: 15px; color: #8A7050; margin-top: 24px; padding-bottom: 18px; line-height: 1.6; }
-
-
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #005EB8; --codex-soft: rgba(226,239,255,.70); }
-.codex-role-note {
-  margin: 18px 40px 0;
-  border: 2px dashed var(--codex-accent);
-  border-radius: 12px;
-  background: rgba(255,255,255,.52);
-  padding: 12px 18px;
-  color: #5A4A3A;
-  font-size: 17px;
-  line-height: 1.55;
-  text-align: center;
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1880px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
-.codex-role-note b { color: var(--codex-accent); }
-.codex-strategy-panel .num { font-size: 42px !important; }
-.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
-.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
-.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-<div class="hero">
-  <h1>阿 斯 麦 · 光 刻 之 巅</h1>
-  <div class="sub">ASML NASDAQ:ASML · 全球光刻 90% · EUV 独家 100%</div>
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #005EB8; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #005EB8; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #005EB8; border-radius: 26px; background: rgba(255,255,255,.58); color: #005EB8; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #005EB8; padding-left: 22px; }
+.thesis .k { color: #005EB8; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #005EB8; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #005EB8; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #F28C28; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #005EB8; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #005EB8; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #F28C28; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #005EB8; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #005EB8; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #4A6B3B; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>阿斯麦 的经营之道</div>
+  <div class='subtitle'>ASML · Business Playbook · 核心业务与硬指标</div>
+  <div class='pill'>长期战略定位 × 核心赚钱引擎 × 近期动作</div>
+  <div class='hero'><div class='mark'>阿斯</div><div class='thesis'><div class='k'>长期战略定位</div><div class='v'>唯一能规模化交付 EUV/High-NA 的系统工程公司，卡住先进制程最稀缺瓶颈。</div></div></div>
+  <div class='section-title'>核心业务与硬指标</div>
+  <div class='core-grid'><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>EUV 100% 全球垄断</h3></div><div class='metric'>100% 全球垄断</div><div class='body'>全球唯一能量产 EUV 光刻机,单台 $2-3 亿,无替代者</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>30+ 年研发积累</h3></div><div class='metric'>每台 EUV 含 10 万+ 零件,Zeiss 光学+Cy…</div><div class='body'>每台 EUV 含 10 万+ 零件,Zeiss 光学+Cymer 光源独家</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>台积电/三星/Intel 锁定</h3></div><div class='metric'>全球 2nm 以下制程必须用 ASML,客户被锁死</div><div class='body'>全球 2nm 以下制程必须用 ASML,客户被锁死</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='14' cy='17' r='5'/><circle cx='34' cy='17' r='5'/><circle cx='24' cy='34' r='5'/><path d='M19 19l10 0M16 22l6 8M32 22l-6 8'/></svg></div><h3>装机基数服务收入</h3></div><div class='metric'>8.2B</div><div class='body'>Installed Base 管理销售约 €8.2B，随全球在机系统和升级需求复利。</div></div></div>
+  <div class='section-title'>近年战略动作</div>
+  <div class='actions'><div class='action'><div class='tag'>EUV</div><div class='body'><b>High-NA EUV 商业化 TWINSCAN EXE:5200</b>：首批 Intel/台积电交付,$3.5 亿/台</div></div><div class='action'><div class='tag'>产能</div><div class='body'><b>EUV 年产 70 台目标 FY26</b>：产能翻倍满足 AI 芯片需求</div></div><div class='action'><div class='tag'>客户</div><div class='body'><b>英伟达/苹果/Meta 自研芯片</b>：AI 芯片自研浪潮推动 2nm 需求</div></div><div class='action'><div class='tag'>研发</div><div class='body'><b>Hyper-NA EUV 研发中</b>：下一代光刻,2030 年商业化目标</div></div></div>
+  <div class='quote'>「EUV 是 2nm 以下芯片的唯一路径。」— CEO Fouquet (FY25 业绩会)</div>
 </div>
-
-<svg class="euv-svg" width="380" height="190" viewBox="0 0 380 190">
-  <rect x="30" y="30" width="320" height="130" rx="10" fill="#2A1A0E" stroke="#FF6A13" stroke-width="3"/>
-  <circle cx="100" cy="95" r="28" fill="#FF6A13" opacity="0.8"/>
-  <circle cx="100" cy="95" r="14" fill="#FFF1C4"/>
-  <text x="100" y="99" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="10" fill="#FF6A13">EUV</text>
-  <path d="M 128 95 Q 180 60 220 95 Q 260 130 300 95" stroke="#FFB366" stroke-width="3" fill="none" stroke-dasharray="6 3"/>
-  <polygon points="295,88 310,95 295,102" fill="#FFB366"/>
-  <rect x="300" y="75" width="40" height="40" fill="#0066CC" opacity="0.7"/>
-  <text x="320" y="100" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="11" fill="white">Wafer</text>
-  <text x="190" y="30" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="18" fill="#FF6A13" dy="-8">TWINSCAN EXE:5200</text>
-  <text x="190" y="180" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="13" fill="#7B5A40">ASML · High-NA EUV · 规模数据见全景/台</text>
-</svg>
-
-<div class="concepts">
-  <div class="concept">
-    <div class="ico">🔬</div>
-    <div class="t">EUV 100%</div>
-    <div class="d">全球唯一量产<br>台积电 Intel 必用</div>
-  </div>
-  <div class="concept">
-    <div class="ico">💎</div>
-    <div class="t">10 万+ 零件</div>
-    <div class="d">Zeiss 光学+Cymer<br>30 年积累不可复</div>
-  </div>
-  <div class="concept">
-    <div class="ico">📋</div>
-    <div class="t">订单积压 规模数据见全景</div>
-    <div class="d">1 年以上交付<br>可见度史上最高</div>
-  </div>
-</div>
-
-<!-- codex-strategy-panel-start -->
-<!-- codex-strategy-panel-start -->
-<div class="bigbox codex-strategy-panel">
-  <div style="flex:1">
-    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
-    <div class="s1">唯一能大规模交付 EUV 的设备公司，卡住先进制程最窄瓶颈。<br>关键链条：EUV 技术 → 客户预订 → 服务收入 → High-NA</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num" style="color:#005EB8">逻辑</div>
-    <div class="lab">数据只作证据</div>
-  </div>
-</div>
-<!-- codex-strategy-panel-end -->
-<!-- codex-strategy-panel-end -->
-
-<!-- codex-strategy-evidence-start -->
-<!-- codex-strategy-evidence-start -->
-<div class="yieldbox codex-strategy-evidence">
-  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
-  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">EUV 100% 全球垄断</div><div class="yld-sub">全球唯一能量产 EUV 光刻机,单台 相关规模-3 亿,无替代者</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">EUV 技术 → 客户预订 → 服务业务规模</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">High-NA EUV 商业化 TWINS…</div><div class="yld-sub">首批 Intel/台积电交付,相关规模/台</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">High-NA EUV 订单 20 台</div><div class="yld-sub">Intel+台积电抢购,2nm 以下光刻唯一选择</div></div></div>
-</div>
-<!-- codex-strategy-evidence-end -->
-<!-- codex-strategy-evidence-end -->
-
-<div class="flow-wrap">
-  <div class="title">芯 片 产 业 链 顶 端 · 无 ASML 则 无 AI</div>
-  <div class="flow">
-    <div class="node"><div class="nt">Zeiss</div><div class="nd">光学镜片</div></div>
-    <div class="arrow">›</div>
-    <div class="node"><div class="nt">ASML</div><div class="nd">EUV 组装</div></div>
-    <div class="arrow">›</div>
-    <div class="node"><div class="nt">台积电</div><div class="nd">2nm 制程</div></div>
-    <div class="arrow">›</div>
-    <div class="node"><div class="nt">英伟达</div><div class="nd">AI 芯片</div></div>
-    <div class="arrow">›</div>
-    <div class="node"><div class="nt">AI 模型</div><div class="nd">ChatGPT 等</div></div>
-  </div>
-</div>
-
-<div class="quotes">
-  <div class="q">
-    <div class="qt">「EUV 是 2nm<br>唯一路径」</div>
-    <div class="qd">High-NA 已进入<br>商业化阶段</div>
-    <div class="qa">— CEO Fouquet</div>
-  </div>
-  <div class="q">
-    <div class="qt">「FY26 EUV<br>年产翻倍 70 台」</div>
-    <div class="qd">AI 芯片需求推动<br>产能全速扩张</div>
-    <div class="qa">— Fouquet</div>
-  </div>
-  <div class="q">
-    <div class="qt">「订单可见度<br>史上最高」</div>
-    <div class="qd">规模数据见全景积压<br>超过一年产能</div>
-    <div class="qa">— CFO Dassen</div>
-  </div>
-</div>
-
-<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
-<!-- codex-role-note-end -->
-<div class="footer">经营之道：经营数据：ASML FY2025 年报/业绩会（2026-01）；汇率口径：欧元金额按 2026-04-26 近似汇率 1 EUR≈1.08 USD 折算；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class='footer'><div>经营数据：ASML 2025 Annual Report / Q4 2025 transcript，FY2025: 2025年1-12月</div><div>同比口径：FY2025 vs FY2024；净销售额 +15%，毛利率 52.8%，净利润 +17%</div><div>管理文化：ASML Careers / Annual Report / Sustainability / supplier ecosystem materials，核查：2026年5月</div><div>汇率口径：欧元按 1 EUR≈1.18 USD 折算，查看：2026年5月</div><div>经营之道：财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

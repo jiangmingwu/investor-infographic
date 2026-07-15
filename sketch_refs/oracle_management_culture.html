@@ -1,66 +1,64 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
+  width: 900px; height: 1720px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#C74634; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #C74634; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #C74634; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#C74634; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #C74634; padding-left:24px; }
-.thesis .k { color:#C74634; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#C74634; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#C74634; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#C74634; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #C74634; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#C74634; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#C74634; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#C74634; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #C74634; background:rgba(252,232,229,.70); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#C74634; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #C74634; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #C74634; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #C74634; border-radius: 26px; background: rgba(255,255,255,.58); color: #C74634; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #C74634; padding-left: 22px; }
+.thesis .k { color: #C74634; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #C74634; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #C74634; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #C74634; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #C74634; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #312D2A; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #C74634; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #C74634; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #C74634; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #312D2A; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #C74634; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #C74634; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #C74634; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>甲骨文 的 管 理 文 化</div>
-  <div class='subtitle'>销售和数据库锁定组织 · Management Culture</div>
-  <div class='pill'>强销售 × 数据库粘性 × AI 云扩张</div>
-  <div class='hero'><div class='mark'>甲骨</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>甲骨文文化是强销售和企业客户锁定，数据库现金流支持 OCI 和 AI 云基础设施扩张。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#C74634'><div class='num' style='color:#C74634'>数据库</div><div class='lab'>核心锁定</div></div><div class='stat' style='border-color:#C74634'><div class='num' style='color:#C74634'>OCI</div><div class='lab'>云增长</div></div><div class='stat' style='border-color:#C74634'><div class='num' style='color:#C74634'>强销售</div><div class='lab'>组织特征</div></div><div class='stat' style='border-color:#C74634'><div class='num' style='color:#C74634'>AI 集群</div><div class='lab'>新增长</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>商业机制</span><h3>企业销售</h3><div class='body'>围绕大型企业合同、续费和迁移提供强销售覆盖。</div></div><div class='card'><span class='tag'>护城河</span><h3>数据库锁定</h3><div class='body'>核心业务系统迁移成本高，给云转型提供客户基础。</div></div><div class='card'><span class='tag'>管理文化</span><h3>执行导向</h3><div class='body'>强调合同、交付和利润，不是研究型文化。</div></div><div class='card'><span class='tag'>资本配置</span><h3>AI 云下注</h3><div class='body'>用数据中心和 GPU 集群争取 AI 训练工作负载。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>商业和销售导向强。</li><li>适合企业软件、数据库、云基础设施和销售人才。</li><li>文化更务实，结果压力明确。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是客户锁定和利润基础。</li><li>风险是云 CapEx、负债和 hyperscaler 竞争。</li><li>文化价值是把旧客户转成新云合同。</li></ul></div>
-  </div>
-  <div class='note-box'><h3>一句话总结</h3><p>甲骨文的文化，是用强销售把数据库粘性迁移到云。</p></div>
+  <div class='title'>甲骨文管理文化</div>
+  <div class='subtitle'>ORCL · Management Culture · 真实公开口径</div>
+  <div class='pill'>组织方式 × 经营机制 × 员工待遇</div>
+  <div class='hero'><div class='mark'>甲骨</div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>甲骨文文化是强销售和企业客户锁定，数据库现金流支持 OCI 和 AI 云基础设施扩张。</div></div></div>
+  <div class='section-title'>公开可验证的管理机制</div>
+  <div class='cards'><div class='card'><span class='mini'>企业销售</span><div class='body'>商业机制：围绕大型企业合同、续费和迁移提供强销售覆盖。</div></div><div class='card'><span class='mini'>数据库锁定</span><div class='body'>护城河：核心业务系统迁移成本高，给云转型提供客户基础。</div></div><div class='card'><span class='mini'>执行导向</span><div class='body'>管理文化：强调合同、交付和利润，不是研究型文化。</div></div><div class='card'><span class='mini'>AI 云下注</span><div class='body'>资本配置：用数据中心和 GPU 集群争取 AI 训练工作负载。</div></div><div class='card'><span class='mini'>员工福利</span><div class='body'>Careers 公开列出健康、退休、带薪休假、学习发展和员工资源网络，具体随地区不同。</div></div><div class='card'><span class='mini'>合规与信任</span><div class='body'>企业客户、支付或金融体系里，合规、隐私、安全和客户信任本身就是管理机制。</div></div></div>
 </div>
-<div class='footer'>管理文化：Oracle FY2025 Annual Report / Careers / Proxy，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class='footer'><div>经营数据：Oracle FY2025 results / Form 10-K，FY2025: 2024年6月-2025年5月</div><div>管理文化：Oracle Annual Report / Careers / Proxy / Larry Ellison &amp; Safra Catz public remarks，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
 </body></html>

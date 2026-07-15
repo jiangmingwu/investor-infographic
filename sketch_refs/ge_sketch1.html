@@ -1,0 +1,96 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1680px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #0A5CAA; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #0A5CAA; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #0A5CAA; border-radius: 26px; background: rgba(255,255,255,.58); color: #0A5CAA; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #0A5CAA; padding-left: 22px; }
+.thesis .k { color: #0A5CAA; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #0A5CAA; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #0A5CAA; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0A5CAA; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #0A5CAA; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #283C63; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #0A5CAA; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #0A5CAA; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #0A5CAA; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #283C63; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #0A5CAA; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #0A5CAA; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #0A5CAA; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #0A5CAA; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #0A5CAA; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>GE航空 的经营之道</div>
+  <div class='subtitle'>GE · Business Playbook · 核心业务与硬指标</div>
+  <div class='pill'>长期战略定位 × 核心赚钱引擎 × 近期动作</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="GE航空" viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="58" r="42" fill="#0A5CAA"/>
+  <circle cx="90" cy="58" r="34" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  <text x="90" y="75" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="48" font-style="italic" font-weight="700" fill="#FFFFFF">GE</text>
+</svg></div><div class='thesis'><div class='k'>长期战略定位</div><div class='v'>设备销售只是入口，发动机装机基础和长期服务才是航空现金流核心。</div></div></div>
+  <div class='section-title'>核心业务与硬指标</div>
+  <div class='core-grid'><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>发动机装机基础</h3></div><div class='metric'>积压约$190B</div><div class='body'>商用发动机一旦装机，就带来多年维修和备件需求。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>高认证壁垒</h3></div><div class='metric'>航空安全认证多年</div><div class='body'>航空发动机安全认证周期长，新进入者很难复制。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>服务收入复利</h3></div><div class='metric'>商用约73%收入</div><div class='body'>服务随飞行小时、机龄和发动机存量增长。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 38h32V20l-9 5v-5l-9 5V10H8z'/><path d='M14 38V28h8v10'/><path d='M28 31h6'/></svg></div><h3>军用推进能力</h3></div><div class='metric'>军用约$10B收入</div><div class='body'>军用航空项目周期长，客户关系和技术门槛高。</div></div></div>
+  <div class='section-title'>近年战略动作</div>
+  <div class='actions'><div class='action'><div class='tag'>服务</div><div class='body'><b>发动机存量变现金</b>：飞行小时和在役发动机推动高毛利服务。</div></div><div class='action'><div class='tag'>订单</div><div class='body'><b>积压约 $190B</b>：强需求给未来收入提供可见度。</div></div><div class='action'><div class='tag'>精益</div><div class='body'><b>FLIGHT DECK</b>：用精益体系改善交付、质量和供应链。</div></div><div class='action'><div class='tag'>回购</div><div class='body'><b>提高股东回报</b>：分拆后更聚焦航空现金流和回购。</div></div></div>
+  <div class='quote'>「FLIGHT DECK 正在变成持续改善的操作系统。」— GE Aerospace 年报口径</div>
+</div>
+<div class='footer'><div>经营数据：GE Aerospace 2025 Annual Report / Form 10-K，FY2025: 2025年1-12月</div><div>管理文化：GE Aerospace FLIGHT DECK / annual report / careers，核查：2026年6月</div><div>经营之道：财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

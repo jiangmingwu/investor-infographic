@@ -5,6 +5,10 @@ This file centralizes the 2026 CapEx, ROI/ROIC, business-thesis, and
 management-culture additions used by the company infographic workflow.
 All money figures are displayed in USD unless explicitly marked as not
 comparable or undisclosed.
+
+Display rule: keep the main visual short and clean. Detailed fiscal-year
+periods, ROI formulas, CapEx sources, market-data dates, and exchange-rate
+notes belong in FOOTER_LINES, not in metric cards.
 """
 
 GREEN = "#5BA85B"
@@ -62,23 +66,23 @@ OPERATING_OVERRIDES = {
     "meta": {"roi": "ROIC 30%+", "roi_note": "Family of Apps 广告现金流很强；AI 与 Reality Labs CapEx 正在重塑回报曲线。", "capex": "2026E $1,150-1,350亿", "capex_note": "公司指引口径，主要投 AI 数据中心、服务器和网络基础设施。", "thesis": "35 亿级日活的社交分发网络，用 AI 提升广告效率，再押注下一代计算入口。", "flywheel": ["社交关系", "内容推荐", "广告量价", "AI 基建", "眼镜/下一入口"]},
     "tesla": {"roi": "ROI 约个位数", "roi_note": "汽车降价和新业务投入压低回报；Robotaxi/Optimus 是期权而非当前利润。", "capex": "2026E 约 $100亿+级", "capex_note": "未披露精确全年数；重点看车型平台、AI 训练、Robotaxi 和产能改造。", "thesis": "把汽车制造、能源和 AI 自动驾驶押在同一套数据与硬件平台上。", "flywheel": ["车辆数据", "FSD 训练", "制造降本", "能源/机器人", "软件订阅"]},
     "walmart": {"roi": "ROIC 约 13%", "roi_note": "低利润高周转模型，门店与物流资产回报稳定，广告/会员提升边际利润。", "capex": "FY26 约 $230亿", "capex_note": "门店自动化、供应链、电商履约和技术系统。", "thesis": "用规模采购和物流密度把低价做成护城河，再用电商广告抬利润。", "flywheel": ["低价", "客流", "供应链规模", "会员/广告", "自动化"]},
-    "berkshire": {"roi": "不可比", "roi_note": "控股公司口径不适合用普通 ROIC；更适合看每股账面价值、保险浮存金和经营利润。", "capex": "2026E 不可比", "capex_note": "CapEx 分散在铁路、能源、制造服务等子公司，不能直接与科技公司比较。", "thesis": "用保险浮存金和长期资本配置，买入能穿越周期的现金流资产。", "flywheel": ["保险浮存金", "耐心资本", "控股现金流", "危机买入", "少干预管理"]},
-    "samsung": {"roi": "ROIC 约 5%-10%", "roi_note": "存储周期强，AI HBM 改善回报；晶圆代工和消费电子拖累整体波动。", "capex": "2026E 高位", "capex_note": "HBM、先进存储、Foundry 和显示面板仍需大额投资。", "thesis": "用垂直整合和存储周期押注，在 AI HBM 中重新争夺定价权。", "flywheel": ["存储规模", "制造学习", "终端品牌", "HBM 认证", "资本扩产"]},
-    "jpmorgan": {"roi": "银行口径", "roi_note": "传统 ROIC 不适用；重点看 ROE、ROTCE、CET1 和风险成本。", "capex": "不适用", "capex_note": "银行资本投入主要体现为技术支出、风险资产和资本充足率，而非工业 CapEx。", "thesis": "用规模、风控和全牌照金融网络，在危机中扩大份额。", "flywheel": ["存款规模", "风控模型", "投行/资管", "技术投入", "资本回报"]},
-    "lilly": {"roi": "ROIC 20%+", "roi_note": "GLP-1 药物高毛利，但扩产和研发投入拉高资本需求。", "capex": "2026E 高位", "capex_note": "重点是 GLP-1 产能、无菌制造和全球供应链扩张。", "thesis": "用研发和制造扩产抓住肥胖/糖尿病超级周期。", "flywheel": ["研发管线", "临床数据", "产能扩张", "医生信任", "现金再研发"]},
-    "exxon": {"roi": "ROCE 约 12%+", "roi_note": "油气公司更常看 ROCE；低成本项目和纪律性投资决定穿越周期能力。", "capex": "2026E $270-290亿级", "capex_note": "上游、Permian、LNG、化工和低碳项目。", "thesis": "通过严格资本纪律，只投能在低油价下也赚钱的长周期项目。", "flywheel": ["低成本资源", "项目纪律", "现金流", "回购分红", "并购整合"]},
-    "visa": {"roi": "ROIC 40%+", "roi_note": "网络型轻资产公司，交易量增长带来极高增量利润。", "capex": "2026E 低", "capex_note": "资本开支不是主要约束；重点是网络安全、AI 风控和全球支付基础设施。", "thesis": "连接银行、商户和消费者的支付网络，规模越大单位成本越低。", "flywheel": ["支付接受度", "交易数据", "风控安全", "跨境网络", "高利润回购"]},
-    "tencent": {"roi": "ROIC 20%+", "roi_note": "游戏、广告、金融科技现金流强；AI 投入和云业务影响短期回报。", "capex": "2026E AI继续加码", "capex_note": "未披露精确美元全年数；看 AI 算力、云、视频号和大模型应用。", "thesis": "微信关系链是中国互联网超级入口，游戏和广告贡献现金流，AI 提升效率。", "flywheel": ["微信关系链", "内容/小程序", "广告转化", "游戏现金流", "AI 云"]},
-    "skhynix": {"roi": "ROIC 20%+", "roi_note": "HBM 景气高点回报优秀，但存储周期反转时会快速下行。", "capex": "2026E 高位", "capex_note": "HBM、先进 DRAM 和封装产能是核心；韩元披露按美元口径展示。", "thesis": "抓住 HBM 供给瓶颈，成为 AI GPU 时代最关键的内存配套。", "flywheel": ["HBM 技术", "英伟达认证", "产能扩张", "高 ASP", "研发迭代"]},
-    "asml": {"roi": "ROIC 40%+", "roi_note": "EUV 垄断使回报率极高；订单节奏受半导体周期和出口管制影响。", "capex": "2026E 适中", "capex_note": "重点是 High-NA、产能爬坡和服务网络；欧元数据折算为美元。", "thesis": "唯一能大规模交付 EUV 的设备公司，卡住先进制程最窄瓶颈。", "flywheel": ["EUV 技术", "客户预订", "服务收入", "High-NA", "研发再投入"]},
-    "amd": {"roi": "ROIC 约 5%-10%", "roi_note": "CPU/GPU 产品力改善，但 AI GPU 份额仍在爬坡，回报低于英伟达。", "capex": "2026E 低资本强度", "capex_note": "Fabless 模式，重点是研发、封装合作和 AI 加速器生态。", "thesis": "用台积电先进制程和 chiplet 架构，在 CPU 与 AI GPU 中做第二供给。", "flywheel": ["Chiplet", "EPYC 服务器", "MI 系列 GPU", "开放生态", "客户双供"]},
+    "berkshire": {"roi": "FY25 ROE 9.8%", "roi_note": "控股公司传统 ROIC 可比性弱；FY2025 ROE = $66.968B 净利 / 2024YE-2025YE 平均股东权益约 $685.7B，StockAnalysis TTM ROIC 17.96% 仅作第三方参考。", "capex": "2026E ≥ $150亿", "capex_note": "Berkshire 2025 10-K 披露 BNSF+BHE 预计 2026 资本开支约 $15B；Q1 2026 合并 PP&E/租赁设备支出 $4.986B，合并全年 CapEx 未单独完整指引。", "thesis": "用保险浮存金和长期资本配置，买入能穿越周期的现金流资产。", "flywheel": ["保险浮存金", "耐心资本", "控股现金流", "危机买入", "少干预管理"]},
+    "samsung": {"roi": "ROI/ROE 约 10.7%", "roi_note": "FY2025 净利润 / 2024-2025 平均净资产近似；AI HBM 改善回报，但仍需结合周期和 CapEx 看。", "capex": "2026E 约 $752 亿", "capex_note": "工厂+R&D 计划约 110 万亿 KRW，美元按 1 USD = 1,461.93 KRW（Xe，2026-05-10 23:34 UTC） 折算；核心投向 AI 半导体设施。", "thesis": "用垂直整合、制造学习和 AI HBM 复位，在存储新周期里重新争夺定价权。", "flywheel": ["AI 算力需求", "HBM4/SOCAMM2", "DS 利润", "R&D+工厂", "终端入口"]},
+    "jpmorgan": {"roi": "ROTCE 20%", "roi_note": "银行传统 ROIC 不适用；采用 JPM FY2025 ROTCE 20% 作为资本回报口径，并结合 ROE、CET1 和风险成本。", "capex": "未披露/不可比", "capex_note": "银行不披露可比工业 CapEx；资本投入主要体现为技术支出、网点、风险资产和资本充足率。", "thesis": "用规模、风控和全牌照金融网络，在危机中扩大份额。", "flywheel": ["存款规模", "风控模型", "投行/资管", "技术投入", "资本回报"]},
+    "lilly": {"roi": "ROIC 41.9%", "roi_note": "StockAnalysis TTM ROIC；GLP-1 利润释放后资本效率大幅抬升。", "capex": "未披露单年额", "capex_note": "2026 公司给出营收/EPS 指引和多项建厂计划，但未披露单年 CapEx 总额。", "thesis": "用临床证据、GLP-1 双爆款和制造扩产，把肥胖/糖尿病需求转成长期现金流。", "flywheel": ["临床数据", "GLP-1需求", "产能扩张", "医生/支付", "现金再研发"]},
+    "exxon": {"roi": "ROCE口径", "roi_note": "油气公司常用 ROCE；低成本资源、项目纪律和资本回收决定穿越周期能力。", "capex": "2026E $270-290亿", "capex_note": "上游、Permian、LNG、化工和低碳项目；公司长期资本计划口径。", "thesis": "用低成本油气资源、工程安全和资本纪律，在油价周期里稳定分红并扩大优质储量。", "flywheel": ["低成本资源", "项目纪律", "经营现金流", "分红回购", "并购整合"]},
+    "visa": {"roi": "ROIC 40%+", "roi_note": "网络型轻资产公司，交易量和增值服务增长带来高资本回报。", "capex": "未披露/低约束", "capex_note": "资本开支不是主要瓶颈；重点是网络安全、AI风控、Visa Direct和全球支付基础设施。", "thesis": "连接银行、商户和消费者，靠全球支付网络、风险控制和数据服务抽取小额高频通行费。", "flywheel": ["商户接受", "发卡规模", "交易数据", "风控安全", "回购分红"]},
+    "tencent": {"roi": "ROE 约 24%", "roi_note": "FY2025 摊薄 ROE 约 24%；ROE = 股东应占利润 / 平均股东权益。腾讯现金和投资资产较多，ROIC 不作为主展示口径。", "roi_card_note": "每 100 元股东权益约赚 24 元利润；比抽象 ROIC 更适合普通读者理解腾讯资本效率。", "capex": "2026E AI加码", "capex_note": "未披露精确单年美元 CapEx；AI新产品、云算力、视频号和大模型应用继续投入。", "thesis": "以微信关系链做超级入口，把游戏、广告、支付、云和AI放进同一生态里变现。", "flywheel": ["微信关系链", "内容/小程序", "广告转化", "游戏现金流", "AI云"]},
+    "skhynix": {"roi": "ROIC周期高位", "roi_note": "HBM 景气高点回报优秀；传统 DRAM/NAND 周期反转时会快速下行。", "capex": "2026E 高位", "capex_note": "公司指向 HBM、先进 DRAM、封装、M15X/龙仁/EUV 等高位投入，未披露精确全年美元额。", "thesis": "通过 HBM 技术、客户认证和先进封装卡住 AI GPU 供给瓶颈，把周期存储做成稀缺基础设施。", "flywheel": ["HBM技术", "客户认证", "产能扩张", "高ASP", "研发迭代"]},
+    "asml": {"roi": "ROIC 40%+", "roi_note": "EUV/High-NA 技术垄断带来高资本效率；订单节奏受半导体周期和出口管制影响。", "capex": "未披露单年额", "capex_note": "重点是 High-NA、EUV产能、服务网络和研发投入；公司未披露精确 2026 单年 CapEx。", "thesis": "唯一能规模化交付 EUV/High-NA 的系统工程公司，卡住先进制程最稀缺瓶颈。", "flywheel": ["EUV技术", "客户锁定", "服务收入", "High-NA", "研发再投入"]},
+    "amd": {"roi": "ROIC 约 5%-10%", "roi_note": "CPU/GPU 产品力改善，但 AI GPU 份额仍在爬坡，回报低于英伟达。", "roi_card_note": "AI GPU 仍在爬坡；CPU/EPYC 提供现金流，但整体资本效率低于 NVIDIA。", "capex": "2026E 低资本强度", "capex_note": "Fabless 模式，重点是研发、封装合作和 AI 加速器生态。", "thesis": "用台积电先进制程和 chiplet 架构，在 CPU 与 AI GPU 中做第二供给。", "flywheel": ["Chiplet", "EPYC 服务器", "MI 系列 GPU", "开放生态", "客户双供"]},
     "oracle": {"roi": "ROIC 约 10%+", "roi_note": "数据库现金流稳定；AI 云扩张和租赁承诺会拉高资本压力。", "capex": "FY26 高位", "capex_note": "数据中心、GPU 集群和 OCI 扩张是重点，需看自由现金流压力。", "thesis": "用数据库客户锁定切入云基础设施，靠 AI 训练集群抢云增长。", "flywheel": ["数据库锁定", "企业客户", "OCI 低价", "AI 集群", "长期合同"]},
     "mastercard": {"roi": "ROIC 50%+", "roi_note": "轻资产支付网络，增量交易几乎直接转化为利润。", "capex": "2026E 低", "capex_note": "重点是安全、Tokenization、数据服务和网络稳定性。", "thesis": "全球支付网络 + 数据服务，靠交易频次和安全能力复利增长。", "flywheel": ["发卡网络", "商户接受", "Token 安全", "数据服务", "回购"]},
     "costco": {"roi": "ROIC 20%+", "roi_note": "低毛利高周转、会员费高续约，资本回报来自门店纪律和库存效率。", "capex": "2026E 中等", "capex_note": "新店、物流、数字化和海外扩张；不靠重资产科技 CapEx。", "thesis": "用高工资和低加价率换取员工稳定与会员信任。", "flywheel": ["低加价率", "高周转", "员工稳定", "会员续费", "供应商议价"]},
-    "intel": {"roi": "ROI 为负/低", "roi_note": "亏损和 Foundry 转型使短期 ROI 承压；要看制程恢复和资本效率。", "capex": "2026E 高位", "capex_note": "晶圆厂、先进封装和政府补贴项目；重资产转型风险高。", "thesis": "试图用 IDM 2.0 重建制造能力，但需要用多年 CapEx 换技术追赶。", "flywheel": ["制程追赶", "晶圆厂投资", "封装", "政府补贴", "客户信任"]},
+    "intel": {"roi": "ROI（净利口径）约 -1%", "roi_note": "FY2025 GAAP 净亏损，净利/投入资本口径为负；Foundry 转型期要看 18A、外部客户和资本效率修复。", "roi_card_note": "FY2025 GAAP 净亏损，重资产转型期资本回报为负；看 18A/Foundry 修复。", "capex": "2026E 高位", "capex_note": "晶圆厂、先进封装和政府补贴项目；重资产转型风险高。", "thesis": "试图用 IDM 2.0 重建制造能力，但需要用多年 CapEx 换技术追赶。", "flywheel": ["制程追赶", "晶圆厂投资", "封装", "政府补贴", "客户信任"]},
     "netflix": {"roi": "ROIC 25%+", "roi_note": "内容投入大但资本开支低，现金回报来自订阅、广告和全球分发。", "capex": "2026E 低", "capex_note": "核心不是传统 CapEx，而是内容现金支出、广告技术和游戏/直播投入。", "thesis": "用全球内容分发和算法，把影视消费做成高现金流订阅产品。", "flywheel": ["内容投资", "用户观看", "算法推荐", "广告/会员", "现金回购"]},
     "caterpillar": {"roi": "ROIC 20%+", "roi_note": "周期行业里靠经销商网络、服务件和定价纪律维持高回报。", "capex": "2026E 中等", "capex_note": "产能维护、自动化、矿山能源设备和数字化服务。", "thesis": "设备销售只是入口，服务件和经销商网络才是穿越周期的利润核心。", "flywheel": ["经销商网络", "设备装机", "服务件", "矿山能源", "现金回报"]},
-    "bankofamerica": {"roi": "银行口径", "roi_note": "传统 ROIC 不适用；重点看 ROE、ROTCE、存款成本和信用损失。", "capex": "不适用", "capex_note": "资本投入主要体现为技术平台、分行数字化、资本充足率和风险资产。", "thesis": "用低成本存款和全国零售网络，穿越利率周期。", "flywheel": ["零售存款", "数字银行", "信用卡/贷款", "财富管理", "资本回报"]},
+    "bankofamerica": {"roi": "ROTCE 14.2% / ROE 10.6%", "roi_note": "银行传统 ROIC 不适用；采用 FY2025 ROTCE 14.2% 与 ROE 10.6% 作为资本回报口径。", "roi_card_note": "银行不用传统 ROIC；重点看有形普通股回报、ROE、存款成本和信用损失。", "capex": "不适用/技术投入", "capex_note": "资本投入主要体现为技术平台、分行数字化、资本充足率和风险资产。", "thesis": "用低成本存款和全国零售网络，穿越利率周期。", "flywheel": ["零售存款", "数字银行", "信用卡/贷款", "财富管理", "资本回报"]},
 }
 
 
@@ -87,10 +91,25 @@ def apply_operating_overrides(data, slug):
     if not override:
         return data
 
-    data["CAPITAL_AND_ROI"] = [
-        ("全年 ROI / ROIC", override["roi"], override["roi_note"]),
-        ("2026 资本开支", override["capex"], override["capex_note"]),
+    roi_note = "资本效率结论；完整公式、财年和来源见底部备注。"
+    if any(marker in override["roi"] for marker in ("不可比", "不适用", "银行")):
+        roi_note = "行业口径特殊，替代指标和限制见底部备注。"
+
+    capex_note = "2026 年投入强度结论；来源和限制见底部备注。"
+    if any(marker in override["capex"] for marker in ("未披露", "不可比", "不适用")):
+        capex_note = "公开口径有限，披露限制见底部备注。"
+
+    existing_capital_rows = list(data.get("CAPITAL_AND_ROI", []))
+    shareholder_terms = ("股东", "分红", "股息", "回购", "shareholder", "dividend", "buyback")
+    shareholder_rows = [
+        row for row in existing_capital_rows
+        if row and any(term.lower() in str(row[0]).lower() for term in shareholder_terms)
     ]
+
+    data["CAPITAL_AND_ROI"] = [
+        ("ROI / ROIC", override["roi"], override.get("roi_card_note", roi_note)),
+        ("2026E CapEx", override["capex"], capex_note),
+    ] + shareholder_rows[:3]
 
     metrics = list(data.get("KEY_METRICS", []))
     metrics = [m for m in metrics if m[0] not in {"ROI / ROIC", "2026 CapEx"}]
@@ -99,10 +118,20 @@ def apply_operating_overrides(data, slug):
     data["KEY_METRICS"] = metrics[:14]
 
     lines = list(data.get("FOOTER_LINES", []))
-    roi_line = f"ROI口径：{override['roi_note']}；CapEx口径：{override['capex_note']}"
-    if not any(line.startswith("ROI口径：") for line in lines):
-        insert_at = max(1, len(lines) - 2)
-        lines.insert(insert_at, roi_line)
+    lines = [
+        line for line in lines
+        if not (
+            line.startswith("ROI口径：")
+            or line.startswith("2026 CapEx口径：")
+            or line.startswith("CapEx口径：")
+        )
+    ]
+    audit_lines = [
+        f"ROI口径：{override['roi_note']}",
+        f"2026 CapEx口径：{override['capex_note']}",
+    ]
+    insert_at = max(1, len(lines) - 2)
+    lines[insert_at:insert_at] = audit_lines
     if not any(line.strip() == "by 江明" for line in lines):
         lines.append("by 江明")
     data["FOOTER_LINES"] = lines
@@ -122,7 +151,7 @@ CULTURE_PROFILES = {
     "tesla": {"archetype": "第一性原理制造组织", "tagline": "极限工程 × 垂直整合 × 创始人驱动", "thesis": "特斯拉文化是用第一性原理拆解成本和制造流程，靠创始人高压推动产品、工厂、软件和 AI 同时迭代。", "stats": [("垂直整合", "制造+软件"), ("FSD", "数据飞轮"), ("Optimus", "长期期权"), ("高波动", "组织特征")], "mechanisms": [("第一性原理", "决策方式", "从物理成本和制造约束倒推设计，而不是照搬行业惯例。"), ("垂直整合", "组织能力", "电池、软件、制造、能源和自动驾驶尽量在内部形成闭环。"), ("现场问题解决", "制造文化", "强调快速暴露问题和产线改进，节奏极快。"), ("创始人高压", "治理风格", "战略高度集中于创始人判断，带来速度和波动。")], "employee_view": ["成长和影响大，但强度、波动和不确定性高。", "适合愿意进产线、懂工程、抗压强的人。", "流程稳定性不如成熟制造公司。"], "investor_view": ["优势是速度和垂直整合。", "风险是创始人风险、执行分散和利润波动。", "文化强项是用工程速度换未来期权。"], "summary": "特斯拉的文化，是用极限工程把汽车公司改造成 AI 制造公司。", "sources": "Tesla FY2025 Form 10-K / Impact Report / Careers，核查 2026-05-09"},
     "walmart": {"archetype": "基层运营零售组织", "tagline": "低价文化 × 门店执行 × 技术升级", "thesis": "沃尔玛的文化根在门店和供应链：低价、执行、成本控制，再用技术和广告业务提升利润结构。", "stats": [("210万+", "全球员工"), ("Everyday Low Price", "低价原则"), ("门店", "运营网络"), ("广告", "新利润池")], "mechanisms": [("低价使命", "价值观", "围绕为顾客省钱组织采购、门店和物流。"), ("一线运营", "管理机制", "大量决策落在门店、配送中心和区域运营执行。"), ("员工培训", "人才机制", "通过学院、内部晋升和技能培训维持庞大组织运转。"), ("技术改造", "经营升级", "用自动化、电商、广告和数据提高低利润模型的效率。")], "employee_view": ["岗位广、晋升路径清楚，但一线劳动强度高。", "适合零售运营、物流和基层管理人才。", "薪酬和福利随地区与岗位差异大。"], "investor_view": ["优势是规模、低价心智和供应链。", "风险是工资成本、低利润和电商竞争。", "文化价值在于稳定执行。"], "summary": "沃尔玛的文化，是把低价承诺落实到百万级员工的运营系统。", "sources": "Walmart FY2026 Annual Report / Culture / Proxy，核查 2026-05-09"},
     "berkshire": {"archetype": "去中心化资本配置组织", "tagline": "信任经理人 × 少干预 × 长期资本", "thesis": "伯克希尔文化是极端去中心化，总部人数很少，把经营权留给子公司经理，把资本配置集中在总部。", "stats": [("极小总部", "控股公司"), ("浮存金", "保险资本"), ("长期持有", "投资原则"), ("自治", "子公司文化")], "mechanisms": [("去中心化", "组织结构", "总部不参与大多数日常经营，子公司经理对业务负责。"), ("信任筛选", "人才机制", "重点选择可信且热爱业务的经理人，而不是靠总部流程控制。"), ("资本配置", "核心能力", "现金在保险、股票、并购和回购之间长期配置。"), ("声誉文化", "风险底线", "强调声誉损失不可接受，授权同时要求自律。")], "employee_view": ["不同子公司文化差异大。", "适合成熟业务、长期经营和自我约束强的管理者。", "总部资源少，自治空间大。"], "investor_view": ["优势是长期资本、低干预和经理人信任。", "风险是接班、机会稀缺和组合复杂。", "文化本质是用信任降低管理成本。"], "summary": "伯克希尔的文化，是少管理人，多管理资本。", "sources": "Berkshire Hathaway FY2025 Annual Report / Owner's Manual / Shareholder Letters，核查 2026-05-09"},
-    "samsung": {"archetype": "韩式制造集团组织", "tagline": "垂直整合 × 制造规模 × 快速追赶", "thesis": "三星电子文化是大型制造集团打法：重资本、强供应链、垂直整合，并在技术落后时用集中投入追赶。", "stats": [("存储", "周期核心"), ("HBM", "追赶重点"), ("垂直整合", "集团能力"), ("全球工厂", "制造体系")], "mechanisms": [("制造规模", "运营机制", "存储、显示、终端和代工形成全球制造网络。"), ("快速追赶", "技术文化", "在 HBM、先进制程等领域用集中研发和资本开支追赶领先者。"), ("层级协同", "组织特征", "大型集团需要强协调和清晰层级，速度来自资源集中。"), ("质量与供应链", "经营底线", "终端品牌和关键零部件同时要求质量稳定。")], "employee_view": ["体系完整、资源强，但层级和流程感强。", "适合制造、硬件、供应链和研发人才。", "创新速度受集团治理和周期影响。"], "investor_view": ["优势是垂直整合和资本实力。", "风险是周期、代工追赶和治理折价。", "文化强项是重资本制造动员。"], "summary": "三星的文化，是用集团级资源在硬件周期中反复追赶。", "sources": "Samsung Electronics FY2025 Annual Report / Sustainability / Careers，核查 2026-05-09"},
+    "samsung": {"archetype": "韩式制造集团组织", "tagline": "人才优先 × 制造纪律 × 资本动员", "thesis": "三星电子文化是大型制造集团打法：人才优先、强供应链、垂直整合，并在技术落后时用集中 R&D 与资本投入追赶。", "stats": [("262,647", "全球员工"), ("40", "R&D中心"), ("$259亿", "FY25 R&D"), ("$752亿", "2026工厂+R&D")], "mechanisms": [("人才优先", "价值观", "People 是官方五大价值观之首，强调公司即人。"), ("制造纪律", "运营机制", "半导体和显示业务靠良率、成本、设备和交付形成竞争力。"), ("集中资源", "技术文化", "在 HBM4、先进制程和 OLED 等领域用集中研发与资本开支追赶。"), ("全球协同", "组织特征", "240 个全球基地需要强流程、跨区域协同和清晰责任边界。")], "employee_view": ["资源强、平台大，适合工程、制造、供应链和研发人才。", "层级和流程感强，绩效压力与半导体周期相关。", "福利待遇因地区和业务线差异大，统一薪酬口径未披露。"], "investor_view": ["优势是垂直整合、资本投入和制造纪律。", "风险是存储周期、代工追赶、治理折价和劳资分配。", "文化强项是把重资本变成组织门槛。"], "summary": "三星的文化，是用人才、产线和资本在硬件周期中反复追赶。", "sources": "Samsung Fast Facts / Brand Story / Global Code of Conduct / Careers / Yonhap，核查 2026-05-11"},
     "jpmorgan": {"archetype": "风险纪律型金融组织", "tagline": "强风控 × 全牌照 × 危机执行", "thesis": "摩根大通文化强调风险纪律、资本充足和长期客户关系，优秀之处是在危机中仍能执行并扩张。", "stats": [("Jamie Dimon", "长期 CEO"), ("CET1", "资本纪律"), ("全牌照", "金融网络"), ("技术投入", "数字银行")], "mechanisms": [("风险控制", "核心文化", "银行文化首先是风险文化，信用、市场、合规和流动性都要可控。"), ("长期客户", "经营方式", "投行、商业银行、资管和零售银行围绕客户生命周期服务。"), ("危机执行", "管理能力", "在市场压力中用资本和组织能力获取份额。"), ("技术投入", "效率机制", "持续投入数据、支付、风控和数字银行平台。")], "employee_view": ["体系化强、合规强、职业训练扎实。", "适合金融、风控、交易、技术和客户覆盖人才。", "上升路径清楚但竞争激烈。"], "investor_view": ["优势是规模、风控和管理层可信度。", "风险是监管、信用周期和利率周期。", "文化价值在于不犯致命错误。"], "summary": "摩根大通的文化，是用风控纪律保护金融杠杆。", "sources": "JPMorgan Chase FY2025 Annual Report / Proxy / Careers，核查 2026-05-09"},
     "lilly": {"archetype": "研发和制造双轮药企", "tagline": "科学研发 × 临床证据 × 产能扩张", "thesis": "礼来的管理文化是科学证据导向，同时在 GLP-1 超级周期中把研发和制造扩产一起推进。", "stats": [("GLP-1", "核心增长"), ("临床", "证据体系"), ("扩产", "制造瓶颈"), ("研发", "长期投入")], "mechanisms": [("科学决策", "研发文化", "以临床数据、监管路径和医学价值决定资源配置。"), ("制造扩产", "经营能力", "GLP-1 需求让产能成为竞争壁垒，组织必须同时懂研发和制造。"), ("合规底线", "行业约束", "药企文化强监管、强质量体系、强医学伦理。"), ("人才专业化", "招聘要求", "研发、医学、生产和商业化人才高度专业化。")], "employee_view": ["专业壁垒高、周期长、合规要求高。", "适合科学、临床、制造质量和商业化人才。", "成功回报大但试验失败风险高。"], "investor_view": ["优势是管线和产能。", "风险是专利、监管、定价和单品依赖。", "文化价值在于把科学变成可规模化药品。"], "summary": "礼来的文化，是用科学和产能共同吃下超级需求。", "sources": "Eli Lilly FY2025 Annual Report / Careers / Code of Business Conduct，核查 2026-05-09"},
     "exxon": {"archetype": "资本纪律能源组织", "tagline": "安全 × 项目回报 × 周期纪律", "thesis": "埃克森文化强调项目回报、工程安全和周期纪律，不追逐高油价幻觉，只投能穿越周期的资产。", "stats": [("ROCE", "核心指标"), ("安全", "运营底线"), ("Permian", "增长资产"), ("LNG", "长期项目")], "mechanisms": [("安全运营", "底线文化", "油气化工生产以安全、环保和可靠运行为前提。"), ("资本纪律", "投资机制", "项目要通过低油价压力测试，强调全周期回报。"), ("工程项目", "组织方式", "大型项目按阶段门管理，控制成本、进度和风险。"), ("技术与规模", "效率来源", "地质、炼化、LNG 和化工一体化提高资源价值。")], "employee_view": ["流程严谨、工程体系成熟、风险意识强。", "适合能源、化工、项目和安全管理人才。", "创新节奏稳，不适合追求快速试错的人。"], "investor_view": ["优势是资本纪律和低成本资源。", "风险是油价、政策和能源转型。", "文化价值在于不在周期高点乱投钱。"], "summary": "埃克森的文化，是用纪律控制能源周期。", "sources": "ExxonMobil FY2025 Annual Report / Sustainability / Careers，核查 2026-05-09"},
@@ -158,4 +187,3 @@ COMMON_TRAITS = [
     ("长期主义不等于慢", "TSMC、ASML、Lilly、Berkshire 都长期，但关键节点决策非常果断。"),
     ("合规与信任更重要", "银行、支付、药企、能源、AI 平台都面临监管，信任已经是管理文化的一部分。"),
 ]
-

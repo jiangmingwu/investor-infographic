@@ -15,6 +15,8 @@ import sys
 import importlib
 import copy
 
+from company_logo_assets import draw_company_logo
+
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 if os.path.isdir(DATA_DIR) and DATA_DIR not in sys.path:
     sys.path.insert(0, DATA_DIR)
@@ -68,7 +70,7 @@ class CompanyInfographic:
         self.img = Image.new("RGB", (WIDTH, 100), BG_COLOR)
         self.draw = ImageDraw.Draw(self.img)
         self._build()
-        total_h = self.y + s(40)
+        total_h = self.y
 
         self.y = 0
         self.calculating = False
@@ -106,6 +108,11 @@ class CompanyInfographic:
         h = s(160)
         if not self.calculating:
             self.draw.rectangle([0, 0, WIDTH, h], fill=HEADER_BG)
+            logo_slug = d.get("LOGO_SLUG")
+            if logo_slug:
+                logo_box = (PADDING, s(24), PADDING + s(128), s(128))
+                self.draw.rounded_rectangle(logo_box, radius=s(8), fill="#FFFFFF")
+                draw_company_logo(self.draw, logo_slug, logo_box)
             font_title = get_font(42, bold=True)
             tw = self.draw.textlength(d["TITLE"], font=font_title)
             self.draw.text(((WIDTH - tw) / 2, s(25)), d["TITLE"], fill="white", font=font_title)
@@ -348,11 +355,31 @@ class CompanyInfographic:
         ])
         if not any(str(line).strip() == "by 江明" for line in lines):
             lines = [*lines, "by 江明"]
-        h = s(18 + len(lines) * 22)
+        font = get_font(13)
+        max_w = WIDTH - PADDING * 2
+
+        wrapped_lines = []
+        for line in lines:
+            text = str(line)
+            if text.strip() == "by 江明":
+                wrapped_lines.append(text)
+                continue
+            part = ""
+            for char in text:
+                test = part + char
+                tw = self.draw.textlength(test, font=font) if not self.calculating else len(test) * s(13)
+                if tw > max_w and part:
+                    wrapped_lines.append(part)
+                    part = char
+                else:
+                    part = test
+            if part:
+                wrapped_lines.append(part)
+
+        h = s(18 + len(wrapped_lines) * 22)
         if not self.calculating:
             self.draw.rectangle([0, self.y, WIDTH, self.y + h], fill=HEADER_BG)
-            font = get_font(13)
-            for i, line in enumerate(lines):
+            for i, line in enumerate(wrapped_lines):
                 tw = self.draw.textlength(line, font=font)
                 self.draw.text(((WIDTH - tw) / 2, self.y + s(12) + i * s(22)), line, fill="#F0D9C4", font=font)
         self.y += h

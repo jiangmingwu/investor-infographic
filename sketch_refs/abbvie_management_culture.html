@@ -1,0 +1,91 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1280px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #C2185B; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #C2185B; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #C2185B; border-radius: 26px; background: rgba(255,255,255,.58); color: #C2185B; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #C2185B; padding-left: 22px; }
+.thesis .k { color: #C2185B; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #C2185B; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #C2185B; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #4A2A55; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #C2185B; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #C2185B; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #4A2A55; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #C2185B; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #C2185B; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #C2185B; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #C2185B; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>AbbVie管理文化</div>
+  <div class='subtitle'>ABBV · Management Culture · 真实公开口径</div>
+  <div class='pill'>做事风格 × 真实案例 × 公开来源</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="AbbVie" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+  <text x="110" y="70" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, Helvetica, sans-serif" font-size="52" font-weight="800" fill="#C2185B">AbbVie</text>
+</svg></div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>AbbVie 的文化是药企式接力：先用临床证据证明价值，再用医生渠道、合规商业化和并购研发把一代药物现金流接到下一代管线。</div></div></div>
+  <div class='section-title'>理念与真实案例</div>
+  <div class='culture-cards'><div class='culture-card'><h3>经营｜Evidence first</h3><div class='body'>做法：资源围绕临床证据、适应症扩展和监管路径配置。案例：Skyrizi/Rinvoq 接棒 Humira，靠真实疗效和更多适应症推动增长。</div></div><div class='culture-card'><h3>组织｜并购补管线</h3><div class='body'>做法：当内部管线不足时，用外部并购补强神经科学、肿瘤和免疫资产。案例：ImmunoGen、Cerevel 等交易服务于后 Humira 时代的产品接力。</div></div><div class='culture-card'><h3>员工｜科学人才和合规商业化</h3><div class='body'>做法：研发、医学事务、销售合规和患者支持需要长期训练。案例：药价、医保和临床推广都必须在合规框架内运行。</div></div></div>
+</div>
+<div class='footer'><div>经营数据：AbbVie FY2025 results / Form 10-K，FY2025: 2025年1-12月</div><div>管理文化：AbbVie culture / careers / annual report，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

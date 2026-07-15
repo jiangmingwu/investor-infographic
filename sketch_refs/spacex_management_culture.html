@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --accent: #16324F;
+  --main: #1D5E95;
+  --blue: #2E9BB5;
+  --gold: #C69234;
+  --line: #D5BFAE;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #F7F4ED;
+  color: #332A22;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .32;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E2D8 39px, #E8E2D8 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E2D8 39px, #E8E2D8 40px);
+}
+.page { position: relative; z-index: 1; padding: 52px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 66px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle { margin-top: 10px; text-align: center; color: #8B8279; font-size: 21px; font-style: italic; }
+.pill {
+  margin: 20px auto 28px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #51596A;
+  font-size: 22px;
+  font-weight: 900;
+  background: rgba(255,255,255,.52);
+}
+.hero { display: flex; gap: 24px; align-items: center; margin: 18px 0 26px; }
+.mark {
+  width: 178px;
+  height: 178px;
+  border: 4px solid var(--main);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.32), transparent 24%),
+    linear-gradient(145deg, #16324F, #1D5E95);
+  box-shadow: 0 5px 0 rgba(40,40,40,.12);
+  transform: rotate(-1.2deg);
+}
+.mark .big { font-family: "Arial", sans-serif; font-size: 38px; font-weight: 900; letter-spacing: 0; }
+.mark .small { margin-top: 7px; color: #FFE4A8; font-size: 16px; font-weight: 900; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.38; font-weight: 800; }
+.section-title {
+  margin: 31px 0 18px;
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 39px;
+  font-weight: 900;
+}
+.section-title::before, .section-title::after {
+  content: "";
+  display: inline-block;
+  width: 72px;
+  height: 2px;
+  background: #C8A48E;
+  vertical-align: middle;
+  margin: 0 14px;
+}
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.65);
+  border: 3px solid #D5BFAE;
+  border-radius: 15px;
+  padding: 16px 17px;
+  min-height: 150px;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; color: white; border-radius: 8px; padding: 5px 11px; font-size: 15px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #4B3B2F; font-size: 18px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.icon-row { display: flex; align-items: center; gap: 11px; margin-bottom: 8px; }
+.icon { width: 45px; height: 45px; flex: 0 0 45px; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.metric { background: rgba(255,255,255,.68); border: 3px solid; border-radius: 14px; padding: 14px 8px; min-height: 123px; text-align: center; }
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 32px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 8px; font-size: 16px; line-height: 1.3; color: #6E6256; }
+.metric .yoy { margin-top: 5px; font-size: 14px; color: var(--main); font-weight: 900; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 172px 1fr 92px; gap: 14px; align-items: center; }
+.bar-label { font-size: 18px; font-weight: 900; color: #44372B; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 18px; font-weight: 900; color: var(--main); text-align: right; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.step { background: rgba(255,255,255,.63); border: 3px solid var(--line); border-radius: 12px; min-height: 116px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 20px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6E6256; font-size: 16px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(228,232,237,.78); border-radius: 8px; padding: 14px 20px; font-size: 21px; line-height: 1.52; color: #4F4B45; }
+.footer {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: 30px;
+  text-align: center;
+  color: #B9AA9D;
+  font-size: 12.8px;
+  line-height: 1.64;
+}
+.signature { margin-top: 6px; }
+
+body { height: 1780px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">SpaceX 管理文化</h1>
+  <div class="subtitle">Management Culture · Mission + Engineering Density + The Algorithm</div>
+  <div class="pill">使命驱动 × 工程高门槛 × 快速迭代 × 创始人控制</div>
+
+  <div class="hero">
+    <div class="mark">
+  <div class="big">SpaceX</div>
+  <svg viewBox="0 0 120 34" width="104" height="28" aria-hidden="true">
+    <path d="M6 23 C31 4 75 2 114 9" fill="none" stroke="#FFE4A8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M75 9 L103 9 L90 19" fill="none" stroke="#FFE4A8" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <div class="small">SPCX IPO</div>
+</div>
+    <div class="thesis"><div class="k">组织怎么跑起来</div><div class="v">SpaceX 的文化不是温和稳定型，而是极高工程难度下的任务组织：用少数高密度人才、垂直整合和快速迭代，把硬件制造节奏推到软件化。</div></div>
+  </div>
+
+
+<div class="section-title">公开可验证的组织机制</div>
+<div class="cards">
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7" fill="none" stroke="#16324F" stroke-width="4"/><path d="M10 40 C12 28 36 28 38 40" fill="none" stroke="#16324F" stroke-width="4" stroke-linecap="round"/><path d="M12 17 C8 18 6 21 6 25 M36 17 C40 18 42 21 42 25" fill="none" stroke="#16324F" stroke-width="3" stroke-linecap="round"/></svg><span class="tag" style="background:#16324F">人才筛选</span></div>
+  <h3>工程师申请录取率 &lt;2%</h3>
+  <p class="body">路演材料披露2025年工程师申请录取率低于2%，人才密度是它追求高难度工程目标的前提。</p>
+</div>
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7" fill="none" stroke="#4A7A4C" stroke-width="4"/><path d="M10 40 C12 28 36 28 38 40" fill="none" stroke="#4A7A4C" stroke-width="4" stroke-linecap="round"/><path d="M12 17 C8 18 6 21 6 25 M36 17 C40 18 42 21 42 25" fill="none" stroke="#4A7A4C" stroke-width="3" stroke-linecap="round"/></svg><span class="tag" style="background:#4A7A4C">长期团队</span></div>
+  <h3>Top 3高管平均21年</h3>
+  <p class="body">Top 3 executives平均任期21年，高级管理层平均12年，说明关键团队不是短期拼盘。</p>
+</div>
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M25 6 C35 14 37 28 28 38 L18 28 C8 19 11 9 25 6Z" fill="none" stroke="#C69234" stroke-width="4" stroke-linejoin="round"/><circle cx="27" cy="18" r="4" fill="none" stroke="#C69234" stroke-width="3"/><path d="M17 29 L10 38 M27 39 L33 44 M13 24 L5 26" stroke="#C69234" stroke-width="4" stroke-linecap="round"/></svg><span class="tag" style="background:#C69234">The Algorithm</span></div>
+  <h3>删除、优化、加速、再自动化</h3>
+  <p class="body">S-1把The Algorithm定义为五步迭代流程：先让需求更不蠢，再删除、优化、加速、自动化。</p>
+</div>
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="13" width="22" height="22" rx="4" fill="none" stroke="#1D5E95" stroke-width="4"/><path d="M18 7 V13 M24 7 V13 M30 7 V13 M18 35 V41 M24 35 V41 M30 35 V41 M7 18 H13 M7 24 H13 M7 30 H13 M35 18 H41 M35 24 H41 M35 30 H41" stroke="#1D5E95" stroke-width="3" stroke-linecap="round"/></svg><span class="tag" style="background:#1D5E95">第一性原理</span></div>
+  <h3>快速试错的制造文化</h3>
+  <p class="body">火箭、卫星、芯片、软件、电力和终端高度垂直整合，组织更像工程制造系统，而不是传统航空承包商。</p>
+</div>
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7" fill="none" stroke="#2E9BB5" stroke-width="4"/><path d="M10 40 C12 28 36 28 38 40" fill="none" stroke="#2E9BB5" stroke-width="4" stroke-linecap="round"/><path d="M12 17 C8 18 6 21 6 25 M36 17 C40 18 42 21 42 25" fill="none" stroke="#2E9BB5" stroke-width="3" stroke-linecap="round"/></svg><span class="tag" style="background:#2E9BB5">员工</span></div>
+  <h3>22,000+ 全职员工</h3>
+  <p class="body">S-1披露截至2026年3月31日全球超过22,000名全职员工；没有员工受集体谈判协议约束。</p>
+</div>
+<div class="card">
+  <div class="icon-row"><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="14" width="32" height="22" rx="4" fill="none" stroke="#6B4E7A" stroke-width="4"/><circle cx="24" cy="25" r="5" fill="none" stroke="#6B4E7A" stroke-width="3"/><path d="M13 20 H16 M32 30 H35" stroke="#6B4E7A" stroke-width="3" stroke-linecap="round"/></svg><span class="tag" style="background:#6B4E7A">激励</span></div>
+  <h3>Directed Share Program 5%</h3>
+  <p class="body">S-1显示公司预留IPO发行股份最高5%给部分员工及相关人员购买，员工权益激励与上市相连。</p>
+</div>
+</div>
+<div class="section-title">文化硬指标</div>
+<div class="metric-grid">
+<div class="metric" style="border-color:#16324F">
+  <div class="num" style="color:#16324F">&lt;2%</div>
+  <div class="lab">2025工程师申请录取率</div>
+
+</div>
+<div class="metric" style="border-color:#4A7A4C">
+  <div class="num" style="color:#4A7A4C">21年</div>
+  <div class="lab">Top 3高管平均任期</div>
+
+</div>
+<div class="metric" style="border-color:#C69234">
+  <div class="num" style="color:#C69234">12年</div>
+  <div class="lab">Senior Management平均任期</div>
+
+</div>
+<div class="metric" style="border-color:#1D5E95">
+  <div class="num" style="color:#1D5E95">22,000+</div>
+  <div class="lab">全球全职员工</div>
+
+</div>
+<div class="metric" style="border-color:#A84A4A">
+  <div class="num" style="color:#A84A4A">82.4%</div>
+  <div class="lab">Musk IPO后投票权</div>
+
+</div>
+<div class="metric" style="border-color:#6B4E7A">
+  <div class="num" style="color:#6B4E7A">5%</div>
+  <div class="lab">Directed Share Program</div>
+
+</div>
+</div>
+
+</div>
+<div class="footer"><div>经营数据：SpaceX S-1/A（SEC 2026-06-03），FY2025: 2025年1-12月；Q1 2026: 2026年1-3月</div>
+<div>IPO/估值：SEC FWP 2026-06-04；$135/股，发行5.556亿股，预计6月11日定价、6月12日交易；基础股本约$1.69T</div>
+<div>ROI/CapEx：FY25经营亏损$2.589B，经营利润率-13.9%；2026全年CapEx未披露，Q1已$10.107B，FY25为$20.737B</div>
+<div>股东回报：S-1 Dividend Policy，预计可预见未来不派现金股息；文化：S-1 Human Capital / SEC FWP Mission-Driven Culture</div>
+<div>货币口径：SpaceX以USD披露；图中金额均为USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

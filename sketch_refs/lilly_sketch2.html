@@ -1,203 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 900px; height:2320px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
-.header { text-align: center; padding: 45px 40px 18px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
-.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
-.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
-.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
-.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
-.section-title { text-align: center; margin: 32px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
-.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-.segments { padding: 0 40px; }
-.seg-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #D9CEBC; }
-.seg-rank { width: 32px; height: 32px; border-radius: 50%; background: #D52B1E; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.seg-name { width: 300px; font-size: 19px; font-weight: 600; color: #3A2A1E; padding-left: 12px; }
-.seg-bar-area { flex: 1; height: 20px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
-.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 13px; }
-.seg-val { width: 108px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
-.two-col { display: flex; padding: 0 40px; gap: 24px; }
-.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
-.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
-.mix-item { display: flex; align-items: center; margin: 9px 0; font-size: 18px; }
-.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
-.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
-.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
-.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
-.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
-.move-detail strong { color: #8B0A10; }
-.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #FDE4E8 0%, #F5B0B8 100%); border: 2px solid #D52B1E; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
-.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B0A10; margin-bottom: 10px; }
-.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
-.insight .txt strong { color: #8B0A10; }
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; line-height: 1.6; }
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #D52B1E; --codex-soft: rgba(253,230,228,.68); }
-.codex-roi-capex {
-  margin: 18px 40px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2300px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
-.codex-fin-card {
-  border: 2px solid var(--codex-accent);
-  border-radius: 12px;
-  background: var(--codex-soft);
-  padding: 13px 16px;
-  min-height: 108px;
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.codex-fin-card .k { color: var(--codex-accent); font-weight: 800; font-size: 18px; }
-.codex-fin-card .v { font-family: 'Songti SC','STSong','SimSun',serif; color: #3A2A1E; font-size: 30px; font-weight: 700; margin-top: 4px; }
-.codex-fin-card .n { color: #6F5E4D; font-size: 15px; line-height: 1.35; margin-top: 5px; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-<div class="header">
-  <h1>礼来 FY2025 经营全景</h1>
-  <div class="sub">Eli Lilly NYSE:LLY · FY2025 · 营收 $630 亿</div>
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #D52B1E; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #D52B1E; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #D52B1E; border-radius: 26px; background: rgba(255,255,255,.58); color: #D52B1E; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #D52B1E; padding-left: 22px; }
+.thesis .k { color: #D52B1E; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #D52B1E; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #D52B1E; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #D52B1E; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #D52B1E; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #8B3A4E; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #D52B1E; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #D52B1E; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #D52B1E; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #8B3A4E; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #D52B1E; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #D52B1E; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #D52B1E; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>礼来 FY2025 经营全景</div>
+  <div class='subtitle'>LLY · Financial Dashboard · 当前估值 + ROI + 2026 CapEx</div>
+  <div class='pill'>财务结果 × 估值位置 × 资本投入 × 股东回报</div>
+  <div class='section-title'>核心财务与当前估值</div>
+  <div class='metrics'><div class='stat' style='border-color:#D52B1E'><div class='num'>$652亿</div><div class='sub'>YoY +45%</div><div class='lab'>FY2025 营收</div></div><div class='stat' style='border-color:#D52B1E'><div class='num'>$263亿</div><div class='sub'>YoY +104%</div><div class='lab'>FY2025 经营利润</div></div><div class='stat' style='border-color:#D52B1E'><div class='num'>$168亿</div><div class='sub'>YoY +91%</div><div class='lab'>FY2025 经营现金流</div></div><div class='stat' style='border-color:#D52B1E'><div class='num'>$206亿</div><div class='sub'>YoY +95%</div><div class='lab'>FY2025 净利润</div></div><div class='stat' style='border-color:#D52B1E'><div class='num'>$9,695亿</div><div class='lab'>当前市值</div></div><div class='stat' style='border-color:#D52B1E'><div class='num'>38.4× / 26.7×</div><div class='lab'>PE / Forward PE</div></div></div>
+  <div class='section-title'>业务分部表现</div>
+  <div class='seg'><div class='row'><div class='rank'>1</div><b>Mounjaro</b><span>35%</span><b>$230亿</b><div class='bar-bg'><div class='bar' style='width:35.0%'></div></div></div><div class='row'><div class='rank'>2</div><b>Zepbound</b><span>21%</span><b>$135亿</b><div class='bar-bg'><div class='bar' style='width:21.0%'></div></div></div><div class='row'><div class='rank'>3</div><b>Verzenio</b><span>9%</span><b>$57亿</b><div class='bar-bg'><div class='bar' style='width:9.0%'></div></div></div><div class='row'><div class='rank'>4</div><b>其他药品/管线</b><span>35%</span><b>$230亿</b><div class='bar-bg'><div class='bar' style='width:35.0%'></div></div></div></div>
+  <div class='section-title'>ROI / CapEx / 股东回报</div>
+  <div class='cards'><div class='card'><span class='mini'>ROI / ROIC</span><h3>ROIC 41.9%</h3><div class='body'>资本效率结论；完整公式、财年和来源见底部备注。</div></div><div class='card'><span class='mini'>2026E CapEx</span><h3>未披露单年额</h3><div class='body'>公开口径有限，披露限制见底部备注。</div></div><div class='card'><span class='mini'>股东分红</span><h3>$6.92/股 · 0.68%</h3><div class='body'>当前年化股息；FY2025 现金分红 $53.8 亿，回购 $41.1 亿。</div></div></div>
+  <div class='section-title'>亮点与风险</div>
+  <div class='actions'><div class='action'><div class='tag'>亮点</div><div class='body'><b>营收 +45%</b>：GLP-1 需求推动公司进入高速增长期。</div></div><div class='action'><div class='tag'>亮点</div><div class='body'><b>经营利润翻倍</b>：经营利润 $263 亿，同比增长 104%。</div></div><div class='action'><div class='tag'>亮点</div><div class='body'><b>2026 指引上调</b>：Q1 2026 后公司将全年营收指引提高至 $820-850 亿。</div></div><div class='action'><div class='tag'>风险</div><div class='body'><b>估值消化</b>：当前 PE 约 36×，市场已经预期高增长延续。</div></div><div class='action'><div class='tag'>风险</div><div class='body'><b>价格和支付</b>：医保、政府谈判和实际药价会影响净价。</div></div></div>
 </div>
-
-<div class="stats-grid">
-  <div class="stat" style="border-color:#D52B1E"><div class="num" style="color:#D52B1E">$630亿</div><div class="lab">FY25 营收</div></div>
-  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">+45%</div><div class="lab">营收同比</div></div>
-  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">$180亿</div><div class="lab">净利润</div></div>
-  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">83%</div><div class="lab">毛利率</div></div>
-</div>
-
-<!-- codex-roi-capex-start -->
-<div class="codex-roi-capex">
-  <div class="codex-fin-card"><div class="k">ROI / ROIC</div><div class="v">ROIC 20%+</div><div class="n">GLP-1 药物高毛利，但扩产和研发投入拉高资本需求。</div></div>
-  <div class="codex-fin-card"><div class="k">2026 CapEx</div><div class="v">2026E 高位</div><div class="n">重点是 GLP-1 产能、无菌制造和全球供应链扩张。</div></div>
-</div>
-<!-- codex-roi-capex-end -->
-<div class="section-title"><span>六 大 业 务 分 部</span></div>
-<div class="segments">
-  <div class="seg-row">
-    <div class="seg-rank">1</div>
-    <div class="seg-name">Mounjaro 糖尿病 <span style="color:#6B8E4E;font-size:15px">+60%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#D52B1E">32%</div></div>
-    <div class="seg-val">$200亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#C4963C">2</div>
-    <div class="seg-name">Zepbound 减肥 <span style="color:#6B8E4E;font-size:15px">+150%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:75%;background:#C4963C">24%</div></div>
-    <div class="seg-val">$150亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#8B3A4E">3</div>
-    <div class="seg-name">肿瘤 (Verzenio 等) <span style="color:#6B8E4E;font-size:15px">+30%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:37%;background:#8B3A4E">12%</div></div>
-    <div class="seg-val">$75亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#6B8E4E">4</div>
-    <div class="seg-name">免疫 (Taltz 等) <span style="color:#6B8E4E;font-size:15px">+15%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:32%;background:#6B8E4E">10%</div></div>
-    <div class="seg-val">$65亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#6B4E7A">5</div>
-    <div class="seg-name">神经 (Kisunla) <span style="color:#6B8E4E;font-size:15px">+25%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:25%;background:#6B4E7A">8%</div></div>
-    <div class="seg-val">$50亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#7B6650">6</div>
-    <div class="seg-name">其他+老药 <span style="color:#D9534F;font-size:15px">-10%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:45%;background:#7B6650">14%</div></div>
-    <div class="seg-val">$90亿</div>
-  </div>
-</div>
-
-<div style="padding: 14px 40px 0; font-size:17px; color:#7B6650; line-height:1.6;">
-  <strong style="color:#8B0A10">营业属性:</strong>GLP-1 双爆款合计占营收 55%,肿瘤+免疫是稳定基础盘,神经业务正在崛起。<br>
-  <strong style="color:#8B3A4E">关键数字:</strong>毛利率 <strong>83%</strong> · R&D <strong>$110 亿</strong> · 5 年 CapEx <strong>$500 亿</strong>扩 GLP-1 产能。
-</div>
-
-<div class="section-title" style="margin-top:22px"><span>收 入 结 构 与 战 略 动 作</span></div>
-<div class="two-col">
-  <div class="left-box">
-    <div class="box-title">收入结构</div>
-    <div class="mix-item"><div class="mix-dot" style="background:#D52B1E"></div>Mounjaro<span class="mix-pct">32%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>Zepbound<span class="mix-pct">24%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>肿瘤<span class="mix-pct">12%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#6B8E4E"></div>免疫<span class="mix-pct">10%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>神经<span class="mix-pct">8%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#7B6650"></div>其他<span class="mix-pct">14%</span></div>
-    <div style="margin-top:10px; padding-top:8px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
-      <strong style="color:#8B0A10">结构跃迁:</strong>两年前 GLP-1 占比 <strong>不足 20%</strong>,现在 <strong>55%</strong>,礼来已变成 GLP-1 公司。
-    </div>
-  </div>
-
-  <div class="right-box">
-    <div class="box-title">FY25-27 战略</div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#D52B1E">减肥</div>
-      <div class="move-detail"><strong>Zepbound $150 亿</strong></div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#D4793A">口服</div>
-      <div class="move-detail"><strong>Orforglipron</strong> FY26 上市</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B4E7A">产能</div>
-      <div class="move-detail">5 年 <strong>$500 亿</strong>扩产</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B8E4E">AD</div>
-      <div class="move-detail"><strong>Kisunla</strong> 阿尔茨海默</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#C4963C">肿瘤</div>
-      <div class="move-detail"><strong>Verzenio</strong> 一线扩展</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#D9534F">风险</div>
-      <div class="move-detail"><strong>Novo Nordisk</strong> 竞争</div>
-    </div>
-  </div>
-</div>
-
-<div class="insight">
-  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
-    <g transform="translate(50,55)">
-      <path d="M 0,-34 L -22,-22 L -22,18 Q 0,34 22,18 L 22,-22 Z" fill="#D52B1E" stroke="#8B0A10" stroke-width="2"/>
-      <text x="0" y="-4" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="white">Lilly</text>
-      <text x="0" y="14" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="10" fill="white">℞</text>
-    </g>
-  </svg>
-  <div style="flex:1">
-    <div class="t">💡 GLP-1 十年浪潮的双龙头</div>
-    <div class="txt">Mounjaro <strong>$200 亿</strong> + Zepbound <strong>$150 亿</strong> × 口服 GLP-1 FY26 = 千亿市场双爆款。<br>David Ricks:「GLP-1 才刚刚开始」— 全球 10 亿+ 肥胖人口是礼来的未来。</div>
-  </div>
-</div>
-
-<div class="footer">经营全景：公司年报/业绩资料/行情资料；经营数据：Eli Lilly FY2025 年报/业绩会（2026-02）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：GLP-1 药物高毛利，但扩产和研发投入拉高资本需求。；CapEx口径：重点是 GLP-1 产能、无菌制造和全球供应链扩张。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class='footer'><div>经营数据：Eli Lilly FY2025 Results / StockAnalysis，FY2025: 2025年1-12月</div><div>同比口径：FY2025 vs FY2024；营收 +45%，经营利润 +104%，经营现金流 +90.7%</div><div>行情数据：StockAnalysis LLY / market quote，查看：2026年6月；市值约 $969.5B，PE 约38.4×，Forward PE 约26.7×</div><div>股东分红：StockAnalysis Dividend / FY2025 Cash Flow，查看：2026年5月；年化 $6.92/股，股息率约0.68%，FY25 现金分红 $53.8亿</div><div>管理文化：Lilly Careers / Operating Ethically / Inclusion / Impact well-being，核查：2026年5月</div><div>货币口径：Lilly 以 USD 报告；图中金额均为 USD/美元</div><div>ROI口径：StockAnalysis TTM ROIC；GLP-1 利润释放后资本效率大幅抬升。</div><div>2026 CapEx口径：2026 公司给出营收/EPS 指引和多项建厂计划，但未披露单年 CapEx 总额。</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

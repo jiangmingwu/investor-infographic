@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>NVIDIA Cobalt Grid Panorama</title>
+<style>
+  :root {
+    --paper: #F0EBDE;
+    --paper-2: #E6E0CE;
+    --ink: #1F2BE0;
+    --ink-soft: #5560E5;
+    --grid: rgba(31,43,224,0.10);
+    --line: rgba(31,43,224,0.72);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 900px;
+    height: 1680px;
+    overflow: hidden;
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    left: 42px;
+    right: 42px;
+    top: 34px;
+    bottom: 34px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    pointer-events: none;
+  }
+  .sheet {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 66px 54px 78px;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 28px;
+  }
+  .eyebrow, .micro, .mono {
+    font-family: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: "Newsreader", Georgia, "Songti SC", "STSong", serif;
+    font-style: italic;
+    font-size: 91px;
+    line-height: .9;
+    font-weight: 400;
+    letter-spacing: -1px;
+    max-width: 650px;
+  }
+  .subtitle {
+    margin-top: 16px;
+    max-width: 620px;
+    font-size: 24px;
+    line-height: 1.45;
+    font-weight: 600;
+  }
+  .qr {
+    width: 98px;
+    height: 98px;
+    border: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 8px;
+    background: var(--paper);
+  }
+  .qr i { background: transparent; }
+  .qr i.on { background: var(--ink); }
+  .glitch {
+    position: absolute;
+    right: 52px;
+    top: 228px;
+    width: 210px;
+    height: 310px;
+    opacity: .18;
+    background:
+      linear-gradient(90deg, transparent 0 36%, var(--ink) 36% 46%, transparent 46% 100%),
+      repeating-linear-gradient(0deg, var(--ink) 0 5px, transparent 5px 12px);
+    clip-path: polygon(36% 0, 100% 0, 100% 16%, 82% 16%, 82% 31%, 95% 31%, 95% 47%, 66% 47%, 66% 62%, 88% 62%, 88% 78%, 52% 78%, 52% 100%, 0 100%, 0 83%, 20% 83%, 20% 67%, 8% 67%, 8% 49%, 33% 49%, 33% 34%, 18% 34%, 18% 18%, 36% 18%);
+  }
+  .thesis {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 22px 0;
+    font-family: "Newsreader", Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1.2;
+  }
+  .rankbox {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    background: rgba(240,235,222,.72);
+  }
+  .rankbox .num {
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-size: 58px;
+    line-height: .9;
+  }
+  .rankbox .lab {
+    margin-top: 10px;
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+  }
+  .section {
+    margin-top: 34px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .section-title .micro { font-size: 13px; font-weight: 700; }
+  .section-title::after {
+    content: "";
+    height: 1px;
+    background: var(--line);
+    flex: 1;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .metric {
+    min-height: 150px;
+    border: 2px solid var(--ink);
+    padding: 15px 14px;
+    background: rgba(240,235,222,.66);
+  }
+  .metric .value {
+    font-family: "Newsreader", Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 34px;
+    line-height: .96;
+    white-space: normal;
+  }
+  .metric .label {
+    margin-top: 12px;
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .metric .note {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+  .bodygrid {
+    display: grid;
+    grid-template-columns: 1.08fr .92fr;
+    gap: 22px;
+  }
+  .panel {
+    border: 2px solid var(--ink);
+    padding: 20px;
+    background: rgba(240,235,222,.78);
+  }
+  .bars { display: grid; gap: 14px; }
+  .barrow {
+    display: grid;
+    grid-template-columns: 128px 1fr 76px;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+  }
+  .barrow b { font-size: 15px; }
+  .bartrack {
+    height: 22px;
+    border: 1.5px solid var(--ink);
+    position: relative;
+    background: transparent;
+  }
+  .barfill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--ink);
+  }
+  .barval {
+    font-family: "DM Mono", ui-monospace, monospace;
+    font-size: 12px;
+    text-align: right;
+  }
+  .flywheel {
+    display: grid;
+    gap: 10px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    align-items: start;
+    border-bottom: 1px solid rgba(31,43,224,.35);
+    padding-bottom: 10px;
+  }
+  .step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .badge {
+    width: 34px;
+    height: 34px;
+    border: 2px solid var(--ink);
+    display: grid;
+    place-items: center;
+    font-family: "DM Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .step h3 {
+    font-size: 18px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .step p {
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+  .watch {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .watch .card {
+    min-height: 116px;
+    border: 2px solid var(--ink);
+    padding: 13px;
+    background: rgba(240,235,222,.72);
+  }
+  .watch .card .k {
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .watch .card .v {
+    margin-top: 8px;
+    font-size: 17px;
+    line-height: 1.28;
+    font-weight: 800;
+  }
+  .footer {
+    position: absolute;
+    left: 54px;
+    right: 54px;
+    bottom: 52px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .footer .by {
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="glitch"></div>
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">AI infrastructure dossier · NVDA · USD</div>
+        <h1>NVIDIA<br>AI Factory<br>Operating Map</h1>
+        <div class="subtitle">把 GPU 从“芯片”卖成 AI 工厂平台：硬件、网络、软件生态与云厂商资本开支形成同一条复利链。</div>
+      </div>
+      <div class="qr" aria-hidden="true">
+        <i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i>
+        <i></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+        <i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <div class="quote">“The product is no longer a chip. It is a vertically integrated AI factory stack.”</div>
+      <div class="rankbox">
+        <div class="num">#01</div>
+        <div class="lab">全球市值第一<br>数据中心收入占主导</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="micro">01 / financial dashboard</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="value">$215.9B</div><div class="label">FY2026 营收</div><div class="note">同比 +65%，美元口径</div></div>
+        <div class="metric"><div class="value">$120.1B</div><div class="label">FY2026 净利润</div><div class="note">同比 +65%，利润质量极强</div></div>
+        <div class="metric"><div class="value">71.1%</div><div class="label">GAAP 毛利率</div><div class="note">产品领先 + 软件生态定价权</div></div>
+        <div class="metric"><div class="value">ROIC<br>100%+</div><div class="label">资本回报率</div><div class="note">轻资产设计 + 高毛利 GPU</div></div>
+      </div>
+    </div>
+
+    <div class="section bodygrid">
+      <div class="panel">
+        <div class="section-title"><span class="micro">02 / revenue mix</span></div>
+        <div class="bars">
+          <div class="barrow"><b>数据中心 AI</b><div class="bartrack"><div class="barfill" style="width:89.7%"></div></div><div class="barval">$193.7B</div></div>
+          <div class="barrow"><b>游戏</b><div class="bartrack"><div class="barfill" style="width:7.4%"></div></div><div class="barval">$16.0B</div></div>
+          <div class="barrow"><b>专业可视化</b><div class="bartrack"><div class="barfill" style="width:1.5%"></div></div><div class="barval">$3.19B</div></div>
+          <div class="barrow"><b>汽车 / 机器人</b><div class="bartrack"><div class="barfill" style="width:1.1%"></div></div><div class="barval">$2.35B</div></div>
+          <div class="barrow"><b>OEM 及其他</b><div class="bartrack"><div class="barfill" style="width:.3%"></div></div><div class="barval">$0.62B</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="section-title"><span class="micro">03 / compounding loop</span></div>
+        <div class="flywheel">
+          <div class="step"><div class="badge">A</div><div><h3>CUDA 开发者</h3><p>软件事实标准形成迁移成本。</p></div></div>
+          <div class="step"><div class="badge">B</div><div><h3>GPU + NVLink + 网络</h3><p>从单卡优势升级为集群系统优势。</p></div></div>
+          <div class="step"><div class="badge">C</div><div><h3>云厂商 AI 集群</h3><p>客户资本开支变成 NVIDIA 出货飞轮。</p></div></div>
+          <div class="step"><div class="badge">D</div><div><h3>推理与机器人</h3><p>训练之后，推理、Agent、机器人继续扩容。</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="micro">04 / what to watch</span></div>
+      <div class="watch">
+        <div class="card"><div class="k">CapEx</div><div class="v">公司自身 FY26 CapEx 约 $3B；真正的大额投入在云客户 AI 数据中心。</div></div>
+        <div class="card"><div class="k">Risk</div><div class="v">中国市场出口限制与客户集中度，是最需要持续跟踪的两条线。</div></div>
+        <div class="card"><div class="k">Cycle</div><div class="v">Blackwell 全面出货，Rubin 进入下一轮平台迁移，是 2026-2027 主线。</div></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      经营数据：NVIDIA FY2026 年报/业绩公告（2026-02-26）与业绩会；行情数据：CompaniesMarketCap 页面查看 2026-04-29；货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议
+      <div class="by">by 江明</div>
+    </div>
+  </div>
+</body>
+</html>

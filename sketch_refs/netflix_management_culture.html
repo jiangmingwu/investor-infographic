@@ -1,66 +1,94 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
+  width: 900px; height: 1480px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#E50914; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #E50914; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #E50914; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#E50914; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #E50914; padding-left:24px; }
-.thesis .k { color:#E50914; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#E50914; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#E50914; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#E50914; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #E50914; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#E50914; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#E50914; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#E50914; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #E50914; background:rgba(255,228,230,.68); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#E50914; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #E50914; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #E50914; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #E50914; border-radius: 26px; background: rgba(255,255,255,.58); color: #E50914; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #E50914; padding-left: 22px; }
+.thesis .k { color: #E50914; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #E50914; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #E50914; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #E50914; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #E50914; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #221F1F; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #E50914; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #E50914; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #E50914; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #221F1F; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #E50914; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #E50914; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #E50914; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #E50914; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #E50914; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>奈飞 的 管 理 文 化</div>
-  <div class='subtitle'>高人才密度自由责任组织 · Management Culture</div>
-  <div class='pill'>Talent Density × Freedom &amp; Responsibility × Keeper Test</div>
-  <div class='hero'><div class='mark'>奈飞</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>Netflix 文化明确把高人才密度放在第一位，用自由和责任替代流程，用 Keeper Test 保持团队强度。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#E50914'><div class='num' style='color:#E50914'>Talent Density</div><div class='lab'>核心原则</div></div><div class='stat' style='border-color:#E50914'><div class='num' style='color:#E50914'>Keeper Test</div><div class='lab'>绩效机制</div></div><div class='stat' style='border-color:#E50914'><div class='num' style='color:#E50914'>自由责任</div><div class='lab'>管理方式</div></div><div class='stat' style='border-color:#E50914'><div class='num' style='color:#E50914'>内容+算法</div><div class='lab'>业务核心</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>招聘原则</span><h3>人才密度</h3><div class='body'>宁愿少人高薪，也要高水平同事共同工作。</div></div><div class='card'><span class='tag'>管理方式</span><h3>自由与责任</h3><div class='body'>减少流程和审批，让员工以公司利益主动决策。</div></div><div class='card'><span class='tag'>绩效机制</span><h3>Keeper Test</h3><div class='body'>管理者定期判断是否会努力留住某个员工，形成高绩效筛选。</div></div><div class='card'><span class='tag'>组织文化</span><h3>透明反馈</h3><div class='body'>强调坦诚反馈和上下文共享。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>自由度高但安全感低。</li><li>适合成熟、高自驱、能承受强反馈的人。</li><li>不适合需要稳定流程保护的人。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是高人才密度和内容决策速度。</li><li>风险是文化高压、内容周期和竞争。</li><li>文化本身是 Netflix 的产品之一。</li></ul></div>
-  </div>
-  <div class='note-box'><h3>一句话总结</h3><p>Netflix 的文化，是用高人才密度换组织速度。</p></div>
+  <div class='title'>奈飞管理文化</div>
+  <div class='subtitle'>NFLX · Management Culture · 真实公开口径</div>
+  <div class='pill'>做事风格 × 真实案例 × 公开来源</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="奈飞" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M31 17h18l41 86H72L31 17z" fill="#B20710"/>
+  <path d="M72 17h18v86H72z" fill="#E50914"/>
+  <path d="M31 17h18v86H31z" fill="#E50914"/>
+  <path d="M49 17l23 86h18L49 17z" fill="#831010" opacity=".55"/>
+</svg></div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>奈飞的文化既影响怎样管理员工，也影响怎样做产品：内部用少规则、明确责任和高人才密度，外部则让真实用户实验而不是职位高低决定产品方向。</div></div></div>
+  <div class='section-title'>理念与真实案例</div>
+  <div class='culture-cards'><div class='culture-card'><h3>经营｜让 A/B 测试决定产品</h3><div class='body'>做法：重要产品变化先通过真实会员实验检验，不凭高管偏好直接上线。案例：Netflix 技术博客写明，几乎每项产品和业务决策都受 A/B 测试观察到的会员行为指导，个性化和界面改版也遵循这套方法。</div></div><div class='culture-card'><h3>组织｜规则少，但责任不轻</h3><div class='body'>做法：经理提供上下文，不逐项控制员工动作。案例：Culture Memo 把休假政策压缩为“Take vacation”，费用原则是“Act in Netflix's best interest”，要求员工自行判断而不是等待审批清单。</div></div><div class='culture-card'><h3>组织｜Informed Captain 一人负责</h3><div class='body'>做法：重要决策指定一名知情负责人，不用委员会稀释责任。案例：负责人必须主动 farming for dissent、听取各层级意见；决定后团队执行 disagree then commit。</div></div><div class='culture-card'><h3>组织｜Keeper Test 保持人才密度</h3><div class='body'>做法：经理持续问自己，若这名员工要离开，是否会努力挽留。案例：答案若是否定，Netflix 倾向提供慷慨遣散并寻找更合适人选；目标是 Dream Team，而不是把公司当普通家庭。</div></div></div>
 </div>
-<div class='footer'>管理文化：Netflix Culture Memo / FY2025 Shareholder Letter / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class='footer'><div>经营数据：Netflix Q4/FY2025 shareholder letter / Form 10-K，FY2025: 2025年1-12月</div><div>管理文化：Netflix Culture Memo / Netflix TechBlog A/B Testing，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
 </body></html>

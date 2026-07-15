@@ -1,66 +1,78 @@
 <!doctype html><html><head><meta charset='utf-8'><style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
-}
-body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
-}
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:900px; height:2480px; overflow:hidden; position:relative; background:#F7F4ED; color:#3A2A1E; font-family:'PingFang SC','Hiragino Sans GB','Noto Sans SC',sans-serif; }
+body::before { content:''; position:absolute; inset:0; opacity:.35; pointer-events:none; background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px); }
+.page { position:relative; z-index:1; padding:48px 40px 0; }
+.title { text-align:center; color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:900; letter-spacing:0; line-height:1.08; }
 .subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #1428A0; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #1428A0; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #1428A0; padding-left:24px; }
-.thesis .k { color:#1428A0; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#1428A0; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #1428A0; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#1428A0; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#1428A0; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#1428A0; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #1428A0; background:rgba(228,233,255,.70); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>三星电子 的 管 理 文 化</div>
-  <div class='subtitle'>韩式制造集团组织 · Management Culture</div>
-  <div class='pill'>垂直整合 × 制造规模 × 快速追赶</div>
-  <div class='hero'><div class='mark'>三星</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>三星电子文化是大型制造集团打法：重资本、强供应链、垂直整合，并在技术落后时用集中投入追赶。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#1428A0'><div class='num' style='color:#1428A0'>存储</div><div class='lab'>周期核心</div></div><div class='stat' style='border-color:#1428A0'><div class='num' style='color:#1428A0'>HBM</div><div class='lab'>追赶重点</div></div><div class='stat' style='border-color:#1428A0'><div class='num' style='color:#1428A0'>垂直整合</div><div class='lab'>集团能力</div></div><div class='stat' style='border-color:#1428A0'><div class='num' style='color:#1428A0'>全球工厂</div><div class='lab'>制造体系</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>运营机制</span><h3>制造规模</h3><div class='body'>存储、显示、终端和代工形成全球制造网络。</div></div><div class='card'><span class='tag'>技术文化</span><h3>快速追赶</h3><div class='body'>在 HBM、先进制程等领域用集中研发和资本开支追赶领先者。</div></div><div class='card'><span class='tag'>组织特征</span><h3>层级协同</h3><div class='body'>大型集团需要强协调和清晰层级，速度来自资源集中。</div></div><div class='card'><span class='tag'>经营底线</span><h3>质量与供应链</h3><div class='body'>终端品牌和关键零部件同时要求质量稳定。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>体系完整、资源强，但层级和流程感强。</li><li>适合制造、硬件、供应链和研发人才。</li><li>创新速度受集团治理和周期影响。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是垂直整合和资本实力。</li><li>风险是周期、代工追赶和治理折价。</li><li>文化强项是重资本制造动员。</li></ul></div>
+.pill { margin:22px auto 28px; width:max-content; max-width:820px; border:3px solid #1428A0; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:24px; font-weight:900; background:rgba(255,255,255,.45); }
+.hero { display:grid; grid-template-columns:190px 1fr; gap:26px; align-items:center; margin:26px 0 34px; }
+.mark { height:190px; border:3px solid #D5BFAE; border-radius:26px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.76); transform:rotate(-1deg); }
+.thesis { border-left:8px solid #1428A0; padding-left:24px; }
+.thesis .k { color:#1428A0; font-size:25px; font-weight:900; margin-bottom:8px; }
+.thesis .v { font-family:'Songti SC','STSong',serif; font-size:34px; line-height:1.42; color:#3A2A1E; font-weight:900; }
+.section-title { margin:38px 0 18px; text-align:center; color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:42px; font-weight:900; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.value { min-height:132px; background:rgba(255,255,255,.62); border:3px solid #B5C7E8; border-radius:12px; padding:17px 20px; }
+.value h3 { color:#1428A0; font-size:22px; font-weight:900; margin-bottom:8px; }
+.value p { color:#4B3B2F; font-size:18px; line-height:1.5; }
+.card { min-height:214px; background:rgba(255,255,255,.62); border:3px solid #D5BFAE; border-radius:14px; padding:20px; }
+.card svg { width:62px; height:62px; float:left; margin-right:14px; }
+.card h3 { color:#1428A0; font-family:'Songti SC','STSong',serif; font-size:27px; line-height:1.18; margin-bottom:8px; }
+.card p { clear:both; color:#4B3B2F; font-size:18px; line-height:1.55; padding-top:6px; }
+.tag { display:inline-block; color:#fff; background:#1428A0; border-radius:7px; padding:4px 10px; font-size:15px; font-weight:900; margin-bottom:8px; }
+.note { margin-top:28px; border:4px solid #1428A0; background:rgba(20,40,160,.08); border-radius:18px; padding:24px 28px; }
+.note h3 { color:#1428A0; font-family:'Songti SC',serif; font-size:31px; margin-bottom:8px; }
+.note p { font-size:21px; line-height:1.55; color:#3A2A1E; }
+
+.footer { position:fixed; left:30px; right:30px; bottom:54px; text-align:center; font-size:15px; color:#A89684; margin-top:26px; padding:0 30px 0; line-height:1.95; letter-spacing:0; }
+.footer .row { display:block; min-height:0; border:0; padding:0; color:#A89684; font-size:15px; line-height:1.95; }
+.footer .by { margin-top:10px; color:#A89684; font:inherit; letter-spacing:0; }
+</style></head><body><div class='page'>
+  <div class='title'>三星电子管理文化</div>
+  <div class='subtitle'>新经营宣言 + 韩国财阀 + 全球执行力 · Management Culture</div>
+  <div class='pill'>极致执行 × 长期主义 × 工程师密度 × 集团协同</div>
+  <div class='hero'><div class='mark'><svg width="170" height="190" viewBox="0 0 170 190" aria-label="Samsung logo">
+      <g transform="translate(85,88)">
+        <ellipse cx="0" cy="0" rx="66" ry="33" fill="#1428A0"/>
+        <text x="0" y="7" text-anchor="middle" font-family="Arial Black, Helvetica, sans-serif" font-size="18" font-weight="900" fill="#fff">SAMSUNG</text>
+        <path d="M-54 58 C-25 42 27 42 55 58" fill="none" stroke="#C4963C" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-54" cy="58" r="6" fill="#C4963C"/>
+        <circle cx="55" cy="58" r="6" fill="#C4963C"/>
+      </g>
+    </svg></div><div class='thesis'><div class='k'>新经营宣言驱动的全球制造组织</div><div class='v'>三星文化的内核不是福利标签，而是<strong>质量优先、持续变革、制造纪律</strong>和<strong>集团协同</strong>。</div></div></div>
+
+  <div class='section-title'>官方五大核心价值观</div>
+  <div class='grid-2'>
+    <div class='value'><h3>1 People（人才）</h3><p>“公司即人”。人才是三星长期投入的第一资源，也是全球工程体系能持续运转的基础。</p></div>
+    <div class='value'><h3>2 Excellence（卓越）</h3><p>质量优先于数量。三星进入关键市场时，目标不是参与，而是做到世界级。</p></div>
+    <div class='value'><h3>3 Change（变革）</h3><p>新经营宣言的核心，是主动打破过去路径，逼迫组织从模仿者转为领导者。</p></div>
+    <div class='value'><h3>4 Integrity（正直）</h3><p>大型跨国供应链必须靠合规、透明和伦理经营降低长期风险。</p></div>
+    <div class='value' style='grid-column:span 2'><h3>5 Co-prosperity（共生）</h3><p>与社区、供应商、合作伙伴共同繁荣；这也是全球制造网络稳定运行的社会承诺。</p></div>
   </div>
-  <div class='note-box'><h3>一句话总结</h3><p>三星的文化，是用集团级资源在硬件周期中反复追赶。</p></div>
-</div>
-<div class='footer'>管理文化：Samsung Electronics FY2025 Annual Report / Sustainability / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-</body></html>
+
+  <div class='section-title'>员工待遇与激励</div>
+  <div class='grid-2'>
+    <div class='card'><svg viewBox="0 0 90 90"><rect x="28" y="12" width="34" height="64" rx="8" fill="#C4963C"/><rect x="33" y="20" width="24" height="45" rx="3" fill="#342719"/><circle cx="45" cy="70" r="3" fill="#fff"/></svg><h3>学习和职业成长</h3><span class='tag' style='background:#C4963C'>人才培养</span><p>韩国 Careers 披露 MBA、学术培训、海外派遣、岗位专家课程和内部 Job Posting，核心是让员工在体系内成长。</p></div>
+    <div class='card'><svg viewBox="0 0 90 90"><path d="M12 69V36l22 12V35l22 13V25h16v44z" fill="#8B3A4E"/><rect x="20" y="56" width="8" height="8" fill="#F7F4ED"/><rect x="36" y="56" width="8" height="8" fill="#F7F4ED"/><rect x="52" y="56" width="8" height="8" fill="#F7F4ED"/></svg><h3>绩效导向奖励</h3><span class='tag'>业绩激励</span><p>官方招聘页强调“where there is performance, there is a reward”，员工设目标、经理定期沟通，并通过评价获得奖励。</p></div>
+    <div class='card'><svg viewBox="0 0 90 90"><rect x="19" y="25" width="52" height="40" rx="6" fill="#1428A0"/><rect x="28" y="34" width="34" height="22" rx="3" fill="#F7F4ED"/><text x="45" y="51" text-anchor="middle" font-size="15" font-weight="900" fill="#1428A0">HBM</text><g stroke="#1428A0" stroke-width="3"><line x1='28' y1='16' x2='28' y2='25'/><line x1='28' y1='65' x2='28' y2='74'/><line x1='38' y1='16' x2='38' y2='25'/><line x1='38' y1='65' x2='38' y2='74'/><line x1='52' y1='16' x2='52' y2='25'/><line x1='52' y1='65' x2='52' y2='74'/><line x1='62' y1='16' x2='62' y2='25'/><line x1='62' y1='65' x2='62' y2='74'/></g></svg><h3>地区化福利体系</h3><span class='tag' style='background:#34A853'>福利口径</span><p>美国半导体 Careers 公开医疗、牙科、视力、家庭建设支持等福利；全球统一薪酬中位数未披露，本图不编造。</p></div>
+    <div class='card'><svg viewBox="0 0 90 90"><rect x="13" y="23" width="64" height="38" rx="7" fill="#34A853"/><rect x="22" y="31" width="46" height="22" rx="3" fill="#F7F4ED"/><path d="M38 62h14l4 10H34z" fill="#34A853"/></svg><h3>高强度工程组织</h3><span class='tag' style='background:#9F4E63'>招聘要求</span><p>半导体制造、材料、良率、供应链、硬件和 AI 终端岗位要求高；优势是资源强，同时也伴随层级、流程和周期压力。</p></div>
+  </div>
+
+  <div class='section-title'>管理文化的四个机制</div>
+  <div class='grid-2'>
+    <div class='value'><h3>01 新经营宣言</h3><p>1993 年李健熙推动“改变一切”的新经营，把质量、品牌和全球化压进组织。</p></div>
+    <div class='value'><h3>02 良率、成本和交付</h3><p>半导体和显示不允许松散管理，真正文化体现在产线、设备、良率、客户认证和交付节奏。</p></div>
+    <div class='value'><h3>03 财阀式动员能力</h3><p>三星能在 HBM、先进制程、OLED、Taylor 与平泽等长期项目上集中投入，这是组织优势。</p></div>
+    <div class='value'><h3>04 从研发到终端</h3><p>研发、生产、销售和终端产品线需要强流程和跨区域协同，而不是单点明星文化。</p></div>
+  </div>
+
+  <div class='footer'><div class='row'>经营数据：Samsung FY2025 Results / 2025 4Q Presentation / Q1 2026 Results，FY2025: 2025年1-12月；Q1 2026: 2026年1-3月</div>
+<div class='row'>管理文化来源：Samsung Brand Story、Global Code of Conduct、Careers/Working at Samsung、Samsung Semiconductor Careers Benefits</div>
+<div class='row'>同比口径：FY2025 vs FY2024；营收 +10.9%，经营利润 +33.3%，经营现金流 +31.0%</div>
+<div class='row'>行情数据：CompaniesMarketCap / StockAnalysis，查看：2026年5月</div>
+<div class='row'>股东分红：StockAnalysis KRX:005930，查看：2026年5月；年度股息约 $1.55/股（KRW 2,264），股息率 0.83%</div>
+<div class='row'>汇率口径：Xe 2026年5月，1 USD=1,462.51 KRW；图中金额均为 USD/美元，KRW 披露数据折算后四舍五入</div>
+<div class='row'>免责声明：本图仅供学习参考，不构成投资建议</div>
+<div class='by'>by 江明</div></div>
+</div></body></html>

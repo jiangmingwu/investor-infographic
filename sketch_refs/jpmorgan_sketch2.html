@@ -1,196 +1,227 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 900px; height:2320px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
-.header { text-align: center; padding: 45px 40px 18px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
-.header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
-.stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
-.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
-.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
-.section-title { text-align: center; margin: 32px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
-.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-.segments { padding: 0 40px; }
-.seg-row { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px dashed #D9CEBC; }
-.seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #002D72; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.seg-name { width: 320px; font-size: 20px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
-.seg-bar-area { flex: 1; height: 22px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
-.seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 14px; }
-.seg-val { width: 108px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
-.two-col { display: flex; padding: 0 40px; gap: 24px; }
-.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
-.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
-.mix-item { display: flex; align-items: center; margin: 10px 0; font-size: 18px; }
-.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
-.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
-.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
-.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
-.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
-.move-detail strong { color: #001A45; }
-.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #DCE0F2 0%, #A8B4D8 100%); border: 2px solid #002D72; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
-.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #001A45; margin-bottom: 10px; }
-.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
-.insight .txt strong { color: #001A45; }
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; line-height: 1.6; }
+:root {
+  --accent: #8B3A4E;
+  --main: #002D72;
+  --blue: #002D72;
+  --gold: #C8A951;
+  --line: #D5BFAE;
+}
 
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #6B4E2E; --codex-soft: rgba(244,235,222,.70); }
-.codex-roi-capex {
-  margin: 18px 40px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #F7F4ED;
+  color: #3A2A1E;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
 }
-.codex-fin-card {
-  border: 2px solid var(--codex-accent);
-  border-radius: 12px;
-  background: var(--codex-soft);
-  padding: 13px 16px;
-  min-height: 108px;
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.codex-fin-card .k { color: var(--codex-accent); font-weight: 800; font-size: 18px; }
-.codex-fin-card .v { font-family: 'Songti SC','STSong','SimSun',serif; color: #3A2A1E; font-size: 30px; font-weight: 700; margin-top: 4px; }
-.codex-fin-card .n { color: #6F5E4D; font-size: 15px; line-height: 1.35; margin-top: 5px; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
+.page { position: relative; z-index: 1; padding: 46px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 68px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1.08;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #9B8A7A;
+  font-size: 21px;
+  font-style: italic;
+}
+.pill {
+  margin: 20px auto 28px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #5E5A6D;
+  font-size: 23px;
+  font-weight: 900;
+  background: rgba(255,255,255,.50);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 18px 0 26px; }
+.mark {
+  width: 178px;
+  height: 178px;
+  border: 4px solid var(--main);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: var(--main);
+  box-shadow: 0 5px 0 rgba(40,40,40,.12);
+  transform: rotate(-1.2deg);
+}
+.mark .big { font-family: "Georgia", "Times New Roman", serif; font-size: 29px; font-weight: 900; line-height: 1; }
+.mark .small { color: var(--gold); font-size: 18px; font-weight: 900; margin-top: 9px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 34px; line-height: 1.36; font-weight: 800; color: #3A2A1E; }
+.section-title { margin: 32px 0 18px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 40px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 76px; height: 2px; background: #C89890; vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D5BFAE; border-radius: 15px; padding: 17px 18px; min-height: 155px; }
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 28px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 15px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #4B3B2F; font-size: 19px; line-height: 1.54; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric { background: rgba(255,255,255,.66); border: 3px solid; border-radius: 14px; padding: 13px 8px; min-height: 116px; text-align: center; }
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 34px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 17px; line-height: 1.3; color: #6E6256; }
+.metric .yoy { margin-top: 5px; font-size: 14px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.62); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 20px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6E6256; font-size: 16px; line-height: 1.35; }
+.wide { grid-column: 1 / -1; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(230,227,235,.72); border-radius: 8px; padding: 14px 20px; font-size: 22px; line-height: 1.52; color: #5B5148; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 170px 1fr 92px; gap: 14px; align-items: center; }
+.bar-label { font-size: 18px; font-weight: 900; color: #44372B; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 18px; font-weight: 900; color: var(--main); text-align: right; }
 .footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
+  position: absolute;
+  left: 38px;
+  right: 38px;
+  bottom: 32px;
+  text-align: center;
+  color: #BBAEA2;
+  font-size: 11.5px;
+  line-height: 1.58;
 }
-<!-- codex-legacy-footer-end -->
+.signature { margin-top: 6px; }
+
+body { height: 2080px; }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>摩根大通 FY2025 经营全景</h1>
-  <div class="sub">JPMorgan Chase NYSE:JPM · FY2025 · 营收 $1,780 亿</div>
+<div class="page">
+  <h1 class="title">摩根大通 FY2025 经营全景</h1>
+  <div class="subtitle">JPMorgan Chase NYSE: JPM · 已交付的全年成绩</div>
+  <div class="pill">净营收 + 利润 + 资本回报 + 当前估值</div>
+  <div class="section-title">核心财务（FY2025）</div>
+  <div class="metric-grid">
+<div class="metric" style="border-color:#002D72">
+  <div class="num" style="color:#002D72">$1,824亿</div>
+  <div class="lab">FY2025 净营收</div>
+  <div class="yoy">YoY +3%</div>
 </div>
-
-<div class="stats-grid">
-  <div class="stat" style="border-color:#002D72"><div class="num" style="color:#002D72">$1,780亿</div><div class="lab">FY25 营收</div></div>
-  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">$560亿</div><div class="lab">净利润</div></div>
-  <div class="stat" style="border-color:#C8A951"><div class="num" style="color:#C8A951">21%</div><div class="lab">ROTCE</div></div>
-  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">$4.2T</div><div class="lab">总资产</div></div>
+<div class="metric" style="border-color:#C8A951">
+  <div class="num" style="color:#C8A951">$868亿</div>
+  <div class="lab">拨备前利润</div>
+  <div class="yoy">YoY +1%</div>
 </div>
-
-<!-- codex-roi-capex-start -->
-<div class="codex-roi-capex">
-  <div class="codex-fin-card"><div class="k">ROI / ROIC</div><div class="v">银行口径</div><div class="n">传统 ROIC 不适用；重点看 ROE、ROTCE、CET1 和风险成本。</div></div>
-  <div class="codex-fin-card"><div class="k">2026 CapEx</div><div class="v">不适用</div><div class="n">银行资本投入主要体现为技术支出、风险资产和资本充足率，而非工业 CapEx。</div></div>
+<div class="metric" style="border-color:#4A6B3B">
+  <div class="num" style="color:#4A6B3B">$570亿</div>
+  <div class="lab">净利润</div>
+  <div class="yoy">YoY -2%</div>
 </div>
-<!-- codex-roi-capex-end -->
-<div class="section-title"><span>五 大 业 务 分 部</span></div>
-<div class="segments">
-  <div class="seg-row">
-    <div class="seg-rank">1</div>
-    <div class="seg-name">消费银行 (CCB) <span style="color:#6B8E4E;font-size:16px">+5%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#002D72">40%</div></div>
-    <div class="seg-val">$720亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#C8A951">2</div>
-    <div class="seg-name">投行+商业 (CIB) <span style="color:#6B8E4E;font-size:16px">+8%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:84%;background:#C8A951">34%</div></div>
-    <div class="seg-val">$605亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#8B3A4E">3</div>
-    <div class="seg-name">资产管理 (AWM) <span style="color:#6B8E4E;font-size:16px">+10%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:32%;background:#8B3A4E">13%</div></div>
-    <div class="seg-val">$230亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#6B8E4E">4</div>
-    <div class="seg-name">商业银行 (CB) <span style="color:#6B8E4E;font-size:16px">+4%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:25%;background:#6B8E4E">10%</div></div>
-    <div class="seg-val">$180亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#6B4E7A">5</div>
-    <div class="seg-name">公司/其他 <span style="color:#7B6650;font-size:16px">波动</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:6%;background:#6B4E7A">3%</div></div>
-    <div class="seg-val">$45亿</div>
-  </div>
+<div class="metric" style="border-color:#8B3A4E">
+  <div class="num" style="color:#8B3A4E">20%</div>
+  <div class="lab">ROTCE</div>
+  <div class="yoy">银行 ROI 口径</div>
 </div>
-
-<div style="padding: 16px 40px 0; font-size:17px; color:#7B6650; line-height:1.6;">
-  <strong style="color:#001A45">营业属性:</strong>消费银行是存款基本盘,投行贡献弹性利润,财富管理是下一个十年增长点。<br>
-  <strong style="color:#8B3A4E">关键数字:</strong>存款 <strong>$2.5 万亿</strong> · 贷款 <strong>$1.4 万亿</strong> · AUM <strong>$4.5 万亿</strong> · 全美分行 <strong>4,800+</strong>。
+<div class="metric" style="border-color:#002D72">
+  <div class="num" style="color:#002D72">$8,058亿</div>
+  <div class="lab">当前市值</div>
+  <div class="yoy">最新估值</div>
 </div>
-
-<div class="section-title" style="margin-top:24px"><span>收 入 结 构 与 战 略 动 作</span></div>
-<div class="two-col">
-  <div class="left-box">
-    <div class="box-title">收入结构</div>
-    <div class="mix-item"><div class="mix-dot" style="background:#002D72"></div>消费银行<span class="mix-pct">40%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#C8A951"></div>投行+商业<span class="mix-pct">34%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>资产管理<span class="mix-pct">13%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#6B8E4E"></div>商业银行<span class="mix-pct">10%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>其他<span class="mix-pct">3%</span></div>
-    <div style="margin-top:12px; padding-top:10px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
-      <strong style="color:#001A45">复合引擎:</strong>综合银行+投行+资管构成美国同业独有的三位一体,<strong>ROTCE 21%</strong> 独占鳌头。
-    </div>
-  </div>
-
-  <div class="right-box">
-    <div class="box-title">FY25-27 战略</div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#002D72">接班</div>
-      <div class="move-detail"><strong>Marianne Lake</strong> 接班</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B8E4E">投行</div>
-      <div class="move-detail"><strong>IPO+M&A</strong> +20%</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#C4963C">AI</div>
-      <div class="move-detail"><strong>Cogent AI</strong> 全员部署</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B4E7A">财富</div>
-      <div class="move-detail"><strong>First Republic</strong> 整合</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#C8A951">扩张</div>
-      <div class="move-detail"><strong>新增 500 家</strong>分行</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#D9534F">风险</div>
-      <div class="move-detail"><strong>商业地产</strong>坏账</div>
-    </div>
-  </div>
+<div class="metric" style="border-color:#C8A951">
+  <div class="num" style="color:#C8A951">14.4×</div>
+  <div class="lab">PE</div>
+  <div class="yoy">TTM</div>
 </div>
-
-<div class="insight">
-  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
-    <g transform="translate(50,55)">
-      <rect x="-36" y="-14" width="72" height="28" fill="#002D72"/>
-      <text x="0" y="6" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="10" fill="white">J.P.MORGAN</text>
-      <text x="0" y="32" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="11" fill="#002D72">CHASE</text>
-    </g>
-  </svg>
-  <div style="flex:1">
-    <div class="t">💡 美国银行业的绝对标杆</div>
-    <div class="txt">资产 <strong>$4.2 万亿</strong> × ROTCE <strong>21%</strong> × 分红回购 <strong>$400 亿</strong> = 同业无敌。<br>Dimon:「美国经济依然强劲,但要警惕尾部风险」— 穿越 19 年的谨慎乐观。</div>
-  </div>
+<div class="metric" style="border-color:#4A6B3B">
+  <div class="num" style="color:#4A6B3B">$6.00</div>
+  <div class="lab">年化股息/股</div>
+  <div class="yoy">股息率 2.0%</div>
 </div>
-
-<div class="footer">经营全景：公司年报/业绩资料/行情资料；经营数据：JPMorgan Chase FY2025 年报/业绩会（2026-01）；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：传统 ROIC 不适用；重点看 ROE、ROTCE、CET1 和风险成本。；CapEx口径：银行资本投入主要体现为技术支出、风险资产和资本充足率，而非工业 CapEx。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
+<div class="metric" style="border-color:#8B3A4E">
+  <div class="num" style="color:#8B3A4E">未披露</div>
+  <div class="lab">2026E CapEx</div>
+  <div class="yoy">银行不可比</div>
+</div>
+</div>
+  <div class="section-title">业务分部净营收</div>
+  <div class="bars"><div class="bar-row"><div class="bar-label">CIB 投行/市场</div><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><div class="bar-num">$785亿</div></div>
+<div class="bar-row"><div class="bar-label">CCB 消费银行</div><div class="bar-bg"><div class="bar-fill" style="width:97%"></div></div><div class="bar-num">$760亿</div></div>
+<div class="bar-row"><div class="bar-label">AWM 资管财富</div><div class="bar-bg"><div class="bar-fill" style="width:31%"></div></div><div class="bar-num">$241亿</div></div>
+<div class="bar-row"><div class="bar-label">Corporate</div><div class="bar-bg"><div class="bar-fill" style="width:9%"></div></div><div class="bar-num">$70亿</div></div></div>
+  <div class="section-title">估值、资本投入与股东回报</div>
+  <div class="cards">
+<div class="card">
+  <span class="tag">资本</span>
+  <h3>CET1 14.5%</h3>
+  <p class="body">大银行最重要的不是单年利润最大化，而是资本充足、流动性足够、能扛信用周期。</p>
+</div>
+<div class="card">
+  <span class="tag">投入</span>
+  <h3>技术投入替代 CapEx</h3>
+  <p class="body">JPM 没有披露可比工业 CapEx；对银行来说，技术费用、网点和 RWA 更像经营投入。</p>
+</div>
+<div class="card">
+  <span class="tag">派现</span>
+  <h3>分红 + 回购</h3>
+  <p class="body">当前年化股息 <strong>$6.00/股</strong>，同时通过回购减少股本，股东收益不只看股息率。</p>
+</div>
+<div class="card">
+  <span class="tag">质量</span>
+  <h3>净利润率约 31%</h3>
+  <p class="body">FY2025 净利润 $570 亿，说明规模大并没有牺牲盈利质量。</p>
+</div>
+</div>
+  <div class="section-title">关键风险</div>
+  <div class="cards three">
+<div class="card">
+  <span class="tag">信用</span>
+  <h3>信用损失拨备 +33%</h3>
+  <p class="body">消费信贷和商业地产压力会直接吃掉利润。</p>
+</div>
+<div class="card">
+  <span class="tag">利率</span>
+  <h3>净息收入周期</h3>
+  <p class="body">降息会降低资产收益率，存款成本调整也有滞后。</p>
+</div>
+<div class="card">
+  <span class="tag">监管</span>
+  <h3>大银行资本约束</h3>
+  <p class="body">监管资本要求越高，ROE 上限越容易被压住。</p>
+</div>
+</div>
+</div>
+<div class="footer"><div>经营数据：JPMorgan Chase 2025 Annual Report / 4Q25 Earnings Release / Financial Supplement，FY2025: 2025年1-12月</div>
+<div>同比口径：FY2025 vs FY2024；净营收 +3%，拨备前利润 +1%，净利润 -2%，技术/通信/设备费 +12%</div>
+<div>行情数据：StockAnalysis JPM，查看：2026年5月18日；股价 $300.73，市值约 $805.81B，PE 14.41×，PB 2.34×</div>
+<div>ROI口径：银行采用 ROTCE；JPM FY2025 ROTCE 20%，StockAnalysis 银行 ROIC 为 n/a</div>
+<div>2026 CapEx口径：银行不披露可比工业 CapEx；以技术投入、网点和 RWA 为经营投入线索</div>
+<div>股东分红：StockAnalysis Dividend / JPMorgan 2025 Annual Report，查看：2026年5月；年化 $6.00/股，FY2025 普通股股息 $5.80/股</div>
+<div>管理文化：JPMorgan Careers Benefits / Business Principles / Code of Conduct / Jamie Dimon 2025 CEO Letter，核查：2026年5月</div>
+<div>货币口径：JPM 以 USD 报告；图中金额均为 USD/美元；免责声明：本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
 </body>
 </html>

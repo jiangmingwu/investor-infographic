@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --paper: #F6F4EE;
+  --grid: #E7E2D7;
+  --accent: #26382F;
+  --main: #2F7D64;
+  --blue: #2B5E9D;
+  --dark: #121715;
+  --line: #BFCBBF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  color: #292622;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px);
+}
+.page { position: relative; z-index: 1; padding: 48px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #897d72;
+  font-size: 20px;
+  font-style: italic;
+}
+.pill {
+  margin: 18px auto 26px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #49433e;
+  font-size: 21px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 14px 0 25px; }
+.mark {
+  width: 190px;
+  height: 176px;
+  border: 4px solid var(--main);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.54), transparent 25%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  box-shadow: 0 5px 0 rgba(40,40,40,.13);
+  transform: rotate(-1deg);
+}
+.brand-lockup {
+  width: 146px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #121715;
+}
+.wordmark {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 850;
+}
+.openai-wordmark {
+  font-family: "OpenAI Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.anthropic-wordmark {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.anthropic-symbol {
+  width: 40px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+.anthropic-symbol path { fill: currentColor; }
+.mark .small { color: #7c7168; font-size: 13px; font-weight: 900; margin-top: 14px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.36; font-weight: 800; color: #2e2924; }
+.section-title { margin: 29px 0 17px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 38px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 72px; height: 2px; background: var(--line); vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.66);
+  border: 3px solid var(--line);
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 150px;
+}
+.card.core { position: relative; min-height: 174px; padding-left: 74px; }
+.core-icon {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  color: var(--main);
+}
+.core-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 14px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #493d33; font-size: 17.4px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric {
+  background: rgba(255,255,255,.68);
+  border: 3px solid;
+  border-radius: 14px;
+  padding: 12px 8px;
+  min-height: 136px;
+  text-align: center;
+}
+.metric-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  display: block;
+}
+.metric-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 30px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 14.4px; line-height: 1.32; color: #6e6256; }
+.metric .yoy { margin-top: 5px; font-size: 13px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 19px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6e6256; font-size: 15.4px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(239,231,223,.78); border-radius: 8px; padding: 14px 20px; font-size: 20px; line-height: 1.5; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 96px; gap: 14px; align-items: center; }
+.bar-label { font-size: 17px; font-weight: 900; color: #44372b; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 17px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #b8aaa0;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 1540px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">OpenAI 管理文化</h1>
+  <div class="subtitle">Mission + Dynamic Teams + Safety Governance + High-intensity Execution</div>
+  <div class="pill">AGI使命 × 动态团队 × 顶级人才 × 安全治理 × 股权激励</div>
+
+    <div class="hero">
+
+    <div class="mark">
+      <div class="brand-lockup"><div class="wordmark openai-wordmark">OpenAI</div></div>
+      <div class="small">Frontier AI</div>
+    </div>
+
+      <div class="thesis"><div class="k">这张图讲“组织怎么跑起来”</div><div class="v">OpenAI 的文化不是普通互联网公司文化，而是把顶级研究、快速产品化、安全治理和高强度算力执行放在同一张桌子上。</div></div>
+    </div>
+    <div class="section-title">公开可验证的组织机制</div><div class="cards">
+    <div class="card">
+      <span class="tag">使命</span>
+      <h3>AGI benefit all humanity</h3>
+      <p class="body">OpenAI Charter 把目标定义为让 AGI 造福全人类；这也是它治理、产品和安全承诺的核心叙事。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">团队</span>
+      <h3>Dynamic Teams</h3>
+      <p class="body">官方文章强调跨职能、快速组队、根据问题动态重组，适合模型、产品、安全同时高速变化的环境。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">招聘</span>
+      <h3>高潜力 + 强沟通</h3>
+      <p class="body">OpenAI 面试指南强调问题解决、合作、沟通、快速学习，不只看传统履历标签。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">安全</span>
+      <h3>Preparedness Framework</h3>
+      <p class="body">以风险分级、评估和部署门槛管理前沿模型，把安全治理写入研发流程。</p>
+    </div>
+    </div><div class="section-title">员工与福利待遇</div><div class="cards">
+    <div class="card">
+      <span class="tag">福利</span>
+      <h3>医疗 + 心理健康 + 餐食</h3>
+      <p class="body">官方 Careers 披露医疗、牙科、视力、心理健康支持、餐食和通勤等福利。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">家庭</span>
+      <h3>20-24 周育儿假</h3>
+      <p class="body">官方福利包含出生父母约 24 周、其他父母约 20 周育儿假，属于硅谷顶级福利区间。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">激励</span>
+      <h3>股权价值驱动</h3>
+      <p class="body">公司未上市，核心激励来自高估值私营股权与二级流动性，而不是现金分红。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">压力</span>
+      <h3>高强度交付</h3>
+      <p class="body">快速模型迭代、算力扩张、企业落地和安全审查并行，组织强度会明显高于普通软件公司。</p>
+    </div>
+    </div>
+</div>
+<div class="footer"><div>经营数据：OpenAI 官方公告，融资/收入/用户：2026年3月；Stargate/算力：2026年4月；部分指标为年化或运行率口径</div>
+<div>估值/融资：OpenAI 官方公告 2026-03-31，$122B 承诺资本，post-money 约 $852B；未上市无市值/PE</div>
+<div>ROI/CapEx/分红：未披露完整利润与资产负债，ROI不可比；2026公司CapEx未披露，Stargate为基础设施承诺；无公开现金股息</div>
+<div>模型/产品采用：GPT-5.5发布页、1M business customers公告、Codex App/GPT-5.5 Codex案例、Stargate公告，核查：2026年5月</div>
+<div>管理文化：OpenAI Careers / Charter / Interview Guide / Building Dynamic Teams / Preparedness Framework，核查：2026年5月</div>
+<div>货币口径：OpenAI 美元披露；图中金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

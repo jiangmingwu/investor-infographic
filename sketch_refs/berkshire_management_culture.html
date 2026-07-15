@@ -1,66 +1,168 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body { height: 2260px; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #F7F4ED;
+  color: #3A2A1E;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#4A6B3B; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #4A6B3B; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #4A6B3B; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#4A6B3B; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #4A6B3B; padding-left:24px; }
-.thesis .k { color:#4A6B3B; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#4A6B3B; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#4A6B3B; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#4A6B3B; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #4A6B3B; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#4A6B3B; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#4A6B3B; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
+.page { position: relative; z-index: 1; padding: 48px 40px 0; }
+.title {
+  text-align: center;
+  color: #8B3A4E;
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 74px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  line-height: 1.08;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #9B8A7A;
+  font-size: 22px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+.pill {
+  margin: 22px auto 28px;
+  width: max-content;
+  max-width: 780px;
+  border: 3px solid #4A6B3B;
+  border-radius: 999px;
+  padding: 10px 26px;
+  color: #5E5A6D;
+  font-size: 24px;
+  font-weight: 800;
+  background: rgba(255,255,255,.45);
+}
+.hero { display: flex; gap: 28px; align-items: center; margin: 18px 0 28px; }
+.mark {
+  width: 188px;
+  height: 188px;
+  border: 4px solid #1C4E80;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: #1C4E80;
+  box-shadow: 0 5px 0 rgba(12,46,96,.18);
+  transform: rotate(-1.5deg);
+}
+.mark .big { font-family: "Songti SC", "STSong", serif; font-size: 54px; font-weight: 900; line-height: 1; }
+.mark .small { color: #FFC220; font-size: 18px; font-weight: 900; margin-top: 8px; }
+.thesis { flex: 1; border-left: 8px solid #4A6B3B; padding-left: 24px; }
+.thesis .k { color: #4A6B3B; font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 37px; line-height: 1.35; font-weight: 800; color: #3A2A1E; }
+.section-title { margin: 34px 0 20px; text-align: center; color: #8B3A4E; font-family: "Songti SC", "STSong", serif; font-size: 42px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 86px; height: 2px; background: #C89890; vertical-align: middle; margin: 0 16px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.card { background: rgba(255,255,255,.60); border: 3px solid #D5BFAE; border-radius: 16px; padding: 18px 20px; min-height: 166px; }
+.card h3 { color: #4A6B3B; font-family: "Songti SC", "STSong", serif; font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
+.tag { display: inline-block; background: #4A6B3B; color: white; border-radius: 8px; padding: 5px 12px; font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+.body { color: #4B3B2F; font-size: 20px; line-height: 1.55; }
+.body strong { color: #1C4E80; }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.metric { background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 14px 8px; min-height: 118px; text-align: center; }
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 36px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 8px; font-size: 17px; line-height: 1.3; color: #6E6256; }
+.metric .yoy { margin-top: 5px; font-size: 14px; line-height: 1.15; font-weight: 900; }
+.metric .yoy.up { color: #4A6B3B; }
+.metric .yoy.down { color: #8B3A4E; }
+.flow { display: flex; align-items: stretch; gap: 10px; margin: 10px 0 22px; }
+.node { flex: 1; border: 3px solid #4A6B3B; border-radius: 14px; padding: 14px 8px; text-align: center; background: rgba(255,255,255,.55); }
+.node b { display: block; color: #4A6B3B; font-size: 22px; margin-bottom: 6px; }
+.node span { color: #6E6256; font-size: 17px; line-height: 1.3; }
+.arrow { align-self: center; color: #8A7A68; font-size: 28px; font-weight: 900; }
+.segments { border: 3px solid #D5BFAE; border-radius: 16px; padding: 16px 18px; background: rgba(255,255,255,.5); }
+.seg-row { display: grid; grid-template-columns: 34px 220px 96px 90px 1fr; gap: 12px; align-items: center; min-height: 48px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.seg-row:last-child { border-bottom: 0; }
+.rank { width: 30px; height: 30px; border-radius: 50%; background: #1C4E80; color: white; display:flex; align-items:center; justify-content:center; font-weight:900; }
+.bar-bg { height: 22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
 .bar { height:100%; background:#4A6B3B; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #4A6B3B; background:rgba(232,242,225,.68); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#4A6B3B; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
-</style></head><body>
-<div class='page'>
-  <div class='title'>伯克希尔 的 管 理 文 化</div>
-  <div class='subtitle'>去中心化资本配置组织 · Management Culture</div>
-  <div class='pill'>信任经理人 × 少干预 × 长期资本</div>
-  <div class='hero'><div class='mark'>伯克</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>伯克希尔文化是极端去中心化，总部人数很少，把经营权留给子公司经理，把资本配置集中在总部。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#4A6B3B'><div class='num' style='color:#4A6B3B'>极小总部</div><div class='lab'>控股公司</div></div><div class='stat' style='border-color:#4A6B3B'><div class='num' style='color:#4A6B3B'>浮存金</div><div class='lab'>保险资本</div></div><div class='stat' style='border-color:#4A6B3B'><div class='num' style='color:#4A6B3B'>长期持有</div><div class='lab'>投资原则</div></div><div class='stat' style='border-color:#4A6B3B'><div class='num' style='color:#4A6B3B'>自治</div><div class='lab'>子公司文化</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>组织结构</span><h3>去中心化</h3><div class='body'>总部不参与大多数日常经营，子公司经理对业务负责。</div></div><div class='card'><span class='tag'>人才机制</span><h3>信任筛选</h3><div class='body'>重点选择可信且热爱业务的经理人，而不是靠总部流程控制。</div></div><div class='card'><span class='tag'>核心能力</span><h3>资本配置</h3><div class='body'>现金在保险、股票、并购和回购之间长期配置。</div></div><div class='card'><span class='tag'>风险底线</span><h3>声誉文化</h3><div class='body'>强调声誉损失不可接受，授权同时要求自律。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>不同子公司文化差异大。</li><li>适合成熟业务、长期经营和自我约束强的管理者。</li><li>总部资源少，自治空间大。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是长期资本、低干预和经理人信任。</li><li>风险是接班、机会稀缺和组合复杂。</li><li>文化本质是用信任降低管理成本。</li></ul></div>
+.quote { margin-top: 14px; background: rgba(220,229,242,.72); border-left: 5px solid #1C4E80; padding: 14px 20px; border-radius: 0 10px 10px 0; }
+.quote .txt { font-size: 22px; color:#4A3728; line-height:1.5; }
+.quote .from { font-size: 15px; color:#0C2E60; margin-top: 5px; font-weight: 700; }
+.note-box { margin-top: 24px; border: 4px solid #4A6B3B; background: rgba(232,242,225,.68); border-radius: 18px; padding: 24px 28px; }
+.note-box h3 { color:#4A6B3B; font-family:"Songti SC","STSong",serif; font-size:34px; margin-bottom:8px; }
+.note-box p { font-size:22px; line-height:1.55; }
+.footer {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  text-align: center;
+  color:#B0A090;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.footer .by { margin-top: 8px; }
+
+.culture-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.salary-note { border:3px dashed #C4963C; border-radius:16px; padding:18px 22px; background:rgba(255,248,235,.65); margin-top:20px; }
+.salary-note h3 { color:#8B3A4E; font-family:"Songti SC","STSong",serif; font-size:31px; margin-bottom:8px; }
+.salary-note p { font-size:20px; line-height:1.55; color:#4B3B2F; }
+</style></head><body class="culture">
+<div class="page">
+  <div class="title">伯克希尔管理文化</div>
+  <div class="subtitle">Owner-Managers · Decentralization · Reputation</div>
+  <div class="pill">少管理人，多管理资本</div>
+
+  <div class="hero">
+    <div class="mark"><div class="big">BRK</div><div class="small">Culture</div></div>
+    <div class="thesis">
+      <div class="k">这张图讲“组织如何运行”</div>
+      <div class="v">伯克希尔的文化不是总部流程，而是选对经理人、充分授权、严守声誉；日常经营交给子公司，重大资本配置由总部统一把关。</div>
+    </div>
   </div>
-  <div class='note-box'><h3>一句话总结</h3><p>伯克希尔的文化，是少管理人，多管理资本。</p></div>
+
+  <div class="section-title">公开可验证的文化原则</div>
+  <div class="cards">
+    <div class="card"><span class="tag">Owner's Manual</span><h3>股东像合伙人</h3><div class="body">伯克希尔长期强调把股东当合伙人，报告要坦诚，经理人也按长期所有者视角经营。</div></div>
+    <div class="card"><span class="tag">Decentralization</span><h3>极端分权</h3><div class="body">总部人员很少，不用复杂预算和委员会管理子公司，经营责任留给子公司经理。</div></div>
+    <div class="card"><span class="tag">Reputation</span><h3>声誉不可冒险</h3><div class="body">授权越大，声誉底线越硬。伯克希尔反复强调声誉损失不是金钱能弥补的。</div></div>
+    <div class="card"><span class="tag">Capital</span><h3>资本配置集中</h3><div class="body">日常经营分权，但重大资本配置集中：现金、并购、股票、回购都围绕长期赔率。</div></div>
+  </div>
+
+  <div class="section-title">四个管理机制</div>
+  <div class="cards">
+    <div class="card"><h3>1. 买公司，也买经理人</h3><div class="body">伯克希尔喜欢收购愿意长期留下来的家族企业和优秀经理人，不靠“接管式整合”创造价值。</div></div>
+    <div class="card"><h3>2. 总部不做日常指挥</h3><div class="body">子公司独立做招聘、薪酬、运营和客户决策；总部重点看资本、风险和声誉。</div></div>
+    <div class="card"><h3>3. 不追短期预算游戏</h3><div class="body">文化上更看重长期现金流和保守财务，而不是每季度把指标修饰得更好看。</div></div>
+    <div class="card"><h3>4. 现金就是组织纪律</h3><div class="body">A++ 财务实力不是口号，而是要求公司永远有足够流动性，不被市场情绪绑架。</div></div>
+  </div>
+
+  <div class="section-title">总部与员工待遇</div>
+  <div class="cards">
+    <div class="card"><span class="tag">总部</span><h3>小总部、少层级</h3><div class="body">Owner's Manual 口径显示：集团员工数十万，但总部只有很少人员；总部不是大型职能部门。</div></div>
+    <div class="card"><span class="tag">福利</span><h3>总部福利未公开细项</h3><div class="body">公开资料没有总部统一福利清单；GEICO、BNSF、BHE 等子公司福利按各自业务和地区执行。</div></div>
+  </div>
+
+  <div class="quote"><div class="txt">“We delegate almost to the point of abdication.”</div><div class="from">— Berkshire Hathaway Owner's Manual</div></div>
+  <div class="quote"><div class="txt">“We can afford to lose money, but we can't afford to lose reputation.”</div><div class="from">— Berkshire cultural principle, repeated in shareholder materials</div></div>
+
 </div>
-<div class='footer'>管理文化：Berkshire Hathaway FY2025 Annual Report / Owner&#x27;s Manual / Shareholder Letters，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class="footer">
+  <div>管理文化：Owner's Manual / FY2025 Annual Report / Shareholder Letters / 子公司公开资料，核查：2026年5月</div>
+  <div>员工福利口径：总部福利未单独披露；子公司福利按各自业务和地区执行，图中不做集团统一福利结论</div>
+  <div>货币口径：Berkshire 以 USD 报告；图中金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div>
+  <div class="by">by 江明</div>
+</div>
 </body></html>

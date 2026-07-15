@@ -3,10 +3,14 @@
 ## What Exists
 
 - `/Users/jiangming/templates/investor_infographic.py` creates the orange investor/fund holding-analysis long image.
-- `/Users/jiangming/templates/company_infographic.py` creates the orange company operating-analysis long image.
+- `/Users/jiangming/templates/company_infographic.py` is the legacy orange company operating-analysis renderer and is opt-in for current work.
+- `/Users/jiangming/templates/company_visual_standard_v2.py` contains the current shared `经营之道` and `经营全景` visual contract.
+- `/Users/jiangming/templates/company_logo_assets.py` validates registered official Logo assets and hashes.
 - `/Users/jiangming/templates/data_template.py` is the investor/fund data skeleton.
-- `/Users/jiangming/templates/data_*.py` contains existing examples. At installation time there were 34 data files.
-- `/Users/jiangming/templates/sketch_refs/` contains hand-drawn HTML references. At installation time there were 58 HTML files.
+- `/Users/jiangming/templates/data_*.py` contains the live investor and company data modules.
+- `/Users/jiangming/templates/data/market_history/` contains audited company-profile price snapshots.
+- `/Users/jiangming/templates/assets/company_logos/` contains official Logo source assets and visibility-normalized derivatives.
+- `/Users/jiangming/templates/sketch_refs/` contains the live hand-drawn HTML/CSS references.
 - `/Users/jiangming/持仓分析/` contains previous finished images and should be the default output root.
 - The GitHub mirror mentioned by the user is `https://github.com/jiangmingwu/investor-infographic`, but the local `/Users/jiangming/templates` copy is the active working source unless the user asks to sync from GitHub.
 
@@ -34,7 +38,18 @@ cd /Users/jiangming/templates
 python3 investor_infographic.py data_<slug> "/Users/jiangming/持仓分析/<folder>/<name>_橙色长图.png"
 ```
 
-## Company Data Schema
+## Current Company Four-Page Contract
+
+Listed-company work defaults to four hand-drawn pages from one approved company packet and one company-specific visual configuration:
+
+1. `公司档案`: eight required identity fields, business scope, a hand-drawn `上市以来股价走势`, industry position, and milestones.
+2. `经营之道`: long-term positioning, 3-5 real core drivers, hard evidence plus industry meaning, recent actions, and a verified quote when useful.
+3. `经营全景`: the fixed six-card financial/valuation snapshot, segment mix, ROI/ROIC, 2026 CapEx, shareholder return, highlights/risks, and important institutions/shareholders.
+4. `管理文化`: 1-3 documented people/organization principles, each with a practice and a case or number.
+
+The company-profile stock chart sits immediately after `业务范围`. It uses split-adjusted closing prices, excludes cash-dividend reinvestment, displays USD, and states the security, period, provider, retrieval date, and dated FX method in the footer. If listing history and comparable price history start at different times, state both instead of inventing earlier prices.
+
+## Legacy Company Data Schema
 
 Use existing company modules such as `data_nvidia.py`, `data_pdd.py`, `data_tencent.py`, or `data_apple.py` as examples. Required shape:
 
@@ -53,7 +68,7 @@ Use existing company modules such as `data_nvidia.py`, `data_pdd.py`, `data_tenc
 - `QUOTES`
 - `DATA_SOURCE` or `FOOTER_LINES`
 
-Company command:
+Legacy orange company command, only when explicitly requested or preserving an old batch:
 
 ```bash
 cd /Users/jiangming/templates
@@ -67,7 +82,7 @@ Create two landscape PNGs for investor holding requests unless the user asks oth
 - `*_sketch1.html`: "投资之道" style, usually a portrait or symbolic figure, core principles, arrows/process, and quotes.
 - `*_sketch2.html`: "持仓全景" style, usually key figures, top holdings bars, sector pie/donut, recent changes, and bottom insight.
 
-For company analysis, adapt the same two-sketch idea to "商业模式/护城河" and "经营全景/财务结构".
+For current company analysis, render the four-page contract above rather than adapting only two generic sketches. Preserve each company's palette, official Logo, semantic icon family, and narration style.
 
 Screenshot command:
 
@@ -75,12 +90,12 @@ Screenshot command:
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --headless \
   --screenshot="/Users/jiangming/持仓分析/<folder>/<output>.png" \
-  --window-size=1200,750 \
+  --window-size=<body_css_width>,<body_css_height> \
   --force-device-scale-factor=4 \
   "file:///Users/jiangming/templates/sketch_refs/<slug>_sketch1.html"
 ```
 
-Expected screenshot size: 4800x3000px.
+Use the HTML's real CSS canvas and a 3x or 4x scale. Reject any output whose footer, signature, chart endpoint, text, or card falls outside the canvas.
 
 ## Required Signature
 
@@ -124,5 +139,5 @@ Rules:
 - Holdings are time-sensitive. Always verify the latest quarter and filing date before claiming "latest".
 - For US institutional holdings, use SEC 13F as the anchor. Cross-check with WhaleWisdom or the manager's official site when useful.
 - For ETF-style public holdings such as ARK, use the issuer's daily holdings when available instead of only quarterly 13F data.
-- For company images, use official annual reports, quarterly earnings releases, and investor relations as anchors. Market cap, stock price, and valuation multiples need date labels.
-- Keep source labels concise in `DATA_SOURCE`; detailed citations can be provided in the chat response if the user asks for sources.
+- For company images, use official annual reports, quarterly earnings releases, investor relations, official Careers/culture pages, Proxy filings, and official brand assets as anchors. Market cap, stock price, valuation multiples, holders, and price-history endpoints need dated sources.
+- Use the footer as the audit layer: compact fiscal period, market-data date, ROI formula, CapEx source/limitation, shareholder-return source, culture source, exchange-rate basis, disclaimer, and a separate centered `by 江明` line.

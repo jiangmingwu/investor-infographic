@@ -1,255 +1,107 @@
-<!DOCTY市场定价 html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  width: 900px; height:2300px; background: #F7F4ED;
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  color: #3A2A1E; overflow: hidden; position: relative;
-}
-body::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
-  opacity: 0.35; pointer-events: none;
-}
+body { width: 900px; height:2880px; background: #F7F4ED; font-family: 'Noto Sans SC','PingFang SC',sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
 .header { text-align: center; padding: 50px 40px 20px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header h1 { font-family: 'Songti SC', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
 .header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
-.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
-
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; }
 .hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
 .hero-meta { flex: 1; }
-.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
-.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
+.hero-meta .name { font-family: 'Songti SC', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .tag { font-size: 22px; color: #4285F4; margin-top: 6px; font-weight: 500; }
 .hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
 .hero-meta .stats span { display: inline-block; margin-right: 16px; }
-
 .section-title { text-align: center; margin: 30px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span { font-family: 'Songti SC', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; letter-spacing: 2px; }
 .section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-
+.section-title span::before { right: 100%; } .section-title span::after { left: 100%; }
 .concepts { display: flex; gap: 16px; padding: 0 40px; }
 .concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
 .concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
-.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .cn { font-family: 'Songti SC', serif; font-weight: 700; font-size: 30px; margin-top: 6px; }
 .concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
-.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
-
-.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E4EDFB 0%, #C9DAF7 100%); border: 2px solid #4285F4; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
-.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
-.bigbox .s1 { font-size: 20px; color: #3A5A8B; margin-top: 4px; line-height: 1.5; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #1A5FC4; line-height: 1; }
-.bigbox .lab { font-size: 18px; color: #3A5A8B; }
-
-.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
-.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
-.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
-.yieldbox .yld-cell { text-align: center; flex: 1; }
-.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
-.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
-.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
-
+.concept .desc { font-size: 19px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
+.moat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 40px; }
+.moat-card { background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 16px 18px; position: relative; }
+.moat-card .moat-num { position: absolute; top: 12px; right: 16px; font-family: 'Songti SC', serif; font-weight: 700; font-size: 28px; color: #C89890; opacity: 0.55; }
+.moat-card .moat-name { font-family: 'Songti SC', serif; font-weight: 700; font-size: 26px; color: #8B3A4E; margin-bottom: 8px; }
+.moat-card .moat-desc { font-size: 18px; color: #4A3728; line-height: 1.55; }
+.strategy-grid { padding: 0 40px; }
+.strategy-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; background: rgba(255,255,255,0.5); border: 1.5px solid #E2D2C2; border-radius: 10px; padding: 14px 18px; }
+.strategy-tag { flex: 0 0 100px; padding: 6px 0; text-align: center; color: white; font-weight: 700; font-size: 18px; border-radius: 6px; font-family: 'Songti SC', serif; letter-spacing: 1px; }
+.strategy-text { flex: 1; font-size: 19px; color: #4A3728; line-height: 1.55; }
 .flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
 .flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
 .flow-step .t { font-size: 22px; font-weight: 700; }
 .flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
 .flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
-
 .quotes { margin: 26px 40px 0; }
-.quote { background: rgba(228,237,251,0.6); border-left: 4px solid #4285F4; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote { background: rgba(66,133,244,0.10); border-left: 4px solid #4285F4; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
 .quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
-.quote .tag { font-size: 16px; color: #1A5FC4; margin-top: 4px; font-weight: 500; }
-
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #4285F4; --codex-soft: rgba(232,240,255,.68); }
-.codex-role-note {
-  margin: 18px 40px 0;
-  border: 2px dashed var(--codex-accent);
-  border-radius: 12px;
-  background: rgba(255,255,255,.52);
-  padding: 12px 18px;
-  color: #5A4A3A;
-  font-size: 17px;
-  line-height: 1.55;
-  text-align: center;
-}
-.codex-role-note b { color: var(--codex-accent); }
-.codex-strategy-panel .num { font-size: 42px !important; }
-.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
-.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
-.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>谷 歌 的 经 营 之 道</h1>
-  <div class="en">Alphabet · The Search × AI Full-Stack Playbook</div>
-  <div class="sub">搜索霸主 × AI 全栈 × Cloud 盈利</div>
-</div>
-
-<!-- 公司形象 -->
+.quote .tag { font-size: 16px; color: #1A56C7; margin-top: 4px; font-weight: 500; }
+.footer { text-align: center; font-size: 15px; color: #A89684; margin-top: 30px; padding: 0 30px 26px; line-height: 1.95; letter-spacing: 0.3px; }
+.footer .row { margin: 0; }
+.footer .by { margin-top: 10px; font-family: 'Songti SC', serif; font-size: 17px; color: #8B7355; letter-spacing: 2px; }
+</style></head><body>
+<div class="header"><h1>谷歌的经营之道</h1><div class="en">Alphabet · Search × AI × Cloud Playbook</div><div class="sub">搜索霸主 × 全栈 AI × Cloud 盈利</div></div>
 <div class="hero">
-  <svg width="170" height="200" viewBox="0 0 170 200">
-    <g transform="translate(85,100)">
-      <circle r="62" fill="#FFFFFF" stroke="#8B3A4E" stroke-width="2"/>
-      <!-- Google G 简笔 -->
-      <path d="M 30,0 A 30,30 0 1 1 15,-26" fill="none" stroke="#4285F4" stroke-width="10"/>
-      <path d="M 30,0 L 30,-4 L 5,-4 L 5,8 L 22,8" fill="none" stroke="#4285F4" stroke-width="10"/>
-      <text x="0" y="42" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#8B3A4E">Alphabet</text>
+  <svg width="170" height="200" viewBox="0 0 170 200"><g transform="translate(85,100)">
+    <circle r="62" fill="#FFFFFF" stroke="#D4B8A8" stroke-width="2"/>
+    <g transform="translate(-32,-30)">
+      <path d="M 32,12 A 22,22 0 1 1 12,28 L 24,28 A 10,10 0 1 0 32,22 L 32,12 Z" fill="#4285F4"/>
+      <path d="M 32,12 L 32,22 L 56,22 L 56,12 Z" fill="#EA4335"/>
+      <path d="M 12,28 L 12,38 A 22,22 0 0 0 32,52 L 32,42 A 10,10 0 0 1 22,32 Z" fill="#FBBC05"/>
+      <path d="M 32,42 L 32,52 A 22,22 0 0 0 54,38 L 44,32 A 10,10 0 0 1 32,42 Z" fill="#34A853"/>
     </g>
-  </svg>
-  <div class="hero-meta">
-    <div class="name">谷 歌</div>
-    <div class="tag">搜索 × AI × 云 × Android 全栈巨头</div>
-    <div class="stats">
-      <span>核心逻辑：搜索现金创造 + YouTube 注意力 + TPU/云基础设施，…</span><br>
-      <span>飞轮变量：搜索入口 → 广告定价 → YouTube/Android → TPU 降本</span>
-    </div>
-  </div>
+    <text x="0" y="48" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#3A2A1E" letter-spacing="2">Alphabet</text>
+  </g></svg>
+  <div class="hero-meta"><div class="name">谷歌</div><div class="tag">全球搜索 + AI 全栈 + 云计算第三</div><div class="stats"><span>🇺🇸 1998 Page+Brin</span><span>📍 Mountain View, CA</span><br><span>👥 约 18.3 万人</span><span>💰 $3,500 亿营收 (FY25)</span></div></div>
 </div>
-
-<!-- 三大引擎 -->
-<div class="section-title"><span>三 大 经 营 引 擎</span></div>
-
+<div class="section-title"><span>三大经营引擎</span></div>
 <div class="concepts">
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <circle cx="55" cy="55" r="28" fill="none" stroke="#4285F4" stroke-width="6"/>
-        <line x1="75" y1="75" x2="105" y2="105" stroke="#4285F4" stroke-width="8" stroke-linecap="round"/>
-        <text x="65" y="122" text-anchor="middle" font-size="14" fill="#1A5FC4" font-weight="bold">89% 市占 · 20 年</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#1A5FC4">搜索广告</div>
-    <div class="en">Search Monopoly</div>
-    <div class="desc">业务规模占 56% · 定价权极强</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="20" y="25" width="90" height="55" rx="8" fill="#8B3A4E" stroke="#6A2A3A" stroke-width="2"/>
-        <polygon points="55,40 55,65 80,52.5" fill="#FFFFFF"/>
-        <text x="65" y="110" text-anchor="middle" font-size="14" fill="#6A2A3A" font-weight="bold">25 亿月活</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#8B3A4E">YouTube</div>
-    <div class="en">Video Engine</div>
-    <div class="desc">规模数据见全景 · +15% · Shorts</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <path d="M 30,70 Q 20,50 40,45 Q 42,25 65,28 Q 88,25 90,45 Q 110,50 100,70 Z" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
-        <rect x="45" y="72" width="40" height="18" rx="3" fill="#8B6630"/>
-        <text x="65" y="85" text-anchor="middle" font-size="11" fill="#FFF" font-weight="bold">TPU+Gemini</text>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">+32% · 18% 利润率</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#C4963C">Google Cloud</div>
-    <div class="en">AI Cloud</div>
-    <div class="desc">规模数据见全景 · 首次规模盈利</div>
-  </div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><circle cx="55" cy="55" r="32" fill="none" stroke="#4285F4" stroke-width="6"/><line x1="78" y1="78" x2="105" y2="105" stroke="#4285F4" stroke-width="8" stroke-linecap="round"/></svg></div><div class="cn" style="color:#4285F4">搜索广告</div><div class="en">Search Ads</div><div class="desc">$1,960 亿 · 56% 营收</div></div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><rect x="20" y="35" width="90" height="60" rx="8" fill="#1A1A2E" stroke="#FBBC05" stroke-width="2"/><rect x="28" y="43" width="74" height="44" rx="3" fill="#2A2A3E"/><text x="65" y="73" text-anchor="middle" font-family="Songti SC,serif" font-weight="700" font-size="18" fill="#FBBC05">TPU</text><text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">v7 · Gemini 3.0</text></svg></div><div class="cn" style="color:#D4793A">全栈 AI</div><div class="en">Full-Stack AI</div><div class="desc">模型 + 芯片 + 云 + 数据</div></div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><rect x="20" y="40" width="90" height="55" rx="10" fill="#34A853"/><polygon points="55,55 55,80 80,67.5" fill="white"/><text x="65" y="115" text-anchor="middle" font-size="14" fill="#1F6E36" font-weight="bold">YouTube + Cloud</text></svg></div><div class="cn" style="color:#34A853">视频 + 云</div><div class="en">Video & Cloud</div><div class="desc">YouTube +15% · Cloud +32%</div></div>
 </div>
-
-<!-- 大数字战绩 -->
-<!-- codex-strategy-panel-start -->
-<div class="bigbox codex-strategy-panel">
-  <div style="flex:1">
-    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
-    <div class="s1">搜索现金创造 + YouTube 注意力 + TPU/云基础设施，构成 AI 时代的流量与算力闭环。<br>关键链条：搜索入口 → 广告定价 → YouTube/Android → TPU 降本</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num" style="color:#4285F4">逻辑</div>
-    <div class="lab">数据只作证据</div>
-  </div>
+<div class="section-title"><span>四大护城河</span></div>
+<div class="moat-grid">
+  <div class="moat-card"><div class="moat-num">01</div><div class="moat-name">搜索市占 89%+</div><div class="moat-desc">全球搜索市占率 <strong>89%+</strong>，20 年未被撼动；广告定价权极强，单业务贡献 56% 营收。<strong>苹果默认搜索协议</strong>每年付 ~$200 亿就是这条护城河的标尺。</div></div>
+  <div class="moat-card"><div class="moat-num">02</div><div class="moat-name">YouTube 视频生态</div><div class="moat-desc">全球最大的<strong>长视频 + Shorts 短视频</strong>双平台，月活 <strong>25 亿</strong>。内容/创作者飞轮 18 年累积，订阅付费业务（Premium / TV）独立成增长曲线。</div></div>
+  <div class="moat-card"><div class="moat-num">03</div><div class="moat-name">Android + 全球分发</div><div class="moat-desc"><strong>30 亿台 Android 设备</strong>全球分发；Play 服务分成 + Pixel 自研 + Chrome 浏览器，让 Google 在每一个用户接触点都拥有"默认位"。</div></div>
+  <div class="moat-card"><div class="moat-num">04</div><div class="moat-name">全栈 AI（独一份）</div><div class="moat-desc">全球唯一同时拥有 <strong>模型 (Gemini) + 芯片 (TPU v7) + 云 (GCP) + 数据 (搜索) + 顶级研究院 (DeepMind)</strong> 的厂商。从输入到输出全自有，AI 时代成本结构最优。</div></div>
 </div>
-<!-- codex-strategy-panel-end -->
-
-<!-- 四档数据 -->
-<!-- codex-strategy-evidence-start -->
-<div class="yieldbox codex-strategy-evidence">
-  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
-  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">搜索市占 89%+ 全球垄断</div><div class="yld-sub">搜索是全世界最赚钱的单一产品,20 年未被撼动,广告定价权极强</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">搜索入口 → 广告定价 → YouTube…</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">Gemini 3.0 全面开放 · 超越 …</div><div class="yld-sub">原生多模态+长上下文,在 LMSYS 登顶,搜索入口全面 AI 化</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">利润质量 +28% 跑赢业务规模</div><div class="yld-sub">规模效应+Cloud 扭亏,利润质量增速显著高于业务规模</div></div></div>
+<div class="section-title"><span>关键战略布局</span></div>
+<div class="strategy-grid">
+  <div class="strategy-row"><div class="strategy-tag" style="background:#4285F4">AI 模型</div><div class="strategy-text"><strong>Gemini 3.0 全面开放，LMSYS 登顶超越 GPT-5</strong>；原生多模态 + 长上下文；推动 Vertex AI 企业订单饱满，DeepMind 持续输出 AlphaFold 类基础研究。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#EA4335">搜索 AI 化</div><div class="strategy-text"><strong>AI Overviews / AI Mode 全量上线</strong>，搜索从"链接列表"过渡到"AI 直接回答"——主动自蚕食以防被 ChatGPT/Perplexity 切走流量。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#D4793A">云加速</div><div class="strategy-text">Google Cloud 营业利润率<strong>首破 18%</strong>（从亏损到可观盈利）；<strong>Anthropic 用 TPU 训练 + OpenAI 部分推理迁入 GCP</strong>，绑定下一代 AI 客户。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#34A853">长期期权</div><div class="strategy-text"><strong>Waymo 自动驾驶</strong>覆盖 SF / Phoenix / LA / Austin / Miami 5 城，每周 <strong>30 万次付费打车</strong>——商业化拐点真正到来；下一条增长曲线。</div></div>
 </div>
-<!-- codex-strategy-evidence-end -->
-
-<!-- 经营飞轮 -->
-<div class="section-title"><span>谷 歌 增 长 飞 轮</span></div>
-<div class="flow-wrap">
-  <div class="flow-row">
-    <div class="flow-step" style="border-color:#1A5FC4">
-      <div class="t" style="color:#1A5FC4">搜索用户</div>
-      <div class="d">日 80 亿次</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#8B3A4E">
-      <div class="t" style="color:#8B3A4E">AI Overviews</div>
-      <div class="d">Gemini 3.0</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#C4963C">
-      <div class="t" style="color:#C4963C">广告定价</div>
-      <div class="d">点击货币化</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B8E4E">
-      <div class="t" style="color:#6B8E4E">现金流</div>
-      <div class="d">规模数据见全景</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B4E7A">
-      <div class="t" style="color:#6B4E7A">再投 TPU</div>
-      <div class="d">长期投入 规模数据见全景</div>
-    </div>
-  </div>
-</div>
-
-<!-- 名言 -->
+<div class="section-title"><span>谷歌增长飞轮</span></div>
+<div class="flow-wrap"><div class="flow-row">
+  <div class="flow-step" style="border-color:#4285F4"><div class="t" style="color:#4285F4">搜索数据</div><div class="d">25 亿用户</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#EA4335"><div class="t" style="color:#EA4335">AI 训练</div><div class="d">Gemini · TPU</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#D4793A"><div class="t" style="color:#D4793A">产品改进</div><div class="d">搜索 + Cloud</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#34A853"><div class="t" style="color:#34A853">用户更多</div><div class="d">广告 + 订阅</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#6B4E7A"><div class="t" style="color:#6B4E7A">再投 AI</div><div class="d">$750 亿 CapEx</div></div>
+</div></div>
 <div class="quotes">
-  <div class="quote">
-    <div class="txt">「Gemini 是我们 25 年来最重要的产品。」</div>
-    <div class="tag">— Sundar Pichai · FY25 业绩会</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「AI 让搜索变得更有用,不是取代。」</div>
-    <div class="tag">— Sundar Pichai</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「我们同时拥有模型、芯片、云和数据,这在全球独一份。」</div>
-    <div class="tag">— Sundar Pichai</div>
-  </div>
+  <div class="quote"><div class="txt">「Gemini 是我们 25 年来最重要的产品。」</div><div class="tag">— Sundar Pichai · FY25 业绩会</div></div>
+  <div class="quote"><div class="txt">「我们同时拥有模型、芯片、云和数据，这在全球独一份。」</div><div class="tag">— Sundar Pichai</div></div>
+  <div class="quote"><div class="txt">「Cloud 已进入可持续盈利轨道，Waymo 的拐点已经到来。」</div><div class="tag">— Sundar Pichai · Anat Ashkenazi</div></div>
 </div>
-
-<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
-<!-- codex-role-note-end -->
-<div class="footer">经营之道：经营数据：Alphabet FY2025 年报/业绩公告（2026-02）与业绩会；货币口径：图中金额均为 USD / 美元；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class="footer">
+  <div class="row">数据来源：Alphabet FY2025 年报、Google I/O 2025、Sundar Pichai 公开演讲</div>
+  <div class="row">行情数据：CompaniesMarketCap，截至 2026-05-09　·　货币：USD</div>
+  <div class="row">免责声明：本图仅供学习参考，不构成投资建议</div>
+  <div class="by">by 江明</div>
+</div>
+</body></html>

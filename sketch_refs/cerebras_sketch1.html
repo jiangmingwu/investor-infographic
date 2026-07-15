@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --accent: #B33A2E;
+  --main: #F15A29;
+  --blue: #167782;
+  --gold: #C49336;
+  --line: #D6BBA8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #F8F3EB;
+  color: #2E2924;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E9E1D7 39px, #E9E1D7 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E9E1D7 39px, #E9E1D7 40px);
+}
+.page { position: relative; z-index: 1; padding: 50px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 68px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #8E7E70;
+  font-size: 21px;
+  font-style: italic;
+}
+.pill {
+  margin: 20px auto 28px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #4E4A47;
+  font-size: 22px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 18px 0 26px; }
+.mark {
+  width: 178px;
+  height: 178px;
+  border: 4px solid var(--main);
+  border-radius: 31px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255,255,255,.28), transparent 23%),
+    linear-gradient(145deg, #111, var(--accent));
+  box-shadow: 0 5px 0 rgba(40,40,40,.14);
+  transform: rotate(-1.1deg);
+}
+.mark .big { font-family: "Songti SC", "STSong", serif; font-size: 43px; font-weight: 900; line-height: 1; }
+.mark .small { color: #FFE2D6; font-size: 14px; font-weight: 900; margin-top: 8px; }
+.chipgrid { width: 94px; height: 42px; margin-top: 9px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+.chipgrid i { background: #FFE2D6; border-radius: 2px; opacity: .9; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 32px; line-height: 1.36; font-weight: 800; color: #2E2924; }
+.section-title { margin: 31px 0 18px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 76px; height: 2px; background: #D0A394; vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card { background: rgba(255,255,255,.66); border: 3px solid #D6BBA8; border-radius: 15px; padding: 16px 17px; min-height: 154px; }
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 27px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 15px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #4B3B2F; font-size: 18px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric { background: rgba(255,255,255,.68); border: 3px solid; border-radius: 14px; padding: 13px 8px; min-height: 116px; text-align: center; }
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 31px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 15px; line-height: 1.3; color: #6E6256; }
+.metric .yoy { margin-top: 5px; font-size: 14px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 20px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6E6256; font-size: 16px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(238,229,222,.78); border-radius: 8px; padding: 14px 20px; font-size: 21px; line-height: 1.52; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 165px 1fr 94px; gap: 14px; align-items: center; }
+.bar-label { font-size: 18px; font-weight: 900; color: #44372B; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 18px; font-weight: 900; color: var(--main); text-align: right; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.compare-col {
+  background: rgba(255,255,255,.68);
+  border: 3px solid #D6BBA8;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+.compare-col.cerebras { border-color: var(--main); }
+.compare-col.nvidia { border-color: #6B8E4E; }
+.compare-title {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.12;
+  color: var(--main);
+  margin-bottom: 11px;
+}
+.compare-col.nvidia .compare-title { color: #4E7C45; }
+.compare-row {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px dashed rgba(92,76,62,.22);
+  color: #493D33;
+  font-size: 17px;
+  line-height: 1.42;
+}
+.compare-row b { color: #2E2924; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #BAAAA0;
+  font-size: 12.4px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 2280px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">Cerebras 的经营之道</h1>
+  <div class="subtitle">Wafer-Scale AI Infrastructure · Compare with NVIDIA</div>
+  <div class="pill">晶圆级路线 × NVIDIA对比 × 低延迟推理 × 大客户容量</div>
+
+  <div class="hero">
+    <div class="mark">
+  <div class="big">CBRS</div>
+  <div class="chipgrid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="small">WAFER SCALE</div>
+</div>
+    <div class="thesis"><div class="k">这张图只讲“为什么可能长期赚钱”</div><div class="v">Cerebras 的护城河要和 NVIDIA 放在一起才看得清：NVIDIA 强在通用 AI 工厂，Cerebras 押注用整片晶圆减少通信，让推理更快。</div></div>
+  </div>
+
+
+<div class="section-title">先和 NVIDIA 对着看</div>
+
+<div class="compare">
+  <div class="compare-col cerebras">
+    <div class="compare-title">Cerebras WSE-3：把晶圆做成一块大芯片</div>
+    <div class="compare-row"><b>结构</b><span>4T 晶体管、90 万核心、46,225mm²，一片晶圆就是一个处理器。</span></div>
+    <div class="compare-row"><b>解决</b><span>减少模型在多张 GPU 之间来回通信，主打低延迟推理。</span></div>
+    <div class="compare-row"><b>适合</b><span>实时聊天、代码代理、搜索、需要 token 很快吐出来的任务。</span></div>
+  </div>
+  <div class="compare-col nvidia">
+    <div class="compare-title">NVIDIA Blackwell：把很多 GPU 组成 AI 工厂</div>
+    <div class="compare-row"><b>结构</b><span>B200 约 208B 晶体管；GB200 NVL72 用 72 个 Blackwell GPU 组成 NVLink 域。</span></div>
+    <div class="compare-row"><b>解决</b><span>用 CUDA、NVLink、HBM、服务器生态支持训练和通用推理。</span></div>
+    <div class="compare-row"><b>适合</b><span>最大规模训练、云厂商标准化部署、软件生态最完整的工作负载。</span></div>
+  </div>
+</div>
+
+<div class="section-title">优势到底在哪里</div>
+<div class="cards">
+<div class="card">
+  <span class="tag">通信</span>
+  <h3>优势：少跨芯片搬数据</h3>
+  <p class="body">GPU 集群要靠 NVLink/NVSwitch 把很多卡连起来；WSE-3 把 90 万核心放在一整片晶圆上，核心卖点是减少跨 GPU 通信等待。</p>
+</div>
+<div class="card">
+  <span class="tag">推理</span>
+  <h3>优势：低延迟更适合 Agent</h3>
+  <p class="body">对聊天、搜索、代码代理这类实时任务，用户等的是 token 速度。S-1/A 称部分开源模型上最高约 15× GPU 方案，但效果依负载变化。</p>
+</div>
+<div class="card">
+  <span class="tag">订单</span>
+  <h3>优势：OpenAI 把需求锁长</h3>
+  <p class="body">2025 年末 RPO 为 $246 亿，多数来自 OpenAI；OpenAI 合约包含 750MW 初始推理容量，说明客户买的是长期算力交付。</p>
+</div>
+<div class="card">
+  <span class="tag">短板</span>
+  <h3>短板：生态不如 NVIDIA</h3>
+  <p class="body">NVIDIA 的 CUDA、NVLink、服务器供应链和云生态仍是默认标准。Cerebras 的挑战是成本、交付、软件生态和客户集中度。</p>
+</div>
+</div>
+<div class="section-title">四个对比指标</div>
+<div class="metric-grid">
+<div class="metric" style="border-color:#F15A29">
+  <div class="num" style="color:#F15A29">19×</div>
+  <div class="lab">晶体管 vs B200</div>
+  <div class="yoy">Cerebras官网口径</div>
+</div>
+<div class="metric" style="border-color:#B33A2E">
+  <div class="num" style="color:#B33A2E">28×</div>
+  <div class="lab">AI compute vs B200</div>
+  <div class="yoy">Cerebras官网口径</div>
+</div>
+<div class="metric" style="border-color:#167782">
+  <div class="num" style="color:#167782">15×</div>
+  <div class="lab">部分模型推理速度</div>
+  <div class="yoy">S-1/A披露</div>
+</div>
+<div class="metric" style="border-color:#C49336">
+  <div class="num" style="color:#C49336">$246亿</div>
+  <div class="lab">已签未履约订单</div>
+  <div class="yoy">需求可见度</div>
+</div>
+</div>
+<div class="section-title">速度飞轮</div>
+<div class="steps"><div class="step"><div class="name">模型更慢</div><div class="sub">交互被延迟卡住</div></div><div class="step"><div class="name">晶圆级</div><div class="sub">减少跨芯片通信</div></div><div class="step"><div class="name">更快推理</div><div class="sub">token 生成速度</div></div><div class="step"><div class="name">OpenAI/AWS</div><div class="sub">大客户验证</div></div><div class="step"><div class="name">云端收入</div><div class="sub">容量变服务</div></div></div>
+<div class="quote">一句话看懂：Cerebras 不是要在所有场景替代 NVIDIA，而是在“实时推理/Agent”这个痛点上，用完全不同的芯片结构换速度；这就是它最清楚的护城河。</div>
+
+</div>
+<div class="footer"><div>经营数据：Cerebras S-1/A，FY2025: 2025年1-12月；FY2024: 2024年1-12月</div>
+<div>行情/IPO：StockAnalysis 2026-05-15 10:41 EDT；Cerebras 新闻稿 2026-05-14；股价 $295.63，市值约 $63.63B，IPO募资 $5.55B</div>
+<div>ROI/CapEx：GAAP利润含一次性收益，核心经营仍亏损，ROI不可比；2026 单年 CapEx 未披露，IPO/OpenAI贷款用于云和数据中心扩张</div>
+<div>护城河数据：Cerebras WSE-3官网/S-1/A、NVIDIA Blackwell官网、OpenAI MRA/RPO；性能对比依工作负载变化</div>
+<div>管理文化：S-1/A Human Capital / Founder Letter / Cerebras Careers，核查：2026年5月</div>
+<div>货币口径：Cerebras 以 USD 报告；图中金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

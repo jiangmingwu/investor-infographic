@@ -1,238 +1,137 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
+<html><head><meta charset="utf-8"><style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  width: 900px; height:2320px; background: #F7F4ED;
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  color: #3A2A1E; overflow: hidden; position: relative;
-}
-body::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
-  opacity: 0.35; pointer-events: none;
-}
-
+body { width: 900px; height:3260px; background: #F7F4ED; font-family: 'Noto Sans SC','PingFang SC',sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
 .header { text-align: center; padding: 45px 40px 18px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
+.header h1 { font-family: 'Songti SC', serif; font-weight: 700; font-size: 76px; color: #8B3A4E; letter-spacing: 6px; }
 .header .sub { font-size: 22px; color: #7B6650; margin-top: 8px; letter-spacing: 1px; }
-
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 10px 40px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 0 40px; }
+.stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 40px; }
 .stat { background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px solid; padding: 16px 8px; text-align: center; }
-.stat .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 42px; line-height: 1.1; }
-.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; }
-
+.stat .num { font-family: 'Songti SC', serif; font-weight: 700; font-size: 36px; line-height: 1.1; }
+.stat .lab { font-size: 17px; color: #7B6650; margin-top: 6px; line-height: 1.35; }
+.stat .sub { font-size: 14px; color: #9B8870; margin-top: 3px; }
 .section-title { text-align: center; margin: 32px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span { font-family: 'Songti SC', serif; font-weight: 700; font-size: 38px; color: #8B3A4E; padding: 0 20px; position: relative; letter-spacing: 2px; }
 .section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 90px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-
+.section-title span::before { right: 100%; } .section-title span::after { left: 100%; }
 .segments { padding: 0 40px; }
-.seg-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #D9CEBC; }
+.seg-row { display: flex; align-items: center; padding: 11px 0; border-bottom: 1px dashed #D9CEBC; }
 .seg-rank { width: 34px; height: 34px; border-radius: 50%; background: #76B900; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .seg-rank.gray { background: #B0A090; }
 .seg-name { width: 260px; font-size: 21px; font-weight: 600; color: #3A2A1E; padding-left: 14px; }
 .seg-bar-area { flex: 1; height: 24px; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; }
 .seg-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: white; font-weight: 700; font-size: 15px; }
 .seg-val { width: 118px; text-align: right; font-size: 18px; color: #5A4A3A; font-weight: 600; }
-
-.two-col { display: flex; padding: 0 40px; gap: 24px; }
-.left-box, .right-box { flex: 1; background: rgba(255,255,255,0.5); border-radius: 12px; padding: 18px; }
-.box-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #8B3A4E; margin-bottom: 14px; text-align: center; }
-
-.mix-item { display: flex; align-items: center; margin: 8px 0; font-size: 19px; }
-.mix-dot { width: 16px; height: 16px; border-radius: 3px; margin-right: 10px; }
-.mix-pct { margin-left: auto; font-weight: 700; color: #4A3728; }
-
-.move-item { display: flex; align-items: flex-start; margin: 10px 0; gap: 8px; }
-.move-tag { padding: 3px 8px; border-radius: 5px; font-size: 15px; color: white; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
-.move-detail { font-size: 18px; color: #4A3728; line-height: 1.4; }
-.move-detail strong { color: #76B900; }
-
-.insight { margin: 24px 40px 0; background: linear-gradient(135deg, #EDF7DC 0%, #DCEEBD 100%); border: 2px solid #76B900; border-radius: 14px; padding: 20px 24px; display:flex; align-items:center; gap:20px; }
-.insight .t { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 30px; color: #5B8D00; margin-bottom: 10px; }
-.insight .txt { font-size: 20px; color: #3A2A1E; line-height: 1.6; }
-.insight .txt strong { color: #5B8D00; }
-
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 20px; padding-bottom: 18px; line-height: 1.6; }
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #76B900; --codex-soft: rgba(234,251,208,.62); }
-.codex-roi-capex {
-  margin: 18px 40px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.codex-fin-card {
-  border: 2px solid var(--codex-accent);
-  border-radius: 12px;
-  background: var(--codex-soft);
-  padding: 13px 16px;
-  min-height: 108px;
-}
-.codex-fin-card .k { color: var(--codex-accent); font-weight: 800; font-size: 18px; }
-.codex-fin-card .v { font-family: 'Songti SC','STSong','SimSun',serif; color: #3A2A1E; font-size: 30px; font-weight: 700; margin-top: 4px; }
-.codex-fin-card .n { color: #6F5E4D; font-size: 15px; line-height: 1.35; margin-top: 5px; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-
+.achievements { padding: 0 40px; }
+.ach-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 11px; background: rgba(255,255,255,0.55); border: 1.5px solid #E2D2C2; border-radius: 10px; padding: 14px 18px; }
+.ach-tag { flex: 0 0 110px; padding: 8px 0; text-align: center; color: white; font-weight: 700; font-size: 17px; border-radius: 6px; font-family: 'Songti SC', serif; letter-spacing: 1px; }
+.ach-text { flex: 1; font-size: 19px; color: #3A2A1E; line-height: 1.5; padding-top: 4px; }
+.ach-text strong { color: #4A7A00; }
+.ach-text .em { color: #8B3A4E; font-weight: 700; }
+.capex-grid { padding: 0 40px; }
+.capex-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; background: rgba(255,255,255,0.55); border-left: 5px solid; border-radius: 8px; padding: 12px 18px; }
+.capex-tier { flex: 0 0 32px; font-family: 'Songti SC', serif; font-size: 24px; font-weight: 900; }
+.capex-name { flex: 1; }
+.capex-name .label { font-size: 19px; font-weight: 700; color: #3A2A1E; }
+.capex-name .desc { font-size: 15px; color: #7B6650; line-height: 1.4; margin-top: 3px; }
+.capex-num { flex: 0 0 200px; text-align: right; font-family: 'Songti SC', serif; font-size: 28px; font-weight: 800; }
+.footer { text-align: center; font-size: 15px; color: #A89684; margin-top: 30px; padding: 0 30px 26px; line-height: 1.95; letter-spacing: 0.3px; }
+.footer .row { margin: 0; }
+.footer .row.fy { color: #8B3A4E; font-weight: 700; font-size: 16px; }
+.footer .by { margin-top: 10px; font-family: 'Songti SC', serif; font-size: 17px; color: #8B7355; letter-spacing: 2px; }
+</style></head><body>
 <div class="header">
   <h1>英伟达 FY2026 经营全景</h1>
-  <div class="sub">NVIDIA NASDAQ: NVDA · FY2026 · 营收 $2,159 亿</div>
+  <div class="sub">NVIDIA NASDAQ: NVDA · 已交付的全年成果</div>
 </div>
 
-<!-- 关键数字 -->
+<div class="section-title"><span>核心财务（FY2026 全年）</span></div>
 <div class="stats-grid">
-  <div class="stat" style="border-color:#76B900">
-    <div class="num" style="color:#76B900">$2,159亿</div>
-    <div class="lab">FY26 营收</div>
-  </div>
-  <div class="stat" style="border-color:#8B3A4E">
-    <div class="num" style="color:#8B3A4E">+65%</div>
-    <div class="lab">营收同比</div>
-  </div>
-  <div class="stat" style="border-color:#C4963C">
-    <div class="num" style="color:#C4963C">$1,201亿</div>
-    <div class="lab">净利润 (+65%)</div>
-  </div>
-  <div class="stat" style="border-color:#6B4E7A">
-    <div class="num" style="color:#6B4E7A">71.1%</div>
-    <div class="lab">GAAP 毛利率</div>
-  </div>
+  <div class="stat" style="border-color:#76B900"><div class="num" style="color:#76B900">$2,159亿</div><div class="lab">全年营收</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">+65%</div><div class="lab">同比增速</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">$1,201亿</div><div class="lab">净利润 (+65%)</div></div>
+  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">71.1%</div><div class="lab">GAAP 毛利率</div></div>
 </div>
 
-<!-- 业务分部 -->
-<!-- codex-roi-capex-start -->
-<div class="codex-roi-capex">
-  <div class="codex-fin-card"><div class="k">ROI / ROIC</div><div class="v">ROIC 100%+</div><div class="n">净利润 / 平均投入资本口径估算；轻资产设计 + 高毛利 GPU 让资本效率极高。</div></div>
-  <div class="codex-fin-card"><div class="k">2026 CapEx</div><div class="v">FY26 约 $30亿</div><div class="n">公司自身 CapEx 不高；真正的大额 CapEx 在云客户的 AI 数据中心。</div></div>
+<div class="section-title"><span>盈利效率与现金创造</span></div>
+<div class="stats-grid">
+  <div class="stat" style="border-color:#4A7A00"><div class="num" style="color:#4A7A00">100%+</div><div class="lab">ROIC</div><div class="sub">净利润 / 平均投入资本</div></div>
+  <div class="stat" style="border-color:#76B900"><div class="num" style="color:#76B900">~$1,100亿</div><div class="lab">经营现金流</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">~$1,070亿</div><div class="lab">自由现金流</div><div class="sub">OCF − CapEx 估算</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">55.6%</div><div class="lab">净利率</div></div>
 </div>
-<!-- codex-roi-capex-end -->
-<div class="section-title"><span>五 大 业 务 分 部</span></div>
+
+<div class="section-title"><span>估值与市场地位（截至 2026-05-09）</span></div>
+<div class="stats-grid">
+  <div class="stat" style="border-color:#76B900"><div class="num" style="color:#76B900">$5.23万亿</div><div class="lab">最新市值</div><div class="sub">全球第 1 (人类首破 $5T)</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">$213</div><div class="lab">股价 (NVDA)</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">~43×</div><div class="lab">PE (TTM)</div><div class="sub">按净利润测算</div></div>
+  <div class="stat" style="border-color:#6B4E7A"><div class="num" style="color:#6B4E7A">~22.8×</div><div class="lab">PS (TTM)</div><div class="sub">按营收测算</div></div>
+</div>
+
+<div class="section-title"><span>五大业务分部</span></div>
 <div class="segments">
-  <div class="seg-row">
-    <div class="seg-rank">1</div>
-    <div class="seg-name">数据中心 (AI) <span style="color:#6B8E4E;font-size:16px">+68%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#76B900">89.7%</div></div>
-    <div class="seg-val">$1,937亿</div>
+  <div class="seg-row"><div class="seg-rank">1</div><div class="seg-name">数据中心 (AI) <span style="color:#6B8E4E;font-size:16px">+68%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:100%;background:#76B900">89.7%</div></div><div class="seg-val">$1,937亿</div></div>
+  <div class="seg-row"><div class="seg-rank" style="background:#C4963C">2</div><div class="seg-name">游戏 <span style="color:#6B8E4E;font-size:16px">+41%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:14%;background:#C4963C">7.4%</div></div><div class="seg-val">$160亿</div></div>
+  <div class="seg-row"><div class="seg-rank" style="background:#6B4E7A">3</div><div class="seg-name">专业可视化 <span style="color:#6B8E4E;font-size:16px">+24%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:5%;background:#6B4E7A">1.5%</div></div><div class="seg-val">$31.9亿</div></div>
+  <div class="seg-row"><div class="seg-rank" style="background:#8B3A4E">4</div><div class="seg-name">汽车 / 机器人 <span style="color:#6B8E4E;font-size:16px">+39%</span></div><div class="seg-bar-area"><div class="seg-bar" style="width:4%;background:#8B3A4E">1.1%</div></div><div class="seg-val">$23.5亿</div></div>
+  <div class="seg-row"><div class="seg-rank gray">5</div><div class="seg-name">OEM 及其他</div><div class="seg-bar-area"><div class="seg-bar" style="width:2%;background:#B0A090">0.3%</div></div><div class="seg-val">$6.2亿</div></div>
+</div>
+
+<div class="section-title"><span>FY2026 关键成果</span></div>
+<div class="achievements">
+  <div class="ach-row"><div class="ach-tag" style="background:#76B900">产品出货</div><div class="ach-text"><strong>Blackwell GB200 / GB300</strong> 全面出货 — 公司明确为<span class="em">"史上最快扩产"</span>产品；接棒 Hopper H100/H200 成为数据中心增长引擎</div></div>
+  <div class="ach-row"><div class="ach-tag" style="background:#8B3A4E">单季新高</div><div class="ach-text">FY26 Q4 <strong>数据中心营收 $623 亿</strong>，<span class="em">单季历史新高</span>；Q4 总营收 $681 亿 (+73% YoY)</div></div>
+  <div class="ach-row"><div class="ach-tag" style="background:#C4963C">主权 AI 落地</div><div class="ach-text"><strong>7+ 国家</strong> 主权 AI 项目签约部署：日本 / 英国 / 法国 / 沙特 / 阿联酋 / 印度 / 加拿大；开辟政府级长期订单池</div></div>
+  <div class="ach-row"><div class="ach-tag" style="background:#6B4E7A">技术里程碑</div><div class="ach-text"><strong>Rubin 架构 2026H2 量产路线图确认</strong>；CES 2026 / GTC 2026 公开 demo；切入"年更架构"节奏</div></div>
+  <div class="ach-row"><div class="ach-tag" style="background:#3A7BD4">生态扩张</div><div class="ach-text">CUDA 开发者数突破 <strong>400 万</strong>（同比 +30%+）；NIM 微服务、AI Enterprise、Omniverse 用户基数持续放大</div></div>
+  <div class="ach-row"><div class="ach-tag" style="background:#6B8E4E">战略投资</div><div class="ach-text">大手笔战略投资：<strong>OpenAI 协议 $1,000 亿（分阶段）</strong> / xAI / CoreWeave / Mistral / Wayve / Lambda</div></div>
+</div>
+
+<div class="section-title"><span>2026 自然年资本开支预期</span></div>
+<div style="text-align:center;color:#7B6650;font-size:16px;margin:-8px 40px 14px;font-style:italic">前瞻数据：业绩会指引 + 市场共识估算（与上方 FY2026 已发生数据是不同时间口径）</div>
+<div class="capex-grid">
+  <div class="capex-row" style="border-color:#76B900;background:rgba(118,185,0,0.08)">
+    <div class="capex-tier" style="color:#76B900">①</div>
+    <div class="capex-name"><div class="label">自己花的：PP&E 资本开支</div><div class="desc">公司未单独披露 2026 年指引；按 FY26→FY27 增速推算（FY26 实际 $30 亿，趋势上升）</div></div>
+    <div class="capex-num" style="color:#76B900">~$50-80 亿</div>
   </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#C4963C">2</div>
-    <div class="seg-name">游戏 <span style="color:#6B8E4E;font-size:16px">+41%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:14%;background:#C4963C">7.4%</div></div>
-    <div class="seg-val">$160亿</div>
+  <div class="capex-row" style="border-color:#8B3A4E;background:rgba(139,58,78,0.08)">
+    <div class="capex-tier" style="color:#8B3A4E">②</div>
+    <div class="capex-name"><div class="label">投出去的：战略股权投资</div><div class="desc">OpenAI $1,000 亿协议 2026 年阶段执行约 $100-150 亿 + xAI / CoreWeave / Mistral 等</div></div>
+    <div class="capex-num" style="color:#8B3A4E">$150-250 亿</div>
   </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#6B4E7A">3</div>
-    <div class="seg-name">专业可视化 <span style="color:#6B8E4E;font-size:16px">+24%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:5%;background:#6B4E7A">1.5%</div></div>
-    <div class="seg-val">$31.9亿</div>
+  <div class="capex-row" style="border-color:#C4963C;background:rgba(196,150,60,0.08)">
+    <div class="capex-tier" style="color:#C4963C">③</div>
+    <div class="capex-name"><div class="label">锁住供应链：预付台积电 / HBM</div><div class="desc">Blackwell + Rubin 双架构同步量产，预付规模随产能扩张大幅抬升</div></div>
+    <div class="capex-num" style="color:#C4963C">$500-600 亿+</div>
   </div>
-  <div class="seg-row">
-    <div class="seg-rank" style="background:#8B3A4E">4</div>
-    <div class="seg-name">汽车 / 机器人 <span style="color:#6B8E4E;font-size:16px">+39%</span></div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:4%;background:#8B3A4E">1.1%</div></div>
-    <div class="seg-val">$23.5亿</div>
-  </div>
-  <div class="seg-row">
-    <div class="seg-rank gray">5</div>
-    <div class="seg-name">OEM 及其他</div>
-    <div class="seg-bar-area"><div class="seg-bar" style="width:2%;background:#B0A090">0.3%</div></div>
-    <div class="seg-val">$6.2亿</div>
+  <div class="capex-row" style="border-color:#3A7BD4;background:rgba(58,123,212,0.08)">
+    <div class="capex-tier" style="color:#3A7BD4">④</div>
+    <div class="capex-name"><div class="label">客户替我们花的：4 大云厂 + Oracle 2026 年 AI CapEx</div><div class="desc">微软 ~$1,800 亿 + 谷歌 $850-1,000 亿 + Meta $1,000-1,200 亿 + 亚马逊 $1,000-1,200 亿 + Oracle $200-300 亿</div></div>
+    <div class="capex-num" style="color:#3A7BD4">$5,000-6,000 亿</div>
   </div>
 </div>
 
-<!-- 收入结构 + 战略动作 -->
-<div class="section-title" style="margin-top:28px"><span>收 入 结 构 与 战 略 动 作</span></div>
-<div class="two-col">
-  <div class="left-box">
-    <div class="box-title">收入结构</div>
-    <div class="mix-item"><div class="mix-dot" style="background:#76B900"></div>数据中心 AI<span class="mix-pct">89.7%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#C4963C"></div>游戏<span class="mix-pct">7.4%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#6B4E7A"></div>专业可视化<span class="mix-pct">1.5%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#8B3A4E"></div>汽车 / 机器人<span class="mix-pct">1.1%</span></div>
-    <div class="mix-item"><div class="mix-dot" style="background:#B0A090"></div>OEM 及其他<span class="mix-pct">0.3%</span></div>
-    <div style="margin-top:14px; padding-top:10px; border-top:1px dashed #D9CEBC; font-size:15px; color:#7B6650; line-height:1.55;">
-      <strong style="color:#76B900">集中度极高：</strong>AI 数据中心一条腿撑起九成营收,单季 Q4 数据中心 $623 亿再创历史新高。
-    </div>
-  </div>
-
-  <div class="right-box">
-    <div class="box-title">FY26-27 战略</div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#76B900">产品</div>
-      <div class="move-detail"><strong>Blackwell GB200/GB300</strong> 全面出货</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#8B3A4E">路线</div>
-      <div class="move-detail"><strong>Rubin 2026H2</strong> 交付 · $5,000 亿机会</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#C4963C">生态</div>
-      <div class="move-detail"><strong>CUDA + NIM + AI Enterprise</strong> 护城河</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B4E7A">订单</div>
-      <div class="move-detail"><strong>AI Factory</strong> 10 万 GPU 超算交付</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#D9534F">风险</div>
-      <div class="move-detail"><strong>H20 再受限</strong> · 中国敞口压缩</div>
-    </div>
-    <div class="move-item">
-      <div class="move-tag" style="background:#6B8E4E">回报</div>
-      <div class="move-detail"><strong>$400 亿回购</strong> · 创纪录</div>
-    </div>
-  </div>
+<div class="section-title"><span>股东回报</span></div>
+<div class="stats-grid-3">
+  <div class="stat" style="border-color:#76B900"><div class="num" style="color:#76B900">~$400亿</div><div class="lab">FY26 回购</div><div class="sub">创纪录规模</div></div>
+  <div class="stat" style="border-color:#C4963C"><div class="num" style="color:#C4963C">~$10亿</div><div class="lab">FY26 分红</div><div class="sub">小额持续派发</div></div>
+  <div class="stat" style="border-color:#8B3A4E"><div class="num" style="color:#8B3A4E">$410 亿</div><div class="lab">合计股东返还</div><div class="sub">回购 + 分红</div></div>
 </div>
 
-<!-- 洞察卡 -->
-<div class="insight">
-  <svg width="100" height="110" viewBox="0 0 100 110" style="flex-shrink:0">
-    <g transform="translate(50,55)">
-      <rect x="-32" y="-28" width="64" height="56" rx="6" fill="#76B900" stroke="#4A7500" stroke-width="2"/>
-      <rect x="-24" y="-20" width="48" height="40" rx="3" fill="#2A2A2A"/>
-      <rect x="-20" y="-16" width="10" height="10" fill="#C4E880"/>
-      <rect x="-6" y="-16" width="10" height="10" fill="#C4E880"/>
-      <rect x="10" y="-16" width="10" height="10" fill="#C4E880"/>
-      <rect x="-20" y="-2" width="10" height="10" fill="#C4E880"/>
-      <rect x="-6" y="-2" width="10" height="10" fill="#C4E880"/>
-      <rect x="10" y="-2" width="10" height="10" fill="#C4E880"/>
-      <rect x="-30" y="32" width="6" height="8" fill="#8B7355"/>
-      <rect x="-18" y="32" width="6" height="8" fill="#8B7355"/>
-      <rect x="-6" y="32" width="6" height="8" fill="#8B7355"/>
-      <rect x="6" y="32" width="6" height="8" fill="#8B7355"/>
-      <rect x="18" y="32" width="6" height="8" fill="#8B7355"/>
-    </g>
-  </svg>
-  <div style="flex:1">
-    <div class="t">💡 不是在卖芯片,是在卖 AI 工厂</div>
-    <div class="txt">65% 营收增速 × <strong>55.6% 净利率</strong> × <strong>71% 毛利率</strong> — 万亿市值体量下极其罕见的三高组合。<br>黄仁勋:「Blackwell+Rubin 未来两年 <strong>$5,000 亿</strong> 市场,每个国家都需要自己的 AI 基础设施」。</div>
-  </div>
+<div class="footer">
+  <div class="row fy">财年口径：FY2026（2025.2.1 - 2026.1.31）</div>
+  <div class="row">经营数据：NVIDIA FY2026 年报（Form 10-K，2026-02-26）与业绩会</div>
+  <div class="row">2026 资本开支①：NVIDIA 公司未单独披露 2026 自然年 PP&E 指引；按 FY26→FY27 增速推算量级</div>
+  <div class="row">2026 资本开支②：OpenAI 协议总额 $1,000 亿分阶段执行，2026 年部分按市场共识估算</div>
+  <div class="row">2026 资本开支③：随 Blackwell + Rubin 量产扩张，10-K Purchase obligations 趋势预测</div>
+  <div class="row">2026 资本开支④：4 大云厂 + Oracle 业绩会 2026 自然年 AI CapEx 指引合计（市场共识）</div>
+  <div class="row">行情数据：CompaniesMarketCap，截至 2026-05-09　·　货币：USD</div>
+  <div class="row">免责声明：本图仅供学习参考，不构成投资建议</div>
+  <div class="by">by 江明</div>
 </div>
-
-<div class="footer">经营全景：公司年报/业绩资料/行情资料；经营数据：NVIDIA FY2026 年报/业绩公告（2026-02-26）与业绩会；行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）；ROI口径：净利润 / 平均投入资本口径估算；轻资产设计 + 高毛利 GPU 让资本效率极高。；CapEx口径：公司自身 CapEx 不高；真正的大额 CapEx 在云客户的 AI 数据中心。<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+</body></html>

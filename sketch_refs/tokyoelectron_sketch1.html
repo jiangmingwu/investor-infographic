@@ -1,0 +1,66 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1900px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #005BAC; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 2px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #005BAC; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #005BAC; border-radius: 26px; background: rgba(255,255,255,.58); color: #005BAC; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 51px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #005BAC; padding-left: 22px; }
+.thesis .k { color: #005BAC; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 188px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 48px; height: 48px; border: 3px solid #005BAC; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #005BAC; font-weight: 900; font-size: 13px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.core h3 { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #00A0E9; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #005BAC; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #005BAC; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid #005BAC; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #00A0E9; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 205px 78px 96px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #005BAC; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #005BAC; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #005BAC; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>东京电子的经营之道</div>
+  <div class='subtitle'>TSE:8035 · Business Playbook · 核心业务与硬指标</div>
+  <div class='pill'>长期战略定位 × 核心业务 × 硬指标支撑</div>
+  <div class='hero'><div class='mark'>TEL</div><div class='thesis'><div class='k'>长期战略定位</div><div class='v'>东京电子的长期定位是做半导体晶圆厂的关键工艺设备平台：不押单一芯片，而是押先进制程、存储升级和晶圆厂服务的长期资本开支。</div></div></div>
+  <div class='section-title'>核心业务与硬指标</div>
+  <div class='core-grid'><div class='core'><div class='core-head'><div class='icon'>Litho</div><h3>涂胶显影</h3></div><div class='metric'>官方：整体约 90% 份额；High-NA 工艺接近 100%。</div><div class='body'>这是 TEL 最硬的护城河，和 ASML 光刻流程、客户良率验证深度绑定。</div></div><div class='core'><div class='core-head'><div class='icon'>Etch</div><h3>刻蚀系统</h3></div><div class='metric'>官方：干法刻蚀全球第二；SPE 新设备约 36%。</div><div class='body'>DRAM、3D NAND、先进逻辑越复杂，刻蚀步骤越多，设备价值越高。</div></div><div class='core'><div class='core-head'><div class='icon'>Clean</div><h3>清洗系统</h3></div><div class='metric'>官方：晶圆清洗全球第二；SPE 新设备约 9%。</div><div class='body'>先进制程良率对颗粒、残留和干燥控制极敏感，清洗不是边缘设备。</div></div><div class='core'><div class='core-head'><div class='icon'>Tool</div><h3>多工艺组合</h3></div><div class='metric'>沉积 20% + 涂胶显影 28% + 刻蚀 36%。</div><div class='body'>客户扩产不是只买一台设备，TEL 可以在多道关键工艺里分享投资周期。</div></div><div class='core'><div class='core-head'><div class='icon'>Service</div><h3>Field Solutions</h3></div><div class='metric'>FY2026 Q4 约 ¥1,616 亿；装机服务复利。</div><div class='body'>备件、维护、升级和工程服务让 TEL 与客户长期绑定。</div></div></div>
+  <div class='section-title'>近年战略动作</div>
+  <div class='actions'><div class='action'><div class='tag'>AI需求</div><div class='body'>FY2027 H1 新设备销售预计同比 +41%，公司点名 AI server demand 推动 DRAM 与先进逻辑。</div></div><div class='action'><div class='tag'>研发加码</div><div class='body'>FY2027 R&amp;D 计划约 $20.7 亿，继续围绕刻蚀、沉积、涂胶显影、清洗和先进封装。</div></div><div class='action'><div class='tag'>基地扩建</div><div class='body'>宫城、岩手、熊本生产和工艺开发基地扩建，强化交付与客户共同开发能力。</div></div></div>
+  <div class='quote'>“Pride, Challenge, Ownership, Teamwork, Awareness.” — TEL Values</div>
+</div>
+<div class='footer'><div>经营数据：Tokyo Electron FY2026 Results / FY2026 Q4 Presentation，FY2026: 2025年4月-2026年3月</div><div>同比口径：FY2026 vs FY2025；营收 +0.5%，经营利润 -10.4%，经营现金流 -7.3%，净利润 +5.6%</div><div>护城河数据：Coater/Developer 90% 与 High-NA 接近 100%、Etch/清洗全球第二来自 TEL Product 页面；产品结构来自 FY2026 Q4 Presentation</div><div>管理文化：TEL Corporate Principles / TEL Values / Human Resource / Company Info，核查：2026年5月</div><div>汇率口径：Exchange-Rates.org，2026年5月27日，1 USD=159.379 JPY；图中金额均为 USD/美元</div><div>经营之道：财务看板、ROI/ROE、2026 CapEx 与估值详见《经营全景》</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

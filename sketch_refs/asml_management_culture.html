@@ -1,66 +1,64 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
+  width: 900px; height: 1720px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#005EB8; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #005EB8; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #005EB8; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#005EB8; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #005EB8; padding-left:24px; }
-.thesis .k { color:#005EB8; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#005EB8; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#005EB8; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#005EB8; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #005EB8; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#005EB8; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#005EB8; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#005EB8; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #005EB8; background:rgba(226,239,255,.70); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#005EB8; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #005EB8; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #005EB8; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #005EB8; border-radius: 26px; background: rgba(255,255,255,.58); color: #005EB8; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #005EB8; padding-left: 22px; }
+.thesis .k { color: #005EB8; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #005EB8; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #005EB8; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #F28C28; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #005EB8; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #005EB8; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #F28C28; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #005EB8; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #005EB8; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #005EB8; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #4A6B3B; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>阿斯麦 的 管 理 文 化</div>
-  <div class='subtitle'>极限工程垄断组织 · Management Culture</div>
-  <div class='pill'>系统工程 × 客户共研 × 长周期研发</div>
-  <div class='hero'><div class='mark'>阿斯</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>ASML 文化是极限系统工程，EUV 设备集合光学、机械、软件和供应链，必须与客户和供应商长期共研。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#005EB8'><div class='num' style='color:#005EB8'>EUV</div><div class='lab'>唯一大规模供应</div></div><div class='stat' style='border-color:#005EB8'><div class='num' style='color:#005EB8'>High-NA</div><div class='lab'>下一代路线</div></div><div class='stat' style='border-color:#005EB8'><div class='num' style='color:#005EB8'>客户共研</div><div class='lab'>台积电/三星/英特尔</div></div><div class='stat' style='border-color:#005EB8'><div class='num' style='color:#005EB8'>长周期</div><div class='lab'>研发特点</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>技术文化</span><h3>系统工程</h3><div class='body'>把 Zeiss 光学、精密机械、软件控制和客户工艺集成到单机系统。</div></div><div class='card'><span class='tag'>商业机制</span><h3>客户共研</h3><div class='body'>与先进制程客户同步定义路线，设备切换成本极高。</div></div><div class='card'><span class='tag'>运营能力</span><h3>供应链协同</h3><div class='body'>关键部件高度专业化，供应商关系本身是护城河。</div></div><div class='card'><span class='tag'>人才机制</span><h3>长期研发</h3><div class='body'>需要物理、光学、机械、软件等深技术人才长期协作。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>技术深、周期长、跨学科协作多。</li><li>适合硬科技系统工程人才。</li><li>回报来自长期项目，不适合短期快速上线心态。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是近乎垄断的技术瓶颈。</li><li>风险是出口管制、客户周期和 High-NA 导入速度。</li><li>文化价值在于极限工程协同。</li></ul></div>
-  </div>
-  <div class='note-box'><h3>一句话总结</h3><p>ASML 的文化，是把最难的工程系统长期做深。</p></div>
+  <div class='title'>阿斯麦管理文化</div>
+  <div class='subtitle'>ASML · Management Culture · 真实公开口径</div>
+  <div class='pill'>组织方式 × 经营机制 × 员工待遇</div>
+  <div class='hero'><div class='mark'>阿斯</div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>ASML 文化是极限系统工程，EUV 设备集合光学、机械、软件和供应链，必须与客户和供应商长期共研。</div></div></div>
+  <div class='section-title'>公开可验证的管理机制</div>
+  <div class='cards'><div class='card'><span class='mini'>系统工程</span><div class='body'>技术文化：把 Zeiss 光学、精密机械、软件控制和客户工艺集成到单机系统。</div></div><div class='card'><span class='mini'>客户共研</span><div class='body'>商业机制：与先进制程客户同步定义路线，设备切换成本极高。</div></div><div class='card'><span class='mini'>供应链协同</span><div class='body'>运营能力：关键部件高度专业化，供应商关系本身是护城河。</div></div><div class='card'><span class='mini'>长期研发</span><div class='body'>人才机制：需要物理、光学、机械、软件等深技术人才长期协作。</div></div><div class='card'><span class='mini'>员工福利</span><div class='body'>Careers 公开列出健康、养老金、学习发展、弹性与家庭支持；具体随国家和岗位不同。</div></div><div class='card'><span class='mini'>工程标准</span><div class='body'>组织围绕复杂工程交付、客户认证和长期路线图协作，不能只靠短期销售冲刺。</div></div></div>
 </div>
-<div class='footer'>管理文化：ASML FY2025 Annual Report / Careers / Sustainability，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class='footer'><div>经营数据：ASML 2025 Annual Report / Q4 2025 transcript，FY2025: 2025年1-12月</div><div>管理文化：ASML Careers / Annual Report / Sustainability / supplier ecosystem materials，核查：2026年5月</div><div>汇率口径：欧元按 1 EUR≈1.18 USD 折算，查看：2026年5月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
 </body></html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --paper: #F6F4EE;
+  --grid: #E7E2D7;
+  --accent: #26382F;
+  --main: #2F7D64;
+  --blue: #2B5E9D;
+  --dark: #121715;
+  --line: #BFCBBF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  color: #292622;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px);
+}
+.page { position: relative; z-index: 1; padding: 48px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #897d72;
+  font-size: 20px;
+  font-style: italic;
+}
+.pill {
+  margin: 18px auto 26px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #49433e;
+  font-size: 21px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 14px 0 25px; }
+.mark {
+  width: 190px;
+  height: 176px;
+  border: 4px solid var(--main);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.54), transparent 25%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  box-shadow: 0 5px 0 rgba(40,40,40,.13);
+  transform: rotate(-1deg);
+}
+.brand-lockup {
+  width: 146px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #121715;
+}
+.wordmark {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 850;
+}
+.openai-wordmark {
+  font-family: "OpenAI Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.anthropic-wordmark {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.anthropic-symbol {
+  width: 40px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+.anthropic-symbol path { fill: currentColor; }
+.mark .small { color: #7c7168; font-size: 13px; font-weight: 900; margin-top: 14px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.36; font-weight: 800; color: #2e2924; }
+.section-title { margin: 29px 0 17px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 38px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 72px; height: 2px; background: var(--line); vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.66);
+  border: 3px solid var(--line);
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 150px;
+}
+.card.core { position: relative; min-height: 174px; padding-left: 74px; }
+.core-icon {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  color: var(--main);
+}
+.core-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 14px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #493d33; font-size: 17.4px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric {
+  background: rgba(255,255,255,.68);
+  border: 3px solid;
+  border-radius: 14px;
+  padding: 12px 8px;
+  min-height: 136px;
+  text-align: center;
+}
+.metric-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  display: block;
+}
+.metric-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 30px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 14.4px; line-height: 1.32; color: #6e6256; }
+.metric .yoy { margin-top: 5px; font-size: 13px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 19px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6e6256; font-size: 15.4px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(239,231,223,.78); border-radius: 8px; padding: 14px 20px; font-size: 20px; line-height: 1.5; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 96px; gap: 14px; align-items: center; }
+.bar-label { font-size: 17px; font-weight: 900; color: #44372b; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 17px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #b8aaa0;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 2060px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">OpenAI 经营全景</h1>
+  <div class="subtitle">Private Company Dashboard · Revenue Run-rate + Valuation + Compute</div>
+  <div class="pill">年化收入 × 最新估值 × 用户规模 × GPT-5.5 × CapEx限制</div>
+  <div class="section-title">私营公司经营全景</div><div class="metric-grid">
+            <div class="metric" style="border-color:#2F7D64">
+
+              <div class="num" style="color:#2F7D64">$24B</div>
+              <div class="lab">年化收入</div>
+              <div class="yoy">$2B/月</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#2B5E9D">
+
+              <div class="num" style="color:#2B5E9D">$852B</div>
+              <div class="lab">最新估值</div>
+              <div class="yoy">未上市</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#B4883D">
+
+              <div class="num" style="color:#B4883D">$122B</div>
+              <div class="lab">承诺融资</div>
+              <div class="yoy">分阶段</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#26382F">
+
+              <div class="num" style="color:#26382F">不可比</div>
+              <div class="lab">ROI / ROIC</div>
+              <div class="yoy">未披露</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#2F7D64">
+
+              <div class="num" style="color:#2F7D64">900M</div>
+              <div class="lab">周活用户</div>
+              <div class="yoy">ChatGPT</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#2B5E9D">
+
+              <div class="num" style="color:#2B5E9D">50M</div>
+              <div class="lab">订阅用户</div>
+              <div class="yoy">Plus等</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#B4883D">
+
+              <div class="num" style="color:#B4883D">82.7%</div>
+              <div class="lab">GPT-5.5 编码</div>
+              <div class="yoy">T-Bench</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#26382F">
+
+              <div class="num" style="color:#26382F">$0/股</div>
+              <div class="lab">现金股息</div>
+              <div class="yoy">私营公司</div>
+            </div>
+            </div><div class="section-title">收入与产品线</div><div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">企业收入占比</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="bar-num">&gt;40%</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">ChatGPT 周活</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="bar-num">900M</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">订阅用户</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:50%"></div></div>
+          <div class="bar-num">50M</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">API tokens/min</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:72%"></div></div>
+          <div class="bar-num">15B+</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">Business customers</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:78%"></div></div>
+          <div class="bar-num">1M+</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">GPT-5.5 Terminal-Bench</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:83%"></div></div>
+          <div class="bar-num">82.7%</div>
+        </div>
+        </div><div class="section-title">资本投入与风险</div><div class="cards">
+    <div class="card">
+      <span class="tag">基础设施</span>
+      <h3>$500B Stargate</h3>
+      <p class="body">官方称 Stargate 计划未来四年投入最高 <strong>$500B</strong>，目标到 2029 年形成 10GW AI 基础设施。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">CapEx</span>
+      <h3>2026 单年未披露</h3>
+      <p class="body">OpenAI 未公布公司层面的 2026 CapEx。图中只展示已公开的基础设施承诺，不把它等同于单年资本开支。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">分红</span>
+      <h3>不派公开现金股息</h3>
+      <p class="body">OpenAI 未上市，没有公开每股股息；股东回报主要来自融资估值、二级交易和长期股权价值。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">风险</span>
+      <h3>烧钱与治理约束</h3>
+      <p class="body">模型训练、推理补贴、算力租约和安全监管，会决定 $24B 年化收入能否变成可持续利润。</p>
+    </div>
+    </div><div class="section-title">看图抓重点</div><div class="cards three">
+    <div class="card">
+      <span class="tag">强</span>
+      <h3>入口极强</h3>
+      <p class="body">ChatGPT 已经是全球级消费者入口。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">快</span>
+      <h3>企业收入在抬升</h3>
+      <p class="body">企业端占收入超过 40%，比单纯订阅更接近工作流。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">贵</span>
+      <h3>算力是门票</h3>
+      <p class="body">模型领先靠巨额算力，成本和折旧压力不能忽略。</p>
+    </div>
+    </div>
+</div>
+<div class="footer"><div>经营数据：OpenAI 官方公告，融资/收入/用户：2026年3月；Stargate/算力：2026年4月；部分指标为年化或运行率口径</div>
+<div>估值/融资：OpenAI 官方公告 2026-03-31，$122B 承诺资本，post-money 约 $852B；未上市无市值/PE</div>
+<div>ROI/CapEx/分红：未披露完整利润与资产负债，ROI不可比；2026公司CapEx未披露，Stargate为基础设施承诺；无公开现金股息</div>
+<div>模型/产品采用：GPT-5.5发布页、1M business customers公告、Codex App/GPT-5.5 Codex案例、Stargate公告，核查：2026年5月</div>
+<div>管理文化：OpenAI Careers / Charter / Interview Guide / Building Dynamic Teams / Preparedness Framework，核查：2026年5月</div>
+<div>货币口径：OpenAI 美元披露；图中金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

@@ -1,272 +1,67 @@
-<!DOCTY市场定价 html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height:2300px; background: #F7F4ED;
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  color: #3A2A1E; overflow: hidden; position: relative;
+  width: 900px; height: 1880px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
-  opacity: 0.35; pointer-events: none;
 }
-.header { text-align: center; padding: 50px 40px 20px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
-.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
-.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
-
-.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
-.hero-meta { flex: 1; }
-.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
-.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
-.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
-.hero-meta .stats span { display: inline-block; margin-right: 16px; }
-
-.section-title { text-align: center; margin: 30px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
-.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-
-.concepts { display: flex; gap: 16px; padding: 0 40px; }
-.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
-.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
-.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
-.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
-.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
-
-.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #E8F0FF 0%, #D0E0F5 100%); border: 2px solid #3A7BD4; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
-.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
-.bigbox .s1 { font-size: 20px; color: #7B6650; margin-top: 4px; line-height: 1.5; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #3A7BD4; line-height: 1; }
-.bigbox .lab { font-size: 18px; color: #7B6650; }
-
-.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
-.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
-.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
-.yieldbox .yld-cell { text-align: center; flex: 1; }
-.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
-.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
-.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
-
-.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
-.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
-.flow-step .t { font-size: 22px; font-weight: 700; }
-.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
-.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
-
-.quotes { margin: 26px 40px 0; }
-.quote { background: rgba(232,240,255,0.7); border-left: 4px solid #3A7BD4; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
-.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
-.quote .tag { font-size: 16px; color: #3A7BD4; margin-top: 4px; font-weight: 500; }
-
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
-
-svg .sl { stroke-linecap: round; stroke-linejoin: round; }
-
-
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #2E8B57; --codex-soft: rgba(226,244,233,.70); }
-.codex-role-note {
-  margin: 18px 40px 0;
-  border: 2px dashed var(--codex-accent);
-  border-radius: 12px;
-  background: rgba(255,255,255,.52);
-  padding: 12px 18px;
-  color: #5A4A3A;
-  font-size: 17px;
-  line-height: 1.55;
-  text-align: center;
-}
-.codex-role-note b { color: var(--codex-accent); }
-.codex-strategy-panel .num { font-size: 42px !important; }
-.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
-.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
-.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>腾 讯 的 经 营 之 道</h1>
-  <div class="en">Tencent · The AI-Accelerated Operating Playbook</div>
-  <div class="sub">社交底盘 × 游戏引擎 × AI 增量</div>
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #2E8B57; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #2E8B57; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #2E8B57; border-radius: 26px; background: rgba(255,255,255,.58); color: #2E8B57; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #2E8B57; padding-left: 22px; }
+.thesis .k { color: #2E8B57; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #2E8B57; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #2E8B57; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #2E8B57; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #1D5F3B; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #2E8B57; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #2E8B57; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #2E8B57; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #1D5F3B; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #2E8B57; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #2E8B57; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #2E8B57; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #4AA3D8; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>腾讯 的经营之道</div>
+  <div class='subtitle'>0700.HK · Business Playbook · 核心业务与硬指标</div>
+  <div class='pill'>长期战略定位 × 核心赚钱引擎 × 近期动作</div>
+  <div class='hero'><div class='mark'>腾讯</div><div class='thesis'><div class='k'>长期战略定位</div><div class='v'>以微信关系链做超级入口，把游戏、广告、支付、云和AI放进同一生态里变现。</div></div></div>
+  <div class='section-title'>核心业务与硬指标</div>
+  <div class='core-grid'><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 18h32v20H8z'/><path d='M8 24h32'/><path d='M14 32h9'/></svg></div><h3>14 亿级微信入口</h3></div><div class='metric'>14 亿级微信入口 微信及</div><div class='body'>微信及 WeChat 月活约 14 亿，是腾讯游戏、广告、小程序和支付的超级入口。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='24' cy='24' r='7'/><path d='M24 7v6M24 35v6M7 24h6M35 24h6M12 12l5 5M31 31l5 5M36 12l-5 5M17 31l-5 5'/></svg></div><h3>游戏全球化能力</h3></div><div class='metric'>王者荣耀、PUBG Mobile、Supercell、拳头…</div><div class='body'>王者荣耀、PUBG Mobile、Supercell、拳头 Riot — 全球最大游戏收入池</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='14' cy='17' r='5'/><circle cx='34' cy='17' r='5'/><circle cx='24' cy='34' r='5'/><path d='M19 19l10 0M16 22l6 8M32 22l-6 8'/></svg></div><h3>视频号 × 广告 AI</h3></div><div class='metric'>微信生态内短视频闭环，广告主 ROI 远高于公域投放</div><div class='body'>微信生态内短视频闭环，广告主 ROI 远高于公域投放</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 18h32v20H8z'/><path d='M8 24h32'/><path d='M14 32h9'/></svg></div><h3>支付 + 商业化闭环</h3></div><div class='metric'>10 亿</div><div class='body'>微信支付日活超 10 亿，所有金融科技/企服围绕其延伸</div></div></div>
+  <div class='section-title'>近年战略动作</div>
+  <div class='actions'><div class='action'><div class='tag'>AI</div><div class='body'><b>混元大模型 3.0 即将发布</b>：腾讯元宝接入 DeepSeek，微信内嵌 AI 助手全面铺开</div></div><div class='action'><div class='tag'>游戏</div><div class='body'><b>《三角洲行动》《元梦之星》稳定头部</b>：本土游戏18%增长，核心 IP 库继续延寿</div></div><div class='action'><div class='tag'>海外</div><div class='body'><b>Supercell 全线产品再增长</b>：国际游戏 +33%，首次突破 100 亿美元</div></div><div class='action'><div class='tag'>广告</div><div class='body'><b>视频号广告 + AI 定向</b>：营销服务 +19%，为腾讯贡献最高增长边际</div></div></div>
+  <div class='quote'>「AI 是 2025 年唯一值得大力投入的方向」— 马化腾</div>
 </div>
-
-<!-- 人物/公司 -->
-<div class="hero">
-  <svg width="170" height="200" viewBox="0 0 170 200">
-    <g transform="translate(85,100)">
-      <circle r="62" fill="#3A7BD4" stroke="#2A5A99" stroke-width="2"/>
-      <!-- 企鹅简笔 -->
-      <ellipse cx="0" cy="8" rx="32" ry="40" fill="#2A4A6A"/>
-      <ellipse cx="0" cy="20" rx="22" ry="24" fill="white"/>
-      <circle cx="-10" cy="-10" r="4" fill="white"/>
-      <circle cx="10" cy="-10" r="4" fill="white"/>
-      <circle cx="-10" cy="-9" r="2" fill="#2A1810"/>
-      <circle cx="10" cy="-9" r="2" fill="#2A1810"/>
-      <path d="M-4,0 L0,6 L4,0 Z" fill="#FFA040"/>
-      <ellipse cx="-18" cy="30" rx="6" ry="10" fill="#FFA040" transform="rotate(-20 -18 30)"/>
-      <ellipse cx="18" cy="30" rx="6" ry="10" fill="#FFA040" transform="rotate(20 18 30)"/>
-    </g>
-  </svg>
-  <div class="hero-meta">
-    <div class="name">腾　讯</div>
-    <div class="tag">AI 驱动的数字生态超级平台</div>
-    <div class="stats">
-      <span>核心逻辑：微信关系链是中国互联网超级入口，游戏和广告贡献现金创造，AI 提升…</span><br>
-      <span>飞轮变量：微信关系链 → 内容/小程序 → 广告转化 → 游戏现金流</span>
-    </div>
-  </div>
-</div>
-
-<!-- 三大引擎 -->
-<div class="section-title"><span>三 大 经 营 引 擎</span></div>
-
-<div class="concepts">
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <circle cx="65" cy="65" r="50" fill="none" stroke="#6B8E4E" stroke-width="2.5"/>
-        <path d="M35,65 Q55,50 75,65 Q95,80 95,65" fill="none" stroke="#6B8E4E" stroke-width="2"/>
-        <text x="65" y="75" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="32" fill="#6B8E4E">微</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#6B8E4E">社交底盘</div>
-    <div class="en">Social Moat</div>
-    <div class="desc">微信 MAU 14 亿 · 国民级</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="20" y="35" width="90" height="60" rx="10" fill="#8B3A4E" stroke="#5A2030" stroke-width="2"/>
-        <circle cx="40" cy="65" r="10" fill="#FFC080"/>
-        <circle cx="90" cy="65" r="10" fill="#FFC080"/>
-        <rect x="55" y="55" width="20" height="5" fill="#FFC080"/>
-        <rect x="62.5" y="48" width="5" height="20" fill="#FFC080"/>
-        <text x="65" y="115" text-anchor="middle" font-size="16" fill="#4A3728" font-weight="bold">PUBG/Supercell</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#8B3A4E">游戏引擎</div>
-    <div class="en">Game Engine</div>
-    <div class="desc">本土 +18% · 国际 +33%</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <path d="M65,20 L95,50 L80,50 L80,85 L50,85 L50,50 L35,50 Z" fill="#3A7BD4" stroke="#2A5A99" stroke-width="2"/>
-        <text x="65" y="110" text-anchor="middle" font-size="16" fill="#3A7BD4" font-weight="bold">AI ∞</text>
-        <circle cx="25" cy="25" r="6" fill="#3A7BD4" opacity="0.3"/>
-        <circle cx="105" cy="100" r="6" fill="#3A7BD4" opacity="0.3"/>
-      </svg>
-    </div>
-    <div class="cn" style="color:#3A7BD4">AI 增量</div>
-    <div class="en">AI Boost</div>
-    <div class="desc">混元 3.0 · 元宝 + DeepSeek</div>
-  </div>
-</div>
-
-<!-- 大数字战绩 -->
-<!-- codex-strategy-panel-start -->
-<!-- codex-strategy-panel-start -->
-<div class="bigbox codex-strategy-panel">
-  <div style="flex:1">
-    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
-    <div class="s1">微信关系链是中国互联网超级入口，游戏和广告贡献现金创造，AI 提升效率。<br>关键链条：微信关系链 → 内容/小程序 → 广告转化 → 游戏现金流</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num" style="color:#2E8B57">逻辑</div>
-    <div class="lab">数据只作证据</div>
-  </div>
-</div>
-<!-- codex-strategy-panel-end -->
-<!-- codex-strategy-panel-end -->
-
-<!-- 四档数据 -->
-<!-- codex-strategy-evidence-start -->
-<!-- codex-strategy-evidence-start -->
-<div class="yieldbox codex-strategy-evidence">
-  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
-  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">13 亿用户级社交网络</div><div class="yld-sub">微信+QQ 组合日活覆盖中国几乎全部网民，网络效应几乎不可替代</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">微信关系链 → 内容/小程序 → 广告转化</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">混元大模型 3.0 即将发布</div><div class="yld-sub">腾讯元宝接入 DeepSeek，微信内嵌 AI 助手全面铺开</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">Non-IFRS 经营利润质量 +18%</div><div class="yld-sub">业务规模14%增长下利润质量加速，经营杠杆显著</div></div></div>
-</div>
-<!-- codex-strategy-evidence-end -->
-<!-- codex-strategy-evidence-end -->
-
-<!-- 经营流程 -->
-<div class="section-title"><span>腾 讯 增 长 飞 轮</span></div>
-<div class="flow-wrap">
-  <div class="flow-row">
-    <div class="flow-step" style="border-color:#6B8E4E">
-      <div class="t" style="color:#6B8E4E">社交流量</div>
-      <div class="d">微信/QQ</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#8B3A4E">
-      <div class="t" style="color:#8B3A4E">游戏/内容</div>
-      <div class="d">高 ARPU</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#C4963C">
-      <div class="t" style="color:#C4963C">广告/支付</div>
-      <div class="d">商业化</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#3A7BD4">
-      <div class="t" style="color:#3A7BD4">AI 提效</div>
-      <div class="d">混元+DS</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B4E7A">
-      <div class="t" style="color:#6B4E7A">投资回购</div>
-      <div class="d">股东回报</div>
-    </div>
-  </div>
-</div>
-
-<!-- 名言 -->
-<div class="quotes">
-  <div class="quote">
-    <div class="txt">「AI 是 2025 年唯一值得大力投入的方向。」</div>
-    <div class="tag">— 马化腾 · 年报沟通</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「腾讯经过慎重思考，全面拥抱 DeepSeek。」</div>
-    <div class="tag">— 马化腾 · AI 战略</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「微信将形成特有的 AI Agent 生态。」</div>
-    <div class="tag">— 总裁 刘炽平</div>
-  </div>
-</div>
-
-<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
-<!-- codex-role-note-end -->
-<div class="footer">经营之道：经营数据：腾讯控股 2025 年度报告/业绩会（2026-03-19）；汇率口径：人民币金额按 2026-04-26 近似汇率 1 USD≈7.25 CNY 折算；港元按 1 USD≈7.8 HKD 折算；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class='footer'><div>经营数据：腾讯控股 2025 年度报告/年度业绩公告，FY2025: 2025年1-12月</div><div>同比口径：FY2025 vs FY2024；营收 +14%，Non-IFRS经营利润 +18%，Non-IFRS净利润 +17%</div><div>管理文化：腾讯 Careers / 年报 / ESG / 管理层公开表述，核查：2026年5月</div><div>汇率口径：人民币按 1 USD≈6.80 CNY，港元按 1 USD≈7.83 HKD 折算，查看：2026年5月</div><div>经营之道：财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

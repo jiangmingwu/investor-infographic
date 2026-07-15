@@ -1,0 +1,98 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 2380px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #C2185B; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #C2185B; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #C2185B; border-radius: 26px; background: rgba(255,255,255,.58); color: #C2185B; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #C2185B; padding-left: 22px; }
+.thesis .k { color: #C2185B; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #C2185B; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #C2185B; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #4A2A55; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #C2185B; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #C2185B; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #4A2A55; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #C2185B; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #C2185B; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #C2185B; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #C2185B; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #C2185B; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>AbbVie FY2025 经营全景</div>
+  <div class='subtitle'>ABBV · Financial Dashboard · 全年经营 + 当前估值</div>
+  <div class='pill'>财务结果 × 估值位置 × 分部结构 × 关键风险</div>
+  <div class='brand-row'><div class='brand-chip'>
+<svg role="img" aria-label="AbbVie" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+  <text x="110" y="70" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, Helvetica, sans-serif" font-size="52" font-weight="800" fill="#C2185B">AbbVie</text>
+</svg></div></div>
+  <div class='section-title'>核心财务与当前估值</div>
+  <div class='metrics'><div class='stat' style='border-color:#C2185B'><div class='num'>$612亿</div><div class="sub">+8.6%</div><div class='lab'>FY2025 营收</div></div><div class='stat' style='border-color:#C2185B'><div class='num'>$180亿级</div><div class='lab'>FY2025 经营利润</div></div><div class='stat' style='border-color:#C2185B'><div class='num'>$200亿级</div><div class='lab'>FY2025 经营现金流</div></div><div class='stat' style='border-color:#C2185B'><div class='num'>$42亿</div><div class='lab'>FY2025 净利润</div></div><div class='stat' style='border-color:#C2185B'><div class='num'>$3825亿</div><div class='lab'>当前市值</div></div><div class='stat' style='border-color:#C2185B'><div class='num'>92×/15×</div><div class='lab'>PE / Forward PE</div></div></div>
+  <div class='section-title'>业务分部表现</div>
+  <div class='seg'><div class='row'><div class='rank'>1</div><b>Immunology</b><span>约 50%</span><b>$30B级</b><div class='bar-bg'><div class='bar' style='width:50.0%'></div></div></div><div class='row'><div class='rank'>2</div><b>Neuroscience</b><span>约 18%</span><b>$11B级</b><div class='bar-bg'><div class='bar' style='width:18.0%'></div></div></div><div class='row'><div class='rank'>3</div><b>Oncology</b><span>约 11%</span><b>$7B级</b><div class='bar-bg'><div class='bar' style='width:11.0%'></div></div></div><div class='row'><div class='rank'>4</div><b>Aesthetics</b><span>约 9%</span><b>$5B级</b><div class='bar-bg'><div class='bar' style='width:9.0%'></div></div></div></div>
+  <div class='section-title'>ROI / CapEx / 股东回报</div>
+  <div class='cards'><div class='card'><span class='mini'>ROI / ROIC</span><h3>GAAP口径受IPR&amp;D扰动</h3><div class='body'>2025 收购研发费用压低 GAAP 净利；更适合看调整后利润率和现金流。</div></div><div class='card'><span class='mini'>2026E CapEx</span><h3>未披露精确额</h3><div class='body'>资本投入主要为研发、生产、并购整合和管线推进。</div></div><div class='card'><span class='mini'>股东回报</span><h3>$6.56/股股息</h3><div class='body'>2025季度股息为$1.64/股，全年按四次派发约$6.56/股。</div></div></div>
+  <div class='section-title'>亮点与风险</div>
+  <div class='actions'><div class='action'><div class='tag'>亮点</div><div class='body'><b>营收 $61.2B</b>：免疫和神经科学拉动增长。</div></div><div class='action'><div class='tag'>亮点</div><div class='body'><b>新药接棒</b>：Skyrizi、Rinvoq 对冲 Humira 下滑。</div></div><div class='action'><div class='tag'>风险</div><div class='body'><b>专利悬崖</b>：成熟药物面临生物类似药竞争。</div></div><div class='action'><div class='tag'>风险</div><div class='body'><b>收购研发费用</b>：GAAP利润受 IPR&amp;D 大幅扰动。</div></div><div class='action'><div class='tag'>风险</div><div class='body'><b>药价监管</b>：美国医保和药价政策影响估值。</div></div></div>
+
+</div>
+<div class='footer'><div>经营数据：AbbVie FY2025 results / Form 10-K，FY2025: 2025年1-12月</div><div>行情数据：CompaniesMarketCap，查看：2026年6月；第36名，市值约 $382.5B</div><div>ROI口径：2025 GAAP 净利受 acquired IPR&amp;D 扰动；主图用调整利润和现金流辅助判断</div><div>2026 CapEx口径：公司未披露单一精确额；以研发、生产、并购整合和管线投入为主</div><div>股东分红：AbbVie 2025 Form 10-Q / dividend history，查看：2026年6月；2025季度现金股息$1.64/股，全年约$6.56/股</div><div>管理文化：AbbVie culture / careers / annual report，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

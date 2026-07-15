@@ -1,16 +1,23 @@
 # Investor Infographic Generator 投资人持仓信息图生成器
 
-自动生成投资人/基金/公司的高质量持仓分析信息图。投资人主题通常输出 **3 张图**：1 张橙色长图 + 2 张手绘风格信息图；公司经营分析默认输出 **4 张图**：经营分析橙色长图、经营之道、经营全景、管理文化。
+自动生成投资人/基金/公司的高质量持仓与经营分析信息图。投资人主题通常输出 **3 张图**：1 张橙色长图 + 2 张手绘风格信息图；上市公司经营分析采用当前统一标准，默认输出 **4 张手绘图**：公司档案、经营之道、经营全景、管理文化。
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue) ![Pillow](https://img.shields.io/badge/Pillow-10.0+-green) ![Chrome](https://img.shields.io/badge/Chrome-Headless-yellow)
 
 ## 效果预览
 
-| 橙色长图 (Pillow) | 手绘图1 (HTML+SVG) | 手绘图2 (HTML+SVG) | 管理文化 (HTML+SVG) |
+| 公司档案 | 经营之道 | 经营全景 | 管理文化 |
 |:---:|:---:|:---:|:---:|
-| 暖橙色系 · 4K · 2400px宽 | 经营之道/投资哲学 | 经营全景/持仓数据 | 组织文化/管理机制 |
+| 基本信息、业务范围、上市以来股价走势 | 商业逻辑、核心业务与硬指标、战略动作 | 六项财务估值、分部、资本配置、机构持仓 | 人与组织、具体做法与案例 |
 
-## 已覆盖 44 个数据模块
+完整口径见 [`docs/CURRENT_STANDARD.md`](docs/CURRENT_STANDARD.md)。旧版公司橙色长图仅在明确点名或维护历史批次时生成；投资人/基金的橙色长图流程保持不变。
+
+## 当前仓库规模
+
+- 56 个投资人/公司数据模块
+- 189 个手绘 HTML/CSS 模板
+- 53 个官方 Logo 原始或可见性处理资产
+- 公司研究底稿校验器、统一四页渲染工具和回归测试
 
 ### 知名投资人 (11位)
 | 编号 | 投资人 | 基金/公司 | 数据文件 |
@@ -64,6 +71,10 @@ python3 company_infographic.py data_nvidia ~/Downloads/nvidia_analysis.png
 
 # 批量刷新前 30 公司经营分析 + 管理文化对比
 python3 generate_top30_refresh.py
+
+# 当前四页标准与公司档案股价走势图工具
+python3 tools/render_post_chevron_standard_v2.py
+python3 tools/render_post_chevron_profile_stock_charts.py
 ```
 
 ### 生成手绘信息图
@@ -112,17 +123,23 @@ investor-infographic/
 ├── README.md                      # 本文件
 ├── investor_infographic.py        # 橙色长图绘图引擎（投资人）
 ├── company_infographic.py         # 橙色长图绘图引擎（公司）
+├── company_visual_standard_v2.py  # 当前经营之道/经营全景统一组件
+├── company_logo_assets.py         # 官方 Logo 资产与哈希校验
 ├── top30_enhancement_data.py      # 前30公司 ROI、2026 CapEx、管理文化资料
 ├── generate_top30_refresh.py      # 前30公司批量刷新脚本
+├── assets/company_logos/          # 官方 Logo 原始/可见性处理资产
 ├── data/                          # 数据文件
 │   ├── data_template.py           # 空白数据模板
 │   ├── data_buffett.py            # 巴菲特
 │   ├── data_bridgewater.py        # 桥水
-│   └── ...                        # 44个数据文件
+│   └── market_history/            # 公司档案历史股价快照
 ├── sketch_refs/                   # 手绘HTML参考模板
 │   ├── buffett_sketch1.html       # 巴菲特-投资之道
 │   ├── buffett_sketch2.html       # 巴菲特-持仓全景
-│   └── ...                        # 70个手绘模板
+│   └── ...                        # 公司与专题手绘模板
+├── tools/                         # 当前统一渲染、走势图抓取与批量更新工具
+├── tests/                         # Skill、研究数据、布局合同回归测试
+├── docs/CURRENT_STANDARD.md       # 当前唯一标准
 └── skills/
     └── investor-infographic/      # Codex 技能说明、引用文档和 GPT Image 2 辅助脚本
 ```
@@ -151,12 +168,16 @@ investor-infographic/
 ### 设计原则
 - **三色法则** — 每张图不超过 3 个主色
 - **感受优先** — 做减法不做加法，信息密度适中
+- **四页分工** — 公司档案、经营之道、经营全景、管理文化各自承担不同任务，不重复堆数据
+- **公司档案走势图** — 业务范围之后加入手绘长期股价走势；使用拆股调整收盘价，不含股息再投资，外币按注明日期换算成美元
 - **美元默认** — 所有主要金额默认转换为美元 / USD，并在脚注写明汇率口径
 - **ROI + 2026 CapEx** — 公司经营分析/经营全景默认加入全年 ROI/ROIC 与 2026 资本开支，无法可靠取得时明确写 `未披露/不可比`
 - **手绘分工** — `经营之道` 讲商业逻辑、护城河和飞轮；`经营全景` 讲财务、分部、ROI、2026 CapEx 和风险；`管理文化` 讲组织、招聘、绩效、待遇和管理机制
+- **官方 Logo** — 必须来自公司官网、品牌页、IR 或官方年报，记录来源 URL、下载日期和 SHA-256，并逐张核对实际成图
 - **数据备注** — 底部分行列出经营数据来源、行情数据来源、汇率口径和免责声明
 - **署名固定** — 所有最终图片底部单独居中显示 `by 江明`，样式与脚注一致
 - **生成后复核** — 每批图片必须检查文件数、分辨率、字体、排版、脚注、币种、来源和图标语义
+- **本地交付** — 成图保存在 `/Users/jiangming/持仓分析`；默认不发邮件
 - **免责声明** — 底部标注"仅供学习参考，不构成投资建议"
 
 ## 数据来源规范

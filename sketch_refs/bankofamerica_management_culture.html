@@ -1,66 +1,99 @@
-<!doctype html><html><head><meta charset='utf-8'><style>
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width: 900px; height: 2050px; overflow: hidden; position: relative;
-  background: #F7F4ED; color: #3A2A1E;
+  width: 900px; height: 1280px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
 }
 body::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .36;
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
 }
-.page { position: relative; z-index: 1; padding: 42px 40px 0; }
-.title { text-align:center; color:#D4001A; font-family:'Songti SC','STSong',serif; font-size:72px; font-weight:800; letter-spacing:4px; line-height:1.08; }
-.subtitle { margin-top:10px; text-align:center; color:#9B8A7A; font-size:22px; font-style:italic; }
-.pill { margin:22px auto 30px; width:max-content; max-width:780px; border:3px solid #D4001A; border-radius:999px; padding:12px 28px; color:#5E5A6D; font-size:26px; font-weight:800; background:rgba(255,255,255,.45); }
-.hero { display:flex; gap:28px; align-items:center; margin:18px 0 28px; }
-.mark { width:190px; height:190px; border:4px solid #D4001A; border-radius:28px; display:flex; align-items:center; justify-content:center; color:#D4001A; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:900; background:rgba(255,255,255,.45); transform:rotate(-1.5deg); }
-.thesis { flex:1; border-left:8px solid #D4001A; padding-left:24px; }
-.thesis .k { color:#D4001A; font-size:26px; font-weight:900; margin-bottom:8px; }
-.thesis .v { font-family:'Songti SC','STSong',serif; font-size:39px; line-height:1.35; font-weight:800; color:#3A2A1E; }
-.section-title { margin:32px 0 20px; text-align:center; color:#D4001A; font-family:'Songti SC','STSong',serif; font-size:48px; font-weight:900; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.stat { border:3px solid; border-radius:14px; padding:15px 8px; min-height:120px; text-align:center; background:rgba(255,255,255,.48); }
-.stat .num { font-family:'Songti SC','STSong',serif; font-size:37px; font-weight:900; line-height:1.05; }
-.stat .lab { margin-top:8px; font-size:18px; line-height:1.3; color:#6E6256; }
-.cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.card { background:rgba(255,255,255,.6); border:3px solid #D5BFAE; border-radius:18px; padding:20px; min-height:190px; }
-.card h3 { color:#D4001A; font-family:'Songti SC','STSong',serif; font-size:32px; line-height:1.15; margin-bottom:8px; }
-.tag { display:inline-block; background:#D4001A; color:white; border-radius:8px; padding:5px 12px; font-size:17px; font-weight:800; margin-bottom:10px; }
-.body { color:#4B3B2F; font-size:21px; line-height:1.55; }
-.flow { display:flex; align-items:stretch; gap:12px; margin:10px 0 22px; }
-.flow .node { flex:1; border:3px solid #D4001A; border-radius:14px; padding:14px 8px; text-align:center; background:rgba(255,255,255,.55); }
-.flow .node b { display:block; color:#D4001A; font-size:22px; margin-bottom:6px; }
-.arrow { align-self:center; color:#8A7A68; font-size:28px; font-weight:900; }
-.segments { border:3px solid #D5BFAE; border-radius:16px; padding:16px 18px; background:rgba(255,255,255,.5); }
-.seg-row { display:grid; grid-template-columns:34px 235px 100px 100px 1fr; gap:12px; align-items:center; min-height:46px; border-bottom:1px dashed #D8CBB9; font-size:19px; }
-.seg-row:last-child { border-bottom:0; }
-.rank { width:30px; height:30px; border-radius:50%; background:#D4001A; color:white; display:flex; align-items:center; justify-content:center; font-weight:900; }
-.bar-bg { height:22px; background:#EDE6DA; border-radius:5px; overflow:hidden; }
-.bar { height:100%; background:#D4001A; border-radius:5px; }
-.note-box { margin-top:24px; border:4px solid #D4001A; background:rgba(255,229,232,.68); border-radius:18px; padding:24px 28px; }
-.note-box h3 { color:#D4001A; font-family:'Songti SC','STSong',serif; font-size:34px; margin-bottom:8px; }
-.note-box p { font-size:23px; line-height:1.55; }
-.list { font-size:23px; line-height:1.55; color:#4B3B2F; }
-.list li { margin:8px 0 8px 28px; }
-.footer { position:absolute; left:24px; right:24px; bottom:26px; text-align:center; color:#B0A090; font-size:16px; line-height:1.58; }
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #D4001A; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #D4001A; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #D4001A; border-radius: 26px; background: rgba(255,255,255,.58); color: #D4001A; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #D4001A; padding-left: 22px; }
+.thesis .k { color: #D4001A; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #D4001A; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #D4001A; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #D4001A; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #D4001A; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #004C97; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #D4001A; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #D4001A; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #D4001A; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #004C97; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #D4001A; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #D4001A; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #D4001A; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #D4001A; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #D4001A; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
 </style></head><body>
 <div class='page'>
-  <div class='title'>美国银行 的 管 理 文 化</div>
-  <div class='subtitle'>规模零售金融组织 · Management Culture</div>
-  <div class='pill'>低成本存款 × 数字银行 × 风险合规</div>
-  <div class='hero'><div class='mark'>美国</div><div class='thesis'><div class='k'>不是福利清单，而是组织如何赚钱</div><div class='v'>美国银行文化围绕全国零售存款、数字银行和风险合规，核心是用规模降低资金成本。</div></div></div>
-  <div class='grid-4'><div class='stat' style='border-color:#D4001A'><div class='num' style='color:#D4001A'>零售存款</div><div class='lab'>低成本资金</div></div><div class='stat' style='border-color:#D4001A'><div class='num' style='color:#D4001A'>Erica</div><div class='lab'>数字银行</div></div><div class='stat' style='border-color:#D4001A'><div class='num' style='color:#D4001A'>合规</div><div class='lab'>金融底线</div></div><div class='stat' style='border-color:#D4001A'><div class='num' style='color:#D4001A'>财富管理</div><div class='lab'>交叉销售</div></div></div>
-  <div class='section-title'>四个管理机制</div>
-  <div class='cards'><div class='card'><span class='tag'>商业底座</span><h3>低成本存款</h3><div class='body'>大规模零售客户和工资账户带来稳定资金来源。</div></div><div class='card'><span class='tag'>效率机制</span><h3>数字化服务</h3><div class='body'>移动银行、AI 助手和自动化提高客户服务效率。</div></div><div class='card'><span class='tag'>管理底线</span><h3>风险合规</h3><div class='body'>信用、反洗钱、消费者保护和资本要求决定经营边界。</div></div><div class='card'><span class='tag'>客户机制</span><h3>综合金融</h3><div class='body'>零售、信用卡、财富管理和商业银行交叉服务。</div></div></div>
-  <div class='section-title'>员工与投资人两种视角</div>
-  <div class='cards'>
-    <div class='card'><h3>员工视角</h3><ul class='list'><li>流程和合规要求强，客户覆盖面大。</li><li>适合金融销售、风控、运营和技术人才。</li><li>组织稳定但创新速度受监管约束。</li></ul></div>
-    <div class='card'><h3>投资人视角</h3><ul class='list'><li>优势是存款基础和规模。</li><li>风险是利率周期、信用成本和监管。</li><li>文化价值是稳健执行。</li></ul></div>
-  </div>
-  <div class='note-box'><h3>一句话总结</h3><p>美国银行的文化，是用规模和合规管理低成本金融网络。</p></div>
+  <div class='title'>美国银行管理文化</div>
+  <div class='subtitle'>BAC · Management Culture · 真实公开口径</div>
+  <div class='pill'>做事风格 × 真实案例 × 公开来源</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="美国银行" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(44 16) skewX(-13)">
+    <rect x="0" y="0" width="42" height="13" fill="#D4001A"/>
+    <rect x="50" y="0" width="42" height="13" fill="#D4001A"/>
+    <rect x="17" y="23" width="42" height="13" fill="#004C97"/>
+    <rect x="67" y="23" width="42" height="13" fill="#004C97"/>
+    <rect x="0" y="46" width="42" height="13" fill="#D4001A"/>
+    <rect x="50" y="46" width="42" height="13" fill="#D4001A"/>
+  </g>
+  <text x="110" y="101" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#004C97">Bank of America</text>
+</svg></div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>美国银行的文化主线是 Responsible Growth：增长必须客户优先、处于风险框架内，同时用更高起薪、长期福利和内部训练换取低流失与稳定服务。</div></div></div>
+  <div class='section-title'>理念与真实案例</div>
+  <div class='culture-cards'><div class='culture-card'><h3>经营｜增长必须守住四条边界</h3><div class='body'>做法：Responsible Growth 要求必须增长、客户聚焦、在风险框架内增长、并以运营卓越和优秀职场实现可持续增长。案例：这四条原则同时用于业务规划、风险决策和员工管理。</div></div><div class='culture-card'><h3>组织｜最低时薪从承诺变成结果</h3><div class='body'>做法：连续多年上调美国最低时薪。数字：2025 年达到每小时 $25，全职员工最低年化薪资超过 $50,000；较 2017 年起薪提高超过 $20,000。</div></div><div class='culture-card'><h3>组织｜把员工培养成长期职业</h3><div class='body'>做法：Bank of America Academy 提供结构化培训、岗位辅导和内部流动支持。案例：合资格美国员工 401(k) 公司匹配最高可达工资的 5%，另有按年资计算的 2%-3% 年度公司缴款。</div></div></div>
 </div>
-<div class='footer'>管理文化：Bank of America FY2025 Annual Report / Proxy / Careers，核查 2026-05-09<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
+<div class='footer'><div>经营数据：Bank of America FY2025 earnings release / 8-K / annual report，FY2025: 2025年1-12月</div><div>管理文化：BofA Responsible Growth / $25 Minimum Wage / Academy / Employee Benefits，核查：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
 </body></html>

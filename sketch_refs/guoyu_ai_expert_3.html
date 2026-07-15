@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>郭宇专家版 3</title><link rel="stylesheet" href="./guoyu_ai_expert_style.css"></head>
+<body>
+<div class="page">
+  <div class="frame"></div>
+  <div class="avatar-doodle"><span class="avatar-hair"></span><span class="avatar-glasses"><span class="avatar-bridge"></span></span><span class="avatar-loop"></span><span class="avatar-dot"></span></div>
+  <h1>机制拆解：Skill、Tool Use、Memory、Loop</h1>
+  <div class="lead">如果只说“Claude Code 很强”，信息太浅。真正值得解释的是：它为什么能把知识工作拆成可执行流程。</div>
+  <div class="badge">03 / 机制</div>
+
+  <div class="grid4">
+    <div class="card green"><span class="big-number">Skill</span><h2>方法可封装</h2><p>把专家经验、日常流程、判断规则写成文档；Agent 按文档执行，不只是吃提示词。</p></div>
+    <div class="card blue"><span class="big-number">Tool</span><h2>工具可调用</h2><p>搜索、读网页、写代码、跑脚本、装依赖，模型自己把答案变成行动。</p></div>
+    <div class="card soft"><span class="big-number">Memory</span><h2>上下文可积累</h2><p>每个 Agent 都可能有自己的记忆；组织摩擦会被“共享上下文”降低。</p></div>
+    <div class="card green"><span class="big-number">Loop</span><h2>结果可迭代</h2><p>不再一次性交付答案，而是实验、失败、修复、重跑，直到某条分支更有效。</p></div>
+  </div>
+
+  <div class="split">
+    <div class="card soft" style="min-height:190px;"><h2>郭宇原话层</h2><p>他把工作写成 Markdown 文档，再让 Claude Code 根据文档现写代码、自动运行；这就是“软件的终结”的底层含义。</p></div>
+    <div class="card blue" style="min-height:190px;"><h2>专家解读层</h2><p>这更像一个微型操作系统：自然语言是入口，Skill 是程序包，工具调用是 I/O，Loop 是调度与反馈。</p></div>
+  </div>
+
+  <div class="footer-note">来源：YouTube《郭宇｜Claude Code：知识工作者的终结》字幕，单向街东京，2026-04-26；内容为字幕转述与专家结构化整理<br>by 江明</div>
+</div>
+</body>
+</html>

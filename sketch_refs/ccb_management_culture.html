@@ -1,0 +1,91 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1280px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #0B63B6; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #0B63B6; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #0B63B6; border-radius: 26px; background: rgba(255,255,255,.58); color: #0B63B6; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #0B63B6; padding-left: 22px; }
+.thesis .k { color: #0B63B6; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #0B63B6; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #0B63B6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0B63B6; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #0B63B6; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #007C59; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #0B63B6; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #0B63B6; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #0B63B6; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #007C59; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #0B63B6; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #0B63B6; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #0B63B6; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #0B63B6; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #0B63B6; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>中国建设银行管理文化</div>
+  <div class='subtitle'>601939.SS / 0939.HK · Management Culture · 真实公开口径</div>
+  <div class='pill'>做事风格 × 真实案例 × 公开来源</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="中国建设银行" data-brand-source="https://www2.ccb.com/chn/fileDir/bg_image/2020031015231379393.png" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+  <image href="data:image/png;base64,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" x="0" y="0" width="600" height="120" preserveAspectRatio="xMidYMid meet"/>
+</svg></div><div class='thesis'><div class='k'>这家公司怎样做事</div><div class='v'>建设银行的文化核心是国有大行式稳健：服务实体经济、守住风险底线，并用数字化把庞大客户和网点体系变成长期服务能力。</div></div></div>
+  <div class='section-title'>理念与真实案例</div>
+  <div class='culture-cards'><div class='culture-card'><h3>经营｜服务实体经济</h3><div class='body'>做法：年报长期把服务国家战略、普惠金融和住房金融作为主线。案例：小微、制造业和基础设施信贷是核心投向，业务扩张必须服从风险和政策边界。</div></div><div class='culture-card'><h3>组织｜风险先于速度</h3><div class='body'>做法：银行体系以资本充足、拨备、反洗钱和信贷审查约束增长。案例：房地产和地方融资平台压力期，管理重点转向资产质量、净息差和风险处置。</div></div><div class='culture-card'><h3>经营｜数字化服务大客户底盘</h3><div class='body'>做法：手机银行、智能网点和数据风控降低服务成本。案例：把个人金融、工资账户、按揭和财富管理连接起来，提高客户留存。</div></div></div>
+</div>
+<div class='footer'><div>经营数据：中国建设银行 2025 年度业绩公告，FY2025: 2025年1-12月</div><div>管理文化：CCB 年报/战略表述/社会责任报告，核查：2026年6月</div><div>汇率口径：人民币金额按约 1 USD = 6.77 CNY 折算，查看：2026年6月</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --accent: #B33A2E;
+  --main: #F15A29;
+  --blue: #167782;
+  --gold: #C49336;
+  --line: #D6BBA8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #F8F3EB;
+  color: #2E2924;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E9E1D7 39px, #E9E1D7 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E9E1D7 39px, #E9E1D7 40px);
+}
+.page { position: relative; z-index: 1; padding: 50px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 68px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #8E7E70;
+  font-size: 21px;
+  font-style: italic;
+}
+.pill {
+  margin: 20px auto 28px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #4E4A47;
+  font-size: 22px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 18px 0 26px; }
+.mark {
+  width: 178px;
+  height: 178px;
+  border: 4px solid var(--main);
+  border-radius: 31px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255,255,255,.28), transparent 23%),
+    linear-gradient(145deg, #111, var(--accent));
+  box-shadow: 0 5px 0 rgba(40,40,40,.14);
+  transform: rotate(-1.1deg);
+}
+.mark .big { font-family: "Songti SC", "STSong", serif; font-size: 43px; font-weight: 900; line-height: 1; }
+.mark .small { color: #FFE2D6; font-size: 14px; font-weight: 900; margin-top: 8px; }
+.chipgrid { width: 94px; height: 42px; margin-top: 9px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+.chipgrid i { background: #FFE2D6; border-radius: 2px; opacity: .9; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 32px; line-height: 1.36; font-weight: 800; color: #2E2924; }
+.section-title { margin: 31px 0 18px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 76px; height: 2px; background: #D0A394; vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card { background: rgba(255,255,255,.66); border: 3px solid #D6BBA8; border-radius: 15px; padding: 16px 17px; min-height: 154px; }
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 27px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 15px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #4B3B2F; font-size: 18px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric { background: rgba(255,255,255,.68); border: 3px solid; border-radius: 14px; padding: 13px 8px; min-height: 116px; text-align: center; }
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 31px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 15px; line-height: 1.3; color: #6E6256; }
+.metric .yoy { margin-top: 5px; font-size: 14px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 20px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6E6256; font-size: 16px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(238,229,222,.78); border-radius: 8px; padding: 14px 20px; font-size: 21px; line-height: 1.52; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 165px 1fr 94px; gap: 14px; align-items: center; }
+.bar-label { font-size: 18px; font-weight: 900; color: #44372B; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 18px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #BAAAA0;
+  font-size: 12.4px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 2040px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">Cerebras FY2025 经营全景</h1>
+  <div class="subtitle">NASDAQ: CBRS · IPO后首份经营口径 + 当前行情</div>
+  <div class="pill">全年财务 × 当前估值 × RPO × CapEx限制 × 股东回报</div>
+
+
+<div class="section-title">核心财务与当前估值</div>
+<div class="metric-grid">
+<div class="metric" style="border-color:#F15A29">
+  <div class="num" style="color:#F15A29">$5.10亿</div>
+  <div class="lab">FY2025 营收</div>
+  <div class="yoy">YoY +75.7%</div>
+</div>
+<div class="metric" style="border-color:#C49336">
+  <div class="num" style="color:#C49336">$1.99亿</div>
+  <div class="lab">FY2025 毛利</div>
+  <div class="yoy">Margin 39%</div>
+</div>
+<div class="metric" style="border-color:#B33A2E">
+  <div class="num" style="color:#B33A2E">$-1.46亿</div>
+  <div class="lab">经营亏损</div>
+  <div class="yoy">核心仍亏损</div>
+</div>
+<div class="metric" style="border-color:#171717">
+  <div class="num" style="color:#171717">不可比</div>
+  <div class="lab">ROI / ROIC</div>
+  <div class="yoy">一次性收益</div>
+</div>
+<div class="metric" style="border-color:#F15A29">
+  <div class="num" style="color:#F15A29">$636亿</div>
+  <div class="lab">当前市值</div>
+  <div class="yoy">$295.63/股</div>
+</div>
+<div class="metric" style="border-color:#B33A2E">
+  <div class="num" style="color:#B33A2E">~125×</div>
+  <div class="lab">市销率</div>
+  <div class="yoy">FY25收入口径</div>
+</div>
+<div class="metric" style="border-color:#167782">
+  <div class="num" style="color:#167782">未披露</div>
+  <div class="lab">2026E CapEx</div>
+  <div class="yoy">单年额</div>
+</div>
+<div class="metric" style="border-color:#171717">
+  <div class="num" style="color:#171717">$0/股</div>
+  <div class="lab">现金股息</div>
+  <div class="yoy">无分红计划</div>
+</div>
+</div>
+<div class="section-title">收入与投入结构</div>
+<div class="bars"><div class="bar-row"><div class="bar-label">Hardware</div><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><div class="bar-num">$3.58亿</div></div>
+<div class="bar-row"><div class="bar-label">Cloud & Other</div><div class="bar-bg"><div class="bar-fill" style="width:42%"></div></div><div class="bar-num">$1.52亿</div></div>
+<div class="bar-row"><div class="bar-label">R&D</div><div class="bar-bg"><div class="bar-fill" style="width:68%"></div></div><div class="bar-num">$2.43亿</div></div>
+<div class="bar-row"><div class="bar-label">Sales & Marketing</div><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><div class="bar-num">$0.71亿</div></div></div>
+<div class="section-title">资本投入与股东回报</div>
+<div class="cards">
+<div class="card">
+  <span class="tag">IPO</span>
+  <h3>募资 $55.5 亿</h3>
+  <p class="body">发行 3,000 万股，发行价 $185；5 月 14 日上市，首日收 $311.07，当前盘中约 $295.63。</p>
+</div>
+<div class="card">
+  <span class="tag">RPO</span>
+  <h3>$246 亿履约义务</h3>
+  <p class="body">多数来自 OpenAI，预计约 15% 在 2027 年底前确认、43% 在第 25-48 个月确认。</p>
+</div>
+<div class="card">
+  <span class="tag">现金流</span>
+  <h3>经营现金流 $-0.10 亿</h3>
+  <p class="body">2025 年经营现金流小幅流出，投资现金流 $-6.68 亿，云和数据中心扩张开始吃资本。</p>
+</div>
+<div class="card">
+  <span class="tag">分红</span>
+  <h3>不派现金股息</h3>
+  <p class="body">S-1/A 披露未曾派发现金股息，上市后短期也无分红计划，资金留给扩张。</p>
+</div>
+</div>
+<div class="section-title">关键风险</div>
+<div class="cards three">
+<div class="card">
+  <span class="tag">估值</span>
+  <h3>PS 约 125×</h3>
+  <p class="body">市场把未来 OpenAI/AWS 交付提前定价。</p>
+</div>
+<div class="card">
+  <span class="tag">集中</span>
+  <h3>大客户风险</h3>
+  <p class="body">OpenAI、G42、MBZUAI、AWS 关系决定收入质量。</p>
+</div>
+<div class="card">
+  <span class="tag">交付</span>
+  <h3>数据中心与供应链</h3>
+  <p class="body">供电、机房、TSMC、制造和客户验收都可能拖慢收入。</p>
+</div>
+</div>
+
+</div>
+<div class="footer"><div>经营数据：Cerebras S-1/A，FY2025: 2025年1-12月；FY2024: 2024年1-12月</div>
+<div>行情/IPO：StockAnalysis 2026-05-15 10:41 EDT；Cerebras 新闻稿 2026-05-14；股价 $295.63，市值约 $63.63B，IPO募资 $5.55B</div>
+<div>ROI/CapEx：GAAP利润含一次性收益，核心经营仍亏损，ROI不可比；2026 单年 CapEx 未披露，IPO/OpenAI贷款用于云和数据中心扩张</div>
+<div>护城河数据：S-1/A WSE-3规格、Artificial Analysis速度口径、OpenAI MRA/RPO；速度和性能为公司披露/第三方基准口径</div>
+<div>管理文化：S-1/A Human Capital / Founder Letter / Cerebras Careers，核查：2026年5月</div>
+<div>货币口径：Cerebras 以 USD 报告；图中金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

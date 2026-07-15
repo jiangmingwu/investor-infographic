@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --paper: #F8F1E6;
+  --grid: #E8DED1;
+  --accent: #7A3B2E;
+  --main: #C4633E;
+  --blue: #455C84;
+  --dark: #231714;
+  --line: #D8BDA9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  color: #292622;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px);
+}
+.page { position: relative; z-index: 1; padding: 48px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #897d72;
+  font-size: 20px;
+  font-style: italic;
+}
+.pill {
+  margin: 18px auto 26px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #49433e;
+  font-size: 21px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 14px 0 25px; }
+.mark {
+  width: 190px;
+  height: 176px;
+  border: 4px solid var(--main);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.54), transparent 25%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  box-shadow: 0 5px 0 rgba(40,40,40,.13);
+  transform: rotate(-1deg);
+}
+.brand-lockup {
+  width: 146px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #121715;
+}
+.wordmark {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 850;
+}
+.openai-wordmark {
+  font-family: "OpenAI Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.anthropic-wordmark {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.anthropic-symbol {
+  width: 40px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+.anthropic-symbol path { fill: currentColor; }
+.mark .small { color: #7c7168; font-size: 13px; font-weight: 900; margin-top: 14px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.36; font-weight: 800; color: #2e2924; }
+.section-title { margin: 29px 0 17px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 38px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 72px; height: 2px; background: var(--line); vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.66);
+  border: 3px solid var(--line);
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 150px;
+}
+.card.core { position: relative; min-height: 174px; padding-left: 74px; }
+.core-icon {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  color: var(--main);
+}
+.core-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 14px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #493d33; font-size: 17.4px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric {
+  background: rgba(255,255,255,.68);
+  border: 3px solid;
+  border-radius: 14px;
+  padding: 12px 8px;
+  min-height: 136px;
+  text-align: center;
+}
+.metric-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  display: block;
+}
+.metric-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 30px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 14.4px; line-height: 1.32; color: #6e6256; }
+.metric .yoy { margin-top: 5px; font-size: 13px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 19px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6e6256; font-size: 15.4px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(239,231,223,.78); border-radius: 8px; padding: 14px 20px; font-size: 20px; line-height: 1.5; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 96px; gap: 14px; align-items: center; }
+.bar-label { font-size: 17px; font-weight: 900; color: #44372b; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 17px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #b8aaa0;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 2380px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">Anthropic 的经营之道</h1>
+  <div class="subtitle">Strategic Positioning + Core Business Evidence + Recent Actions</div>
+  <div class="pill">Claude入口 × Claude Code × 企业采用 × MyTHOS × 安全治理</div>
+
+    <div class="hero">
+
+    <div class="mark">
+
+        <div class="brand-lockup">
+          <svg class="anthropic-symbol" viewBox="0 0 35 24" aria-hidden="true">
+            <path d="M24.5475 0H19.3384L28.8374 24H34.0465L24.5475 0Z"></path>
+            <path d="M9.49897 0L0 24H5.31125L7.25395 18.96H17.1914L19.1341 24H24.4454L14.9464 0H9.49897ZM8.97193 14.5029L12.2227 6.06857L15.4735 14.5029H8.97193Z"></path>
+          </svg>
+          <div class="wordmark anthropic-wordmark">Anthropic</div>
+        </div>
+
+      <div class="small">Claude + Safety</div>
+    </div>
+
+      <div class="thesis"><div class="k">长期战略定位</div><div class="v">Anthropic 的经营之道，是用安全可信的前沿大模型进入企业与开发者工作流，把 AI 能力变成生产力基础设施，并通过模型订阅、API 与企业服务长期变现。</div></div>
+    </div>
+    <div class="section-title">核心业务与硬指标</div><div class="cards">
+    <div class="card core">
+      <svg class="core-icon" viewBox="0 0 34 34" aria-hidden="true"><path d="M7 8h20v15H14l-6 5v-5H7z"/><path d="M12 14h10M12 19h7"/></svg>
+      <span class="tag">产品</span>
+      <h3>Claude 企业模型入口</h3>
+      <p class="body">Claude 面向个人、企业、开发者和云平台，覆盖聊天、代码、办公协作与行业代理；这是核心产品入口，而不是整张图唯一主题。</p>
+    </div>
+
+    <div class="card core">
+      <svg class="core-icon" viewBox="0 0 34 34" aria-hidden="true"><path d="M13 10l-6 7 6 7M21 10l6 7-6 7"/><path d="M18 8l-4 18"/></svg>
+      <span class="tag">代码</span>
+      <h3>Claude Code $2.5B+</h3>
+      <p class="body">Claude Code 年化收入超过 <strong>$2.5B</strong>，周活较 1 月翻倍；官方引用估计称 Claude Code 参与约 <strong>4%</strong> GitHub commits。</p>
+    </div>
+
+    <div class="card core">
+      <svg class="core-icon" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 29V10l9-4 9 4v19"/><path d="M12 15h3M12 20h3M20 15h3M20 20h3"/><path d="M4 29h28"/></svg>
+      <span class="tag">企业</span>
+      <h3>30万+ 企业客户</h3>
+      <p class="body">Anthropic 披露 business customers 超过 <strong>300,000</strong>，$100k+ 年化收入大客户过去一年增长近 <strong>7×</strong>。</p>
+    </div>
+
+    <div class="card core">
+      <svg class="core-icon" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 11h18v13H8z"/><path d="M12 7v4M18 7v4M24 7v4M12 24v4M18 24v4M24 24v4M4 15h4M4 20h4M26 15h4M26 20h4"/><path d="M13 17h8"/></svg>
+      <span class="tag">Mythos</span>
+      <h3>MyTHOS 前沿模型能力</h3>
+      <p class="body">Claude Mythos Preview 没有对公众发布，但 Anthropic 披露它在代码、安全和推理评测上明显强于 Opus 4.6。</p>
+    </div>
+
+    <div class="card core">
+      <svg class="core-icon" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 5l11 4v8c0 7-5 11-11 13C11 28 6 24 6 17V9l11-4z"/><path d="M12 17l3 3 7-8"/></svg>
+      <span class="tag">安全</span>
+      <h3>RSP 可信治理机制</h3>
+      <p class="body">Responsible Scaling Policy 用能力阈值和防护等级约束训练与部署；对企业客户来说，可信边界也是采购理由之一。</p>
+    </div>
+    </div><div class="section-title">四个关键证据</div><div class="metric-grid">
+            <div class="metric" style="border-color:#C4633E">
+              <svg class="metric-icon" style="color:#C4633E" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 28V10l9-4 9 4v18"/><path d="M12 15h3M12 20h3M20 15h3M20 20h3"/><path d="M4 28h28"/></svg>
+              <div class="num" style="color:#C4633E">30万+</div>
+              <div class="lab">business customers</div>
+              <div class="yoy">官方披露</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#455C84">
+              <svg class="metric-icon" style="color:#455C84" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="12" r="4"/><circle cx="24" cy="12" r="4"/><circle cx="17" cy="25" r="4"/><path d="M13 14l3 7M21 14l-3 7M14 12h6"/></svg>
+              <div class="num" style="color:#455C84">40+</div>
+              <div class="lab">Mythos预览组织</div>
+              <div class="yoy">伙伴互认证</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#B4883D">
+              <svg class="metric-icon" style="color:#B4883D" viewBox="0 0 34 34" aria-hidden="true"><path d="M13 10l-6 6 6 6M21 10l6 6-6 6"/><path d="M18 8l-4 16"/></svg>
+              <div class="num" style="color:#B4883D">93.9%</div>
+              <div class="lab">SWE-bench Verified</div>
+              <div class="yoy">Mythos评测</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#7A3B2E">
+              <svg class="metric-icon" style="color:#7A3B2E" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 5l11 4v8c0 7-5 11-11 13C11 28 6 24 6 17V9l11-4z"/><path d="M12 17l3 3 7-8"/></svg>
+              <div class="num" style="color:#7A3B2E">83.1%</div>
+              <div class="lab">漏洞复现能力</div>
+              <div class="yoy">CyberGym</div>
+            </div>
+            </div><div class="section-title">近三年战略动作</div><div class="cards">
+    <div class="card">
+      <span class="tag">Mythos</span>
+      <h3>Project Glasswing 互认证</h3>
+      <p class="body">AWS、Microsoft、Cisco、CrowdStrike、Google、JPMorgan 等参与试用/防御验证，给 Mythos 前沿能力提供外部背书。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">代码</span>
+      <h3>Claude Code 快速放大</h3>
+      <p class="body">Claude Code ARR 超过 $2.5B，说明 Anthropic 正把模型从聊天产品推进到开发者高频工作流。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">客户</span>
+      <h3>企业客户快速增长</h3>
+      <p class="body">30万+ business customers 与 $100k+ 大客户近 7× 增长，体现企业端落地速度。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">基建</span>
+      <h3>$50B 美国基础设施</h3>
+      <p class="body">基础设施和 TPU/Trainium/GPU 供给是战略动作与供给约束，放在这里说明方向，不把它当核心业务本身。</p>
+    </div>
+    </div><div class="quote">管理层信号：Anthropic 长期强调 safety、interpretability 和 responsible scaling；投资上真正要看的是，可信安全边界能否帮助 Claude 进入更多企业真实流程。</div>
+</div>
+<div class="footer"><div>经营数据：Anthropic 官方公告，ARR/客户/算力：2026年4月；融资估值：2026年2月；新估值谈判来自媒体报道，未关闭</div>
+<div>估值/融资：官方 Series G $30B，post-money $380B；Reuters/Bloomberg/FT 2026年5月报道 $900B+ 融资谈判，未作已完成估值</div>
+<div>ROI/CapEx/分红：未披露利润与资产负债，ROI不可比；2026公司CapEx未披露；$50B美国基础设施与TPU容量为长期承诺；无公开现金股息</div>
+<div>模型/客户采用：Claude产品页、Google TPU公告、PwC/ServiceNow/Infosys/Zoom客户案例、Project Glasswing/Mythos Preview与伙伴反馈，核查：2026年5月</div>
+<div>管理文化：Anthropic Careers / Responsible Scaling Policy / Long-Term Benefit Trust / Core Views，核查：2026年5月</div>
+<div>货币口径：金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

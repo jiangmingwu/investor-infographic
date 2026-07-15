@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+:root {
+  --paper: #F8F1E6;
+  --grid: #E8DED1;
+  --accent: #7A3B2E;
+  --main: #C4633E;
+  --blue: #455C84;
+  --dark: #231714;
+  --line: #D8BDA9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  color: #292622;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--grid) 39px, var(--grid) 40px);
+}
+.page { position: relative; z-index: 1; padding: 48px 38px 0; }
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.subtitle {
+  margin-top: 10px;
+  text-align: center;
+  color: #897d72;
+  font-size: 20px;
+  font-style: italic;
+}
+.pill {
+  margin: 18px auto 26px;
+  width: max-content;
+  max-width: 790px;
+  border: 3px solid var(--main);
+  border-radius: 999px;
+  padding: 10px 24px;
+  color: #49433e;
+  font-size: 21px;
+  font-weight: 900;
+  background: rgba(255,255,255,.55);
+}
+.hero { display: flex; gap: 26px; align-items: center; margin: 14px 0 25px; }
+.mark {
+  width: 190px;
+  height: 176px;
+  border: 4px solid var(--main);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.54), transparent 25%),
+    linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  box-shadow: 0 5px 0 rgba(40,40,40,.13);
+  transform: rotate(-1deg);
+}
+.brand-lockup {
+  width: 146px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #121715;
+}
+.wordmark {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 850;
+}
+.openai-wordmark {
+  font-family: "OpenAI Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.anthropic-wordmark {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.anthropic-symbol {
+  width: 40px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+.anthropic-symbol path { fill: currentColor; }
+.mark .small { color: #7c7168; font-size: 13px; font-weight: 900; margin-top: 14px; }
+.thesis { flex: 1; border-left: 8px solid var(--main); padding-left: 22px; }
+.thesis .k { color: var(--main); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: "Songti SC", "STSong", serif; font-size: 31px; line-height: 1.36; font-weight: 800; color: #2e2924; }
+.section-title { margin: 29px 0 17px; text-align: center; color: var(--accent); font-family: "Songti SC", "STSong", serif; font-size: 38px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ""; display: inline-block; width: 72px; height: 2px; background: var(--line); vertical-align: middle; margin: 0 14px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: rgba(255,255,255,.66);
+  border: 3px solid var(--line);
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 150px;
+}
+.card.core { position: relative; min-height: 174px; padding-left: 74px; }
+.core-icon {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  color: var(--main);
+}
+.core-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card h3 { color: var(--main); font-family: "Songti SC", "STSong", serif; font-size: 26px; line-height: 1.18; margin-bottom: 8px; }
+.tag { display: inline-block; background: var(--main); color: white; border-radius: 8px; padding: 5px 11px; font-size: 14px; font-weight: 900; margin-bottom: 9px; }
+.body { color: #493d33; font-size: 17.4px; line-height: 1.52; }
+.body strong { color: var(--blue); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.metric {
+  background: rgba(255,255,255,.68);
+  border: 3px solid;
+  border-radius: 14px;
+  padding: 12px 8px;
+  min-height: 136px;
+  text-align: center;
+}
+.metric-icon {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  display: block;
+}
+.metric-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metric .num { font-family: "Songti SC", "STSong", serif; font-size: 30px; font-weight: 900; line-height: 1.05; }
+.metric .lab { margin-top: 7px; font-size: 14.4px; line-height: 1.32; color: #6e6256; }
+.metric .yoy { margin-top: 5px; font-size: 13px; color: var(--main); font-weight: 900; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: center; }
+.step { background: rgba(255,255,255,.64); border: 3px solid var(--line); border-radius: 12px; min-height: 112px; padding: 12px 8px; text-align: center; }
+.step .name { color: var(--main); font-weight: 900; font-size: 19px; line-height: 1.2; }
+.step .sub { margin-top: 8px; color: #6e6256; font-size: 15.4px; line-height: 1.35; }
+.quote { margin-top: 22px; border-left: 6px solid var(--main); background: rgba(239,231,223,.78); border-radius: 8px; padding: 14px 20px; font-size: 20px; line-height: 1.5; color: #514940; }
+.bars { display: grid; gap: 13px; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 96px; gap: 14px; align-items: center; }
+.bar-label { font-size: 17px; font-weight: 900; color: #44372b; }
+.bar-bg { height: 22px; border-radius: 999px; background: rgba(0,0,0,.07); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--main); }
+.bar-num { font-size: 17px; font-weight: 900; color: var(--main); text-align: right; }
+.footer {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 28px;
+  text-align: center;
+  color: #b8aaa0;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.signature { margin-top: 6px; }
+
+body { height: 2320px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="title">Anthropic 经营全景</h1>
+  <div class="subtitle">Private Company Dashboard · ARR + Valuation + Claude Adoption</div>
+  <div class="pill">年化收入 × 估值 × Claude企业采用 × Claude Code × Mythos互认证</div>
+  <div class="section-title">私营公司经营全景</div><div class="metric-grid">
+            <div class="metric" style="border-color:#C4633E">
+
+              <div class="num" style="color:#C4633E">$30B+</div>
+              <div class="lab">年化收入</div>
+              <div class="yoy">官方口径</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#455C84">
+
+              <div class="num" style="color:#455C84">$380B</div>
+              <div class="lab">已完成估值</div>
+              <div class="yoy">官方口径</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#B4883D">
+
+              <div class="num" style="color:#B4883D">$900B+</div>
+              <div class="lab">新轮谈判</div>
+              <div class="yoy">媒体报道</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#7A3B2E">
+
+              <div class="num" style="color:#7A3B2E">不可比</div>
+              <div class="lab">ROI / ROIC</div>
+              <div class="yoy">未披露</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#C4633E">
+
+              <div class="num" style="color:#C4633E">30万+</div>
+              <div class="lab">企业客户</div>
+              <div class="yoy">官方披露</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#455C84">
+
+              <div class="num" style="color:#455C84">$2.5B+</div>
+              <div class="lab">Claude Code ARR</div>
+              <div class="yoy">开发者</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#B4883D">
+
+              <div class="num" style="color:#B4883D">40+</div>
+              <div class="lab">Mythos预览组织</div>
+              <div class="yoy">伙伴互认证</div>
+            </div>
+
+
+            <div class="metric" style="border-color:#7A3B2E">
+
+              <div class="num" style="color:#7A3B2E">$0/股</div>
+              <div class="lab">现金股息</div>
+              <div class="yoy">私营公司</div>
+            </div>
+            </div><div class="section-title">收入与采用信号</div><div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">ARR 2025年末</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
+          <div class="bar-num">$9B</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">ARR 2026年2月</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:47%"></div></div>
+          <div class="bar-num">$14B</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">ARR 2026年4月</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="bar-num">$30B+</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">企业客户</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:78%"></div></div>
+          <div class="bar-num">30万+</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">$100k+大客户增速</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:86%"></div></div>
+          <div class="bar-num">近7×</div>
+        </div>
+
+
+        <div class="bar-row">
+          <div class="bar-label">Claude Code ARR</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:54%"></div></div>
+          <div class="bar-num">$2.5B+</div>
+        </div>
+        </div><div class="section-title">资本投入与风险</div><div class="cards">
+    <div class="card">
+      <span class="tag">融资</span>
+      <h3>$30B Series G</h3>
+      <p class="body">官方已完成 Series G 融资 <strong>$30B</strong>，post-money 估值 <strong>$380B</strong>。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">估值</span>
+      <h3>$900B+ 仍属谈判</h3>
+      <p class="body">2026 年 5 月多家媒体报道新一轮估值谈判超过 $900B，但未关闭，不能当作已完成估值。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">产品</span>
+      <h3>Claude 被企业采用</h3>
+      <p class="body">PwC、ServiceNow、Infosys、Zoom 等公开案例显示，Claude 已被放进咨询、企业自动化、受监管行业和协作产品。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Mythos</span>
+      <h3>未公开的前沿能力</h3>
+      <p class="body">Mythos Preview 不是公开产品，但 Project Glasswing 的 40+ 组织参与和伙伴反馈，是判断其强度的重要互认证据。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">算力</span>
+      <h3>$50B 美国基础设施</h3>
+      <p class="body">公司宣布与 Fluidstack 合作建设美国 AI 基础设施；同时扩大 Google TPU 与 AWS Trainium 供给。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">分红</span>
+      <h3>不派公开现金股息</h3>
+      <p class="body">Anthropic 未上市，未披露每股股息；股东回报主要来自私募估值和未来流动性。</p>
+    </div>
+    </div><div class="section-title">关键风险</div><div class="cards three">
+    <div class="card">
+      <span class="tag">估值</span>
+      <h3>收入质量</h3>
+      <p class="body">$30B+ ARR 要看续费、毛利和大客户集中度。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">算力</span>
+      <h3>供给约束</h3>
+      <p class="body">TPU/GPU/电力容量决定模型更新速度。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">竞争</span>
+      <h3>OpenAI 正面压力</h3>
+      <p class="body">Claude Code 强，但 OpenAI/Codex 会直接争夺开发者。</p>
+    </div>
+    </div>
+</div>
+<div class="footer"><div>经营数据：Anthropic 官方公告，ARR/客户/算力：2026年4月；融资估值：2026年2月；新估值谈判来自媒体报道，未关闭</div>
+<div>估值/融资：官方 Series G $30B，post-money $380B；Reuters/Bloomberg/FT 2026年5月报道 $900B+ 融资谈判，未作已完成估值</div>
+<div>ROI/CapEx/分红：未披露利润与资产负债，ROI不可比；2026公司CapEx未披露；$50B美国基础设施与TPU容量为长期承诺；无公开现金股息</div>
+<div>模型/客户采用：Claude产品页、Google TPU公告、PwC/ServiceNow/Infosys/Zoom客户案例、Project Glasswing/Mythos Preview与伙伴反馈，核查：2026年5月</div>
+<div>管理文化：Anthropic Careers / Responsible Scaling Policy / Long-Term Benefit Trust / Core Views，核查：2026年5月</div>
+<div>货币口径：金额均为 USD/美元；本图仅供学习参考，不构成投资建议</div><div class="signature">by 江明</div></div>
+</body>
+</html>

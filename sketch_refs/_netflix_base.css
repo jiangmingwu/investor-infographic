@@ -13,7 +13,7 @@ body::before {
   opacity:0.35; pointer-events:none;
 }
 .brush { font-weight:700; }
-.page-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+.page-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif;
   position:absolute; top:30px; right:40px;
   font-weight:700; font-size:28px; color:#E50914;
   border:3px solid #E50914; border-radius:50%;
@@ -25,7 +25,7 @@ body::before {
 .header .en { font-size:20px; color:#A89080; margin-top:6px; letter-spacing:3px; font-style:italic; }
 .header .sub { font-size:26px; color:#831010; margin-top:10px; font-weight:500; }
 .section-title { text-align:center; margin:30px 0 20px; position:relative; z-index:1; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif;
   font-weight:700; font-size:42px; color:#E50914;
   padding:0 24px; position:relative;
 }
@@ -52,7 +52,7 @@ body::before {
 .quote .txt { font-family: 'Songti SC', 'STSong', 'SimSun', serif;  font-size:24px; color:#2D2D2D; line-height:1.5; font-weight:700; }
 .quote .tag { font-size:17px; color:#831010; margin-top:6px; font-weight:500; }
 .footer { text-align:center; font-size:16px; color:#A89080; margin-top:30px; padding:20px 0; position:relative; z-index:1; }
-.netflix-logo { font-family: 'Songti SC', 'STSong', 'SimSun', serif; 
+.netflix-logo { font-family: 'Songti SC', 'STSong', 'SimSun', serif;
   display:inline-block; font-weight:700;
   font-size:34px; color:#E50914; letter-spacing:3px;
   border:3px solid #E50914; padding:4px 18px; border-radius:8px;

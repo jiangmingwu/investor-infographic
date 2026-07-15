@@ -78,3 +78,66 @@ DATA = {'TITLE': '万事达经营全解析',
                   '行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）',
                   '免责声明：本图仅供学习参考，不构成投资建议',
                   'by 江明']}
+
+# Codex latest-standard override (2026-06-07)
+DATA['COMPANY_PROFILE'].update({
+    '最新股价 / 市值': '约 $491 / $4,385 亿美元 (2026年6月)',
+    '最新 PE (TTM)': '约 28×；Forward PE 约 27×',
+})
+DATA['FINANCIAL_SUMMARY'].update({
+    'FY2025 营收': '$32.8B (+16% YoY)',
+    'FY2025 经营利润': '$18.9B (+21% YoY)',
+    'FY2025 经营现金流': '$16B+级（高现金转化）',
+    'FY2025 净利润': '$15.0B (+16% YoY)',
+    '当前市值': '约 $4,385 亿美元',
+    'PE / Forward PE': '约 28× / 27×',
+})
+for _k in ['FY2025 净收入']:
+    DATA['FINANCIAL_SUMMARY'].pop(_k, None)
+DATA['CAPITAL_AND_ROI'] = [
+    ('ROI / ROIC', 'ROIC 50%+', '轻资产支付网络，新增交易边际成本低，资本回报率极高。'),
+    ('2026E CapEx', '低资本强度', '核心投入是网络安全、Tokenization、数据服务和支付基础设施。'),
+    ('股东回报', '年化股息约 $3.04/股 + 回购', '现金流主要通过回购和逐年增长股息返还股东。'),
+]
+DATA['BUSINESS_SEGMENTS'] = [
+    ('1', 'Payment Network', '约 79%', '$26B+级', '+12%', '▲稳定', 'GDV+跨境'),
+    ('2', 'Value-added Services', '约 21%', '$6B+级', '+23%', '▲加速', '安全/数据'),
+    ('3', '跨境交易', '15%增速', '+15%', '+15%', '▲强劲', '旅行+电商'),
+]
+DATA['REVENUE_MIX'] = [('支付网络', '79%'), ('增值服务', '21%'), ('跨境交易增速', '+15%')]
+DATA['MOAT'] = [
+    ('全球支付双寡头', 'Visa/Mastercard 构成全球银行卡网络核心基础设施，商户和发卡行两端锁定。'),
+    ('57.6% 经营利润率', 'FY2025 经营利润率 57.6%，体现轻资产网络高经营杠杆。'),
+    ('GDV $10.6T', '总交易额达到 $10.6T，规模越大，风控数据和网络接受度越强。'),
+    ('增值服务 +23%', '安全、身份、咨询、数据服务形成第二层护城河，提高客户粘性。'),
+    ('不承担信用风险', '主要收网络费和服务费，不像银行承担贷款违约风险。'),
+]
+DATA['KEY_METRICS'] = [
+    ('市值排名', '第 25 名附近'),
+    ('FY25 营收', '$32.8B'),
+    ('经营利润', '$18.9B'),
+    ('经营现金流', '$16B+级'),
+    ('净利润', '$15.0B'),
+    ('当前市值', '$4,385亿'),
+    ('PE / Forward PE', '28× / 27×'),
+    ('ROIC', '50%+'),
+    ('GDV', '$10.6T'),
+    ('股息', '$3.04/股'),
+]
+DATA['FOOTER_LINES'] = [
+    '经营数据：Mastercard FY2025 earnings release / SEC 8-K，FY2025: 2025年1-12月',
+    '同比口径：FY2025 vs FY2024；净收入 +16%，经营利润 +21%，净利润 +16%',
+    '行情数据：OpenAI Finance / StockAnalysis / Macrotrends，查看：2026年6月；市值约 $438.5B，PE 约28×，Forward PE 约27×',
+    'ROI口径：ROIC 50%+ 为轻资产网络公司资本回报区间判断；以年报现金流和资本结构为准',
+    '2026 CapEx口径：Mastercard 未披露工业型 CapEx；网络安全、Tokenization、数据服务和基础设施为主要投入方向',
+    '股东分红：Mastercard dividend history / Nasdaq，查看：2026年6月；年化股息约 $3.04/股，另有持续回购',
+    '管理文化：Mastercard Annual Report / Careers / Proxy / Code of Conduct，核查：2026年6月',
+    '免责声明：本图仅供学习参考，不构成投资建议',
+    'by 江明',
+]
+
+for _i, _line in enumerate(DATA['FOOTER_LINES']):
+    if _line.startswith('管理文化：'):
+        DATA['FOOTER_LINES'][_i] = '管理文化：Mastercard Inclusive Growth / CEO Letter / Code of Conduct / Volunteer Time Off，核查：2026年6月'
+
+DATA['LOGO_SLUG'] = 'mastercard'

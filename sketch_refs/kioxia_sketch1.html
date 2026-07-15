@@ -1,0 +1,94 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 900px; height: 1680px; overflow: hidden; position: relative;
+  background: #F7F4ED; color: #332A22;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+}
+body::before {
+  content: ''; position: absolute; inset: 0; opacity: .34; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
+}
+.page { position: relative; z-index: 1; padding: 42px 38px 0; }
+.title { text-align: center; color: #B0007A; font-family: 'Songti SC','STSong','SimSun',serif; font-size: 66px; font-weight: 900; letter-spacing: 3px; line-height: 1.08; }
+.subtitle { margin-top: 10px; text-align: center; color: #8C7B6A; font-size: 20px; font-style: italic; }
+.pill { margin: 18px auto 26px; width: max-content; max-width: 790px; border: 3px solid #B0007A; border-radius: 999px; padding: 10px 22px; background: rgba(255,255,255,.52); color: #5E5A6D; font-size: 22px; font-weight: 900; }
+.hero { display: flex; gap: 22px; align-items: center; margin: 16px 0 24px; }
+.mark { width: 164px; height: 164px; border: 4px solid #B0007A; border-radius: 26px; background: rgba(255,255,255,.58); color: #B0007A; display: flex; align-items: center; justify-content: center; font-family: 'Songti SC','STSong',serif; font-size: 54px; font-weight: 900; transform: rotate(-1.4deg); box-shadow: 0 5px 0 rgba(30,20,10,.10); }
+.thesis { flex: 1; border-left: 8px solid #B0007A; padding-left: 22px; }
+.thesis .k { color: #B0007A; font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.thesis .v { font-family: 'Songti SC','STSong',serif; font-size: 31px; line-height: 1.34; font-weight: 800; }
+.section-title { margin: 28px 0 16px; text-align: center; color: #B0007A; font-family: 'Songti SC','STSong',serif; font-size: 39px; font-weight: 900; }
+.section-title::before, .section-title::after { content: ''; display: inline-block; width: 72px; height: 2px; background: #C9AA9B; vertical-align: middle; margin: 0 12px; }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.core { min-height: 176px; background: rgba(255,255,255,.64); border: 3px solid #D7C3B4; border-radius: 16px; padding: 15px 16px; }
+.core-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+.icon { width: 44px; height: 44px; border: 3px solid #B0007A; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #B0007A; font-weight: 900; font-size: 15px; background: rgba(255,255,255,.62); transform: rotate(-2deg); }
+.icon svg { width: 31px; height: 31px; }
+.core h3 { color: #B0007A; font-family: 'Songti SC','STSong',serif; font-size: 28px; line-height: 1.12; }
+.metric { color: #45335E; font-size: 19px; font-weight: 900; line-height: 1.35; margin-bottom: 7px; }
+.body { color: #4F4135; font-size: 18px; line-height: 1.5; }
+.actions { display: grid; gap: 12px; }
+.action { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; border: 2px solid #D7C3B4; border-radius: 13px; background: rgba(255,255,255,.58); padding: 12px 14px; }
+.tag { background: #B0007A; color: white; border-radius: 8px; padding: 6px 9px; text-align: center; font-weight: 900; font-size: 17px; }
+.quote { margin-top: 18px; border-left: 7px solid #B0007A; background: rgba(232,227,220,.74); border-radius: 10px; padding: 15px 20px; color: #5B5148; font-size: 21px; line-height: 1.5; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.stat { min-height: 118px; text-align: center; background: rgba(255,255,255,.62); border: 3px solid; border-radius: 14px; padding: 13px 8px; }
+.stat .num { color: #B0007A; font-family: 'Songti SC','STSong',serif; font-size: 29px; font-weight: 900; line-height: 1.05; }
+.stat .sub { color: #45335E; margin-top: 5px; font-size: 14px; line-height: 1.1; font-weight: 900; }
+.stat .lab { color: #6E6256; margin-top: 7px; font-size: 16px; line-height: 1.25; }
+.seg { border: 3px solid #D7C3B4; border-radius: 16px; background: rgba(255,255,255,.55); padding: 14px 16px; }
+.row { display: grid; grid-template-columns: 34px 210px 88px 108px 1fr; gap: 10px; align-items: center; min-height: 44px; border-bottom: 1px dashed #D8CBB9; font-size: 18px; }
+.row:last-child { border-bottom: 0; }
+.rank { width: 29px; height: 29px; border-radius: 50%; background: #B0007A; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+.bar-bg { height: 20px; border-radius: 999px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar { height: 100%; border-radius: 999px; background: #B0007A; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card { background: rgba(255,255,255,.62); border: 3px solid #D7C3B4; border-radius: 16px; min-height: 152px; padding: 16px 17px; }
+.card h3 { color: #B0007A; font-family: 'Songti SC','STSong',serif; font-size: 28px; margin-bottom: 8px; }
+.card .mini { display: inline-block; background: #C4963C; color: white; border-radius: 8px; padding: 5px 10px; font-size: 15px; font-weight: 900; margin-bottom: 8px; }
+.footer { position: absolute; left: 30px; right: 30px; bottom: 25px; text-align: center; color: #B0A090; font-size: 12.5px; line-height: 1.62; }
+.signature { margin-top: 5px; }
+
+.mark.logo-mark {
+  padding: 14px; background: rgba(255,255,255,.78); transform: rotate(-1.2deg);
+}
+.logo-mark svg { width: 100%; height: 100%; display: block; }
+.brand-row {
+  display: flex; justify-content: center; align-items: center; margin: -8px 0 18px;
+}
+.brand-chip {
+  width: 164px; height: 92px; border: 3px solid #B0007A; border-radius: 18px;
+  background: rgba(255,255,255,.72); padding: 8px 14px; box-shadow: 0 4px 0 rgba(30,20,10,.08);
+}
+.brand-chip svg { width: 100%; height: 100%; display: block; }
+.culture-cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.culture-card {
+  display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: center;
+  min-height: 172px; padding: 17px 19px; border: 3px solid #D7C3B4;
+  border-radius: 16px; background: rgba(255,255,255,.64);
+}
+.culture-card h3 {
+  color: #B0007A; font-family: 'Songti SC','STSong',serif;
+  font-size: 27px; line-height: 1.22; text-align: center;
+}
+.culture-card .body { font-size: 18px; line-height: 1.55; }
+</style></head><body>
+<div class='page'>
+  <div class='title'>Kioxia 的经营之道</div>
+  <div class='subtitle'>285A.T · Business Playbook · 核心业务与硬指标</div>
+  <div class='pill'>长期战略定位 × 核心赚钱引擎 × 近期动作</div>
+  <div class='hero'><div class='mark logo-mark'>
+<svg role="img" aria-label="Kioxia" data-brand-source="https://www.kioxia-holdings.com/etc.clientlibs/kioxia-libs/clientlibs/kioxia/resources/component/kioxia_logo.svg" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+  <image href="data:image/png;base64,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" x="0" y="0" width="600" height="120" preserveAspectRatio="xMidYMid meet"/>
+</svg></div><div class='thesis'><div class='k'>长期战略定位</div><div class='v'>用 NAND 工艺、SSD 产品和合资制造体系，吃到 AI 数据中心存储周期。</div></div></div>
+  <div class='section-title'>核心业务与硬指标</div>
+  <div class='core-grid'><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><rect x='10' y='10' width='28' height='28' rx='4'/><rect x='18' y='18' width='12' height='12' rx='2'/><path d='M6 17h4M6 24h4M6 31h4M38 17h4M38 24h4M38 31h4'/></svg></div><h3>NAND 技术栈</h3></div><div class='metric'>全球NAND头部厂商</div><div class='body'>从材料、晶圆、封装到控制器固件形成复杂技术链。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><rect x='10' y='10' width='28' height='28' rx='4'/><rect x='18' y='18' width='12' height='12' rx='2'/><path d='M6 17h4M6 24h4M6 31h4M38 17h4M38 24h4M38 31h4'/></svg></div><h3>AI SSD 增长</h3></div><div class='metric'>SSD收入占58.1%</div><div class='body'>企业级 SSD 成为生成式 AI 基础设施的一部分。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 15h32v22H8z'/><circle cx='24' cy='26' r='6'/><path d='M14 21h3M31 31h3'/></svg></div><h3>合资制造体系</h3></div><div class='metric'>SanDisk合资制造</div><div class='body'>与 SanDisk 长期合资制造分担资本投入和工艺风险。</div></div><div class='core'><div class='core-head'><div class='icon'><svg viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><rect x='10' y='10' width='28' height='28' rx='4'/><rect x='18' y='18' width='12' height='12' rx='2'/><path d='M6 17h4M6 24h4M6 31h4M38 17h4M38 24h4M38 31h4'/></svg></div><h3>周期弹性</h3></div><div class='metric'>经营利润¥870B</div><div class='body'>存储价格上行时利润弹性极强，下行时则承压。</div></div></div>
+  <div class='section-title'>近年战略动作</div>
+  <div class='actions'><div class='action'><div class='tag'>AI</div><div class='body'><b>企业SSD需求爆发</b>：生成式AI推高数据中心存储需求。</div></div><div class='action'><div class='tag'>产能</div><div class='body'><b>谨慎扩产</b>：NAND 周期波动大，资本开支必须跟随价格周期。</div></div><div class='action'><div class='tag'>合作</div><div class='body'><b>与SanDisk合资制造</b>：共同制造体系分担先进 NAND 投资。</div></div><div class='action'><div class='tag'>财务</div><div class='body'><b>利润周期反弹</b>：ASP 上行带来经营利润大幅恢复。</div></div></div>
+  <div class='quote'>「AI 数据中心让存储重新成为关键基础设施。」— 产业口径</div>
+</div>
+<div class='footer'><div>经营数据：Kioxia Integrated Report 2025 / FY2025 analysis，FY2025: 2025年4月-2026年3月</div><div>公司档案：Kioxia Holdings 官方 Company Profile，核查：2026年7月；员工15,218人，截至2026年3月</div><div>管理文化：Kioxia Talent Development / Diversity &amp; Inclusion / Standards of Conduct，核查：2026年7月</div><div>汇率口径：日元金额按约 1 USD = 161 JPY 折算，查看：2026年6月</div><div>经营之道：财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》</div><div>免责声明：本图仅供学习参考，不构成投资建议</div><div class='signature'>by 江明</div></div>
+</body></html>

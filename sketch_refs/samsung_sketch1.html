@@ -1,233 +1,98 @@
-<!DOCTY市场定价 html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 900px; height:2300px; background: #F7F4ED; font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
-.header { text-align: center; padding: 50px 40px 20px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
-.header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
-.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
-.hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
-.hero-meta { flex: 1; }
-.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
-.hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
-.hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
-.hero-meta .stats span { display: inline-block; margin-right: 16px; }
-.section-title { text-align: center; margin: 30px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
-.section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-.concepts { display: flex; gap: 16px; padding: 0 40px; }
-.concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
-.concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
-.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
-.concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
-.concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
-.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #DCE2F5 0%, #A8B8E8 100%); border: 2px solid #1428A0; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
-.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
-.bigbox .s1 { font-size: 20px; color: #0A1560; margin-top: 4px; line-height: 1.5; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #1428A0; line-height: 1; }
-.bigbox .lab { font-size: 18px; color: #0A1560; }
-.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
-.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
-.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
-.yieldbox .yld-cell { text-align: center; flex: 1; }
-.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
-.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
-.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
-.flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
-.flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
-.flow-step .t { font-size: 22px; font-weight: 700; }
-.flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
-.flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
-.quotes { margin: 26px 40px 0; }
-.quote { background: rgba(220,226,245,0.7); border-left: 4px solid #1428A0; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
-.quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
-.quote .tag { font-size: 16px; color: #0A1560; margin-top: 4px; font-weight: 500; }
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
+<!doctype html><html><head><meta charset='utf-8'><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:900px; height:2520px; overflow:hidden; position:relative; background:#F7F4ED; color:#3A2A1E; font-family:'PingFang SC','Hiragino Sans GB','Noto Sans SC',sans-serif; }
+body::before { content:''; position:absolute; inset:0; opacity:.35; pointer-events:none; background:repeating-linear-gradient(0deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#E8E4DC 39px,#E8E4DC 40px); }
+.page { position:relative; z-index:1; padding:52px 40px 0; }
+.title { text-align:center; font-family:'Songti SC','STSong',serif; font-size:78px; font-weight:800; line-height:1.05; color:#9F4E63; letter-spacing:0; }
+.en { text-align:center; margin-top:10px; color:#A89080; font-size:22px; font-style:italic; letter-spacing:1px; }
+.sub { text-align:center; margin-top:8px; color:#8B7355; font-size:22px; font-weight:800; }
+.hero { display:grid; grid-template-columns:180px 1fr; gap:28px; align-items:center; margin:44px 40px 28px; }
+.logo { display:flex; align-items:center; justify-content:center; }
+.hero h2 { font-family:'Songti SC','STSong',serif; font-size:52px; color:#5A4638; text-align:center; letter-spacing:0; margin-bottom:8px; }
+.hero .tag { color:#1428A0; font-size:22px; font-weight:900; text-align:center; margin-bottom:10px; }
+.hero .line { color:#6D5B4A; font-size:19px; line-height:1.9; text-align:left; width:max-content; max-width:520px; margin:0 auto; }
+.section-title { margin:34px 0 18px; text-align:center; color:#9F4E63; font-family:'Songti SC','STSong',serif; font-size:39px; font-weight:900; letter-spacing:0; }
+.section-title::before,.section-title::after { content:''; display:inline-block; width:92px; height:2px; background:#D5A9A0; vertical-align:middle; margin:0 18px; }
+.engines { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.engine { min-height:228px; padding:18px 14px; text-align:center; background:rgba(255,255,255,.55); border:2px solid #D9BFAF; border-radius:10px; }
+.engine svg { width:92px; height:92px; margin-bottom:8px; }
+.engine h3 { font-family:'Songti SC','STSong',serif; font-size:30px; margin-bottom:5px; color:#1428A0; }
+.engine .small { color:#A89080; font-size:16px; line-height:1.35; }
+.engine p { margin-top:8px; color:#4A3728; font-size:17px; line-height:1.45; font-weight:700; }
+.moats { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.moat { min-height:150px; position:relative; background:rgba(255,255,255,.56); border:2px solid #D9BFAF; border-radius:10px; padding:16px 18px; }
+.moat .n { position:absolute; top:12px; right:16px; color:#D5B8AD; font-family:'Songti SC',serif; font-size:28px; font-weight:900; }
+.moat h3 { color:#9F4E63; font-family:'Songti SC',serif; font-size:25px; margin-bottom:8px; }
+.moat p { color:#4A3728; font-size:18px; line-height:1.55; }
+.rows { display:grid; gap:11px; }
+.srow { display:grid; grid-template-columns:108px 1fr; gap:14px; align-items:center; background:rgba(255,255,255,.54); border:1.5px solid #E2D2C2; border-radius:8px; padding:11px 16px; }
+.srow .label { color:#fff; font-weight:900; font-size:18px; text-align:center; border-radius:5px; padding:7px 0; }
+.srow p { color:#4A3728; font-size:18px; line-height:1.5; }
+.flow { background:rgba(255,255,255,.35); border-radius:10px; padding:18px 12px; }
+.flowline { display:flex; align-items:stretch; gap:8px; }
+.step { flex:1; min-height:78px; border:2px solid #1428A0; border-radius:8px; background:#FDFAF3; text-align:center; padding:10px 6px; }
+.step .t { color:#1428A0; font-size:19px; font-weight:900; line-height:1.15; }
+.step .d { color:#8B7355; font-size:14px; line-height:1.25; margin-top:4px; }
+.arr { display:flex; align-items:center; color:#8B7355; font-size:22px; font-weight:900; }
+.quote { margin-top:14px; background:rgba(20,40,160,.10); border-left:5px solid #1428A0; border-radius:0 8px 8px 0; padding:14px 20px; color:#4A3728; font-size:21px; line-height:1.5; }
+.quote b { color:#1428A0; font-size:16px; }
 
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #1428A0; --codex-soft: rgba(228,233,255,.70); }
-.codex-role-note {
-  margin: 18px 40px 0;
-  border: 2px dashed var(--codex-accent);
-  border-radius: 12px;
-  background: rgba(255,255,255,.52);
-  padding: 12px 18px;
-  color: #5A4A3A;
-  font-size: 17px;
-  line-height: 1.55;
-  text-align: center;
-}
-.codex-role-note b { color: var(--codex-accent); }
-.codex-strategy-panel .num { font-size: 42px !important; }
-.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
-.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
-.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-<div class="header">
-  <h1>三 星 电 子 的 经 营 之 道</h1>
-  <div class="en">Samsung Electronics · Memory × Mobile × Display × Foundry</div>
-  <div class="sub">DRAM 全球 40% × HBM 追赶 × 韩国 GDP 12%</div>
-</div>
+.footer { position:fixed; left:30px; right:30px; bottom:54px; text-align:center; font-size:15px; color:#A89684; margin-top:26px; padding:0 30px 0; line-height:1.95; letter-spacing:0; }
+.footer .row { display:block; min-height:0; border:0; padding:0; color:#A89684; font-size:15px; line-height:1.95; }
+.footer .by { margin-top:10px; color:#A89684; font:inherit; letter-spacing:0; }
+</style></head><body><div class='page'>
+  <div class='title'>三星电子的经营之道</div>
+  <div class='en'>Samsung Electronics · Memory + Foundry + Devices Playbook</div>
+  <div class='sub'>全球内存霸主 × 完整产业链 × 韩国财阀生态</div>
+  <div class='hero'><div class='logo'><svg width="170" height="190" viewBox="0 0 170 190" aria-label="Samsung logo">
+      <g transform="translate(85,88)">
+        <ellipse cx="0" cy="0" rx="66" ry="33" fill="#1428A0"/>
+        <text x="0" y="7" text-anchor="middle" font-family="Arial Black, Helvetica, sans-serif" font-size="18" font-weight="900" fill="#fff">SAMSUNG</text>
+        <path d="M-54 58 C-25 42 27 42 55 58" fill="none" stroke="#C4963C" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-54" cy="58" r="6" fill="#C4963C"/>
+        <circle cx="55" cy="58" r="6" fill="#C4963C"/>
+      </g>
+    </svg></div><div><h2>三星电子</h2><div class='tag'>全球第 1 内存厂商 + 第 2 晶圆代工 + 第 1 电视</div><div class='line'>🇰🇷 1969 创立　📍 韩国水原 Suwon<br>👥 26.3 万人（全球基地 240 个）<br>🧠 AI 内存：HBM4 / SOCAMM2 进入量产销售</div></div></div>
 
-<div class="hero">
-  <svg width="170" height="200" viewBox="0 0 170 200">
-    <g transform="translate(85,100)">
-      <ellipse rx="62" ry="30" fill="#1428A0"/>
-      <text x="0" y="7" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="24" fill="white">SAMSUNG</text>
-      <text x="0" y="58" text-anchor="middle" font-size="14" fill="#1428A0" font-weight="bold">🇰🇷 1969 · SUWON</text>
-    </g>
-  </svg>
-  <div class="hero-meta">
-    <div class="name">三 星 电 子</div>
-    <div class="tag">韩国国宝 · 存储+手机+显示</div>
-    <div class="stats">
-      <span>核心逻辑：用垂直整合和存储周期押注，在 AI HBM 中重新争夺定价权。</span><br>
-      <span>飞轮变量：存储规模 → 制造学习 → 终端品牌 → HBM 认证</span>
-    </div>
-  </div>
-</div>
-
-<div class="section-title"><span>三 大 经 营 引 擎</span></div>
-<div class="concepts">
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="25" y="45" width="80" height="50" rx="4" fill="#1428A0"/>
-        <rect x="32" y="55" width="14" height="30" fill="#FFC220"/>
-        <rect x="50" y="55" width="14" height="30" fill="#FFC220"/>
-        <rect x="68" y="55" width="14" height="30" fill="#FFC220"/>
-        <rect x="86" y="55" width="14" height="30" fill="#FFC220"/>
-        <text x="65" y="120" text-anchor="middle" font-size="14" fill="#1428A0" font-weight="bold">DRAM 40% 全球</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#1428A0">存储芯片</div>
-    <div class="en">Memory (DRAM/HBM)</div>
-    <div class="desc">周期拐点反弹</div>
+  <div class='section-title'>三大经营引擎</div>
+  <div class='engines'>
+    <div class='engine'><svg viewBox="0 0 90 90"><rect x="19" y="25" width="52" height="40" rx="6" fill="#1428A0"/><rect x="28" y="34" width="34" height="22" rx="3" fill="#F7F4ED"/><text x="45" y="51" text-anchor="middle" font-size="15" font-weight="900" fill="#1428A0">HBM</text><g stroke="#1428A0" stroke-width="3"><line x1='28' y1='16' x2='28' y2='25'/><line x1='28' y1='65' x2='28' y2='74'/><line x1='38' y1='16' x2='38' y2='25'/><line x1='38' y1='65' x2='38' y2='74'/><line x1='52' y1='16' x2='52' y2='25'/><line x1='52' y1='65' x2='52' y2='74'/><line x1='62' y1='16' x2='62' y2='25'/><line x1='62' y1='65' x2='62' y2='74'/></g></svg><h3>DS 半导体</h3><div class='small'>Memory + Foundry</div><p>AI 服务器推动 HBM、DDR5、eSSD；利润弹性主要在这里。</p></div>
+    <div class='engine'><svg viewBox="0 0 90 90"><rect x="28" y="12" width="34" height="64" rx="8" fill="#C4963C"/><rect x="33" y="20" width="24" height="45" rx="3" fill="#342719"/><circle cx="45" cy="70" r="3" fill="#fff"/></svg><h3 style='color:#C4963C'>DX 设备体验</h3><div class='small'>Mobile + Display + Home</div><p>Galaxy、TV、家电和网络让三星拥有终端入口。</p></div>
+    <div class='engine'><svg viewBox="0 0 90 90"><rect x="13" y="23" width="64" height="38" rx="7" fill="#34A853"/><rect x="22" y="31" width="46" height="22" rx="3" fill="#F7F4ED"/><path d="M38 62h14l4 10H34z" fill="#34A853"/></svg><h3 style='color:#34A853'>显示 + 车载</h3><div class='small'>SDC + Harman</div><p>OLED、游戏显示器与车载电子提供第二层业务韧性。</p></div>
   </div>
 
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="40" y="25" width="50" height="85" rx="8" fill="#2A2A2C"/>
-        <rect x="46" y="35" width="38" height="62" rx="2" fill="#1428A0"/>
-        <circle cx="65" cy="104" r="3" fill="#C4963C"/>
-        <text x="65" y="65" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="white">Galaxy</text>
-        <text x="65" y="80" text-anchor="middle" font-size="10" fill="white">AI Gemini</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#2A2A2C">Galaxy 手机</div>
-    <div class="en">Mobile (MX)</div>
-    <div class="desc">规模数据见全景 · 43%</div>
+  <div class='section-title'>四大护城河</div>
+  <div class='moats'>
+    <div class='moat'><div class='n'>01</div><h3>全球内存制造学习</h3><p>存储不只看设计，良率、设备、客户认证和周期管理决定胜负；三星的经验来自长期量产。</p></div>
+    <div class='moat'><div class='n'>02</div><h3>完整产业链整合</h3><p>半导体、显示、终端、家电和车载电子互相反馈需求，从零部件到整机形成闭环。</p></div>
+    <div class='moat'><div class='n'>03</div><h3>AI 内存复位机会</h3><p>Q1 2026 官方披露 HBM4、SOCAMM2 已进入 AI 平台量产销售，核心看能否变成长期主供。</p></div>
+    <div class='moat'><div class='n'>04</div><h3>资本与研发壁垒</h3><p>FY2025 R&D 37.8 万亿 KRW，设施投资 52.7 万亿 KRW；重资本是风险，也是门槛。</p></div>
   </div>
 
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="20" y="30" width="90" height="60" rx="6" fill="#8B3A4E" opacity="0.9"/>
-        <rect x="30" y="40" width="70" height="40" rx="3" fill="#E31937" opacity="0.6"/>
-        <rect x="35" y="45" width="60" height="30" rx="2" fill="#FFC220" opacity="0.7"/>
-        <text x="65" y="65" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="12" fill="#8B3A4E">OLED</text>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B3A4E" font-weight="bold">iPhone >50% 份额</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#8B3A4E">显示屏 SDC</div>
-    <div class="en">OLED Display</div>
-    <div class="desc">苹果最大供应商</div>
+  <div class='section-title'>关键战略布局</div>
+  <div class='rows'>
+    <div class='srow'><div class='label' style='background:#1428A0'>HBM</div><p><b>HBM4 + SOCAMM2</b> 进入 AI 平台量产销售，并准备 HBM4E 样品。</p></div>
+    <div class='srow'><div class='label' style='background:#C4963C'>代工</div><p>2nm、1.4nm、HBM4 base-die 和 4nm AI/HPC 量产，是 Foundry 的证明题。</p></div>
+    <div class='srow'><div class='label' style='background:#9F4E63'>AI 终端</div><p>Galaxy AI、TV、家电和 SmartThings，把云端 AI 体验推到用户设备里。</p></div>
+    <div class='srow'><div class='label' style='background:#34A853'>显示+车载</div><p>SDC 押注高端 OLED、8.6G IT OLED；Harman 连接汽车电子场景。</p></div>
   </div>
-</div>
 
-<!-- codex-strategy-panel-start -->
-<div class="bigbox codex-strategy-panel">
-  <div style="flex:1">
-    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
-    <div class="s1">用垂直整合和存储周期押注，在 AI HBM 中重新争夺定价权。<br>关键链条：存储规模 → 制造学习 → 终端品牌 → HBM 认证</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num" style="color:#1428A0">逻辑</div>
-    <div class="lab">数据只作证据</div>
-  </div>
-</div>
-<!-- codex-strategy-panel-end -->
-
-<!-- codex-strategy-evidence-start -->
-<div class="yieldbox codex-strategy-evidence">
-  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
-  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">全球最大存储芯片厂商</div><div class="yld-sub">DRAM 全球市占 40% · NAND 市占 30%,周期反弹直…</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">存储规模 → 制造学习 → 终端品牌</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">HBM3E 12H 量产 + HBM4 研…</div><div class="yld-sub">追赶 SK 海力士,英伟达+AMD 客户验证通过,AI 存储核心</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">存储周期反弹</div><div class="yld-sub">DRAM/NAND 均价大涨,HBM 量产带动半导体利润质量暴增 …</div></div></div>
-</div>
-<!-- codex-strategy-evidence-end -->
-
-<div class="section-title"><span>三 星 飞 轮</span></div>
-<div class="flow-wrap">
-  <div class="flow-row">
-    <div class="flow-step" style="border-color:#1428A0">
-      <div class="t" style="color:#1428A0">存储</div>
-      <div class="d">DRAM/HBM</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#D4793A">
-      <div class="t" style="color:#D4793A">代工</div>
-      <div class="d">2nm GAA</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#2A2A2C">
-      <div class="t" style="color:#2A2A2C">手机</div>
-      <div class="d">Galaxy AI</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#8B3A4E">
-      <div class="t" style="color:#8B3A4E">显示</div>
-      <div class="d">OLED</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B8E4E">
-      <div class="t" style="color:#6B8E4E">家电</div>
-      <div class="d">电视+白电</div>
-    </div>
-  </div>
-</div>
-
-<div class="quotes">
-  <div class="quote">
-    <div class="txt">「HBM 和代工是三星未来十年的主战场。」</div>
-    <div class="tag">— Kyung Kye-hyun · DS CEO</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「我们要让 Samsung Foundry 成为台积电的真正对手。」</div>
-    <div class="tag">— 李在镕</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「AI 手机将引领下一波升级周期。」</div>
-    <div class="tag">— Han Jong-hee · DX CEO</div>
-  </div>
-</div>
-
-<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
-<!-- codex-role-note-end -->
-<div class="footer">经营之道：经营数据：Samsung Electronics FY2025 年报/业绩会（2026-01）；汇率口径：Samsung FY2025 韩元披露数据按公开市场汇率折算为美元；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+  <div class='section-title'>三星增长飞轮</div>
+  <div class='flow'><div class='flowline'>
+    <div class='step'><div class='t'>AI 算力需求</div><div class='d'>NVIDIA / 云厂</div></div><div class='arr'>→</div>
+    <div class='step' style='border-color:#C4963C'><div class='t' style='color:#C4963C'>HBM 放量</div><div class='d'>DS 利润修复</div></div><div class='arr'>→</div>
+    <div class='step' style='border-color:#34A853'><div class='t' style='color:#34A853'>现金流回流</div><div class='d'>支持研发与工厂</div></div><div class='arr'>→</div>
+    <div class='step' style='border-color:#9F4E63'><div class='t' style='color:#9F4E63'>再投 R&D</div><div class='d'>HBM / 2nm / OLED</div></div><div class='arr'>→</div>
+    <div class='step' style='border-color:#6B4E7A'><div class='t' style='color:#6B4E7A'>规模与客户粘性</div><div class='d'>制造学习复利</div></div>
+  </div></div>
+  <div class='quote'>「HBM4 / SOCAMM2 量产销售」说明三星的核心命题，不是做一堆电子产品，而是在 AI 内存周期里重新拿回高端定价权。<br><b>— 依据 Samsung Q1 2026 业绩公告整理</b></div>
+  <div class='quote'>「除了你的妻子和孩子，改变一切。」这句新经营宣言，解释了三星为什么能从追赶者反复回到牌桌中心。<br><b>— 李健熙 1993 法兰克福宣言</b></div>
+  <div class='footer'><div class='row'>经营数据：Samsung FY2025 Results / 2025 4Q Presentation / Q1 2026 Results，FY2025: 2025年1-12月；Q1 2026: 2026年1-3月</div>
+<div class='row'>经营之道边界：本页只讲商业逻辑；营收、利润、估值、ROI 与 CapEx 放在《经营全景》</div>
+<div class='row'>同比口径：FY2025 vs FY2024；营收 +10.9%，经营利润 +33.3%，经营现金流 +31.0%</div>
+<div class='row'>行情数据：CompaniesMarketCap / StockAnalysis，查看：2026年5月</div>
+<div class='row'>股东分红：StockAnalysis KRX:005930，查看：2026年5月；年度股息约 $1.55/股（KRW 2,264），股息率 0.83%</div>
+<div class='row'>汇率口径：Xe 2026年5月，1 USD=1,462.51 KRW；图中金额均为 USD/美元，KRW 披露数据折算后四舍五入</div>
+<div class='row'>免责声明：本图仅供学习参考，不构成投资建议</div>
+<div class='by'>by 江明</div></div>
+</div></body></html>

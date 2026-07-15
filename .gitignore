@@ -14,6 +14,13 @@ venv/
 *.jpg
 *.jpeg
 
+# Verified source assets are part of the reproducible template package.
+!assets/
+!assets/company_logos/
+!assets/company_logos/**/*.png
+!assets/company_logos/**/*.jpg
+!assets/company_logos/**/*.jpeg
+
 # IDE
 .vscode/
 .idea/

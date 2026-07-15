@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>NVIDIA Cobalt Grid Strategy</title>
+<style>
+  :root {
+    --paper: #F0EBDE;
+    --ink: #1F2BE0;
+    --ink-soft: #5862DF;
+    --grid: rgba(31,43,224,0.10);
+    --wash: rgba(240,235,222,0.78);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 900px;
+    height: 1950px;
+    overflow: hidden;
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    left: 42px;
+    right: 42px;
+    top: 34px;
+    bottom: 34px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    pointer-events: none;
+  }
+  .sheet {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 64px 54px 88px;
+  }
+  .micro, .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr 108px;
+    gap: 26px;
+    align-items: start;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: Georgia, "Songti SC", "STSong", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 88px;
+    line-height: .88;
+    max-width: 675px;
+  }
+  .subtitle {
+    margin-top: 18px;
+    width: 650px;
+    font-size: 23px;
+    line-height: 1.44;
+    font-weight: 700;
+  }
+  .qr {
+    width: 98px;
+    height: 98px;
+    border: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 8px;
+    background: var(--paper);
+  }
+  .qr i.on { background: var(--ink); }
+  .chip {
+    position: absolute;
+    right: 54px;
+    top: 226px;
+    width: 198px;
+    height: 270px;
+    opacity: .18;
+    border: 3px solid var(--ink);
+    background:
+      repeating-linear-gradient(90deg, transparent 0 12px, var(--ink) 12px 15px, transparent 15px 26px),
+      repeating-linear-gradient(0deg, transparent 0 22px, var(--ink) 22px 25px, transparent 25px 38px);
+    clip-path: polygon(0 12%, 26% 12%, 26% 0, 100% 0, 100% 72%, 82% 72%, 82% 100%, 17% 100%, 17% 83%, 0 83%);
+  }
+  .thesis {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 24px;
+  }
+  .quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 20px 0;
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 33px;
+    line-height: 1.2;
+  }
+  .stamp {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    background: var(--wash);
+  }
+  .stamp .big {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 56px;
+    line-height: .9;
+  }
+  .stamp .small {
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.34;
+    font-weight: 800;
+  }
+  .section {
+    margin-top: 30px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 14px;
+  }
+  .section-title span {
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .section-title::after {
+    content: "";
+    height: 1.5px;
+    background: rgba(31,43,224,.65);
+    flex: 1;
+  }
+  .loop {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .loop .node {
+    min-height: 128px;
+    border: 2px solid var(--ink);
+    padding: 13px 10px;
+    background: var(--wash);
+    position: relative;
+  }
+  .node .num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .node h3 {
+    margin-top: 12px;
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 23px;
+    line-height: 1;
+  }
+  .node p {
+    margin-top: 8px;
+    font-size: 12.5px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .node:not(:last-child)::after {
+    content: ">";
+    position: absolute;
+    right: -12px;
+    top: 52px;
+    font-size: 22px;
+    font-weight: 900;
+    background: var(--paper);
+    width: 14px;
+    text-align: center;
+  }
+  .bodygrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .card {
+    min-height: 194px;
+    border: 2px solid var(--ink);
+    background: var(--wash);
+    padding: 17px;
+  }
+  .card .k {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .card h3 {
+    margin-top: 10px;
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 31px;
+    line-height: 1.05;
+  }
+  .card p {
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.46;
+    font-weight: 650;
+  }
+  .card .evidence {
+    margin-top: 10px;
+    display: inline-block;
+    border-top: 1.5px solid var(--ink);
+    padding-top: 7px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 800;
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 18px;
+  }
+  .timeline {
+    display: grid;
+    gap: 10px;
+  }
+  .time {
+    border-left: 5px solid var(--ink);
+    background: var(--wash);
+    padding: 11px 13px;
+    min-height: 72px;
+  }
+  .time b {
+    font-family: Georgia, "Songti SC", serif;
+    font-size: 24px;
+    font-style: italic;
+  }
+  .time span {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 1.34;
+    color: var(--ink-soft);
+    font-weight: 750;
+  }
+  .rulebox {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    background: var(--wash);
+    min-height: 236px;
+  }
+  .rulebox .big {
+    font-family: Georgia, "Songti SC", serif;
+    font-style: italic;
+    font-size: 44px;
+    line-height: .98;
+  }
+  .rulebox p {
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.45;
+    font-weight: 700;
+  }
+  .footer {
+    position: absolute;
+    left: 54px;
+    right: 54px;
+    bottom: 50px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .footer .by { margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="chip"></div>
+    <div class="topbar">
+      <div>
+        <div class="eyebrow micro">strategy sketch · NVDA · not a dashboard</div>
+        <h1>NVIDIA<br>Compounding<br>Machine</h1>
+        <div class="subtitle">这张只讲“为什么能复利”：CUDA 迁移成本、系统级集群、云厂商资本开支、推理与机器人，把芯片生意推成平台生意。</div>
+      </div>
+      <div class="qr" aria-hidden="true">
+        <i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i>
+        <i></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+        <i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i>
+        <i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i>
+        <i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <div class="quote">“NVIDIA 的强，不只是 GPU 性能，而是把开发者、整机柜、网络和云客户预算绑进同一条路线图。”</div>
+      <div class="stamp">
+        <div class="big">#01</div>
+        <div class="small">经营之道<br>护城河 / 飞轮 / 战略变量</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="micro">01 / flywheel logic</span></div>
+      <div class="loop">
+        <div class="node"><div class="num">A</div><h3>CUDA</h3><p>开发者和 AI 框架默认路径，形成迁移成本。</p></div>
+        <div class="node"><div class="num">B</div><h3>GPU + 网络</h3><p>NVLink、InfiniBand、整机柜，让优势从单卡变成系统。</p></div>
+        <div class="node"><div class="num">C</div><h3>云厂集群</h3><p>超大云厂商把 AI CapEx 转成英伟达订单。</p></div>
+        <div class="node"><div class="num">D</div><h3>推理</h3><p>训练之后，Agent、搜索、视频、代码继续消耗算力。</p></div>
+        <div class="node"><div class="num">E</div><h3>再研发</h3><p>现金流反哺年更架构，下一轮平台迁移提前开始。</p></div>
+      </div>
+    </div>
+
+    <div class="section bodygrid">
+      <div class="card">
+        <div class="k">moat 01</div>
+        <h3>CUDA 是“默认语言”</h3>
+        <p>护城河不是某一代芯片，而是模型公司、云厂商、开发者和软件库在多年里形成的默认工作流。</p>
+        <span class="evidence">证据：NVIDIA 把 CUDA-X、NIM、AI Enterprise、Omniverse 等软件层放进同一平台叙事。</span>
+      </div>
+      <div class="card">
+        <div class="k">moat 02</div>
+        <h3>从芯片到 AI 工厂</h3>
+        <p>GB200 / GB300 不是单颗 GPU，而是 GPU、CPU、网络、液冷、机柜和软件的系统交付。</p>
+        <span class="evidence">证据：Blackwell 平台围绕 AI data center / AI factory 发布，而非传统显卡发布。</span>
+      </div>
+      <div class="card">
+        <div class="k">moat 03</div>
+        <h3>客户共创下一代</h3>
+        <p>云厂、模型公司、服务器厂商和主权 AI 客户共同定义下一代集群规格，客户越大，切换越难。</p>
+        <span class="evidence">证据：FY2026 业绩公告列出云、工业软件、主权 AI 与推理生态合作。</span>
+      </div>
+      <div class="card">
+        <div class="k">moat 04</div>
+        <h3>年更架构压缩追赶窗口</h3>
+        <p>竞争者追的是上一代，英伟达卖的是下一代平台迁移；研发节奏本身成为客户采购逻辑。</p>
+        <span class="evidence">证据：Hopper → Blackwell → Rubin 的平台节奏，将竞争从芯片参数拉到路线图可信度。</span>
+      </div>
+    </div>
+
+    <div class="section split">
+      <div>
+        <div class="section-title"><span class="micro">02 / route map</span></div>
+        <div class="timeline">
+          <div class="time"><b>Hopper</b><span>训练算力爆发，把 GPU 重新定义为 AI 训练基础设施。</span></div>
+          <div class="time"><b>Blackwell</b><span>整机柜交付与推理成本下降，让 AI 工厂进入规模化部署。</span></div>
+          <div class="time"><b>Rubin</b><span>下一代平台迁移，考验客户是否继续把路线图押给 NVIDIA。</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title"><span class="micro">03 / investor lens</span></div>
+        <div class="rulebox">
+          <div class="big">判断英伟达，不能只看芯片。</div>
+          <p>真正要盯的是三件事：CUDA 迁移成本有没有松动；云厂商 AI CapEx 有没有放缓；Blackwell 到 Rubin 的交付节奏有没有失误。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      经营之道来源：NVIDIA FY2026 Form 10-K、FY2026 Q4/FY2026 业绩公告（2026-02-25/26）、NVIDIA About/Careers 页面；财务仪表盘、ROI/ROIC、2026 CapEx 见《经营全景》；货币口径：涉及金额均为 USD/美元；仅供学习参考，不构成投资建议
+      <div class="by">by 江明</div>
+    </div>
+  </div>
+</body>
+</html>

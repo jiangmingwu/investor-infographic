@@ -79,3 +79,74 @@ DATA = {'TITLE': '卡特彼勒经营全解析',
                   '行情数据：CompaniesMarketCap 全球市值排名页，页面查看 2026-04-29（市值/股价为页面展示口径）',
                   '免责声明：本图仅供学习参考，不构成投资建议',
                   'by 江明']}
+
+# Codex latest-standard override (2026-06-07)
+DATA['COMPANY_PROFILE'].update({
+    '最新股价 / 市值': '约 $898 / $4,212 亿美元 (2026年6月)',
+    '最新 PE (TTM)': '约 45×；Forward PE 约 35×',
+})
+DATA['FINANCIAL_SUMMARY'].update({
+    'FY2025 营收': '$67.6B (+4% YoY)',
+    'FY2025 经营利润': '$11.2B级（16.5% 经营利润率）',
+    'FY2025 经营现金流': '$11.7B',
+    'FY2025 净利润': '$8.8B级（EPS $18.81 近似）',
+    '当前市值': '约 $4,212 亿美元',
+    'PE / Forward PE': '约 45× / 35×',
+})
+for _k in ['FY2025 销售和收入']:
+    DATA['FINANCIAL_SUMMARY'].pop(_k, None)
+DATA['CAPITAL_AND_ROI'] = [
+    ('ROI / ROIC', 'ROIC 20%+', '周期行业里靠经销商网络、服务件和定价纪律维持高回报。'),
+    ('2026E CapEx', '中等投入', '产能维护、自动化、矿山/能源设备和数字化服务。'),
+    ('股东回报', '$5.2B 回购 + $2.7B 分红', 'FY2025 通过回购和股息合计返还约 $7.9B。'),
+]
+DATA['BUSINESS_SEGMENTS'] = [
+    ('1', 'Construction Industries', '约 42%', '$28B级', '周期', '→稳定', '工程机械'),
+    ('2', 'Resource Industries', '约 25%', '$17B级', '周期', '▲受益', '矿山设备'),
+    ('3', 'Energy & Transportation', '约 28%', '$19B级', '强劲', '▲增长', '发动机/涡轮'),
+    ('4', 'Cat Financial', '约 5%', '$3B级', '稳定', '→稳定', '经销商金融'),
+]
+DATA['REVENUE_MIX'] = [('工程机械', '42%'), ('矿山资源', '25%'), ('能源交通', '28%'), ('金融服务', '5%')]
+DATA['MOAT'] = [
+    ('全球经销商网络', '工程机械停机成本高，Cat 经销商和服务半径是最难复制的护城河。'),
+    ('服务件利润池', '设备装机量越大，后市场零部件、维修和服务收入越稳定。'),
+    ('品牌与可靠性', '矿山和大型工程项目更看重可靠性、残值和停机风险，Cat 品牌有定价权。'),
+    ('能源/矿山多周期', '能源交通、矿山、基建分散周期，降低单一市场波动。'),
+    ('资本回报纪律', 'FY2025 回购 $5.2B + 分红 $2.7B，周期行业仍保持现金返还。'),
+]
+DATA['MOAT_METRICS'] = {
+    '全球经销商网络': '160经销商｜197国',
+    '服务件利润池': '$24B服务收入',
+    '品牌与可靠性': '$67.6B收入｜全球领先',
+    '能源/矿山多周期': '42%/25%/28%分散',
+}
+DATA['KEY_METRICS'] = [
+    ('市值排名', '第 29 名附近'),
+    ('FY25 营收', '$67.6B'),
+    ('经营利润', '$11.2B级'),
+    ('经营现金流', '$11.7B'),
+    ('净利润', '$8.8B级'),
+    ('当前市值', '$4,212亿'),
+    ('PE / Forward PE', '45× / 35×'),
+    ('ROIC', '20%+'),
+    ('股东回报', '$7.9B'),
+    ('股息', '$2.7B'),
+]
+DATA['FOOTER_LINES'] = [
+    '经营数据：Caterpillar FY2025 earnings release / Form 10-K，FY2025: 2025年1-12月',
+    '同比口径：FY2025 vs FY2024；销售和收入 +4%，经营现金流 $11.7B，经营利润率 16.5%',
+    '行情数据：OpenAI Finance / StockAnalysis / Macrotrends，查看：2026年6月；市值约 $421.2B，PE 约45×，Forward PE 约35×',
+    'ROI口径：ROIC 20%+ 区间判断；工业周期公司需结合经营利润率、服务件和经销商网络看资本效率',
+    '2026 CapEx口径：公司未披露单一精确全年数；重点产能维护、自动化、矿山/能源设备和数字化服务',
+    '股东分红：Caterpillar FY2025 results / dividend history，查看：2026年6月；FY2025 分红 $2.7B，回购 $5.2B',
+    '经营之道硬指标：Cat dealer network（160经销商/197国）；Caterpillar 2025 Annual Report / Proxy（$24B服务收入、$67.6B收入、业务分部）',
+    '管理文化：Caterpillar Annual Report / Code of Conduct / Careers，核查：2026年6月',
+    '免责声明：本图仅供学习参考，不构成投资建议',
+    'by 江明',
+]
+
+for _i, _line in enumerate(DATA['FOOTER_LINES']):
+    if _line.startswith('管理文化：'):
+        DATA['FOOTER_LINES'][_i] = '管理文化：Cat Certified Rebuild / Caterpillar 2030 Goals / Code Training / Career Pathways，核查：2026年6月'
+
+DATA['LOGO_SLUG'] = 'caterpillar'

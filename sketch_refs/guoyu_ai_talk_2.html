@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>郭宇 AI 观点图 2</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 1200px;
+  height: 750px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(232,136,58,.16), transparent 18%),
+    linear-gradient(rgba(70, 55, 44, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(70, 55, 44, .05) 1px, transparent 1px),
+    #F7F4ED;
+  background-size: auto, 30px 30px, 30px 30px, auto;
+  color: #2F2A25;
+  font-family: "Hiragino Sans GB", "Noto Sans SC", "PingFang SC", sans-serif;
+}
+.page { position: relative; width: 1200px; height: 750px; padding: 34px 44px 54px; }
+h1 {
+  margin: 0;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 43px;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+.subtitle { margin-top: 8px; font-size: 17px; color: #796653; }
+.stamp {
+  position: absolute; top: 36px; right: 52px;
+  width: 118px; height: 118px;
+  border: 4px solid #C25B2C; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; color: #C25B2C; font-weight: 900; line-height: 1.15;
+  transform: rotate(9deg); background: rgba(255,255,255,.5);
+}
+.main { display: grid; grid-template-columns: 360px 360px 340px; gap: 22px; margin-top: 24px; }
+.column {
+  min-height: 560px;
+  border: 2px solid #3B332C;
+  border-radius: 16px;
+  background: rgba(255,253,246,.88);
+  box-shadow: 5px 6px 0 rgba(47,42,37,.12);
+  padding: 18px;
+}
+.column:nth-child(1) { transform: rotate(-.3deg); }
+.column:nth-child(2) { transform: rotate(.25deg); }
+.column:nth-child(3) { transform: rotate(-.15deg); }
+.col-title { display: flex; align-items: center; gap: 9px; font-size: 22px; font-weight: 900; margin-bottom: 14px; }
+.icon {
+  width: 30px; height: 30px; border: 2px solid #3B332C; border-radius: 8px;
+  background: #D9F0E8; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 900; color: #245E58;
+}
+.path-box {
+  padding: 14px 14px 13px;
+  border: 2px dashed #C97839;
+  border-radius: 13px;
+  background: #FFF3D9;
+  margin-bottom: 13px;
+}
+.path-box b { display: block; font-size: 20px; color: #B6532D; margin-bottom: 6px; }
+.path-box p { margin: 0; font-size: 15px; line-height: 1.48; color: #55483D; }
+.loop {
+  margin: 10px auto 14px;
+  width: 250px; height: 150px;
+  position: relative;
+}
+.loop svg { width: 100%; height: 100%; }
+.loop-label {
+  position: absolute; inset: 47px 32px auto;
+  text-align: center; font-weight: 900; font-size: 21px; color: #2F2A25;
+}
+.insight {
+  height: 150px; margin: 10px 0 14px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.spark {
+  width: 170px; height: 110px; border: 2px solid #3B332C; border-radius: 45% 55% 50% 50%;
+  background: #EAF1FF; position: relative;
+}
+.spark:before, .spark:after {
+  content: ""; position: absolute; border: 2px solid #3B332C; border-radius: 50%; background: #FFFDF6;
+}
+.spark:before { width: 55px; height: 42px; left: 22px; top: 16px; }
+.spark:after { width: 46px; height: 46px; right: 22px; top: 36px; }
+.ray { position: absolute; width: 80px; border-top: 4px solid #E8883A; transform-origin: left center; }
+.ray.r1 { left: 42px; top: 28px; transform: rotate(-24deg); }
+.ray.r2 { right: 45px; bottom: 30px; transform: rotate(26deg); }
+.ray.r3 { left: 63px; bottom: 34px; transform: rotate(18deg); }
+.note { padding: 11px 12px; margin-top: 10px; border-left: 7px solid #2F7D76; background: #EFF8F2; border-radius: 8px; line-height: 1.45; font-size: 15px; color: #55483D; }
+.note strong { color: #245E58; }
+.meter { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.meter-item { border: 2px solid #3B332C; border-radius: 12px; padding: 10px; background: #F9EFE5; }
+.meter-item b { display: block; font-size: 26px; line-height: 1; color: #C25B2C; }
+.meter-item span { display: block; margin-top: 6px; font-size: 14px; line-height: 1.35; color: #55483D; }
+.action-list { margin: 0; padding: 0; list-style: none; }
+.action-list li {
+  margin: 0 0 11px; padding: 10px 12px;
+  border: 2px solid #3B332C; border-radius: 12px; background: #FFFDF6;
+  font-size: 15px; line-height: 1.4;
+}
+.action-list b { color: #B6532D; }
+.bottom { display: none; }
+.bottom-card { display: none; }
+.footer {
+  position: absolute; left: 44px; right: 44px; top: 684px; z-index: 20;
+  text-align: center; color: #7F7062; font-size: 12px; line-height: 1.38;
+  padding: 5px 8px; background: rgba(247, 244, 237, .92); border-radius: 10px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>人类最后的优势：不是会做，而是有 insight</h1>
+  <div class="subtitle">下集主线：Agent 会替代大部分“思考流程”，但人仍有不按常理的直觉、想象力和感受力</div>
+  <div class="stamp">下集<br>13分26秒</div>
+
+  <div class="main">
+    <section class="column">
+      <div class="col-title"><span class="icon">A</span>Agent 的路径</div>
+      <div class="path-box"><b>实验逼近智慧</b><p>把问题拆成大量尝试，让 Agent 在后台循环、研究、生成、筛选；郭宇自己的例子是睡前跑 1000 个 loop。</p></div>
+      <div class="loop">
+        <svg viewBox="0 0 250 150">
+          <path d="M56 82 C42 35, 112 12, 166 38 C215 62, 196 120, 128 124 C75 127, 44 103, 56 82Z" fill="#FFFDF6" stroke="#3B332C" stroke-width="4"/>
+          <path d="M77 45 C116 18, 174 38, 190 78" fill="none" stroke="#E8883A" stroke-width="6" stroke-linecap="round"/>
+          <path d="M190 78 L178 65 M190 78 L194 60" fill="none" stroke="#E8883A" stroke-width="6" stroke-linecap="round"/>
+          <path d="M174 106 C134 132, 75 114, 60 79" fill="none" stroke="#2F7D76" stroke-width="6" stroke-linecap="round"/>
+          <path d="M60 79 L72 93 M60 79 L55 96" fill="none" stroke="#2F7D76" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <div class="loop-label">1000<br>loops</div>
+      </div>
+      <div class="note"><strong>auto-research</strong> 的价值：代替大部分人不愿意做、也很难持续做的研究和发散。</div>
+    </section>
+
+    <section class="column">
+      <div class="col-title"><span class="icon">H</span>人的路径</div>
+      <div class="path-box"><b>直觉与想象力</b><p>人可以从毫不相关的事物跳到毫不相关的想法；概率模型按分布搜索，遇到“不按常理”的思路反而难预测。</p></div>
+      <div class="insight">
+        <div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div>
+        <div class="spark"></div>
+      </div>
+      <div class="note"><strong>insight 不是工具熟练度。</strong> 它来自读过的书、成长经历、心理状态、性格、童年经验，以及对世界的感受。</div>
+      <div class="note"><strong>想法重新变贵。</strong> 以前常说“想法不重要，行动重要”；现在行动门槛被 Agent 压低，独特想法变成稀缺资产。</div>
+    </section>
+
+    <section class="column">
+      <div class="col-title"><span class="icon">?</span>给使用者的提醒</div>
+      <div class="meter">
+        <div class="meter-item"><b>99.999%</b><span>他形容：普通人用 Claude Code，也像背后有一个强过绝大多数人的模型给你“输入功力”。</span></div>
+        <div class="meter-item"><b>10小时</b><span>如果一天刷短视频十小时，只追求多巴胺，就更容易被 auto-research 替代。</span></div>
+        <div class="meter-item"><b>6个月</b><span>现在学会用 Claude Code 可以短期卷赢别人，但工具优势本身会快速贬值。</span></div>
+      </div>
+      <ul class="action-list" style="margin-top:12px;">
+        <li><b>不要只练提示词。</b> 要训练判断、感受、品味和异常联想。</li>
+        <li><b>不要等确定性。</b> 先做出来，再用结果校正直觉。</li>
+        <li><b>比别人更快发布。</b> 被复制不可怕，速度与持续迭代才是护城河。</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-card"><strong>一句话总结：</strong>Agent 会越来越会“想”，但更像概率空间里的搜索；人要保住优势，需要提供它搜不到的方向。</div>
+    <div class="bottom-card"><strong>案例：</strong>OpenClaude 创始人回应被复制：发布速度要比别人复制速度更快。</div>
+    <div class="bottom-card"><strong>场景：</strong>用 Claude Code 连接石头扫地机器人，让本地 Agent 自主判断哪里脏、何时扫。</div>
+  </div>
+
+  <div class="footer">
+    资料来源：YouTube「郭宇｜人类唯一无法被AI替代的是什么？」（單向街東京，2026-04-27）与字幕整理；观点为转述摘要，非逐字稿<br>
+    by 江明
+  </div>
+</div>
+</body>
+</html>

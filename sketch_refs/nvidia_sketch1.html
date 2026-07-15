@@ -1,271 +1,104 @@
-<!DOCTY市场定价 html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  width: 900px; height:2300px; background: #F7F4ED;
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  color: #3A2A1E; overflow: hidden; position: relative;
-}
-body::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px);
-  opacity: 0.35; pointer-events: none;
-}
+body { width: 900px; height:2880px; background: #F7F4ED; font-family: 'Noto Sans SC','PingFang SC',sans-serif; color: #3A2A1E; overflow: hidden; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #E8E4DC 39px, #E8E4DC 40px); opacity: 0.35; pointer-events: none; }
 .header { text-align: center; padding: 50px 40px 20px; }
-.header h1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
+.header h1 { font-family: 'Songti SC', serif; font-weight: 700; font-size: 78px; color: #8B3A4E; letter-spacing: 6px; }
 .header .en { font-size: 22px; color: #A89080; margin-top: 6px; letter-spacing: 2px; font-style: italic; }
-.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; font-weight: 400; }
-
+.header .sub { font-size: 26px; color: #7B6650; margin-top: 12px; }
 .hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 60px 10px; }
 .hero-meta { flex: 1; }
-.hero-meta .name { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
+.hero-meta .name { font-family: 'Songti SC', serif; font-weight: 700; font-size: 56px; color: #4A3728; letter-spacing: 4px; }
 .hero-meta .tag { font-size: 22px; color: #8B3A4E; margin-top: 6px; font-weight: 500; }
 .hero-meta .stats { font-size: 20px; color: #7B6650; margin-top: 10px; line-height: 1.8; }
 .hero-meta .stats span { display: inline-block; margin-right: 16px; }
-
 .section-title { text-align: center; margin: 30px 0 18px; }
-.section-title span { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; }
+.section-title span { font-family: 'Songti SC', serif; font-weight: 700; font-size: 36px; color: #8B3A4E; padding: 0 20px; position: relative; letter-spacing: 2px; }
 .section-title span::before, .section-title span::after { content: ''; position: absolute; top: 50%; width: 80px; height: 2px; background: #C89890; }
-.section-title span::before { right: 100%; }
-.section-title span::after { left: 100%; }
-
+.section-title span::before { right: 100%; } .section-title span::after { left: 100%; }
 .concepts { display: flex; gap: 16px; padding: 0 40px; }
 .concept { flex: 1; background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 18px 10px; text-align: center; }
 .concept .svg-wrap { height: 130px; display: flex; align-items: center; justify-content: center; }
-.concept .cn { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
+.concept .cn { font-family: 'Songti SC', serif; font-weight: 700; font-size: 34px; margin-top: 6px; }
 .concept .en { font-size: 16px; color: #A89080; margin-top: 2px; letter-spacing: 1px; }
 .concept .desc { font-size: 20px; color: #5A4A3A; margin-top: 10px; font-weight: 500; }
-
-.bigbox { margin: 26px 40px 0; background: linear-gradient(135deg, #EAFBD0 0%, #D0F0A0 100%); border: 2px solid #76B900; border-radius: 14px; padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
-.bigbox .t1 { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 40px; color: #8B3A4E; }
-.bigbox .s1 { font-size: 20px; color: #5A6A3A; margin-top: 4px; line-height: 1.5; }
-.bigbox .num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-weight: 700; font-size: 60px; color: #4A7A00; line-height: 1; }
-.bigbox .lab { font-size: 18px; color: #5A6A3A; }
-
-.yieldbox { margin: 18px 40px 0; background: linear-gradient(135deg, #FFF5E8 0%, #FDE8D5 100%); border: 2px solid #C4963C; border-radius: 14px; padding: 16px 20px; }
-.yieldbox .yld-title { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 24px; font-weight: 700; color: #8B3A4E; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
-.yieldbox .yld-row { display: flex; justify-content: space-around; align-items: center; }
-.yieldbox .yld-cell { text-align: center; flex: 1; }
-.yieldbox .yld-num { font-family: 'Songti SC', 'STSong', 'SimSun', serif; font-size: 38px; font-weight: 700; color: #B8532F; line-height: 1; }
-.yieldbox .yld-lab { font-size: 16px; color: #7B6650; margin-top: 4px; }
-.yieldbox .yld-sub { font-size: 13px; color: #8B6E4E; }
-
+.moat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 40px; }
+.moat-card { background: rgba(255,255,255,0.55); border: 2px solid #D4B8A8; border-radius: 12px; padding: 16px 18px; position: relative; }
+.moat-card .moat-num { position: absolute; top: 12px; right: 16px; font-family: 'Songti SC', serif; font-weight: 700; font-size: 28px; color: #C89890; opacity: 0.55; }
+.moat-card .moat-name { font-family: 'Songti SC', serif; font-weight: 700; font-size: 26px; color: #8B3A4E; margin-bottom: 8px; }
+.moat-card .moat-desc { font-size: 18px; color: #4A3728; line-height: 1.55; }
+.strategy-grid { padding: 0 40px; }
+.strategy-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; background: rgba(255,255,255,0.5); border: 1.5px solid #E2D2C2; border-radius: 10px; padding: 14px 18px; }
+.strategy-tag { flex: 0 0 100px; padding: 6px 0; text-align: center; color: white; font-weight: 700; font-size: 18px; border-radius: 6px; font-family: 'Songti SC', serif; letter-spacing: 1px; }
+.strategy-text { flex: 1; font-size: 19px; color: #4A3728; line-height: 1.55; }
 .flow-wrap { margin: 26px 40px 0; background: rgba(255,255,255,0.4); border-radius: 12px; padding: 20px 18px; }
 .flow-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .flow-step { flex: 1; text-align: center; border: 2px solid #8B7355; border-radius: 10px; padding: 12px 6px; background: #FDFAF3; }
 .flow-step .t { font-size: 22px; font-weight: 700; }
 .flow-step .d { font-size: 16px; color: #8B7355; margin-top: 3px; }
 .flow-arr { color: #8B7355; font-size: 26px; font-weight: 700; }
-
 .quotes { margin: 26px 40px 0; }
-.quote { background: rgba(234,251,208,0.6); border-left: 4px solid #76B900; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+.quote { background: rgba(118,185,0,0.12); border-left: 4px solid #76B900; padding: 14px 20px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
 .quote .txt { font-size: 22px; color: #4A3728; line-height: 1.5; }
 .quote .tag { font-size: 16px; color: #4A7A00; margin-top: 4px; font-weight: 500; }
-
-.footer { text-align: center; font-size: 16px; color: #B0A090; margin-top: 24px; padding-bottom: 20px; line-height: 1.6; }
-
-svg .sl { stroke-linecap: round; stroke-linejoin: round; }
-
-<!-- codex-legacy-style-start -->
-:root { --codex-accent: #76B900; --codex-soft: rgba(234,251,208,.62); }
-.codex-role-note {
-  margin: 18px 40px 0;
-  border: 2px dashed var(--codex-accent);
-  border-radius: 12px;
-  background: rgba(255,255,255,.52);
-  padding: 12px 18px;
-  color: #5A4A3A;
-  font-size: 17px;
-  line-height: 1.55;
-  text-align: center;
-}
-.codex-role-note b { color: var(--codex-accent); }
-.codex-strategy-panel .num { font-size: 42px !important; }
-.codex-strategy-evidence .yld-num { font-size: 24px !important; line-height: 1.15 !important; color: var(--codex-accent) !important; }
-.codex-strategy-evidence .yld-lab { font-size: 16px !important; font-weight: 800 !important; color: #4B3B2F !important; }
-.codex-strategy-evidence .yld-sub { font-size: 13px !important; line-height: 1.35 !important; color: #7B6650 !important; }
-<!-- codex-legacy-style-end -->
-<!-- codex-legacy-footer-start -->
-body { position: relative; }
-.footer {
-  position: absolute !important;
-  left: 40px !important;
-  right: 40px !important;
-  bottom: 24px !important;
-  margin-top: 0 !important;
-  padding-bottom: 0 !important;
-  text-align: center !important;
-}
-<!-- codex-legacy-footer-end -->
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>英 伟 达 的 经 营 之 道</h1>
-  <div class="en">NVIDIA · The AI Infrastructure Playbook</div>
-  <div class="sub">算力霸主 × CUDA 生态 × AI Factory</div>
-</div>
-
-<!-- 公司形象 -->
+.footer { text-align: center; font-size: 15px; color: #A89684; margin-top: 30px; padding: 0 30px 26px; line-height: 1.95; letter-spacing: 0.3px; }
+.footer .row { margin: 0; }
+.footer .by { margin-top: 10px; font-family: 'Songti SC', serif; font-size: 17px; color: #8B7355; letter-spacing: 2px; }
+</style></head><body>
+<div class="header"><h1>英伟达的经营之道</h1><div class="en">NVIDIA · The AI Infrastructure Playbook</div><div class="sub">算力霸主 × CUDA 生态 × AI Factory</div></div>
 <div class="hero">
-  <svg width="170" height="200" viewBox="0 0 170 200">
-    <g transform="translate(85,100)">
-      <circle r="62" fill="#76B900" stroke="#4A7A00" stroke-width="2"/>
-      <!-- GPU 芯片简笔 -->
-      <rect x="-38" y="-28" width="76" height="56" rx="6" fill="#1A1A2E" stroke="#0A0A1E" stroke-width="2"/>
-      <rect x="-30" y="-20" width="60" height="40" rx="3" fill="#2A2A3E"/>
-      <text x="0" y="6" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#76B900">NVIDIA</text>
-      <!-- 散热鳍片 -->
-      <rect x="-38" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="-26" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="-14" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="-2" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="10" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="22" y="32" width="6" height="8" fill="#1A1A2E"/>
-      <rect x="32" y="32" width="6" height="8" fill="#1A1A2E"/>
-    </g>
-  </svg>
-  <div class="hero-meta">
-    <div class="name">英 伟 达</div>
-    <div class="tag">全球 AI 算力底层基础设施</div>
-    <div class="stats">
-      <span>核心逻辑：把 GPU 从芯片卖成 AI 工厂平台，软件生态让硬件周期变成平台…</span><br>
-      <span>飞轮变量：CUDA 开发者 → GPU/网络硬件 → 云厂商集群 → 推理与机器人</span>
-    </div>
-  </div>
+  <svg width="170" height="200" viewBox="0 0 170 200"><g transform="translate(85,100)">
+    <circle r="62" fill="#76B900" stroke="#4A7A00" stroke-width="2"/>
+    <rect x="-38" y="-28" width="76" height="56" rx="6" fill="#1A1A2E" stroke="#0A0A1E" stroke-width="2"/>
+    <rect x="-30" y="-20" width="60" height="40" rx="3" fill="#2A2A3E"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Songti SC,serif" font-weight="700" font-size="14" fill="#76B900">NVIDIA</text>
+    <rect x="-38" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="-26" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="-14" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="-2" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="10" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="22" y="32" width="6" height="8" fill="#1A1A2E"/><rect x="32" y="32" width="6" height="8" fill="#1A1A2E"/>
+  </g></svg>
+  <div class="hero-meta"><div class="name">英伟达</div><div class="tag">全球 AI 算力底层基础设施</div><div class="stats"><span>🇺🇸 1993 黄仁勋创立</span><span>📍 加州 Santa Clara</span><br><span>👥 约 3.6 万人</span><span>🏭 无晶圆厂 · 设计 + 软件公司</span></div></div>
 </div>
-
-<!-- 三大引擎 -->
-<div class="section-title"><span>三 大 经 营 引 擎</span></div>
-
+<div class="section-title"><span>三大经营引擎</span></div>
 <div class="concepts">
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="20" y="30" width="90" height="60" rx="4" fill="#1A1A2E" stroke="#76B900" stroke-width="2"/>
-        <rect x="28" y="38" width="74" height="44" rx="2" fill="#2A2A3E"/>
-        <text x="65" y="68" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="20" fill="#76B900">GPU</text>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#4A7A00" font-weight="bold">Blackwell · Rubin</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#4A7A00">算力 GPU</div>
-    <div class="en">Compute Power</div>
-    <div class="desc">数据中心 +68% · 占 90%</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <circle cx="65" cy="65" r="48" fill="none" stroke="#8B3A4E" stroke-width="2.5"/>
-        <circle cx="65" cy="65" r="32" fill="none" stroke="#8B3A4E" stroke-width="2" stroke-dasharray="4,3"/>
-        <circle cx="65" cy="65" r="16" fill="#8B3A4E"/>
-        <text x="65" y="70" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-weight="700" font-size="14" fill="#FFF">CUDA</text>
-        <circle cx="25" cy="30" r="3" fill="#8B3A4E"/>
-        <circle cx="105" cy="30" r="3" fill="#8B3A4E"/>
-        <circle cx="25" cy="100" r="3" fill="#8B3A4E"/>
-        <circle cx="105" cy="100" r="3" fill="#8B3A4E"/>
-      </svg>
-    </div>
-    <div class="cn" style="color:#8B3A4E">CUDA 生态</div>
-    <div class="en">Software Moat</div>
-    <div class="desc">400 万开发者 · 18 年</div>
-  </div>
-
-  <div class="concept">
-    <div class="svg-wrap">
-      <svg width="130" height="130" viewBox="0 0 130 130">
-        <rect x="15" y="40" width="30" height="55" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
-        <rect x="50" y="25" width="30" height="70" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
-        <rect x="85" y="15" width="30" height="80" fill="#C4963C" stroke="#8B6630" stroke-width="2"/>
-        <text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">10 万 GPU 集群</text>
-      </svg>
-    </div>
-    <div class="cn" style="color:#C4963C">AI Factory</div>
-    <div class="en">AI Factory</div>
-    <div class="desc">超算级订单 · 主权 AI</div>
-  </div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><rect x="20" y="30" width="90" height="60" rx="4" fill="#1A1A2E" stroke="#76B900" stroke-width="2"/><rect x="28" y="38" width="74" height="44" rx="2" fill="#2A2A3E"/><text x="65" y="68" text-anchor="middle" font-family="Songti SC,serif" font-weight="700" font-size="20" fill="#76B900">GPU</text><text x="65" y="115" text-anchor="middle" font-size="14" fill="#4A7A00" font-weight="bold">Blackwell · Rubin</text></svg></div><div class="cn" style="color:#4A7A00">算力 GPU</div><div class="en">Compute Power</div><div class="desc">数据中心 +68% · 占 90%</div></div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><circle cx="65" cy="65" r="48" fill="none" stroke="#8B3A4E" stroke-width="2.5"/><circle cx="65" cy="65" r="32" fill="none" stroke="#8B3A4E" stroke-width="2" stroke-dasharray="4,3"/><circle cx="65" cy="65" r="16" fill="#8B3A4E"/><text x="65" y="70" text-anchor="middle" font-family="Songti SC,serif" font-weight="700" font-size="14" fill="#FFF">CUDA</text><circle cx="25" cy="30" r="3" fill="#8B3A4E"/><circle cx="105" cy="30" r="3" fill="#8B3A4E"/><circle cx="25" cy="100" r="3" fill="#8B3A4E"/><circle cx="105" cy="100" r="3" fill="#8B3A4E"/></svg></div><div class="cn" style="color:#8B3A4E">CUDA 生态</div><div class="en">Software Moat</div><div class="desc">400 万开发者 · 18 年</div></div>
+  <div class="concept"><div class="svg-wrap"><svg width="130" height="130" viewBox="0 0 130 130"><rect x="15" y="40" width="30" height="55" fill="#C4963C" stroke="#8B6630" stroke-width="2"/><rect x="50" y="25" width="30" height="70" fill="#C4963C" stroke="#8B6630" stroke-width="2"/><rect x="85" y="15" width="30" height="80" fill="#C4963C" stroke="#8B6630" stroke-width="2"/><text x="65" y="115" text-anchor="middle" font-size="14" fill="#8B6630" font-weight="bold">10 万 GPU 集群</text></svg></div><div class="cn" style="color:#C4963C">AI Factory</div><div class="en">AI Factory</div><div class="desc">超算级订单 · 主权 AI</div></div>
 </div>
-
-<!-- 大数字战绩 -->
-<!-- codex-strategy-panel-start -->
-<div class="bigbox codex-strategy-panel">
-  <div style="flex:1">
-    <div class="t1">经营主线：不是财务表，而是复利逻辑</div>
-    <div class="s1">把 GPU 从芯片卖成 AI 工厂平台，软件生态让硬件周期变成平台周期。<br>关键链条：CUDA 开发者 → GPU/网络硬件 → 云厂商集群 → 推理与机器人</div>
-  </div>
-  <div style="text-align:center">
-    <div class="num" style="color:#76B900">逻辑</div>
-    <div class="lab">数据只作证据</div>
-  </div>
+<div class="section-title"><span>四大护城河</span></div>
+<div class="moat-grid">
+  <div class="moat-card"><div class="moat-num">01</div><div class="moat-name">CUDA 软件壁垒</div><div class="moat-desc">投入 18 年构建编程模型 + 编译器 + 库 + 工具链，全球 <strong>400 万开发者</strong>。AI 框架（PyTorch / TensorFlow / JAX）默认基于 CUDA。换平台 = 重写整套训练栈。</div></div>
+  <div class="moat-card"><div class="moat-num">02</div><div class="moat-name">系统级整合</div><div class="moat-desc">不只卖 GPU——<strong>GPU + CPU (Grace) + DPU (BlueField) + NVLink + InfiniBand + 网络交换机 + 整机柜</strong>。一家公司就是一座 AI 工厂供应商。</div></div>
+  <div class="moat-card"><div class="moat-num">03</div><div class="moat-name">客户深度绑定</div><div class="moat-desc">微软 / 谷歌 / Meta / 亚马逊 / Oracle / 主权 AI 客户全年订单排队；与各大云和模型公司共同定义下一代集群规格。<strong>客户拿不到货</strong>本身就是护城河。</div></div>
+  <div class="moat-card"><div class="moat-num">04</div><div class="moat-name">研发节奏壁垒</div><div class="moat-desc">已切到<strong>"年更架构"</strong>节奏：Hopper (2022) → Blackwell (2024) → Rubin (2026H2) → Rubin Ultra (2027) → Feynman (2028)。竞争对手追完一代，下一代已发布。</div></div>
 </div>
-<!-- codex-strategy-panel-end -->
-
-<!-- 四档数据 -->
-<!-- codex-strategy-evidence-start -->
-<div class="yieldbox codex-strategy-evidence">
-  <div class="yld-title">经营证据：只保留能解释护城河的数据</div>
-  <div class="yld-row"><div class="yld-cell"><div class="yld-num">护城河</div><div class="yld-lab">CUDA 生态 18 年积累</div><div class="yld-sub">400 万开发者 + 3000+ 加速应用,AI 软件事实标准,切…</div></div><div class="yld-cell"><div class="yld-num">飞轮</div><div class="yld-lab">CUDA 开发者 → GPU/网络硬件 →…</div><div class="yld-sub">解释增长如何自我强化</div></div><div class="yld-cell"><div class="yld-num">战略动作</div><div class="yld-lab">Blackwell GB200/GB300…</div><div class="yld-sub">最新年度 贡献数据中心增长主力,已成为历史最快扩产产品</div></div><div class="yld-cell"><div class="yld-num">关键变量</div><div class="yld-lab">业务规模 / 利润质量双 +65%</div><div class="yld-sub">万亿美元市场位置体量下仍保持超 60% 增速,全球独一份</div></div></div>
+<div class="section-title"><span>关键战略布局</span></div>
+<div class="strategy-grid">
+  <div class="strategy-row"><div class="strategy-tag" style="background:#76B900">产品节奏</div><div class="strategy-text"><strong>Blackwell GB200/GB300 全面出货</strong>，已成"史上最快扩产产品"；Rubin 2026H2 量产；CEO 公开预告未来 2 年 Blackwell+Rubin 带来 <strong>$5,000 亿美元</strong>市场机会。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#8B3A4E">主权 AI</div><div class="strategy-text">推动各国"AI 主权"采购自建 AI 工厂——日本、英国、法国、沙特、阿联酋、印度、加拿大等签约部署，<strong>开辟政府级市场</strong>，对冲单一云厂依赖。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#C4963C">物理 AI</div><div class="strategy-text"><strong>DRIVE Thor 自动驾驶 + Isaac 机器人 + Cosmos 物理 AI 模型</strong>——把 AI 从云推到车、机器人、工厂，开辟下一条增长曲线（汽车 +39%）。</div></div>
+  <div class="strategy-row"><div class="strategy-tag" style="background:#3A7BD4">生态投资</div><div class="strategy-text">大手笔战略投资 OpenAI、xAI、CoreWeave、Mistral、Wayve 等——<strong>资金 + GPU 优先供应</strong>同时绑定下一波模型 / 算力客户。</div></div>
 </div>
-<!-- codex-strategy-evidence-end -->
-
-<!-- 经营飞轮 -->
-<div class="section-title"><span>英 伟 达 增 长 飞 轮</span></div>
-<div class="flow-wrap">
-  <div class="flow-row">
-    <div class="flow-step" style="border-color:#4A7A00">
-      <div class="t" style="color:#4A7A00">算力需求</div>
-      <div class="d">云厂 AI Capex</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#8B3A4E">
-      <div class="t" style="color:#8B3A4E">GPU 出货</div>
-      <div class="d">Blackwell</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#C4963C">
-      <div class="t" style="color:#C4963C">CUDA 生态</div>
-      <div class="d">锁定客户</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#3A7BD4">
-      <div class="t" style="color:#3A7BD4">客户排队</div>
-      <div class="d">定价权</div>
-    </div>
-    <div class="flow-arr">→</div>
-    <div class="flow-step" style="border-color:#6B4E7A">
-      <div class="t" style="color:#6B4E7A">再投 R&D</div>
-      <div class="d">年更架构</div>
-    </div>
-  </div>
-</div>
-
-<!-- 名言 -->
+<div class="section-title"><span>英伟达增长飞轮</span></div>
+<div class="flow-wrap"><div class="flow-row">
+  <div class="flow-step" style="border-color:#4A7A00"><div class="t" style="color:#4A7A00">算力需求</div><div class="d">云厂 AI Capex</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#8B3A4E"><div class="t" style="color:#8B3A4E">GPU 出货</div><div class="d">Blackwell</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#C4963C"><div class="t" style="color:#C4963C">CUDA 生态</div><div class="d">锁定客户</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#3A7BD4"><div class="t" style="color:#3A7BD4">客户排队</div><div class="d">定价权</div></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-step" style="border-color:#6B4E7A"><div class="t" style="color:#6B4E7A">再投 R&amp;D</div><div class="d">年更架构</div></div>
+</div></div>
 <div class="quotes">
-  <div class="quote">
-    <div class="txt">「AI 已从训练时代进入推理时代。」</div>
-    <div class="tag">— 黄仁勋 · FY26 年报</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「Blackwell + Rubin 将开启 规模数据见全景市场机会。」</div>
-    <div class="tag">— 黄仁勋 · GTC 2026</div>
-  </div>
-  <div class="quote">
-    <div class="txt">「我们在建设 AI Factory，不是在卖芯片。」</div>
-    <div class="tag">— 黄仁勋</div>
-  </div>
+  <div class="quote"><div class="txt">「AI 已从训练时代进入推理时代。」</div><div class="tag">— 黄仁勋 · FY26 年报</div></div>
+  <div class="quote"><div class="txt">「Blackwell + Rubin 将开启 $5,000 亿美元市场机会。」</div><div class="tag">— 黄仁勋 · GTC 2026</div></div>
+  <div class="quote"><div class="txt">「我们在建设 AI Factory，不是在卖芯片。」</div><div class="tag">— 黄仁勋</div></div>
 </div>
-
-<!-- codex-role-note-start -->
-<div class="codex-role-note"><b>经营之道：</b>只讲护城河、飞轮和战略变量；营收、利润、估值、ROI/ROIC 和 2026 CapEx 放在“经营全景”。</div>
-<!-- codex-role-note-end -->
-<div class="footer">经营之道：经营数据：NVIDIA FY2026 年报/业绩公告（2026-02-26）与业绩会；财务看板、ROI/ROIC、2026 CapEx 与估值详见《经营全景》<br>货币口径：图中金额均为 USD/美元；仅供学习参考，不构成投资建议<br>by 江明</div>
-
-</body>
-</html>
+<div class="footer">
+  <div class="row">数据来源：NVIDIA FY2026 年报、GTC 2026、CEO 公开演讲</div>
+  <div class="row">行情数据：CompaniesMarketCap，截至 2026-05-09　·　货币：USD</div>
+  <div class="row">免责声明：本图仅供学习参考，不构成投资建议</div>
+  <div class="by">by 江明</div>
+</div>
+</body></html>
