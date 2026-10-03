@@ -1,5 +1,7 @@
 # Local Template System
 
+Current company default: [approved-original-layout.md](approved-original-layout.md), approved 2026-10-03. Preserve original company layouts while improving content. The dated four-page Amex reference lives in `sketch_refs/amex_approved_20261002/` under the template root and GitHub repository; never reuse its historical data as current.
+
 ## What Exists
 
 - `/Users/jiangming/templates/investor_infographic.py` creates the orange investor/fund holding-analysis long image.
@@ -42,8 +44,8 @@ python3 investor_infographic.py data_<slug> "/Users/jiangming/持仓分析/<fold
 
 Listed-company work defaults to four hand-drawn pages from one approved company packet and one company-specific visual configuration:
 
-1. `公司档案`: eight required identity fields, business scope, a hand-drawn `上市以来股价走势`, industry position, and milestones.
-2. `经营之道`: long-term positioning, 3-5 real core drivers, hard evidence plus industry meaning, recent actions, and a verified quote when useful.
+1. `公司档案`: nine required identity fields including founder/founding entity, business scope, a hand-drawn `上市以来股价走势`, industry position, and milestones.
+2. `经营之道`: long-term positioning, 1-5 real evidence-backed core drivers without padding, hard evidence plus industry meaning, recent actions, and a verified quote when useful.
 3. `经营全景`: the fixed six-card financial/valuation snapshot, segment mix, ROI/ROIC, 2026 CapEx, shareholder return, highlights/risks, and important institutions/shareholders.
 4. `管理文化`: 1-3 documented people/organization principles, each with a practice and a case or number.
 

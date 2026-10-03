@@ -22,6 +22,7 @@ def base_packet() -> dict:
         "company_profile": {
             "公司全称": "Example Company Inc.",
             "成立时间": "2000年",
+            "创始人 / 创立主体": "Example Founder",
             "总部地址": "New York, USA",
             "交易所及代码": "NYSE: EXM",
             "CEO / 主要负责人": "Example CEO",
@@ -51,7 +52,17 @@ def base_packet() -> dict:
         "capital": {
             "roi": {"value": "12.5%", "source": "年报"},
             "capex_2026": {"value": "未披露/不可比", "source": "年报"},
-            "shareholder_return": {"value": "$2.00/股，股息率2.0%", "source": "公司公告"},
+            "shareholder_return": {
+                "value": "$2.00/股，股息率2.0%",
+                "source": "公司公告",
+                "dividend_yield_average": {
+                    "value": "2.8%",
+                    "label": "近10年均值",
+                    "period": "2016-2026",
+                    "formula": "近10年TTM股息率历史样本算术平均",
+                    "source": "FinanceCharts，2026年7月",
+                },
+            },
         },
         "major_holders": [],
         "management_culture": [
@@ -61,6 +72,9 @@ def base_packet() -> dict:
                 "practice": "做法：公司公开培训与反馈机制。",
                 "case_or_number": "案例：年度报告披露该机制。",
                 "source": "公司官网，2026年7月",
+                "distinctiveness": "测试占位：真实出图须另外通过选材与来源审查。",
+                "evidence_scope": "测试占位：示例公司员工，2026年。",
+                "evidence_status": "published_policy",
             }
         ],
         "footer_lines": [
@@ -74,8 +88,33 @@ def base_packet() -> dict:
 
 
 class CoreEvidenceGateTest(unittest.TestCase):
+    def test_rejects_profile_without_founder_or_founding_entity(self) -> None:
+        packet = base_packet()
+        del packet["company_profile"]["创始人 / 创立主体"]
+        with self.assertRaisesRegex(ValidationError, "创始人 / 创立主体"):
+            validate_packet(packet)
+
     def test_accepts_direct_business_evidence(self) -> None:
         validate_packet(base_packet())
+
+    def test_rejects_shareholder_return_without_historical_dividend_yield(self) -> None:
+        packet = base_packet()
+        del packet["capital"]["shareholder_return"]["dividend_yield_average"]
+        with self.assertRaisesRegex(ValidationError, "dividend_yield_average"):
+            validate_packet(packet)
+
+    def test_accepts_explicitly_unavailable_history_with_evidence(self) -> None:
+        packet = base_packet()
+        average = packet["capital"]["shareholder_return"]["dividend_yield_average"]
+        average.update(value="资料不足", label="可比期均值",
+                       limitation="上市不足一年，未取得完整年度股息与年末股价配对；已核查公司IR。")
+        validate_packet(packet)
+
+    def test_rejects_unavailable_history_without_explanation(self) -> None:
+        packet = base_packet()
+        packet["capital"]["shareholder_return"]["dividend_yield_average"]["value"] = "资料不足"
+        with self.assertRaisesRegex(ValidationError, "limitation"):
+            validate_packet(packet)
 
     def test_accepts_verified_distribution_network_evidence(self) -> None:
         packet = copy.deepcopy(base_packet())

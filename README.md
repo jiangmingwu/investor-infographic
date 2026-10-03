@@ -12,6 +12,8 @@
 
 完整口径见 [`docs/CURRENT_STANDARD.md`](docs/CURRENT_STANDARD.md)。旧版公司橙色长图仅在明确点名或维护历史批次时生成；投资人/基金的橙色长图流程保持不变。
 
+**最新批准版（2026-10-03）**：采用美国运通试稿的内容标准，保持每家公司原版排版、品牌色、字体和手绘小图标。只增强量化证据、清晰解释与文化案例，不做通用化重设计。[四页自包含 HTML 参考](sketch_refs/amex_approved_20261002/)是带日期的历史样例，不能直接复用其中行情或持仓数据。执行时先读[原版排版规则](skills/investor-infographic/references/approved-original-layout.md)。
+
 ## 当前仓库规模
 
 - 56 个投资人/公司数据模块
@@ -72,7 +74,7 @@ python3 company_infographic.py data_nvidia ~/Downloads/nvidia_analysis.png
 # 批量刷新前 30 公司经营分析 + 管理文化对比
 python3 generate_top30_refresh.py
 
-# 当前四页标准与公司档案股价走势图工具
+# 历史批次工具：运行前核对目标范围，不得覆盖已批准的公司原版版式
 python3 tools/render_post_chevron_standard_v2.py
 python3 tools/render_post_chevron_profile_stock_charts.py
 ```

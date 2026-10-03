@@ -1,0 +1,19 @@
+{
+  "standard": "original-layout-content-evidence-2026-10-03",
+  "purpose": "dated_layout_reference_not_live_data",
+  "approved_on": "2026-10-03",
+  "rendered_on": "2026-10-02",
+  "market_close": "2026-10-01",
+  "warning": "排版样例；数据是历史快照，不得直接作为最新公司数据。其他公司保留自身原版配色与布局。",
+  "logo": {
+    "official_source_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg",
+    "retrieved": "2026-10-02",
+    "sha256": "028f643755987211bf2f3add6c62ae1870a888cf2f4fe3040a4fac7dce2543ab"
+  },
+  "pages": [
+    {"name": "profile", "file": "01_公司档案.html", "sha256": "636963e3184580d54451126d681cb15065df6b28490644f4727caefaed8f4104"},
+    {"name": "strategy", "file": "02_经营之道.html", "sha256": "79fa0ff2cfab58156fa78f660a02a08ef199e712533263d5e8d4d8ff95b6bd7c"},
+    {"name": "panorama", "file": "03_经营全景.html", "sha256": "6c3c3f5e7235a8caed7779ba22103c4976b096c164baaa6be7669e15f07c3e71"},
+    {"name": "culture", "file": "04_管理文化.html", "sha256": "80aad538bad1d5804b59aceb6f869573d1487c6045a1ace738075209a91e1043"}
+  ]
+}
